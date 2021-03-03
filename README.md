@@ -48,8 +48,8 @@ Once you have a username, let your docker know who you are by executing:
 Once your docker can communicate with the docker hub using your credentials, configure the `upload_image.sh` script with your username and group's identification as well.
 Example configuration:
 
-    DOCKER_USERNAME=lbaw21gg  # Replace by your docker hub username
-    IMAGE_NAME=lbaw21gg-piu   # Replace by your lbaw group name
+    DOCKER_USERNAME=lbaw2174  # Replace by your docker hub username
+    IMAGE_NAME=lbaw2174-piu   # Replace by your lbaw group name
 
 Afterward, you can build and upload the docker image by executing that script from the project root:
 
@@ -71,7 +71,7 @@ You should provide your teacher with the details for accessing your docker image
 To use a Docker container to serve HTML files from your __html/__ folder, run your image and mount the folder (specify the local full path or $PWD) as a volume:
 
 
-    docker run -it -p 8000:80 -v $PWD/html:/var/www/html <DOCKER_USERNAME>/<IMAGE NAME>
+    docker run -it -p 8080:80 -v $PWD/html:/var/www/html lbaw2174/lbaw2174-piu
 
 
 The above command exposes your HTML on http://localhost:8000 for you to test changes. You need to provide the full path for the `html` folder for it to be mounted in the container.
