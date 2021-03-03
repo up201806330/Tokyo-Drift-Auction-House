@@ -1,0 +1,10 @@
+body {
+    --color-background: white;
+    --color-main: #8c0000;
+    --color-secondary: #bd2000;
+    --color-tertiary: #fa1e0e;
+    --color-main-bright: #ffbe0f;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background-color: var(--color-background);
+}
