@@ -1,0 +1,59 @@
+.condition {
+    font-size: 50px;
+    color: #8c0000
+}
+
+.car-details {
+    background-color: grey;
+}
+
+.heart_button {
+    line-height: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display:inline-block;
+    position:relative;
+}
+
+.heart {
+    position:absolute;
+    bottom: -5px;
+    left: 5px;
+    width: 30;
+    height: 30;
+    border-radius: 100%;
+    border-color: #8c0000;
+    border-width: medium;
+    text-align: center;
+    align-content: center;
+    background-color: #8c000044;
+}
+
+.heart_icon{
+    color: #8c0000;
+}
+
+.profile_picture {
+    height: 100px;
+    width: 100px;
+    border: medium solid #8c0000;
+}
+
+.profile_text {
+    text-decoration: none;
+    color:#bd2000;
+}
+
+.profile_text:hover {
+    text-decoration: none;
+    color:#8c0000;
+}
+
+.current_bid {
+    font-size: xx-large;
+    color: #bd2000;
+    border: medium solid #bd2000;
+    padding: 15px;
+    display: inline-block;
+}
