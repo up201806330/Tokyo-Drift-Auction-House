@@ -1,3 +1,19 @@
+:root {
+    --red-darker: #8c0000;
+    --red-brown: #bd2000;
+    --red-bright: #fa1e0e;
+    --yellow: #ffbe0f;
+}
+
+/* Vertical Line between Log in and Sign in */
 .left-vert-bar {
     border-right: 3px solid rgba(0, 0, 0, 0.445);
+}
+
+.bg-navbar {
+    background-color: var(--red-darker);
+}
+
+.logo {
+    margin-right: 1.2rem;
 }
