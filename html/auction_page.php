@@ -124,7 +124,23 @@
                 </div>
             </div>
         </div>
+
         <!-- Place Bid -->
+        <div class="container w-25 pt-5">
+            <form>
+                <div class="row align-items-center text-center">
+                    <div class="col">
+                        <div class="input-group">
+                            <!--<span class="input-group-addon">€</span>-->
+                            <input type="number" min="0.00" step="1" value="205000" class="form-control bid_input" id="bid" placeholder="Your Bid">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn bid_button"><h2 class="m-0">BID</h2></button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
         <!-- Countdown -->
 

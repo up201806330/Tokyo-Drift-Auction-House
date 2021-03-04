@@ -4,7 +4,7 @@
 }
 
 .car-details {
-    background-color: grey;
+    background-color: #42000070;
 }
 
 .heart_button {
@@ -37,7 +37,7 @@
 .profile_picture {
     height: 100px;
     width: 100px;
-    border: medium solid #8c0000;
+    border: thin solid #8c0000;
 }
 
 .profile_text {
@@ -53,7 +53,23 @@
 .current_bid {
     font-size: xx-large;
     color: #bd2000;
-    border: medium solid #bd2000;
+    border: thin solid #bd2000;
     padding: 15px;
     display: inline-block;
+}
+
+.bid_button{
+    background-color: #ffbe0f44;
+    color: #ffbe0f;
+    border: thin solid #ffbe0f;
+    padding: 5px, 15px;
+}
+
+.bid_input{
+    font-size: xx-large;
+    color: #ffbe0f;
+    border: thin solid #ffbe0f;
+    padding: 15px;
+    display: inline-block;
+    text-align: right;
 }
