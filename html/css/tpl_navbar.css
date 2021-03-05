@@ -7,8 +7,7 @@
 
 /* Vertical Line between Log in and Sign in */
 .left-vert-bar {
-    margin: 0 1rem;
-    border-right: 3px solid rgba(0, 0, 0, 0.445);
+    border-right: 3px solid white;
 }
 
 .bg-navbar {
@@ -29,4 +28,19 @@
     padding-right: 1.5rem;
     font-size: 1.4rem;
     position: relative;
+}
+
+.navbar-content-bold {
+    font-weight: 700 !important;
+}
+
+
+.filter-logo {
+    filter: invert(98%) sepia(5%) saturate(2%) hue-rotate(292deg) brightness(118%) contrast(100%);
+}
+
+
+#navbarSupportedContent > ul.navbar-nav.ms-auto.mb-2.mb-lg-0 > li > a:hover, 
+#navbarSupportedContent > ul > li > button:hover {
+    color: rgb(245, 170, 164) !important;
 }
