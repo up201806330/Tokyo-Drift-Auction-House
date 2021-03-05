@@ -96,28 +96,20 @@
             <div class="row align-items-center text-center">
                 <div class="col">
                     <h2>Owner</h2>
-                </div>
-                <div class="col">
-                    <h2>Current Bid</h2>
-                </div>
-                <div class="col">
-                    <h2>Bidder</h2>
-                </div>
-            </div>
-            <div class="row align-items-center text-center">
-                <div class="col">
                     <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
                         <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
-                        <h4 class="profile_name">Hanna Green</h4>
+                        <h4 class="m-0">Hanna Green</h4>
                     </a>
                 </div>
                 <div class="col">
-                    <h1 class="current_bid">200 000€</h1>
+                    <h2>Current Bid</h2>
+                    <h1 class="current_bid mt-3">200 000€</h1>
                 </div>
                 <div class="col">
+                    <h2>Bidder</h2>
                     <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
                         <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
-                        <h4 class="profile_name">Hank Geller</h4>
+                        <h4 class="m-0">Hank Geller</h4>
                     </a>
                 </div>
             </div>
@@ -144,18 +136,55 @@
         <div class="container w-50 mt-5">
             <div class="row align-items-center text-center">
                 <div class="col">
-                    
+                    <div class="countdown_box">
+                        <h1 class="display-1 m-0">4</h1>
+                    </div>
+                    <h4>Days</h4>
                 </div>
                 <div class="col">
+                    <div class="countdown_box">
+                        <h1  class="display-1 m-0">14</h1>
+                    </div>
+                    <h4>Hours</h4>
                 </div>
                 <div class="col">
+                    <div class="countdown_box">
+                        <h1  class="display-1 m-0">35</h1>
+                    </div>
+                    <h4>Minutes</h4>
                 </div>
                 <div class="col">
+                    <div class="countdown_box">
+                        <h1  class="display-1 m-0">23</h1>
+                    </div>
+                    <h4>Seconds</h4>
                 </div>
             </div>
+            <h4 class="text-center mt-2">Till Auction Begins</h4>
         </div>
 
         <!-- Comment Section -->
+
+        <div class="container w-75 comment_section">
+            <!-- Place Comment -->
+
+            <!-- Comment -->
+
+            <div class="comment m-5">
+                <!-- User and date -->
+                <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-2" alt="Hanna Green"> 
+                        <div class="m-2">
+                            <h6 class="m-0">Hanna Green</h6>
+                            <p class="m-0">15h47 - 23.02.2021</p>
+                        </div>
+                    </div>
+                </a>
+                <p class="m-2">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
+            </div>
+                
+        </div>
 
         <!-- Footer -->
 

@@ -42,14 +42,24 @@
     border: thin solid #8c0000;
 }
 
+.profile_picture_comment {
+    height: 50px;
+    width: 50px;
+    border: thin solid #8c0000;
+}
+
 .profile_text {
     text-decoration: none;
-    color:#bd2000;
+    color: #8c0000;
+}
+
+.profile_text:hover img{
+    opacity: 0.7;
 }
 
 .profile_text:hover {
     text-decoration: none;
-    color:#8c0000;
+    color: #bd2000;
 }
 
 .current_bid {
@@ -74,4 +84,20 @@
     padding: 15px;
     display: inline-block;
     text-align: right;
+}
+
+.countdown_box {
+    border: medium solid #ffbe0f;
+    padding: 5px;
+    margin: 20px;
+    /*color: #ffbe0f;*/
+    background-color: #ffbe0f66;
+}
+
+.comment_section{
+    background-color: #42000044;
+}
+
+.comment{
+    border: thin solid #8c0000;
 }
