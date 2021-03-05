@@ -7,7 +7,7 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-navbar">
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand text-white" href="#">
       <img class="logo" src="./logo.svg" width="80" height="80">
       Tokyo Drift Auction House
     </a>
@@ -17,21 +17,21 @@
       <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Explore Auctions</a>
+            <a class="nav-link text-white" aria-current="page" href="#">Explore Auctions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Create new auction</a>
+            <a class="nav-link text-white" href="#">Create new auction</a>
           <li class="nav-item">
-            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">About / Contacts</a>
+            <a class="nav-link text-white" href="#" tabindex="-1" aria-disabled="true">About / Contacts</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li>
-            <button class="nav-link btn" href="#">Log in</button>
+            <button class="nav-link btn text-white" href="#">Log in</button>
           </li>
           <span class="left-vert-bar"></span>
           <li>
-            <button class="nav-link btn" href="#">Sign up</a>
+            <button class="nav-link btn text-white" href="#">Sign up</a>
           </li>
         </ul>
       </div>
