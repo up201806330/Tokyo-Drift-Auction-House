@@ -9,12 +9,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         
         <!-- Fontawesome Icons importing -->
-        <script defer src="../node_modules/@fortawesome/fontawesome-free/js/regular.js"></script>
-        <script defer src="../node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
-        <script defer src="../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
         <!-- CSS importing -->
-        <link rel="stylesheet" type="text/css" href="/html/auction.css">
+        <link rel="stylesheet" type="text/css" href="auction.css">
     </head>
 
     <body>
@@ -56,7 +54,7 @@
                         </button>
                     </div>
                     <button type="button" class="btn heart">
-                        <i class="far fa-heart heart_icon"></i>
+                        <i class="fa fa-heart heart_icon"></i>
                     </button>
                 </div>
                 <!-- Car Info -->
@@ -72,7 +70,7 @@
                             <h4>374 hp</h4>
                         </div>
                         <div class="col">
-                            <i class="fas fa-fire condition"></i>
+                            <i class="fa fa-fire condition"></i>
                         </div>
                     </div>
                     <div class="row align-items-center mt-3">
@@ -126,7 +124,7 @@
         </div>
 
         <!-- Place Bid -->
-        <div class="container w-25 pt-5">
+        <div class="container w-25 mt-5">
             <form>
                 <div class="row align-items-center text-center">
                     <div class="col">
@@ -143,6 +141,19 @@
         </div>
 
         <!-- Countdown -->
+        <div class="container w-50 mt-5">
+            <div class="row align-items-center text-center">
+                <div class="col">
+                    
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
 
         <!-- Comment Section -->
 
