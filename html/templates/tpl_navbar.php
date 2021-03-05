@@ -17,21 +17,21 @@
       <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded" aria-current="page" href="#">Explore Auctions</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" aria-current="page" href="#">Explore Auctions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded" href="#">Create new auction</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" href="#">Create new auction</a>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded" href="#" tabindex="-1" aria-disabled="true">About / Contacts</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" href="#" tabindex="-1" aria-disabled="true">About / Contacts</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li>
-            <button class="nav-link btn text-white navbar-content-bold" href="#">Log in</button>
+            <button class="nav-link btn text-white navbar-content-bold rounded-pill" href="#">Log in</button>
           </li>
           <span class="left-vert-bar"></span>
           <li>
-            <button class="nav-link btn text-white navbar-content-bold" href="#">Sign up</a>
+            <button class="nav-link btn text-white navbar-content-bold rounded-pill" href="#">Sign up</a>
           </li>
         </ul>
       </div>
