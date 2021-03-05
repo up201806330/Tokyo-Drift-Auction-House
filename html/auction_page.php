@@ -188,22 +188,7 @@
                 </form>
             </div>
 
-            <!-- Comment -->
-            <div class="comment m-5 clearfix">
-                <!-- User and date -->
-                <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
-                    <div class="d-flex justify-content-start align-items-center">
-                        <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
-                        <div class="m-3">
-                            <h6 class="m-0">Hanna Green</h6>
-                            <p class="m-0">15h47 - 23.02.2021</p>
-                        </div>
-                    </div>
-                </a>
-                <p class="m-3 mt-0 text-justify">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
-            </div>
-
-            <!-- Comment for monitor-->
+            <!-- Comment for moderator -->
             <div class="comment m-5 clearfix">
                 <!-- User and date -->
                 
@@ -217,7 +202,7 @@
                                 </div>
                             </div>
                         </a>
-                        <div class="mpderator area m-3">
+                        <div class="moderator area m-3">
                             <button type="button" class="btn moderator_button">Ban From Auction</button>
                             <button type="button" class="btn moderator_button">
                                 <i class="fa fa-trash"></i>
@@ -225,6 +210,29 @@
                         </div>
                     </div>
                 <p class="m-3 mt-0 text-justify">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
+            </div>
+
+            <div class="comment m-5 clearfix">
+                <!-- User and date -->
+                
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+                            <div class="d-flex justify-content-start align-items-center">
+                                <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
+                                <div class="m-3">
+                                    <h6 class="m-0">Hanna Green</h6>
+                                    <p class="m-0">15h47 - 23.02.2021</p>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="moderator area m-3 d-none">
+                            <button type="button" class="btn moderator_button">Ban From Auction</button>
+                            <button type="button" class="btn moderator_button">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                <p class="m-3 mt-0 text-justify">This is just an example of what the comment would look if I'm not a moderator.<p>
             </div>
                 
         </div>
