@@ -2,12 +2,19 @@
 
 :root {
     --red: #8c0000;
-    --red_transparent: #8c000044;
+    --red_transparent: #5c00006b;
     --user: #bd2000;
     --user_transparent: #bd200044;
     --moderator: #ffbe0f;
     --moderator_transparent: #ffbe0f44;
+    --white: #eeeeee;
+    --black: #111111;
   }
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+}
 
 .condition {
     font-size: 50px;
@@ -15,7 +22,7 @@
 }
 
 .car-details {
-    background-color: #42000070;
+    background-color: var(--red_transparent);
 }
 
 .heart_button {
@@ -38,7 +45,7 @@
     border-width: medium;
     text-align: center;
     align-content: center;
-    background-color: var(--red_transparent);
+    background-color: var(--black);
 }
 
 .heart_icon{
@@ -60,7 +67,7 @@
 
 .profile_text {
     text-decoration: none;
-    color: var(--red);
+    color: var(--user);
 }
 
 .profile_text:hover img{
@@ -69,15 +76,15 @@
 
 .profile_text:hover {
     text-decoration: none;
-    color: var(--user);
+    color: var(--red);
 }
 
 .current_bid {
-    font-size: xx-large;
-    color: var(--red);
-    border: thin solid var(--red);
-    padding: 15px;
     display: inline-block;
+    border: medium solid var(--red);
+    padding: 15px;
+    margin: 20px;
+    background-color: var(--red_transparent);
 }
 
 .bid_button{
@@ -94,18 +101,19 @@
     padding: 15px;
     display: inline-block;
     text-align: right;
+    background-color: var(--black);
 }
 
 .countdown_box {
     border: medium solid var(--red);
     padding: 5px;
     margin: 20px;
-    /*color: #ffbe0f;*/
     background-color: var(--red_transparent);
 }
 
 .comment_section{
     background-color: var(--red_transparent);
+    overflow: auto;
 }
 
 .comment{
@@ -121,11 +129,13 @@
     background-color: var(--user_transparent);
     border: thin solid var(--user);
     padding: 5px, 15px;
+    color: var(--white);
 }
 
 .moderator_button{
     background-color: var(--moderator_transparent);
     border: thin solid var(--moderator);
+    color: var(--white);
 }
 
 .chat_button{

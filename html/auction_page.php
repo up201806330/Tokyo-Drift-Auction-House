@@ -105,7 +105,7 @@
                 </div>
                 <div class="col">
                     <h2>Current Bid</h2>
-                    <h1 class="current_bid mt-3">200 000€</h1>
+                    <h1 class="current_bid mt-3 countdown_box display-3">200000€</h1>
                 </div>
                 <div class="col">
                     <h2>Bidder</h2>
@@ -167,7 +167,7 @@
 
         <!-- Comment Section -->
 
-        <div class="container w-75 comment_section mb-0">
+        <div class="container w-75 comment_section p-0 mt-5">
             
             <!-- Place Comment -->
             <div class="comment m-5 clearfix">
