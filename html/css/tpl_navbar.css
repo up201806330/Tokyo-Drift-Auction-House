@@ -15,7 +15,6 @@
 }
 
 .logo {
-    top: 10px;
     margin-right: 1.2rem;
 }
 
@@ -32,8 +31,8 @@
 
 .navbar-content-bold {
     font-weight: 700 !important;
+    margin: 0 1rem;
 }
-
 
 .filter-logo {
     filter: invert(98%) sepia(5%) saturate(2%) hue-rotate(292deg) brightness(118%) contrast(100%);
@@ -42,5 +41,10 @@
 
 #navbarSupportedContent > ul.navbar-nav.ms-auto.mb-2.mb-lg-0 > li > a:hover, 
 #navbarSupportedContent > ul > li > button:hover {
-    color: rgb(245, 170, 164) !important;
+    color: rgb(255, 157, 100) !important;
+    background-color: gray;
+}
+
+body > header > nav > div > a:hover {
+    color: rgb(255, 157, 100) !important;
 }

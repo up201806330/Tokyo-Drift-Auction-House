@@ -4,10 +4,10 @@
      */
     ?>
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-navbar">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->
-    <a class="navbar-brand text-white navbar-content-bold" href="#">
+    <a class="navbar-brand text-white navbar-content-bold nav-link" href="#">
       <img class="logo filter-logo" src="./logo.svg" width="80" height="80">
       Tokyo Drift Auction House
     </a>
@@ -17,12 +17,12 @@
       <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold" aria-current="page" href="#">Explore Auctions</a>
+            <a class="nav-link text-white navbar-content-bold rounded" aria-current="page" href="#">Explore Auctions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold" href="#">Create new auction</a>
+            <a class="nav-link text-white navbar-content-bold rounded" href="#">Create new auction</a>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold" href="#" tabindex="-1" aria-disabled="true">About / Contacts</a>
+            <a class="nav-link text-white navbar-content-bold rounded" href="#" tabindex="-1" aria-disabled="true">About / Contacts</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
