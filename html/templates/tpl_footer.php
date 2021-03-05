@@ -4,7 +4,7 @@
      */
     ?>
 
-<footer class="bg-footer text-white pt-3 pb-2">
+<footer class="bg-dark text-white pt-3 pb-2">
 
     <div class="container text-center text-md-left">
 
@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-4 mb-4">
-                <h5 class="mb-4 mt-4 font-weight-bold text-white">Terms of Service</p>
+                <h5 class="mb-4 mt-4 font-weight-bold "><a href="#" class="nav-link text-white">Terms of Service</a></p>
             </div>
 
             <div class="cold-md-3 col-lg-2 col-xl-3 mx-auto">
