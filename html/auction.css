@@ -1,8 +1,17 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 
+:root {
+    --red: #8c0000;
+    --red_transparent: #8c000044;
+    --user: #bd2000;
+    --user_transparent: #bd200044;
+    --moderator: #ffbe0f;
+    --moderator_transparent: #ffbe0f44;
+  }
+
 .condition {
     font-size: 50px;
-    color: #8c0000
+    color: var(--red);
 }
 
 .car-details {
@@ -25,32 +34,33 @@
     width: 30;
     height: 30;
     border-radius: 100%;
-    border-color: #8c0000;
+    border-color: var(--red);
     border-width: medium;
     text-align: center;
     align-content: center;
-    background-color: #8c000044;
+    background-color: var(--red_transparent);
 }
 
 .heart_icon{
-    color: #8c0000;
+    color: var(--red);
+    font-size: 15px;
 }
 
 .profile_picture {
     height: 100px;
     width: 100px;
-    border: thin solid #8c0000;
+    border: thin solid var(--red);
 }
 
 .profile_picture_comment {
     height: 50px;
     width: 50px;
-    border: thin solid #8c0000;
+    border: thin solid var(--red);
 }
 
 .profile_text {
     text-decoration: none;
-    color: #8c0000;
+    color: var(--red);
 }
 
 .profile_text:hover img{
@@ -59,45 +69,80 @@
 
 .profile_text:hover {
     text-decoration: none;
-    color: #bd2000;
+    color: var(--user);
 }
 
 .current_bid {
     font-size: xx-large;
-    color: #bd2000;
-    border: thin solid #bd2000;
+    color: var(--red);
+    border: thin solid var(--red);
     padding: 15px;
     display: inline-block;
 }
 
 .bid_button{
-    background-color: #ffbe0f44;
-    color: #ffbe0f;
-    border: thin solid #ffbe0f;
+    background-color: var(--user_transparent);
+    color: var(--user);
+    border: thin solid var(--user);
     padding: 5px, 15px;
 }
 
 .bid_input{
     font-size: xx-large;
-    color: #ffbe0f;
-    border: thin solid #ffbe0f;
+    color: var(--user);
+    border: thin solid var(--user);
     padding: 15px;
     display: inline-block;
     text-align: right;
 }
 
 .countdown_box {
-    border: medium solid #ffbe0f;
+    border: medium solid var(--red);
     padding: 5px;
     margin: 20px;
     /*color: #ffbe0f;*/
-    background-color: #ffbe0f66;
+    background-color: var(--red_transparent);
 }
 
 .comment_section{
-    background-color: #42000044;
+    background-color: var(--red_transparent);
 }
 
 .comment{
-    border: thin solid #8c0000;
+    border: thin solid var(--red);
+}
+
+#comment{
+    border: thin solid var(--user);
+    background-color: var(--user_transparent);
+}
+
+.comment_button{
+    background-color: var(--user_transparent);
+    border: thin solid var(--user);
+    padding: 5px, 15px;
+}
+
+.moderator_button{
+    background-color: var(--moderator_transparent);
+    border: thin solid var(--moderator);
+}
+
+.chat_button{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    border-color: var(--red);
+    border-width: medium;
+    text-align: center;
+    align-content: center;
+    background-color: var(--red_transparent);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+.chat_icon{
+    font-size: 25px;
+    color: var(--red);
 }

@@ -21,6 +21,7 @@
         <!-- Top Bar with car details -->
         <div class="container-fluid car-details">
             <div class="row align-items-center">
+
                 <!-- Pictures Carrousel -->
                 <div class="col-4 m-5 heart_button">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -57,6 +58,7 @@
                         <i class="fa fa-heart heart_icon"></i>
                     </button>
                 </div>
+
                 <!-- Car Info -->
                 <div class="col-7">
                     <h1> 2020' BMW i8</h1>
@@ -165,26 +167,72 @@
 
         <!-- Comment Section -->
 
-        <div class="container w-75 comment_section">
+        <div class="container w-75 comment_section mb-0">
+            
             <!-- Place Comment -->
+            <div class="comment m-5 clearfix">
+                <form>
+                    <!-- User and date -->
+                    <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
+                            <div class="m-3">
+                                <h6 class="m-0">Hanna Green</h6>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="m-3 mt-0">
+                        <textarea class="form-control text-justify" id="comment" rows="3" placeholder="Insert your comment here."></textarea>
+                    </div>
+                    <button type="submit" class="btn comment_button m-3 mt-0 float-end">Comment</button>
+                </form>
+            </div>
 
             <!-- Comment -->
-
-            <div class="comment m-5">
+            <div class="comment m-5 clearfix">
                 <!-- User and date -->
                 <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
                     <div class="d-flex justify-content-start align-items-center">
-                        <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-2" alt="Hanna Green"> 
-                        <div class="m-2">
+                        <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
+                        <div class="m-3">
                             <h6 class="m-0">Hanna Green</h6>
                             <p class="m-0">15h47 - 23.02.2021</p>
                         </div>
                     </div>
                 </a>
-                <p class="m-2">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
+                <p class="m-3 mt-0 text-justify">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
+            </div>
+
+            <!-- Comment for monitor-->
+            <div class="comment m-5 clearfix">
+                <!-- User and date -->
+                
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+                            <div class="d-flex justify-content-start align-items-center">
+                                <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
+                                <div class="m-3">
+                                    <h6 class="m-0">Hanna Green</h6>
+                                    <p class="m-0">15h47 - 23.02.2021</p>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="mpderator area m-3">
+                            <button type="button" class="btn moderator_button">Ban From Auction</button>
+                            <button type="button" class="btn moderator_button">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                <p class="m-3 mt-0 text-justify">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
             </div>
                 
         </div>
+
+        <!-- Chat Button -->
+        <button type="button" class="btn chat_button">
+            <i class="fa fa-comments chat_icon"></i>
+        </button>
 
         <!-- Footer -->
 
