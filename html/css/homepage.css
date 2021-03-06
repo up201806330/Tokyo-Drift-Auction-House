@@ -21,7 +21,7 @@
 }
 
 .container {
-    height: 80vh;
+    /* height: 80vh; */
     max-width: 100%;
     margin: 0 !important; 
     padding: 0 !important;
@@ -52,4 +52,39 @@
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+
+body > div > div.homepage-bg-bottom > div > div {
+    width: inherit;
+}
+
+
+/* Universal styling for all cards */
+.homepage-bg-bottom {
+    background: rgb(61, 61, 61);
+}
+
+.homepage-bg-bottom > .container {
+    margin-top: 110px !important;
+}
+
+.card {
+    border: none;
+    outline: none;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    transition: transform .3s;
+}
+
+.text1 {
+    font-size: 1.2rem;
+}
+
+.info {
+    line-height: 1.5rem;
 }
