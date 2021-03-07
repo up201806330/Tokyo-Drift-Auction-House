@@ -21,36 +21,84 @@
     </div>
 
     <!-- Fire Deals Part of Homepage -->
-    <div class="homepage-bg-bottom">
+    <div class="homepage-bg-bottom bg-dark">
         <h4 class="text-white">Fire Deals</h4>
         
         <!-- Container For All Displayed Auctions -->
-        <div class="container mb-5 mt-5">
-            <div class="row">
+        <div class="container">
+            <div class="row px-5 mx-auto">
 
-                <!-- Card 1 -->
-                <div class="col-md-4">
-                    <div class="card mt-3">
-                        <div class="product-1 align-items-center p-2 text-center">
-                            <img src="../assets/supercar-homepage-bg.jpg" alt="" class="rounded" width="160">
-                            <h5>Car Pog</h5>
+                <!-- Card -->
+                <div class="col-12 col-md-6 col-lg-3 mx-auto mb-3">
+                    <div class="card">
+                        
+                        <img src="../assets/supercar-homepage-bg.jpg" alt="..." class="card-img-to rounded">
 
-                            <!-- Card info -->
-                            <div class="mt-3 info">
-                                <span class="text1 d-block">Lorem ipsum dolor sit amet.</span>
-                                <span class="text1 d-block">Lorem, ipsum dolor.</span>
-                            </div>
-                            <div class="cost mt-3 text-dark">
-                                <span>21.000€</span>
-                            </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="card-title">Brand</h4>
+                            <p class="card-text"> <i class="fa fa-clock-o clock"></i> <span class="hour ml-1">3 hrs</span> </p>
+                            <p class="card-text">21.000€</p>
+                            <a href="#" class="stretched-link"></a> <!-- Card as a link -->
                         </div>
-
-                        <div class="p-3 shoe text-center text-white mt-3 cursor">
-                            <span class="text-uppercase">Add to Cart</span>
-                        </div>
+                        <!-- End of Card Body -->
                     </div>
                 </div>
-                <!-- End of Card 1 -->
+                <!-- End of Card -->
+
+                <!-- Card -->
+                <div class="col-12 col-md-6 col-lg-3 mx-auto mb-3">
+                    <div class="card">
+                        
+                        <img src="../assets/supercar-homepage-bg.jpg" alt="..." class="card-img-to rounded">
+
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="card-title">Brand</h4>
+                            <p class="card-text"> <i class="fa fa-clock-o clock"></i> <span class="hour ml-1">3 hrs</span> </p>
+                            <p class="card-text">21.000€</p>
+                            <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                        </div>
+                        <!-- End of Card Body -->
+                    </div>
+                </div>
+                <!-- End of Card -->
+
+                <!-- Card -->
+                <div class="col-12 col-md-6 col-lg-3 mx-auto mb-3">
+                    <div class="card">
+                        
+                        <img src="../assets/supercar-homepage-bg.jpg" alt="..." class="card-img-to rounded">
+
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="card-title">Brand</h4>
+                            <p class="card-text"> <i class="fa fa-clock-o clock"></i> <span class="hour ml-1">3 hrs</span> </p>
+                            <p class="card-text">21.000€</p>
+                            <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                        </div>
+                        <!-- End of Card Body -->
+                    </div>
+                </div>
+                <!-- End of Card -->
+
+                <!-- Card -->
+                <div class="col-12 col-md-6 col-lg-3 mx-auto mb-3">
+                    <div class="card">
+                        
+                        <img src="../assets/supercar-2.jpg" alt="..." class="card-img-to rounded">
+
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="card-title">Brand</h4>
+                            <p class="card-text"> <i class="fa fa-clock-o clock"></i> <span class="hour ml-1">3 hrs</span> </p>
+                            <p class="card-text">21.000€</p>
+                            <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                        </div>
+                        <!-- End of Card Body -->
+                    </div>
+                </div>
+                <!-- End of Card -->
 
             </div>
         </div>

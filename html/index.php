@@ -31,7 +31,7 @@
     }
 
     function resetBg() {
-      document.getElementById("overlay").style.opacity = "0.2";
+      document.getElementById("overlay").style.opacity = "0.0";
     }
   </script>
 
