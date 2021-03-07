@@ -3,6 +3,12 @@
      * Draws an auction card
      */
     ?>
+
+    <!--
+        To see "in action" checkout the homepage branch.
+        It has a copy of this code there
+    -->
+
             <link rel="stylesheet" href="../css/tpl_auction_card.css" type="text/css">
             
                 <!-- Card -->
