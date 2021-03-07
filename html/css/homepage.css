@@ -56,7 +56,7 @@
 
 
 body > div > div.homepage-bg-bottom > div > div > div > div > div > p:nth-child(2) {
-    margin-bottom: 12px !important;
+    margin-bottom: 2px !important;
 }
 
 body > div > div.homepage-bg-bottom > div > div > div > div > div > p:nth-child(3) {
@@ -70,6 +70,7 @@ body > div > div.homepage-bg-bottom > div > div > div > div > div > p:nth-child(
     border-radius: 20px;
     transition: transform .3s;
     height: 100%;
+
 }
 
 .card:hover {
@@ -77,12 +78,32 @@ body > div > div.homepage-bg-bottom > div > div > div > div > div > p:nth-child(
     transition: transform .3s;
 }
 
-/* .card-body {
-    height: 15vh !important;
-} */
+body > div > div.homepage-bg-bottom.bg-dark > div > div > div > div.card > img {
+    min-height: fit-content;
+    max-height: fit-content;
+}
 
 body > div > div.homepage-bg-bottom.bg-dark > div > div > div > div > img {
     border-top-left-radius: 20px !important;
     border-top-right-radius: 20px !important;
     height: 60%;
+}
+
+
+body > div > div.homepage-bg-bottom.bg-dark > div > div > div {
+    padding-bottom: 12px;
+}
+
+.card-text {
+    font-size: 1.2em;
+}
+
+/* Hard coded to look a bit better when card at max screen size */
+.card-container {
+    max-height: 380px;
+    max-width: 440px;
+}
+
+.card-body {
+    margin-top: 5%;
 }
