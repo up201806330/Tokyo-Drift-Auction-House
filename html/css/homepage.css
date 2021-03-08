@@ -1,0 +1,90 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+:root {
+    --red-darker: #8c0000;
+    --red-darkerer: #680101;
+    --red-brown: #bd2000;
+    --red-bright: #fa1e0e;
+    --yellow: #ffbe0f;
+    --light-orange: rgb(255, 157, 100);
+}
+
+
+.homepage-bg-top {
+    background-image: url(../assets/supercar-homepage-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    max-width: 100%;
+
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 !important; 
+    padding: 0 !important;
+}
+
+.overlay {
+    position:absolute;
+    top: 0;
+    left: 0;
+    background: rgb(0, 0, 0);
+    opacity: 0.0;
+    height: 100%;
+    width: 100%;
+}
+
+.search-box {
+    top: 50%;
+    position: relative;
+}
+
+.btn.btn-search {
+    height: 50px;
+    background: var(--light-orange);
+    color: #fff;
+}
+
+.search-input:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+.fire-deals-text {
+    /* color: var(--light-orange); */
+    padding: 1rem 3rem;
+    font-size: 2em;
+
+    /* Text Color Animation Cycle */
+    color: transparent;
+    background-image: linear-gradient(to left, #2ecc71, #4284db, #c2361e, #f39c12);
+    -webkit-background-clip: text;
+    animation: animate 5s linear infinite;
+    -webkit-background-size: 200%;
+    background-size: 200%;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0 100%;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+/* 
+When on Phone-like sized screen (only 1 "card" per row) the text gets centered
+*/
+@media (max-width: 768px) {
+    .fire-deals-text {
+        text-align: center;
+    }
+}
