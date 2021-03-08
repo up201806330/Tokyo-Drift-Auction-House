@@ -22,7 +22,7 @@
 
     <!-- Fire Deals Part of Homepage -->
     <div class="homepage-bg-bottom bg-dark">
-        <h4 class="text-white fire-deals-text">Fire Deals</h4>
+        <h4 class="fire-deals-text text-md-start">Fire Deals</h4>
         
         <!-- Container For All Displayed Auctions -->
         <div class="container">
@@ -35,7 +35,7 @@
                     draw_auction_card();
                 ?>
 
-                <!-- Card -->
+                <!-- Another Card (different from the template to test different original image resolutions) -->
                 <div class="col-12 col-md-6 col-lg-3 mx-auto mb-3 card-container">
                     <div class="card">
                         

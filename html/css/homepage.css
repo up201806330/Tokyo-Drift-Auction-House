@@ -52,3 +52,39 @@
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
+
+.fire-deals-text {
+    /* color: var(--light-orange); */
+    padding: 1rem 3rem;
+    font-size: 2em;
+
+    /* Text Color Animation Cycle */
+    color: transparent;
+    background-image: linear-gradient(to left, #2ecc71, #4284db, #c2361e, #f39c12);
+    -webkit-background-clip: text;
+    animation: animate 5s linear infinite;
+    -webkit-background-size: 200%;
+    background-size: 200%;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0 100%;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+/* 
+When on Phone-like sized screen (only 1 "card" per row) the text gets centered
+*/
+@media (max-width: 768px) {
+    .fire-deals-text {
+        text-align: center;
+    }
+}
