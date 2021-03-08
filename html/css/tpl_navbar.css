@@ -42,7 +42,7 @@
 #navbarSupportedContent > ul.navbar-nav.ms-auto.mb-2.mb-lg-0 > li > a:hover, 
 #navbarSupportedContent > ul > li > button:hover {
     color: rgb(255, 157, 100) !important;
-    background-color: gray;
+    background-color: rgb(49, 49, 49) !important;
 }
 
 body > header > nav > div > a:hover {
