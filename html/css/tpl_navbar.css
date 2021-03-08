@@ -1,0 +1,50 @@
+:root {
+    --red-darker: #8c0000;
+    --red-brown: #bd2000;
+    --red-bright: #fa1e0e;
+    --yellow: #ffbe0f;
+}
+
+/* Vertical Line between Log in and Sign in */
+.left-vert-bar {
+    border-right: 3px solid white;
+}
+
+.bg-navbar {
+    background-image: linear-gradient(to bottom, rgb(100, 0, 0), rgb(175, 65, 2));
+}
+
+.logo {
+    margin-right: 1.2rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+    padding-left:  1.5rem;
+    padding-right: 1.5rem;
+    font-size: 1.4rem;
+    position: relative;
+}
+
+.navbar-content-bold {
+    font-weight: 700 !important;
+    margin: 0 1rem;
+}
+
+.filter-logo {
+    filter: invert(98%) sepia(5%) saturate(2%) hue-rotate(292deg) brightness(118%) contrast(100%);
+}
+
+
+#navbarSupportedContent > ul.navbar-nav.ms-auto.mb-2.mb-lg-0 > li > a:hover, 
+#navbarSupportedContent > ul > li > button:hover {
+    color: rgb(255, 157, 100) !important;
+    background-color: gray;
+}
+
+body > header > nav > div > a:hover {
+    color: rgb(255, 157, 100) !important;
+}
