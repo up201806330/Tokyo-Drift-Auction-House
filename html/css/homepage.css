@@ -53,6 +53,10 @@
     box-shadow: none;
 }
 
+.homepage-bg-bottom {
+    background-color: rgb(24, 24, 24);
+}
+
 
 .fire-deals-text {
     /* color: var(--light-orange); */

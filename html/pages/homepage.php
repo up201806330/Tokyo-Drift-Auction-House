@@ -21,7 +21,7 @@
     </div>
 
     <!-- Fire Deals Part of Homepage -->
-    <div class="homepage-bg-bottom bg-dark">
+    <div class="homepage-bg-bottom">
         <h4 class="fire-deals-text text-md-start">Fire Deals</h4>
         
         <!-- Container For All Displayed Auctions -->

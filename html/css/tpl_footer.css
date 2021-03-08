@@ -81,6 +81,15 @@ a.btn-social,
 .btn-twitter        { background-color: #55acee; }
 .btn-youtube        { background-color: #951814; }
 
-body > footer > div > div > div.col-md-2.col-lg-2.col-xl-2.mx-auto.mt-4.mb-4 > h5 > a:hover {
+.tos > h5 > a:hover {
     color: var(--light-orange) !important;
+}
+
+/* Fixes Width Overflow of "Find Us" */
+body > footer > div > div {
+    width: inherit !important;
+}
+
+.find-us {
+    text-align: center !important;
 }
