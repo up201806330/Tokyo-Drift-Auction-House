@@ -26,13 +26,13 @@
 
                 <div class="container">
                     <div class="row mb-1">
-                        <div class="col">
+                        <div class="col" align="left">
                             <a href="#" target="_blank" class="btn-social btn-facebook">
                                 <i class="fa fa-facebook"></i>
                             </a>
                             Facebook
                         </div>
-                        <div class="col justify-content-start">
+                        <div class="col" align="left">
                             <a href="#" target="_blank" class="btn-social btn-youtube">
                                 <i class="fa fa-youtube"></i>
                             </a>
@@ -40,13 +40,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col" align="left">
                             <a href="#" target="_blank" class="btn-social btn-twitter">
                                 <i class="fa fa-twitter"></i>
                             </a>
                             Twitter
                         </div>
-                        <div class="col">
+                        <div class="col" align="left">
                             <a href="#" target="_blank" class="btn-social btn-instagram">
                                 <i class="fa fa-instagram"></i>
                             </a>
