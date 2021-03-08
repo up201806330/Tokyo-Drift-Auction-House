@@ -6,7 +6,7 @@
 
 <div class="container">
     <!-- Search Top Part of Homepage -->
-    <div class="overlay" id="overlay" onclick="resetBg()"></div>
+    <!-- <div class="overlay" id="overlay" onclick="resetBg()"></div> -->
     <div class="homepage-bg-top">
         <div class="col-md-5 col-lg-5 col-xl-4 col-6 mx-auto my-auto search-box">
             <div class="input-group form-container">
