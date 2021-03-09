@@ -30,7 +30,7 @@
             <button class="btn btn-outline-secondary" type="button" id="button-search-1">Search</button>
           </div>
         </div>
-        <div class="col-12 col-sm-6 pt-sm-5">
+        <div class="col-12 col-sm-6 pt-sm-5 pb-xs-3">
           <div class="dropdown mx-auto pt-4 d-grid gap-2">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="selectOrderResults" data-bs-toggle="dropdown" aria-expanded="false">
               Order By
@@ -149,6 +149,7 @@
 <?php function open_card_holder() { ?>
 
 <main class="col ms-sm-auto pt-4 px-md-4">
+<p class="fs-3 pt-3"><u>10</u> Results Found</p>
 <div class="row row-cols-3 justify-content-start">
 
 <?php } ?>
