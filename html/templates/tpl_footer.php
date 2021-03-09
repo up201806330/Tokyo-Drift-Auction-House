@@ -4,7 +4,7 @@
      */
     ?>
 
-<footer class="bg-dark text-white pt-3 pb-2">
+<footer class="bg-footer text-white pt-3 pb-2">
 
     <div class="container text-center text-md-left">
 

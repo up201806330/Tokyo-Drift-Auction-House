@@ -93,3 +93,8 @@ body > footer > div > div {
 .find-us {
     text-align: center !important;
 }
+
+.bg-footer {
+    background-color: #1e2125;
+    /* background-color: #641f1f; */
+}

@@ -4,7 +4,7 @@
      */
     ?>
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark bg-navbar">
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->
     <a class="navbar-brand text-white navbar-content-bold nav-link" href="#">
@@ -27,11 +27,11 @@
         </ul>
         <ul class="navbar-nav ms-auto">
           <li>
-            <button class="nav-link btn text-white navbar-content-bold rounded-pill" href="#">Log in</button>
+            <button class="nav-link btn text-white navbar-content-bold rounded-pill" href="#" id="btnShow">Log in</button>
           </li>
           <span class="left-vert-bar"></span>
           <li>
-            <button class="nav-link btn text-white navbar-content-bold rounded-pill" href="#">Sign up</a>
+            <button class="nav-link btn text-white navbar-content-bold rounded-pill" href="#" data-toggle="modal" data-target="#signupPage">Sign up</a>
           </li>
         </ul>
       </div>

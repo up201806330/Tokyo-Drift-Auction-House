@@ -22,7 +22,7 @@
 
     <!-- Fire Deals Part of Homepage -->
     <div class="homepage-bg-bottom">
-        <h4 class="fire-deals-text text-md-start">Fire Deals</h4>
+        <h4 class="fire-deals-text text-md-start pt-5">Fire Deals</h4>
         
         <!-- Container For All Displayed Auctions -->
         <div class="container">
@@ -33,10 +33,11 @@
                     draw_auction_card();
                     draw_auction_card();
                     draw_auction_card();
+                    draw_auction_card();
                 ?>
 
                 <!-- Another Card (different from the template to test different original image resolutions) -->
-                <div class="col-12 col-md-6 col-lg-3 mx-auto mb-3 card-container">
+                <div class="col-md-6 col-lg-6 col-md-6 mx-auto mb-3 card-container">
                     <div class="card">
                         
                         <img src="../assets/supercar-2.jpg" alt="..." class="card-img-to rounded car-img-thumbnail">
