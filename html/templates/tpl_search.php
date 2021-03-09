@@ -30,16 +30,16 @@
             <button class="btn btn-outline-secondary" type="button" id="button-search-1">Search</button>
           </div>
         </div>
-        <div class="col-12 col-sm-6 pt-5">
+        <div class="col-12 col-sm-6 pt-sm-5">
           <div class="dropdown mx-auto pt-4 d-grid gap-2">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="selectOrderResults" data-bs-toggle="dropdown" aria-expanded="false">
               Order By
             </button>
             <ul class="dropdown-menu" aria-labelledby="selectOrderResults">
-              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)">Ascending Current Bid</a></li>
-              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)">Descending Current Bid</a></li>
-              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)">Ending Sooner</a></li>
-              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)">Ending Later</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdownOrder(this)">Ascending Current Bid</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdownOrder(this)">Descending Current Bid</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdownOrder(this)">Ending Sooner</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdownOrder(this)">Ending Later</a></li>
             </ul>
           </div>
         </div>
@@ -52,8 +52,11 @@
 
 <?php function draw_sidebar(){ ?>
 
+<a class="btn btn-primary d-lg-none" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
+   Filter Results
+</a>
 
-<nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 d-md-block bg-light sidebar collapse show">
+<nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 bg-light collapse show">
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
       <li class="nav-item pt-3">
@@ -68,10 +71,10 @@
             Condition
             </button>
             <ul class="dropdown-menu" aria-labelledby="selectConditionFilter">
-              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)"><b>Mint</b></a></li>
-              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)"><b>Clean</b> or better</a></li>
-              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)"><b>Average</b> or better</a></li>
-              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)"><b>Rough</b> or better</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Mint</b></a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Clean</b> or better</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Average</b> or better</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Rough</b> or better</a></li>
             </ul>
           </div>
       </li>

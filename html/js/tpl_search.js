@@ -1,7 +1,7 @@
-function updateDropdown(item) {
+function updateDropdownOrder(item) {
     document.getElementById("selectOrderResults").innerHTML = item.innerHTML;
 }
 
-function updateDropdown(item) {
+function updateDropdownConditions(item) {
     document.getElementById("selectConditionFilter").innerHTML = item.innerHTML;
 }
