@@ -1,28 +1,38 @@
-.box__dragndrop,
-.box__uploading,
-.box__success,
-.box__error {
-  display: none;
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+:root {
+    --red: #8c0000;
+    --red_transparent: #5c00006b;
+    --user: #bd2000;
+    --user_transparent: #bd200044;
+    --moderator: #ffbe0f;
+    --moderator_transparent: #ffbe0f44;
+    --text: #eeeeee;
+    --background: #111111;
 }
 
-.box.has-advanced-upload {
-    background-color: white;
-    outline: 2px dashed black;
-    outline-offset: -10px;
+body {
+    background-color: var(--background);
+    color: var(--text);
 }
 
-.box.has-advanced-upload .box__dragndrop {
-    display: inline;
+.create_auction{
+    background-color: var(--red_transparent);
 }
 
-.box.is-dragover {
-    background-color: grey;
+.input_box{
+    background-color: var(--background);
+    border: thin solid var(--user);
+    color: var(--text);
 }
 
-.box.is-uploading .box__input {
-    visibility: none;
+.append_box{
+    background-color: var(--user);
+    color: var(--background);
+    border:0;
 }
 
-.box.is-uploading .box__uploading {
-    display: block;
+.form-group{
+    margin: 2em;
+    margin-left:0;
 }
