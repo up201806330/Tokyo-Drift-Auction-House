@@ -14,30 +14,34 @@
 
 <?php function draw_topbar(){ ?>
 
-<div class="container-fluid bg-light">
+<div class="container-fluid bg-dark">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 pt-5">
-      <div class="display-2">
+      <div class="display-2 text-white">
         Browse Auctions
       </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-6 ">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 pb-2">
       <div class="row mx-auto gx-4">
         <div class="pt-5 col-12 col-sm-6">
-          <label for="searchByTags" class="form-label">Search Tags</label>
+          <label for="searchByTags" class="form-label text-white">Search Tags</label>
           <div class="input-group" id="searchByTags">
             <input type="text" class="form-control" placeholder="Try some keywords" aria-label="Input search keywords" aria-describedby="button-search-1">
             <button class="btn btn-outline-secondary" type="button" id="button-search-1">Search</button>
           </div>
         </div>
-        <div class="pt-5 pb-4 col-12 col-sm-6">
-          <label for="selectOrderResults" class="form-label">Order By</label>
-          <select class="form-select" id="selectOrderResults" aria-label="Select order of results">
-            <option value="1">Ascending Current Bid</option>
-            <option value="2">Descending Current Bid</option>
-            <option value="3">Ending Sooner</option>
-            <option value="4">Ending Later</option>
-          </select>
+        <div class="col-12 col-sm-6 pt-5">
+          <div class="dropdown mx-auto pt-4 d-grid gap-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="selectOrderResults" data-bs-toggle="dropdown" aria-expanded="false">
+              Order By
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="selectOrderResults">
+              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)">Ascending Current Bid</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)">Descending Current Bid</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)">Ending Sooner</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)">Ending Later</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -69,11 +73,12 @@
       </li>
       
       <li class="nav-item pt-5">
-        <div class="btn-group dropend">
+        <div class="d-grid gap-2 col-12 ">
+        <div class="btn-group dropdown">
           <button type="button" class="btn-lg btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Categories
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu dropdown-menu-dark">
             <li><a class="dropdown-item" href="#">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="checkboxSports" checked>
@@ -100,6 +105,7 @@
             </a></li>
           </ul>
         </div>
+        </div>
       </li>
 
       <li class="nav-item pt-5">
@@ -107,7 +113,7 @@
         <?php draw_multi_range_slider("multiRangeHorsepower", 0, 100); ?>
       </li>
       
-      <li class="nav-item pt-5">
+      <li class="nav-item pt-4">
         <label class="form-slider-label" for="multiRangeYear">Year of manufacture</label>
         <?php draw_multi_range_slider("multiRangeYear", 0, 100); ?>
       </li>
@@ -119,7 +125,7 @@
         </div>
       </li>
       
-      <li class="nav-item pt-5">
+      <li class="nav-item pt-4">
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
           <label class="form-check-label" for="switchFinalizedAuctions">Show Finalized Auctions</label>
@@ -130,6 +136,19 @@
   </div>
 </nav>
 
+
+<?php } ?>
+
+<?php function open_card_holder() { ?>
+
+<main class="col ms-sm-auto pt-4 px-md-4">
+<div class="row row-cols-3 justify-content-start">
+
+<?php } ?>
+
+<?php function close_card_holder() { ?>
+
+</div></main>
 
 <?php } ?>
 
