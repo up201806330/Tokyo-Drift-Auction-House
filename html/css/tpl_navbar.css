@@ -48,3 +48,7 @@
 body > header > nav > div > a:hover {
     color: rgb(255, 157, 100) !important;
 }
+
+body > header > nav {
+    min-width: fit-content;
+}

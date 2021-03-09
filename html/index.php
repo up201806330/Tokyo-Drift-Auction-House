@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/homepage.css">
     <link rel="stylesheet" href="./css/tpl_navbar.css">
     <link rel="stylesheet" href="./css/tpl_footer.css">
+    <link rel="stylesheet" href="./css/profile.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -21,8 +22,10 @@
     include_once("./templates/tpl_navbar.php");
     include_once("./pages/homepage.php");
     include_once("./templates/tpl_footer.php");
+    include_once("./pages/profile.php");
     
     draw_navbar();
+    // draw_profile();
     draw_homepage();
     draw_footer();
   ?>
