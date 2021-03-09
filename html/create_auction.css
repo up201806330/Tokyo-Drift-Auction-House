@@ -34,5 +34,12 @@ body {
 
 .form-group{
     margin: 2em;
-    margin-left:0;
+}
+
+.submit_button{
+    background-color: var(--user_transparent);
+    border: thin solid var(--user);
+    padding: 1em, 3em;
+    color: var(--contrast);
+    margin-right: 2em;
 }

@@ -39,9 +39,9 @@
                         </div>
                     </div>
                     <div class="col">
-                        <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block w-100" alt="bmw i8">
+                        <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block w-75 mx-auto" alt="bmw i8">
                         <div class="form-group">
-                            <input type="file" class="form-control input_box" id="imageFile" placeholder="Images Upload" multiple>
+                            <input type="file" class="form-control input_box w-75 mx-auto" id="imageFile" placeholder="Images Upload" multiple>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
   
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn submit_button float-end">Submit</button>
             </form>
         </div>
 
