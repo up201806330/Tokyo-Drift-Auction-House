@@ -36,7 +36,7 @@ position: absolute;
 left: 0;
 height: 14px;
 border-radius: 14px;
-background-color: #1ABC9C;
+background-color: #8c0000;
 }
 
 [slider] > div > [thumb] {
@@ -138,7 +138,7 @@ position: absolute;
 margin-left: -11px;
 top: -39px;
 z-index:3;
-background-color: #1ABC9C;
+background-color: rgb(71, 71, 71);
 color: #fff;
 width: 28px;
 height: 28px;
@@ -160,7 +160,7 @@ border-left: 14px solid transparent;
 border-right: 14px solid transparent;
 border-top-width: 16px;
 border-top-style: solid;
-border-top-color: #1ABC9C;
+border-top-color: rgb(85, 85, 85);
 }
 
 [slider] > div > [sign] > span {
@@ -184,4 +184,9 @@ input[type=checkbox]
 
 #selectOrderResults{
     margin-top: 2.5%;
+}
+
+.form-check-input:checked{
+    background-color: #8c0000;
+    border-color: rgb(71, 71, 71);
 }

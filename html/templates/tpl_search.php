@@ -63,13 +63,17 @@
       </li>
       
       <li class="nav-item pt-5">
-        <label for="selectConditionFilter" class="form-label">Condition</label>
-        <select class="form-select" id="selectConditionFilter" aria-label="Filter by condition">
-          <option value="1">Mint</option>
-          <option value="2">Clean or better</option>
-          <option value="3">Average or better</option>
-          <option value="4">Rough or better</option>
-        </select>
+        <div class="dropdown mx-auto d-grid gap-2">
+            <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="selectConditionFilter" data-bs-toggle="dropdown" aria-expanded="false">
+            Condition
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="selectConditionFilter">
+              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)"><b>Mint</b></a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)"><b>Clean</b> or better</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)"><b>Average</b> or better</a></li>
+              <li><a class="dropdown-item" href="#" onclick="updateDropdown(this)"><b>Rough</b> or better</a></li>
+            </ul>
+          </div>
       </li>
       
       <li class="nav-item pt-5">
