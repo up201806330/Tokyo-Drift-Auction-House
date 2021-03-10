@@ -12,18 +12,24 @@
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
         <!-- CSS importing -->
-        <link rel="stylesheet" type="text/css" href="auction.css">
+        <link rel="stylesheet" type="text/css" href="css/auction.css">
     </head>
 
     <body>
         <!-- Navbar -->
+        <?php
+            include_once("templates/tpl_navbar.php");
+            include_once("templates/tpl_footer.php");
+
+            draw_navbar();
+        ?>
 
         <!-- Top Bar with car details -->
         <div class="container-fluid car-details">
             <div class="row align-items-center">
 
                 <!-- Pictures Carrousel -->
-                <div class="col-4 m-5 heart_button">
+                <div class="col-4 m-5 under_heart">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -54,15 +60,15 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <button type="button" class="btn heart">
-                        <i class="fa fa-heart heart_icon"></i>
-                    </button>
+                    <a href=# class="heart">
+                        <i class="fa fa-heart"></i>
+                    </a>
                 </div>
 
                 <!-- Car Info -->
                 <div class="col-7">
-                    <h1> 2020' BMW i8</h1>
-                    <div class="row align-items-center">
+                    <h1>2020' BMW i8</h1>
+                    <div class="row align-items-center m-3">
                         <div class="col">
                             <h2>BMW</h2>
                             <h4>2020</h4>
@@ -71,11 +77,12 @@
                             <h2>i8 Coupé</h2>
                             <h4>374 hp</h4>
                         </div>
-                        <div class="col">
-                            <i class="fa fa-fire condition"></i>
+                        <div class="col fire-text d-flex align-items-center justify-content-center" style="font-size: 4rem;">
+                            <i class="fa fa-fire m-3"></i>
+                            <h4 class="mb-0">MINT</h4>
                         </div>
                     </div>
-                    <div class="row align-items-center mt-3">
+                    <div class="row align-items-center m-3 text-center">
                         <div class="col">
                             <p>Started at:</p>
                             <h6>16h00</h6>
@@ -91,7 +98,6 @@
             </div>
             
         </div>
-
 
         <!-- Current Bid info -->
         <div class="container w-50 pt-5">
@@ -243,7 +249,9 @@
         </button>
 
         <!-- Footer -->
-
+        <?php
+            draw_footer();
+        ?>
 
         <!-- Bootstrap JS importing -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>

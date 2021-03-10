@@ -1,0 +1,173 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+:root {
+    --red-darker: #8c0000;
+    --red-darkerer: #680101;
+    --red-brown: #bd2000;
+    --red-bright: #fa1e0e;
+    --yellow: #ffbe0f;
+    --light-orange: rgb(255, 157, 100);
+    --background-color: rgb(24, 24, 24);
+    --white: rgb(255, 255, 255);
+}
+
+body {
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.condition {
+    color: var(--red-darkerer);
+}
+
+.car-details {
+    background-color: #1e2125;
+    color: var(--white);
+}
+
+.under_heart {
+    line-height: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display:inline-block;
+    position:relative;
+}
+
+.heart {
+    position:absolute;
+    bottom: -5px;
+    left: 5px;
+    width: 30;
+    height: 30;
+    border-radius: 100%;
+    border: medium solid var(--red-darkerer);
+    text-align: center;
+    align-content: center;
+    background-color: var(--white);
+    font-size: 1.3rem;
+    color: var(--red-darkerer);
+    padding: 0.6em;
+    z-index: 2;
+}
+
+.heart:hover {
+    color:rgb(255, 157, 100);
+    border-color: rgb(255, 157, 100);
+    background-color: rgb(49, 49, 49);
+}
+
+.profile_picture {
+    height: 100px;
+    width: 100px;
+    border: thin solid var(--red-darkerer);
+}
+
+.profile_picture_comment {
+    height: 50px;
+    width: 50px;
+    border: thin solid var(--red-darkerer);
+}
+
+.profile_text {
+    text-decoration: none;
+    color: var(--red-bright);
+}
+
+.profile_text:hover img{
+    opacity: 0.7;
+}
+
+.profile_text:hover {
+    text-decoration: none;
+    color: var(--red-darkerer);
+}
+
+.current_bid {
+    display: inline-block;
+    border: medium solid var(--red-darkerer);
+    padding: 15px;
+    margin: 20px;
+    background-color: var(--red-darkerer);
+}
+
+.bid_button{
+    background-color: var(--red-bright);
+    color: var(--red-bright);
+    border: thin solid var(--red-bright);
+    padding: 5px, 15px;
+}
+
+.bid_input{
+    font-size: xx-large;
+    color: var(--red-bright);
+    border: thin solid var(--red-bright);
+    padding: 15px;
+    display: inline-block;
+    text-align: right;
+    background-color: var(--background-color);
+}
+
+.countdown_box {
+    border: medium solid var(--red-darkerer);
+    padding: 5px;
+    margin: 20px;
+    background-color: var(--red-darkerer);
+}
+
+.comment_section{
+    background-color: var(--red-darkerer);
+    overflow: auto;
+}
+
+.comment{
+    border: thin solid var(--red-darkerer);
+}
+
+#comment{
+    border: thin solid var(--red-bright);
+    background-color: var(--red-bright);
+}
+
+.comment_button{
+    background-color: var(--red-bright);
+    border: thin solid var(--red-bright);
+    padding: 5px, 15px;
+    color: var(--white);
+}
+
+.light-orange_button{
+    background-color: var(--light-orange);
+    border: thin solid var(--light-orange);
+    color: var(--white);
+}
+
+.chat_button{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    border-color: var(--red-darkerer);
+    border-width: medium;
+    text-align: center;
+    align-content: center;
+    background-color: var(--red-darkerer);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+.chat_icon{
+    font-size: 25px;
+    color: var(--red-darkerer);
+}
+
+.fire-text {
+    color: transparent;
+    background-image: linear-gradient(to left, #31e67c, #4e98f8, #e64124, #ffd23c);
+    font-weight: bold;
+    font-size: 3rem;
+    -webkit-background-clip: text;
+    animation: animate 5s linear infinite;
+    -webkit-background-size: 200%;
+    background-size: 200%;
+}
