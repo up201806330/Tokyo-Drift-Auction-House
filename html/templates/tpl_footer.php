@@ -61,5 +61,8 @@
     </div>
 
 </footer>
+</body>
+</html>
+
 
 <?php } ?>

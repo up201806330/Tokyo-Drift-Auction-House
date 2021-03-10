@@ -1,6 +1,6 @@
 <?php function open_main() { ?>
 
-<div class="container-fluid" style="flex: auto">
+<div class="container-fluid bg-light" style="flex: auto">
 <div class="row h-100">
 
 <?php } ?>
@@ -117,7 +117,7 @@
 
       <li class="nav-item pt-5">
         <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
-        <?php draw_multi_range_slider("multiRangeHorsepower", 0, 100); ?>
+        <?php draw_multi_range_slider("multiRangeHorsepower", 0, 200); ?>
       </li>
       
       <li class="nav-item pt-4">
