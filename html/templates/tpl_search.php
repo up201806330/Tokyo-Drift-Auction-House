@@ -16,14 +16,14 @@
 
 <div class="container-fluid bg-dark">
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-6 pt-5">
-      <div class="display-2 text-white">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-5 pt-4">
+      <div class="display-3 text-white">
         Browse Auctions
       </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-6 pb-2">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-7 pb-2">
       <div class="row mx-auto gx-4">
-        <div class="pt-5 col-12 col-sm-6">
+        <div class="pt-4 col-12 col-sm-6">
           <label for="searchByTags" class="form-label text-white">Search Tags</label>
           <div class="input-group" id="searchByTags">
             <input type="text" class="form-control" placeholder="Try some keywords" aria-label="Input search keywords" aria-describedby="button-search-1">
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="col-12 col-sm-6 pt-sm-5 pb-xs-3">
-          <div class="dropdown mx-auto pt-4 d-grid gap-2">
+          <div class="dropdown mx-auto d-grid">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="selectOrderResults" data-bs-toggle="dropdown" aria-expanded="false">
               Order By
             </button>
