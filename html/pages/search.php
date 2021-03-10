@@ -11,17 +11,12 @@
     draw_sidebar();
 
     open_card_holder();
-    draw_auction_card();
-    draw_auction_card();
-    draw_auction_card();
-    draw_auction_card();
-    draw_auction_card();
-    draw_auction_card();
-    draw_auction_card();
-    draw_auction_card();
-    draw_auction_card();
-    draw_auction_card();
-    close_card_holder();
+    draw_auction_card_1();
+    draw_auction_card_2();
+    draw_auction_card_2();
+    draw_auction_card_3();
+    draw_auction_card_1();
+    draw_auction_card_3();
     
     
     close_main();

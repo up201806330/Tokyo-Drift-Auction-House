@@ -42,7 +42,7 @@
       <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded-pill" aria-current="page" href="#">Explore Auctions</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" aria-current="page" href="../pages/search.php">Explore Auctions</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white navbar-content-bold rounded-pill" href="#">Create new auction</a>
