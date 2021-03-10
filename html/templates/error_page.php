@@ -14,7 +14,7 @@ function error_page(int $error_code, string $message) : void {
   <link rel="stylesheet" href="../css/tpl_error_page.css">
 </head>
 
-<body>
+<body class="d-flex justify-content-center align-items-center">
   <main id="error">
     <header>
       <h1><?=$error_code?></h1>
