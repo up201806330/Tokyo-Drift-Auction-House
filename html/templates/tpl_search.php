@@ -149,7 +149,7 @@
 <?php function open_card_holder() { ?>
 
 <main class="col ms-sm-auto pt-4 px-md-4">
-<p class="fs-3 pt-3"><u>10</u> Results Found</p>
+<p class="fs-3 pt-3"><u>6</u> Results Found</p>
 <div class="row row-cols-3 justify-content-start">
 
 <?php } ?>
