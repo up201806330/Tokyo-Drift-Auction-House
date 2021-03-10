@@ -10,3 +10,7 @@
     --orange-darker: rgb(161,94,12);
     --background-color: rgb(24, 24, 24);
 }
+
+.border-2 {
+    border-width: 2px !important;
+}
