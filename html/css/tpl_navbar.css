@@ -11,7 +11,8 @@
 }
 
 .bg-navbar {
-    background-image: linear-gradient(to bottom, rgb(100, 0, 0), rgb(175, 65, 2));
+    background: rgb(161,94,12);
+background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
 }
 
 .logo {
@@ -39,7 +40,7 @@
 }
 
 
-#navbarSupportedContent > ul.navbar-nav.ms-auto.mb-2.mb-lg-0 > li > a:hover, 
+#navbarSupportedContent > ul.navbar-nav.ms-auto.mb-2.mb-lg-0 > li > a:hover,
 #navbarSupportedContent > ul > li > button:hover {
     color: rgb(255, 157, 100) !important;
     background-color: rgb(49, 49, 49) !important;
@@ -48,3 +49,12 @@
 body > header > nav > div > a:hover {
     color: rgb(255, 157, 100) !important;
 }
+
+body > header > nav {
+    min-width: fit-content;
+}
+
+/* .bg-navbar {
+    background-color: #641f1f;
+    background-color: #070202;
+} */
