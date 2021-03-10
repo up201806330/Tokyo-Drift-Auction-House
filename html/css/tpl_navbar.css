@@ -12,7 +12,7 @@
 
 .bg-navbar {
     background: rgb(161,94,12);
-background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(-45deg, var(--orange-darker) 0%, var(--red-darker) 100%);
 }
 
 .logo {
