@@ -29,7 +29,7 @@
             <div class="row align-items-center">
 
                 <!-- Pictures Carrousel -->
-                <div class="col-4 m-5 under_heart">
+                <div class="col-lg m-5" id="under_heart">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -66,7 +66,7 @@
                 </div>
 
                 <!-- Car Info -->
-                <div class="col-7">
+                <div class="col-lg text-nowrap">
                     <h1>2020' BMW i8</h1>
                     <div class="row align-items-center m-3">
                         <div class="col">
@@ -99,21 +99,22 @@
             
         </div>
 
+        <div class="auction_content">
         <!-- Current Bid info -->
-        <div class="container w-50 pt-5">
-            <div class="row align-items-center text-center">
-                <div class="col">
+        <div class="container pt-5" id="auction_content_area">
+            <div class="row align-items-center justify-content-around">
+                <div class="col-sm mt-3 mb-3">
                     <h2>Owner</h2>
                     <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
                         <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
                         <h4 class="m-0">Hanna Green</h4>
                     </a>
                 </div>
-                <div class="col">
+                <div class="col-sm mt-3 mb-3">
                     <h2>Current Bid</h2>
-                    <h1 class="current_bid mt-3 countdown_box display-3">200000€</h1>
+                    <h1 class="current_bid mt-3">200000€</h1>
                 </div>
-                <div class="col">
+                <div class="col-sm mt-3 mb-3">
                     <h2>Bidder</h2>
                     <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
                         <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
@@ -124,44 +125,47 @@
         </div>
 
         <!-- Place Bid -->
-        <div class="container w-25 mt-5">
+        <div class="container mt-5" id="auction_content_area">
             <form>
-                <div class="row align-items-center text-center">
-                    <div class="col">
+                <div class="row align-items-center">
+                    <div class="col-sm">
                         <div class="input-group">
-                            <!--<span class="input-group-addon">€</span>-->
-                            <input type="number" min="0.00" step="1" value="205000" class="form-control bid_input" id="bid" placeholder="Your Bid">
-                        </div>
+                            <input type="number" min="0.00" step="1" value="205000" class="form-control" id="bid_input" placeholder="Your Bid">
+                                <div class="input-group-append">
+                                    <span class="input-group-text append_box" id="bid_input_box">€</span>
+                                </div>
+                            </div>
+
                     </div>
-                    <div class="col">
-                        <button type="submit" class="btn bid_button"><h2 class="m-0">BID</h2></button>
+                    <div class="col-sm p-0 mt-3 mb-3">
+                        <button type="submit" class="btn rounded-pill" id="bid_button"><h2 class="m-0 p-2">PLACE BID</h2></button>
                     </div>
                 </div>
             </form>
         </div>
 
         <!-- Countdown -->
-        <div class="container w-50 mt-5">
-            <div class="row align-items-center text-center">
-                <div class="col">
+        <div class="container mt-5" id="auction_content_area">
+            <div class="d-flex flex-row justify-content-around align-items-center text-center">
+                <div class>
                     <div class="countdown_box">
                         <h1 class="display-1 m-0">4</h1>
                     </div>
                     <h4>Days</h4>
                 </div>
-                <div class="col">
+                <div>
                     <div class="countdown_box">
                         <h1  class="display-1 m-0">14</h1>
                     </div>
                     <h4>Hours</h4>
                 </div>
-                <div class="col">
+                <div>
                     <div class="countdown_box">
                         <h1  class="display-1 m-0">35</h1>
                     </div>
                     <h4>Minutes</h4>
                 </div>
-                <div class="col">
+                <div>
                     <div class="countdown_box">
                         <h1  class="display-1 m-0">23</h1>
                     </div>
@@ -173,10 +177,10 @@
 
         <!-- Comment Section -->
 
-        <div class="container w-75 comment_section p-0 mt-5">
+        <div class="container-fluid p-0 mt-5 mb-5" id="comment_section">
             
             <!-- Place Comment -->
-            <div class="comment m-5 clearfix">
+            <div class="comment m-5 p-2 clearfix">
                 <form>
                     <!-- User and date -->
                     <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
@@ -188,14 +192,14 @@
                         </div>
                     </a>
                     <div class="m-3 mt-0">
-                        <textarea class="form-control text-justify" id="comment" rows="3" placeholder="Insert your comment here."></textarea>
+                        <textarea class="form-control text-justify" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
                     </div>
-                    <button type="submit" class="btn comment_button m-3 mt-0 float-end">Comment</button>
+                    <button type="submit" class="btn m-3 mt-0 float-end" id="comment_button">COMMENT</button>
                 </form>
             </div>
 
             <!-- Comment for moderator -->
-            <div class="comment m-5 clearfix">
+            <div class="comment m-5 p-2 clearfix">
                 <!-- User and date -->
                 
                     <div class="d-flex justify-content-between align-items-center">
@@ -209,8 +213,8 @@
                             </div>
                         </a>
                         <div class="moderator area m-3">
-                            <button type="button" class="btn moderator_button">Ban From Auction</button>
-                            <button type="button" class="btn moderator_button">
+                            <button type="button" class="btn" id="moderator_button">Ban From Auction</button>
+                            <button type="button" class="btn" id="moderator_button">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </div>
@@ -218,7 +222,7 @@
                 <p class="m-3 mt-0 text-justify">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
             </div>
 
-            <div class="comment m-5 clearfix">
+            <div class="comment m-5 p-2 clearfix">
                 <!-- User and date -->
                 
                     <div class="d-flex justify-content-between align-items-center">
@@ -242,11 +246,12 @@
             </div>
                 
         </div>
+        </div>
 
         <!-- Chat Button -->
-        <button type="button" class="btn chat_button">
+        <a href="#" class="chat_button">
             <i class="fa fa-comments chat_icon"></i>
-        </button>
+        </a>
 
         <!-- Footer -->
         <?php

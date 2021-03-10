@@ -11,33 +11,34 @@
     --white: rgb(255, 255, 255);
 }
 
-body {
-    background-color: var(--background-color);
-    text-align: center;
-}
-
 .condition {
     color: var(--red-darkerer);
+}
+
+.carousel{
+    max-width: 666px;
 }
 
 .car-details {
     background-color: #1e2125;
     color: var(--white);
+    text-align: center;
 }
 
-.under_heart {
+#under_heart {
     line-height: 0px;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
     display:inline-block;
     position:relative;
+    max-width: 666px;
 }
 
 .heart {
     position:absolute;
-    bottom: -5px;
-    left: 5px;
+    bottom: -10px;
+    left: 0px;
     width: 30;
     height: 30;
     border-radius: 100%;
@@ -57,10 +58,20 @@ body {
     background-color: rgb(49, 49, 49);
 }
 
+.auction_content {
+    background-color: var(--background-color);
+    color: var(--white);
+    text-align: center;
+}
+
+#auction_content_area {
+    width: 50%;
+}
+
 .profile_picture {
     height: 100px;
     width: 100px;
-    border: thin solid var(--red-darkerer);
+    border: medium solid var(--red-darkerer);
 }
 
 .profile_picture_comment {
@@ -86,26 +97,37 @@ body {
 .current_bid {
     display: inline-block;
     border: medium solid var(--red-darkerer);
-    padding: 15px;
-    margin: 20px;
-    background-color: var(--red-darkerer);
+    padding: 1.5rem;
+    background: none;
+    font-size: 3em;
 }
 
-.bid_button{
-    background-color: var(--red-bright);
-    color: var(--red-bright);
-    border: thin solid var(--red-bright);
-    padding: 5px, 15px;
+#bid_button{
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
+    color: var(--white);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 2em;
 }
 
-.bid_input{
+#bid_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
+}
+
+#bid_input{
     font-size: xx-large;
-    color: var(--red-bright);
-    border: thin solid var(--red-bright);
-    padding: 15px;
+    color: var(--light-orange);
+    border: thin solid var(--white);
+    padding: 1rem;
     display: inline-block;
     text-align: right;
     background-color: var(--background-color);
+}
+
+#bid_input_box {
+    font-size: xx-large;
+    padding: 1rem;
 }
 
 .countdown_box {
@@ -115,50 +137,65 @@ body {
     background-color: var(--red-darkerer);
 }
 
-.comment_section{
-    background-color: var(--red-darkerer);
+#comment_section{
+    background-color: #1e2125;
     overflow: auto;
+    width: 75%;
+    text-align: justify;
 }
 
 .comment{
+    background-color: var(--background-color);
+}
+
+#comment_input{
     border: thin solid var(--red-darkerer);
+    background-color: #1e2125;
+    color: var(--white);
 }
 
-#comment{
-    border: thin solid var(--red-bright);
-    background-color: var(--red-bright);
-}
-
-.comment_button{
-    background-color: var(--red-bright);
-    border: thin solid var(--red-bright);
+#comment_button{
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
     padding: 5px, 15px;
     color: var(--white);
 }
 
-.light-orange_button{
-    background-color: var(--light-orange);
-    border: thin solid var(--light-orange);
-    color: var(--white);
+#comment_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
+}
+
+#moderator_button{
+    background: var(--yellow);
+    padding: 5px, 15px;
+    color: var(--background-color);
+}
+
+#moderator_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
 }
 
 .chat_button{
     height: 60px;
     width: 60px;
     border-radius: 100%;
-    border-color: var(--red-darkerer);
-    border-width: medium;
+    border: medium solid var(--background-color);
     text-align: center;
     align-content: center;
-    background-color: var(--red-darkerer);
     position: fixed;
     bottom: 30px;
     right: 30px;
+    font-size: 1.3rem;
+    color: var(--white);
+    padding: 0.6em;
+    z-index: 3;
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
 }
 
-.chat_icon{
-    font-size: 25px;
-    color: var(--red-darkerer);
+.chat_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
 }
 
 .fire-text {
@@ -170,4 +207,18 @@ body {
     animation: animate 5s linear infinite;
     -webkit-background-size: 200%;
     background-size: 200%;
+}
+
+.container_auction{
+    margin: auto !important; 
+}
+
+@media (max-width: 1050px) { 
+    #auction_content_area{
+        width: 100%;
+    }
+
+    #comment_section{
+        width: 100%;
+    }
 }
