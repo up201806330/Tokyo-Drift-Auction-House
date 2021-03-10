@@ -11,7 +11,7 @@ function error_page(int $error_code, string $message) : void {
 
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/button.css">
-  <link rel="stylesheet" href="../css/error.css">
+  <link rel="stylesheet" href="../css/tpl_error_page.css">
 </head>
 
 <body>
