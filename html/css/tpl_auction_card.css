@@ -39,18 +39,31 @@
     object-fit: cover;
 }
 
-.card-body {
-    margin-top: 5%;
-}
-
 .card-text {
     font-size: 1.2em;
 }
 
 .time-remaining-text {
-    margin-bottom: 2px !important;
+    margin-bottom: 5px !important;
 }
 
 .current-value {
     margin-bottom: 0 !important;
+}
+
+.card-body-info {
+    padding-left: 5% !important;
+    padding-top: 1% !important;
+}
+
+.hour {
+    margin-left: 3% !important;
+}
+
+i.fa.fa-clock-o.clock {
+    margin-left: 0.5% !important;
+}
+
+.card-price {
+    margin-left: 2% !important;
 }
