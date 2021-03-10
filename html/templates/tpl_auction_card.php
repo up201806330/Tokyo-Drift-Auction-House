@@ -6,7 +6,7 @@
             <link rel="stylesheet" href="../css/tpl_auction_card.css" type="text/css">
             
                 <!-- Card -->
-                <div class="col-md-6 col-lg-6 col-md-6 mx-auto mb-3 card-container">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
                     <div class="card">
                         
                         <img src="../assets/supercar-homepage-bg.jpg" alt="..." class="cover car-img-thumbnail">
