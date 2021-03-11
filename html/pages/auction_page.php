@@ -128,7 +128,7 @@
 
 <!-- Countdown -->
 <div class="container mt-5" id="auction_content_area">
-    <div class="d-flex flex-row justify-content-around align-items-center text-center">
+    <div class="d-flex flex-row justify-content-around align-items-center">
         <div class>
             <div class="countdown_box">
                 <h1 class="display-1 m-0">4</h1>
@@ -154,7 +154,31 @@
             <h4>Seconds</h4>
         </div>
     </div>
-    <h4 class="text-center mt-2">Till Auction Begins</h4>
+    <h4 class="d-flex justify-content-between mt-3">
+        <span> </span>
+        <span>T</span>
+        <span>I</span>
+        <span>L</span>
+        <span>L</span>
+        <span> </span>
+        <span> </span>
+        <span>A</span>
+        <span>U</span>
+        <span>C</span>
+        <span>T</span>
+        <span>I</span>
+        <span>O</span>
+        <span>N</span>
+        <span> </span>
+        <span> </span>
+        <span>B</span>
+        <span>E</span>
+        <span>G</span>
+        <span>I</span>
+        <span>N</span>
+        <span>S</span>
+        <span> </span>
+    </h4>
 </div>
 
 <!-- Comment Section -->
@@ -176,7 +200,7 @@
             <div class="m-3 mt-0">
                 <textarea class="form-control text-justify" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
             </div>
-            <button type="submit" class="btn m-3 mt-0 float-end" id="comment_button">COMMENT</button>
+            <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
         </form>
     </div>
 
@@ -195,8 +219,8 @@
                     </div>
                 </a>
                 <div class="moderator area m-3">
-                    <button type="button" class="btn" id="moderator_button">Ban From Auction</button>
-                    <button type="button" class="btn" id="moderator_button">
+                    <button type="button" class="btn rounded-pill m-1" id="moderator_button">BAN FROM AUCTION</button>
+                    <button type="button" class="btn rounded-pill m-1" id="moderator_button">
                         <i class="fa fa-trash"></i>
                     </button>
                 </div>

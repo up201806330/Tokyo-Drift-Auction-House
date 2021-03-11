@@ -9,6 +9,7 @@
     --light-orange: rgb(255, 157, 100);
     --background-color: rgb(24, 24, 24);
     --white: rgb(255, 255, 255);
+    --dark-grey: #1e2125;
 }
 
 .condition {
@@ -20,7 +21,7 @@
 }
 
 .car-details {
-    background-color: #1e2125;
+    background-color: var(--dark-grey);
     color: var(--white);
     text-align: center;
 }
@@ -42,20 +43,20 @@
     width: 30;
     height: 30;
     border-radius: 100%;
-    border: medium solid var(--red-darkerer);
+    /*border: medium solid var(--red-darkerer);*/
     text-align: center;
     align-content: center;
-    background-color: var(--white);
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);;
     font-size: 1.3rem;
-    color: var(--red-darkerer);
+    color: var(--white);
     padding: 0.6em;
     z-index: 2;
 }
 
 .heart:hover {
     color:rgb(255, 157, 100);
-    border-color: rgb(255, 157, 100);
-    background-color: rgb(49, 49, 49);
+    /*border: thin solid rgb(255, 157, 100);*/
+    background: rgb(49, 49, 49);
 }
 
 .auction_content {
@@ -71,32 +72,35 @@
 .profile_picture {
     height: 100px;
     width: 100px;
-    border: medium solid var(--red-darkerer);
 }
 
 .profile_picture_comment {
     height: 50px;
     width: 50px;
-    border: thin solid var(--red-darkerer);
 }
 
 .profile_text {
     text-decoration: none;
-    color: var(--red-bright);
+    color: var(--light-orange);
 }
 
 .profile_text:hover img{
     opacity: 0.7;
 }
 
+.profile_text:hover h4, .profile_text:hover p, .profile_text:hover h6{
+    opacity: 0.5;
+}
+
 .profile_text:hover {
     text-decoration: none;
-    color: var(--red-darkerer);
+    color: var(--light-orange);
+    opacity: 0.7;
 }
 
 .current_bid {
     display: inline-block;
-    border: medium solid var(--red-darkerer);
+    /*border: medium solid var(--red-darkerer);*/
     padding: 1.5rem;
     background: none;
     font-size: 3em;
@@ -118,8 +122,9 @@
 #bid_input{
     font-size: xx-large;
     color: var(--light-orange);
-    border: thin solid var(--white);
-    padding: 1rem;
+    border: 0;
+    border-bottom:medium solid var(--dark-grey);
+    padding: 0;
     display: inline-block;
     text-align: right;
     background-color: var(--background-color);
@@ -127,18 +132,20 @@
 
 #bid_input_box {
     font-size: xx-large;
-    padding: 1rem;
+    padding: 0;
+    background-color: var(--background-color);
+    border: 0;
+    color: var(--white);
 }
 
 .countdown_box {
-    border: medium solid var(--red-darkerer);
-    padding: 5px;
-    margin: 20px;
-    background-color: var(--red-darkerer);
+    /*padding: 1em;*/
+    margin: 0em 2em;
+    /*background-color: var(--dark-grey);*/
 }
 
 #comment_section{
-    background-color: #1e2125;
+    background-color: var(--dark-grey);
     overflow: auto;
     width: 75%;
     text-align: justify;
@@ -149,8 +156,8 @@
 }
 
 #comment_input{
-    border: thin solid var(--red-darkerer);
-    background-color: #1e2125;
+    border: none;/*thin solid var(--red-darkerer);*/
+    background-color: var(--dark-grey);
     color: var(--white);
 }
 
@@ -180,7 +187,6 @@
     height: 60px;
     width: 60px;
     border-radius: 100%;
-    border: medium solid var(--background-color);
     text-align: center;
     align-content: center;
     position: fixed;
@@ -196,6 +202,10 @@
 .chat_button:hover {
     color: rgb(255, 157, 100);
     background: rgb(49, 49, 49);
+}
+
+.chat_icon {
+    margin:auto;
 }
 
 .fire-text {
