@@ -52,7 +52,7 @@
 
 <?php function draw_sidebar(){ ?>
 
-<a class="btn btn-primary d-lg-none" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
+<a class="btn d-lg-none" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
    Filter Results
 </a>
 

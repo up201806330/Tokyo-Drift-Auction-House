@@ -54,7 +54,7 @@
             </div>     
         
             <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                <button type="button" class="btn btn-primary w-100 fw-bold">
+                <button type="button" class="btn w-100 fw-bold">
                     Login
                 </button>
             </div>

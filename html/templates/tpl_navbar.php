@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="../css/tpl_search.css">
   <link rel="stylesheet" href="../css/auction.css">
   <link rel="stylesheet" href="../css/tpl_mod.css">
+  <link rel="stylesheet" href="../css/login-overlay.css">
+  <link rel="stylesheet" href="../css/sign-up.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -60,7 +62,7 @@
           </li>
           <span class="left-vert-bar"></span>
           <li>
-            <button class="nav-link btn text-white navbar-content-bold rounded-pill" href="#" data-toggle="modal" data-target="#signupPage">Sign up</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/sign-up.php">Sign up</a>
           </li>
         </ul>
       </div>
@@ -70,7 +72,7 @@
 
 <?php
 
-include_once("./pages/login-overlay.php");
+include_once("../pages/login-overlay.php");
 draw_login();
 }
 

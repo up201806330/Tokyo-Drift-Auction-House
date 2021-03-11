@@ -4,7 +4,7 @@
      */
     ?>
 
-<div class="container">
+<div>
     <!-- Search Top Part of Homepage -->
     <!-- <div class="overlay" id="overlay" onclick="resetBg()"></div> -->
     <div class="homepage-bg-top">
