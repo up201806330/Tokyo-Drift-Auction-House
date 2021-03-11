@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="../css/tpl_navbar.css">
   <link rel="stylesheet" href="../css/tpl_footer.css">
   <link rel="stylesheet" href="../css/auction.css">
+  <link rel="stylesheet" href="../css/tpl_mod.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
