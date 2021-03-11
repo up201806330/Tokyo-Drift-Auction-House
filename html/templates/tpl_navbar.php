@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="../css/homepage.css">
   <link rel="stylesheet" href="../css/tpl_navbar.css">
   <link rel="stylesheet" href="../css/tpl_footer.css">
+  <link rel="stylesheet" href="../css/tpl_search.css">
   <link rel="stylesheet" href="../css/auction.css">
   <link rel="stylesheet" href="../css/tpl_mod.css">
 
