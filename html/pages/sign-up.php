@@ -3,6 +3,8 @@
      * Draws sign up page
      */
     ?>
+<div class="sign-in-container" >
+
 
 <div class="modal modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -102,6 +104,7 @@
     </div>
 </div>
 
+</div>
 
 
 <?php } ?>

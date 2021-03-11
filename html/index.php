@@ -31,14 +31,13 @@
     include_once("./pages/homepage.php");
     include_once("./templates/tpl_footer.php");
     // include_once("./pages/profile.php");
-    include_once("./pages/login-overlay.php");
     include_once("./pages/sign-up.php");
     
     draw_navbar();
+    
     draw_homepage();
+    
     draw_footer();
-    draw_login();
-    // draw_signup();
   ?>
 
   </body>

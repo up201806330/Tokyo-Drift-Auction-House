@@ -38,4 +38,11 @@
     </div>
   </nav>
 </header>
-<?php } ?>
+
+<?php
+
+include_once("./pages/login-overlay.php");
+draw_login();
+}
+
+?>
