@@ -9,4 +9,9 @@
     --light-orange: rgb(255, 157, 100);
     --orange-darker: rgb(161,94,12);
     --background-color: rgb(24, 24, 24);
+    --background-color-lighter: rgb(56, 56, 56);
+}
+
+.border-2 {
+    border-width: 2px !important;
 }
