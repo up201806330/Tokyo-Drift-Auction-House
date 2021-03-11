@@ -35,10 +35,10 @@
     include_once("./pages/sign-up.php");
     
     draw_navbar();
-    // draw_homepage();
-    // draw_footer();
-    // draw_login();
-    draw_signup();
+    draw_homepage();
+    draw_footer();
+    draw_login();
+    // draw_signup();
   ?>
 
   </body>
