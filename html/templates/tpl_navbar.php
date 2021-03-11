@@ -56,7 +56,7 @@
         </ul>
         <ul class="navbar-nav ms-auto">
           <li>
-            <button class="nav-link btn text-white navbar-content-bold rounded-pill" href="#" id="btnShow">Log in</button>
+            <button type="button" class="nav-link btn text-white navbar-content-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Log in</button>
           </li>
           <span class="left-vert-bar"></span>
           <li>
@@ -67,4 +67,11 @@
     </div>
   </nav>
 </header>
-<?php } ?>
+
+<?php
+
+include_once("./pages/login-overlay.php");
+draw_login();
+}
+
+?>
