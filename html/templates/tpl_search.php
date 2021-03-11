@@ -1,6 +1,6 @@
 <?php function open_main() { ?>
 
-<div class="container-fluid bg-light" style="flex: auto">
+<div class="container-fluid" id="search-background" style="flex: auto">
 <div class="row h-100">
 
 <?php } ?>
@@ -56,7 +56,7 @@
    Filter Results
 </a>
 
-<nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 bg-light border-end border-secondary collapse show">
+<nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary collapse show text-white">
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
       <li class="nav-item pt-3">
