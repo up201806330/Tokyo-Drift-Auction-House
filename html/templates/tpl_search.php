@@ -117,7 +117,7 @@
 
       <li class="nav-item pt-5">
         <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
-        <?php draw_multi_range_slider("multiRangeHorsepower", 0, 200); ?>
+        <?php draw_multi_range_slider("multiRangeHorsepower", 0, 100); ?>
       </li>
       
       <li class="nav-item pt-4">
