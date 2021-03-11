@@ -6,7 +6,7 @@
   </head>
   <body>
   <?php
-      include("create_auction.php");
+      include("pages/create_auction.php");
   ?>
   </body>
 </html>

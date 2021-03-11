@@ -1,30 +1,17 @@
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Bootstrap CSS importing -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        
-        <!-- Fontawesome Icons importing -->
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-        <!-- CSS importing -->
-        <link rel="stylesheet" type="text/css" href="create_auction.css">
-    </head>
-
-    <body>
         <!-- Navbar -->
+        <?php
+            include_once("templates/tpl_navbar.php");
+            include_once("templates/tpl_footer.php");
 
+            draw_navbar();
+        ?>
 
         <!-- Form -->
-        <div class="container w-75 create_auction p-5">
+        <div class="container-fluid p-5 clearfix" id="create_auction">
             <h1>Create Auction</h1>
             <form>
                 <div class="row align-items-center">
-                    <div class="col">
+                    <div class="col-md">
                         <div class="form-group">
                             <label for="auctionName">Auction Name</label>
                             <input type="text" class="form-control input_box" id="auctionName" placeholder="Auction Name">
@@ -38,33 +25,33 @@
                             <input type="text" class="form-control input_box" id="model" placeholder="Model">
                         </div>
                     </div>
-                    <div class="col">
-                        <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block w-75 mx-auto" alt="bmw i8">
-                        <div class="form-group">
+                    <div class="col-md m-0">
+                        <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block w-50 mx-auto mt-3" alt="bmw i8">
+                        <div class="form-group mb-3">
                             <input type="file" class="form-control input_box w-75 mx-auto" id="imageFile" placeholder="Images Upload" multiple>
                         </div>
                     </div>
                 </div>
                 
                 <div class="row align-items-center">
-                    <div class="col">
+                    <div class="col-md">
                         <div class="form-group">
                             <label for="year">Year</label>
                             <input type="number" min="1950" max="2021" class="form-control input_box" id="year" placeholder="Year">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md">
                         <div class="form-group">
                             <label for="horsePower">Horse Power</label>
                             <div class="input-group">
-                                <input type="number" min="0" max="2000" class="form-control input_box" id="horsePower" placeholder="Horse Power">
+                                <input type="number" min="0" max="2000" class="form-control input_box text-right" id="horsePower" placeholder="Horse Power">
                                 <div class="input-group-append">
                                     <span class="input-group-text append_box">hp</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md">
                         <div class="form-group">
                             <label for="condition">Condition</label>
                             <select class="form-select input_box" aria-label="condition">
@@ -78,38 +65,36 @@
                 </div>
 
                 <div class="row align-items-center">
-                    <div class="col">
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="startingTime">Starting Time</label>
+                            <input type="datetime-local" class="form-control input_box" id="startingTime" name="startingTime">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="endingTime">Ending Time</label>
+                            <input type="datetime-local" class="form-control input_box" id="endingTime" name="endingTime">
+                        </div>
+                    </div>
+                    <div class="col-md">
                         <div class="form-group">
                             <label for="startingBid">Starting Bid</label>
-                            <div class="input-group">
-                                <input type="number" min="0" max="100000000" class="form-control input_box" id="startingBid" placeholder="Starting Bid">
+                            <div class="input-group" id="staring_bid_group">
+                                <input type="number" min="0" max="100000000" class="form-control input_box text-right" id="startingBid" placeholder="Starting Bid">
                                 <div class="input-group-append">
                                     <span class="input-group-text append_box">€</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="startingTime">Starting Time</label>
-                            <input type="datetime-local" class="form-control input_box" id="startingTime" name="startingTime">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="endingTime">Ending Time</label>
-                            <input type="datetime-local" class="form-control input_box" id="endingTime" name="endingTime">
-                        </div>
-                    </div>
                 </div>
   
-                <button type="submit" class="btn submit_button float-end">Submit</button>
+                <button type="submit" class="btn float-end clearfix rounded-pill" id="submit_button">CREATE AUCTION</button>
             </form>
         </div>
 
         <!-- Footer -->
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    </body>
-
-</html>
+        <?php
+            draw_footer();
+        ?>
