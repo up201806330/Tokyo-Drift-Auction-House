@@ -8,6 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Tokyo Drift Auction House</title>
+  <link rel="shortcut icon" href="../logo.svg">
   
   <!-- Bootstrap responsiveness in mobile -->
   <!-- https://getbootstrap.com/docs/3.4/css/ -->
