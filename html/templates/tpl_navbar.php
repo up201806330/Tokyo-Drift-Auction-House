@@ -51,7 +51,7 @@
           <li class="nav-item">
             <a class="nav-link text-white navbar-content-bold rounded-pill" href="#">Create new auction</a>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded-pill" href="#" tabindex="-1" aria-disabled="true">About / Contacts</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/about.php" tabindex="-1" aria-disabled="true">About / Contacts</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">

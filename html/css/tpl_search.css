@@ -196,5 +196,6 @@ input[type=checkbox]
 }
 
 #sidebarMenu{
-  background-color: rgb(36, 33, 33);
+  background-color:var(--footer-grey);
+  opacity: 0.95;
 }
