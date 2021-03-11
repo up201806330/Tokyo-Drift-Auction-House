@@ -21,7 +21,7 @@
   <script src="../js/tpl_search.js"></script>
 
   <link rel="stylesheet" href="../css/common.css">
- 
+  <link rel="stylesheet" href="../css/homepage.css">
   <link rel="stylesheet" href="../css/tpl_navbar.css">
   <link rel="stylesheet" href="../css/tpl_footer.css">
   <link rel="stylesheet" href="../css/auction.css">
