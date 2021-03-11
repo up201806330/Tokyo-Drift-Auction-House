@@ -37,3 +37,13 @@ main#error {
     margin: auto;
     max-width: 12em;
 }
+
+#home {
+    width: 50% !important;
+    font-weight: bold;
+    background-color: var(--background-color) !important;
+}
+
+#home:hover {
+    background-color: var(--background-color-lighter) !important;
+}

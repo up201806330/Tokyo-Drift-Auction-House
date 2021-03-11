@@ -20,7 +20,7 @@ function error_page(int $error_code, string $message) : void {
       <h2><?=$message?></h2>
       <img class="main-icon" src="../assets/broken-car.svg">
     </header>
-    <input type="submit" class="nav-link btn text-white navbar-content-bold rounded-pill" id="home" value="Home" onclick="window.location='.';">
+    <input type="submit" class="mx-auto nav-link btn text-white navbar-content-bold rounded-pill" id="home" value="Home" onclick="window.location='.';">
   </main>
 </body>
 
