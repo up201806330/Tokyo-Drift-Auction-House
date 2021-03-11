@@ -23,7 +23,7 @@
                                     <i class="fa fa-money money"></i>
                                         <span class="card-price">Currently at 21.000€</span>
                                     </p>
-                                    <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                                    <a href="../pages/auction_page.php" class="stretched-link"></a> <!-- Card as a link -->
                             </div>
                         </div>
                         <!-- End of Card Body -->
@@ -58,7 +58,7 @@
                                     <i class="fa fa-money money"></i>
                                         <span class="card-price">Currently at 91.000€</span>
                                     </p>
-                                    <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                                    <a href="../pages/auction_page.php" class="stretched-link"></a> <!-- Card as a link -->
                             </div>
                         </div>
                         <!-- End of Card Body -->
@@ -93,7 +93,7 @@
                                     <i class="fa fa-money money"></i>
                                         <span class="card-price">Currently at 20.500€</span>
                                     </p>
-                                    <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                                    <a href="../pages/auction_page.php" class="stretched-link"></a> <!-- Card as a link -->
                             </div>
                         </div>
                         <!-- End of Card Body -->
