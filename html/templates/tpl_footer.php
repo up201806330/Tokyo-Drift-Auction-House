@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 tos">
-                <h5 class="mb-4 mt-4 font-weight-bold "><a href="#" class="nav-link text-white">Terms of Service</a></p>
+                <h5 class="mb-4 mt-4 font-weight-bold "><a href="../pages/tos.php" class="nav-link text-white">Terms of Service</a></p>
             </div>
 
             <div class="col-md-3 col-lg-2 col-xl-3 mx-auto  ">
@@ -61,5 +61,8 @@
     </div>
 
 </footer>
+</body>
+</html>
+
 
 <?php } ?>
