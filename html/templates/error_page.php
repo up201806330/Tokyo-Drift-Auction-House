@@ -14,11 +14,11 @@ function error_page(int $error_code, string $message) : void {
 </head>
 
 <body class="d-flex justify-content-center align-items-center">
-  <main id="error" class="text-white">
+  <main id="error" class="text-white text-center">
     <header class="border-bottom border-white border-2">
-      <h1><?=$error_code?></h1>
-      <h2><?=$message?></h2>
-      <img class="main-icon" src="../assets/broken-car.svg">
+      <h1 class="m-0 font-weight-bold"><?=$error_code?></h1>
+      <h2 class="m-0 font-weight-normal"><?=$message?></h2>
+      <img class="main-icon mx-auto" src="../assets/broken-car.svg">
     </header>
     <input type="submit" class="mx-auto nav-link btn text-white navbar-content-bold rounded-pill" id="home" value="Home" onclick="window.location='.';">
   </main>
