@@ -54,7 +54,7 @@
 
 .heart:hover {
     color:rgb(255, 157, 100);
-    border-color: rgb(255, 157, 100);
+    border: thin solid rgb(255, 157, 100);
     background-color: rgb(49, 49, 49);
 }
 
@@ -82,16 +82,17 @@
 
 .profile_text {
     text-decoration: none;
-    color: var(--red-bright);
+    color: var(--red-darkerer);
 }
 
 .profile_text:hover img{
     opacity: 0.7;
+    border: thin solid var(--light-orange);
 }
 
 .profile_text:hover {
     text-decoration: none;
-    color: var(--red-darkerer);
+    color: var(--light-orange);
 }
 
 .current_bid {
@@ -118,8 +119,9 @@
 #bid_input{
     font-size: xx-large;
     color: var(--light-orange);
-    border: thin solid var(--white);
-    padding: 1rem;
+    border: 0;
+    border-bottom:medium solid #1e2125;
+    padding: 0;
     display: inline-block;
     text-align: right;
     background-color: var(--background-color);
@@ -127,7 +129,10 @@
 
 #bid_input_box {
     font-size: xx-large;
-    padding: 1rem;
+    padding: 0;
+    background-color: var(--background-color);
+    border: 0;
+    color: var(--white);
 }
 
 .countdown_box {
@@ -180,7 +185,6 @@
     height: 60px;
     width: 60px;
     border-radius: 100%;
-    border: medium solid var(--background-color);
     text-align: center;
     align-content: center;
     position: fixed;
@@ -196,6 +200,10 @@
 .chat_button:hover {
     color: rgb(255, 157, 100);
     background: rgb(49, 49, 49);
+}
+
+.chat_icon {
+    margin:auto;
 }
 
 .fire-text {

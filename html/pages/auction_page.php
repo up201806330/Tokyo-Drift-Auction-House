@@ -176,7 +176,7 @@
             <div class="m-3 mt-0">
                 <textarea class="form-control text-justify" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
             </div>
-            <button type="submit" class="btn m-3 mt-0 float-end" id="comment_button">COMMENT</button>
+            <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
         </form>
     </div>
 
@@ -195,8 +195,8 @@
                     </div>
                 </a>
                 <div class="moderator area m-3">
-                    <button type="button" class="btn" id="moderator_button">Ban From Auction</button>
-                    <button type="button" class="btn" id="moderator_button">
+                    <button type="button" class="btn rounded-pill" id="moderator_button">Ban From Auction</button>
+                    <button type="button" class="btn rounded-pill" id="moderator_button">
                         <i class="fa fa-trash"></i>
                     </button>
                 </div>
