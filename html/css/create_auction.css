@@ -9,6 +9,7 @@
     --light-orange: rgb(255, 157, 100);
     --background-color: rgb(24, 24, 24);
     --white: rgb(255, 255, 255);
+    --dark-grey: #1e2125;
 }
 
 body {
@@ -18,32 +19,34 @@ body {
 }
 
 #create_auction{
-    background-color: #1e2125;
+    background-color: var(--dark-grey);
     width: 75%;
     margin-top: 5em;
     margin-bottom: 5em;
 }
 
 .input_box{
-    background-color: var(--background-color);
+    background-color: var(--dark-grey);
     color: var(--light-orange);
-    border: thin solid var(--white);
-    padding: 0.5rem;
+    border: 0;
+    border-bottom: thin solid var(--background-color);
+    padding: 1em 1em 0;
     display: inline-block;
-    background-color: var(--background-color);
+    text-align: center;
 }
 
 .input_box:focus{
-    background-color: var(--background-color);
+    background-color: var(--dark-grey);
     color: var(--white);
-    border: thin solid var(--red-darkerer);
     outline: none !important;
 }
 
 .append_box{
-    color: var(--background-color);
-    padding: 0.5rem;
     display: inline-block;
+    padding: 1em 1em 0;
+    background-color: var(--dark-grey);
+    border: 0;
+    color: var(--white);
 }
 
 .form-group{
@@ -60,7 +63,7 @@ body {
     color: var(--white);
     margin-top: 1em;
     margin-right: 2em;
-    padding: 1em;
+    padding: 1em 2em;
 }
 
 #submit_button:hover {

@@ -1,7 +1,7 @@
         <!-- Navbar -->
         <?php
-            include_once("templates/tpl_navbar.php");
-            include_once("templates/tpl_footer.php");
+            include_once("../templates/tpl_navbar.php");
+            include_once("../templates/tpl_footer.php");
 
             draw_navbar();
         ?>
@@ -68,13 +68,13 @@
                     <div class="col-md">
                         <div class="form-group">
                             <label for="startingTime">Starting Time</label>
-                            <input type="datetime-local" class="form-control input_box" id="startingTime" name="startingTime">
+                            <input type="datetime-local" class="form-control input_box" id="startingTime" name="startingTime" value="2021-03-15T19:30">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-group">
                             <label for="endingTime">Ending Time</label>
-                            <input type="datetime-local" class="form-control input_box" id="endingTime" name="endingTime">
+                            <input type="datetime-local" class="form-control input_box" id="endingTime" name="endingTime" value="2021-03-20T19:30">
                         </div>
                     </div>
                     <div class="col-md">
@@ -90,7 +90,7 @@
                     </div>
                 </div>
   
-                <button type="submit" class="btn float-end clearfix rounded-pill" id="submit_button">CREATE AUCTION</button>
+                <button type="submit" class="btn float-end clearfix rounded-pill" id="submit_button"><b>CREATE AUCTION</b></button>
             </form>
         </div>
 
