@@ -1,4 +1,17 @@
-.mod .cars-gallery {
+.mod .mod-gallery {
     max-height: 40em;
     background-color: var(--light-grey);
+    
+}
+
+.fa-user-cog{
+    color: rgb(204, 174, 2); 
+}
+
+.fa-wallet{
+    color: purple;
+}
+
+.fa-store{
+    color: green;
 }
