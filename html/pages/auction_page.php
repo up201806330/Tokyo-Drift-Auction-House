@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <?php
-    include_once("templates/tpl_navbar.php");
-    include_once("templates/tpl_footer.php");
+    include_once("../templates/tpl_navbar.php");
+    include_once("../templates/tpl_footer.php");
 
     draw_navbar();
 ?>
