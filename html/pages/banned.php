@@ -19,7 +19,7 @@
     <p> A past action of yours was interpreted as an infringement to the Terms and Conditions of this website, resulting in a ban from one of our Moderators.</p>
     <p> As a result, you will have most of your permissions restrained. You will not be able to participate or create in any auction neither interact with others users.</p>
     <p> By clicking the button, you'll be taken to the home page.</p>
-    <input type="submit" class="mx-auto nav-link btn text-white navbar-content-bold rounded-pill" id="home" value="Home" onclick="window.location='.';">
+    <input type="submit" class="mx-auto nav-link btn text-white navbar-content-bold rounded-pill" id="home" value="Home" onclick="window.location='homepage.php';">
   </main>
 </body>
 
