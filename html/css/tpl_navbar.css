@@ -54,3 +54,25 @@ body > header > nav > div > a:hover {
 body > header > nav {
     min-width: fit-content;
 }
+
+@media all and (min-width: 1400px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .nav-link{ color: #fff;  }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}
+
+@media (min-width: 1200px) {
+    .navbar-nav .dropdown-menu { 
+        width: 100%; 
+        width: 90vw; 
+    }
+}
+
+.navbar-nav .dropdown-menu { 
+    opacity: 90%;
+}
+
+.dropdown-menu-dark .dropdown-item.active {
+    background-color: var(--red-darker);
+}

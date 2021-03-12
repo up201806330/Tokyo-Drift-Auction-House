@@ -35,7 +35,7 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="selectOrderResults" data-bs-toggle="dropdown" aria-expanded="false">
               Order By
             </button>
-            <ul class="dropdown-menu" aria-labelledby="selectOrderResults">
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectOrderResults">
               <li><a class="dropdown-item" href="#" onclick="updateDropdownOrder(this)">Ascending Current Bid</a></li>
               <li><a class="dropdown-item" href="#" onclick="updateDropdownOrder(this)">Descending Current Bid</a></li>
               <li><a class="dropdown-item" href="#" onclick="updateDropdownOrder(this)">Ending Sooner</a></li>
@@ -70,7 +70,7 @@
             <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="selectConditionFilter" data-bs-toggle="dropdown" aria-expanded="false">
             Condition
             </button>
-            <ul class="dropdown-menu" aria-labelledby="selectConditionFilter">
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectConditionFilter">
               <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Mint</b></a></li>
               <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Clean</b> or better</a></li>
               <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Average</b> or better</a></li>
@@ -150,7 +150,7 @@
 
 <main class="col ms-sm-auto pt-4 px-md-4">
 <p class="fs-3 pt-3"><u>6</u> Results Found</p>
-<div class="row row-cols-3 justify-content-start">
+<div class="row row-cols-3 justify-content-center">
 
 <?php } ?>
 
