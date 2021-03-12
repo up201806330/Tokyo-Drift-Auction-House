@@ -5,8 +5,8 @@
 ?>
 <div id="create_auction_background">
     <!-- Form -->
-    <div class="container-fluid p-5 clearfix text-left" id="create_auction">
-        <h1 class="text-center">Create Auction</h1>
+    <div class="container-fluid p-5 clearfix text-left border border-1 border-secondary rounded-3" id="create_auction">
+        <div class="display-3 text-center">Create Auction</div>
         <hr class="bg-dark border-5 border-top border-dark">
         <form>
             <div class="row align-items-center">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-md m-0">
-                    <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block mx-auto mt-3" id="image_input_preview" alt="bmw i8">
+                    <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block mx-auto mt-3 border border-2 border-secondary rounded-3" id="image_input_preview" alt="bmw i8">
                     <div class="form-group mb-3">
                         <input type="file" class="form-control mx-auto" id="image_input" placeholder="Images Upload" multiple>
                     </div>
