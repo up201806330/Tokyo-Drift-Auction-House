@@ -54,9 +54,9 @@
             </div>     
         
             <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                <button type="button" class="btn w-100 fw-bold">
+                <a role="button" class="btn w-100 fw-bold" href="../pages/profile.php">
                     Login
-                </button>
+                </a>
             </div>
         </div>
 
@@ -64,7 +64,7 @@
 
         <div class="modal-footer justify-content-center"> 
             Don't have an account? 
-            <a href="#" class="blue-text ml-1">
+            <a href="../pages/sign-up.php" class="blue-text ml-1">
                 Sign up
             </a>
         </div>

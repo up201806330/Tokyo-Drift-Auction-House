@@ -54,7 +54,7 @@
             <a class="nav-link text-white navbar-content-bold rounded-pill" aria-current="page" href="../pages/search.php">Explore Auctions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded-pill" href="#">Create new auction</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/create_auction.php">Create new auction</a>
           <li class="nav-item">
             <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/about.php" tabindex="-1" aria-disabled="true">About / Contacts</a>
           </li>

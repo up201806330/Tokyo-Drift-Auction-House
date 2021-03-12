@@ -27,7 +27,7 @@
           <label for="searchByTags" class="form-label text-white">Search Tags</label>
           <div class="input-group" id="searchByTags">
             <input type="text" class="form-control" placeholder="Try some keywords" aria-label="Input search keywords" aria-describedby="button-search-1">
-            <button class="btn btn-outline-secondary" type="button" id="button-search-1">Search</button>
+            <a href="../pages/search.php" ><button class="btn btn-outline-secondary" type="button" id="button-search-1">Search</button></a>
           </div>
         </div>
         <div class="col-12 col-sm-6 pt-sm-5 pb-xs-3">

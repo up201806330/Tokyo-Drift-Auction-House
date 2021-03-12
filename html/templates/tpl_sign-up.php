@@ -60,9 +60,9 @@
                             </div>  
                         </div>
                         <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                            <button type="button" class="btn btn-primary w-75 fw-bold">
+                            <a role="button" class="btn w-75 fw-bold" href="../pages/profile.php">
                                 Sign up
-                            </button>
+                            </a>
                         </div>
 
                         <div class="row">
@@ -73,7 +73,7 @@
                         
 
                         <!-- google button -->
-                        <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
+                        <a class="modal-footer justify-content-center login-button px-5 pt-3" href="../pages/profile.php"> 
                             <div class='g-sign-in-button'>
                                 <div class=content-wrapper>
                                     <div class='logo-wrapper'>
@@ -84,7 +84,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
                         <hr class="bg-dark border-5 border-top border-dark">
 
