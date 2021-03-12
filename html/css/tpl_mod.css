@@ -1,4 +1,4 @@
-.mod .mod-gallery {
+.mod-gallery {
     max-height: 40em;
     background-color: var(--light-grey);
     
@@ -37,4 +37,8 @@
     100% {
         background-position: 0 100%;
     }
+}
+
+#modContainer{
+    max-width: 100%;
 }

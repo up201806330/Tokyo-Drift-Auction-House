@@ -37,12 +37,12 @@
 </head>
 <body>
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-navbar">
+  <nav class="navbar navbar-expand-xl navbar-dark bg-navbar">
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->
     <a class="navbar-brand text-white navbar-content-bold nav-link" href="../pages/homepage.php">
       <img class="logo filter-logo" src="../logo.svg" width="80" height="80">
-      Tokyo Drift Auction House
+      <div class="d-none d-md-inline"> Tokyo Drift Auction House</div>
     </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

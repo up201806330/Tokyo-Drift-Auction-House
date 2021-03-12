@@ -4,7 +4,7 @@ include_once('../templates/tpl_profile_card.php');
 
 function draw_mod(){
 ?>
-    <div class="container bg-dark">
+    <div class="container bg-dark" id="modContainer">
         <main class="mod col-md-8 mx-auto bg-light">
             <div class="display-3 ps-4 pb-4 pt-5">
                 Manage user profiles
