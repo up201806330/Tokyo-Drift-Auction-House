@@ -1,15 +1,19 @@
-<?php function draw_auction() {
+<?php 
+    include_once("../templates/tpl_comment.php");
+
+    function draw_auction() {
     /**
      * Draws auction page
      */
 ?>
 
+<div class="auction_background">
     <!-- Top Bar with car details -->
     <div class="container-fluid car-details">
-        <div class="row align-items-center">
+        <div class="row align-items-center text-center">
 
             <!-- Pictures Carrousel -->
-            <div class="col-lg m-5" id="under_heart">
+            <div class="col-lg mt-5 mb-5" id="under_heart">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -90,9 +94,9 @@
                     <h4 class="m-0">Hanna Green</h4>
                 </a>
             </div>
-            <div class="col-sm mt-3 mb-3">
+            <div class="col-sm mt-3 mb-1">
                 <h2>Current Bid</h2>
-                <h1 class="current_bid mt-3">200000€</h1>
+                <h1 class="current_bid">200000€</h1>
             </div>
             <div class="col-sm mt-3 mb-3">
                 <h2>Bidder</h2>
@@ -180,17 +184,16 @@
     </div>
 
     <!-- Comment Section -->
-
-    <div class="container-fluid p-0 mt-5 mb-5" id="comment_section">
+    <div class="container-fluid p-0" id="comment_section">
         
         <!-- Place Comment -->
-        <div class="comment m-5 p-2 clearfix">
+        <div class="comment p-2 clearfix">
             <form>
                 <!-- User and date -->
                 <a href="../pages/profile.php" class="profile_text">
                     <div class="d-flex justify-content-start align-items-center">
                         <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
-                        <div class="m-3">
+                        <div>
                             <h6 class="m-0">Hanna Green</h6>
                         </div>
                     </div>
@@ -202,53 +205,16 @@
             </form>
         </div>
 
-        <!-- Comment for moderator -->
-        <div class="comment m-5 p-2 clearfix">
-            <!-- User and date -->
-            
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="../pages/profile.php" class="profile_text">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
-                            <div class="m-3">
-                                <h6 class="m-0">Hanna Green</h6>
-                                <p class="m-0">15h47 - 23.02.2021</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="moderator area m-3">
-                        <button type="button" class="btn rounded-pill m-1" id="moderator_button">BAN FROM AUCTION</button>
-                        <button type="button" class="btn rounded-pill m-1" id="moderator_button">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            <p class="m-3 mt-0 text-justify">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
-        </div>
+        <?php
+            draw_comment();
+        ?>
 
-        <div class="comment m-5 p-2 clearfix">
-            <!-- User and date -->
-            
-                <div class="d-flex justify-content-between align-items-center">
-                    <a href="../pages/profile.php" class="profile_text">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
-                            <div class="m-3">
-                                <h6 class="m-0">Hanna Green</h6>
-                                <p class="m-0">15h47 - 23.02.2021</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="moderator area m-3 d-none">
-                        <button type="button" class="btn moderator_button">Ban From Auction</button>
-                        <button type="button" class="btn moderator_button">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            <p class="m-3 mt-0 text-justify">This is just an example of what the comment would look if I'm not a moderator.<p>
+        <div class="not_moderator">
+            <?php
+                draw_comment();
+            ?>
         </div>
-            
+       
     </div>
     </div>
 
@@ -256,5 +222,6 @@
     <a href="#" class="chat_button">
         <i class="fa fa-comments chat_icon"></i>
     </a>
+</div>
 
 <?php } ?>
