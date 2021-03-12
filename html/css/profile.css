@@ -9,9 +9,7 @@
     --light-orange: rgb(255, 157, 100);
 }
 
-.container {
-  max-width: auto;
-}
+
 
 .circular--portrait {
     position: absolute;
@@ -84,4 +82,13 @@
 
 .permission-icon {
   display:inline-block;
+}
+
+.profile-auction-gallery {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+.profile-auction-gallery-title {
+  margin-left: 2em;
 }

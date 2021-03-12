@@ -124,6 +124,17 @@
         </section>
         <!-- Section: User Data -->
 
+        <div class="profile-auction-gallery">
+
+            <h2 class="fs-1 pb-4 profile-auction-gallery-title">
+                <strong>Current Auctions</strong>
+            </h2>
+
+            <?php
+            include_once('../templates/tpl_mod.php');
+            draw_auction_gallery();
+            ?>
+        </div>
     </div>
 
 </section>
