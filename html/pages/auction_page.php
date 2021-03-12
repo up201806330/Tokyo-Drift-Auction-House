@@ -87,7 +87,7 @@
     <div class="row align-items-center justify-content-around">
         <div class="col-sm mt-3 mb-3">
             <h2>Owner</h2>
-            <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+            <a href="../pages/profile.php" class="profile_text">
                 <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
                 <h4 class="m-0">Hanna Green</h4>
             </a>
@@ -98,7 +98,7 @@
         </div>
         <div class="col-sm mt-3 mb-3">
             <h2>Bidder</h2>
-            <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+            <a href="../pages/profile.php" class="profile_text">
                 <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
                 <h4 class="m-0">Hank Geller</h4>
             </a>
@@ -189,7 +189,7 @@
     <div class="comment m-5 p-2 clearfix">
         <form>
             <!-- User and date -->
-            <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+            <a href="../pages/profile.php" class="profile_text">
                 <div class="d-flex justify-content-start align-items-center">
                     <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
                     <div class="m-3">
@@ -209,7 +209,7 @@
         <!-- User and date -->
         
             <div class="d-flex justify-content-between align-items-center">
-                <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+                <a href="../pages/profile.php" class="profile_text">
                     <div class="d-flex justify-content-start align-items-center">
                         <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
                         <div class="m-3">
@@ -232,7 +232,7 @@
         <!-- User and date -->
         
             <div class="d-flex justify-content-between align-items-center">
-                <a href="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="profile_text">
+                <a href="../pages/profile.php" class="profile_text">
                     <div class="d-flex justify-content-start align-items-center">
                         <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
                         <div class="m-3">

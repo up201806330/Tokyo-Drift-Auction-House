@@ -1,6 +1,6 @@
 <?php function draw_about() { ?>
 
-    <div class="container-fluid p-5">
+    <div class="container-fluid bg-light p-5">
         <div class="d-flex justify-content-center">
             <img class="logo img-fluid" src="../logo.svg" width="400" height="400">
         </div>

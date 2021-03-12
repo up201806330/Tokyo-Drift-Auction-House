@@ -32,7 +32,7 @@
 
         <div class="row">
             <div class="col text-center pt-3">
-                <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Moderator">
+                <a class="permission-icon" href="../pages/mod.php" data-mdb-toggle="tooltip" title="Moderator">
                     <i class="fas fa-user-cog fa-3x pe-3"></i> 
                 </a>
                 <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Buyer">

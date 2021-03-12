@@ -1,6 +1,6 @@
 <?php function draw_tos() { ?>
 
-    <div class="container-fluid p-4">
+    <div class="container-fluid bg-light p-4">
         <div class="display-2 pb-5 text-center">Terms of Service</div>
 
         <a href="#userInteraction"><div class="btn btn-secondary" id="userInteraction"><div class="display-5 text-light">User Interaction</div></div></a>

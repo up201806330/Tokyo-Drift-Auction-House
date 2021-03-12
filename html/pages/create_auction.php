@@ -90,7 +90,7 @@
                     </div>
                 </div>
   
-                <button type="submit" class="btn float-end clearfix rounded-pill" id="submit_button"><b>CREATE AUCTION</b></button>
+                <a role="button" class="btn float-end clearfix rounded-pill" id="submit_button" href="../pages/auction_page.php"><b>CREATE AUCTION</b></a>
             </form>
         </div>
 
