@@ -1,0 +1,79 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+:root {
+    --red-darker: #8c0000;
+    --red-darkerer: #680101;
+    --red-brown: #bd2000;
+    --red-bright: #fa1e0e;
+    --yellow: #ffbe0f;
+    --light-orange: rgb(255, 157, 100);
+    --background-color: rgb(24, 24, 24);
+    --white: rgb(255, 255, 255);
+    --dark-grey: #1e2125;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--white);
+    text-align: center;
+}
+
+#create_auction{
+    background-color: var(--dark-grey);
+    width: 75%;
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
+.input_box{
+    background-color: var(--dark-grey);
+    color: var(--light-orange);
+    border: 0;
+    border-bottom: thin solid var(--background-color);
+    padding: 1em 1em 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.input_box:focus{
+    background-color: var(--dark-grey);
+    color: var(--white);
+    outline: none !important;
+}
+
+.append_box{
+    display: inline-block;
+    padding: 1em 1em 0;
+    background-color: var(--dark-grey);
+    border: 0;
+    color: var(--white);
+}
+
+.form-group{
+    margin: 2em;
+}
+
+#staring_bid_group {
+    min-width: 180px;
+}
+
+#submit_button{
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
+    padding: 5px, 15px;
+    color: var(--white);
+    margin-top: 1em;
+    margin-right: 2em;
+    padding: 1em 2em;
+}
+
+#submit_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
+}
+
+
+@media (max-width: 1050px) { 
+    #create_auction{
+        width: 90%;
+    }
+}
