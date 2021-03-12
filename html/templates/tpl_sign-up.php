@@ -44,11 +44,11 @@
 
                         <div class="row" style="--bs-gutter-x:0;">
                             <div class="col form-floating mb-3">
-                                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <input type="password" name="password3" class="form-control" id="floatingPassword3" placeholder="Password">
                                 <span>
-                                    <i class="fa fa-eye" id="font" onclick="togglePw()" aria-hidden="true"></i>
+                                    <i class="fa fa-eye" id="font3" onclick="togglePw3()" aria-hidden="true"></i>
                                 </span>
-                                <label for="floatingPassword">Password</label> 
+                                <label for="floatingPassword3">Password</label> 
                             </div>  
 
                             <div class="col form-floating mb-3">
@@ -90,7 +90,7 @@
 
                         <div class="modal-footer justify-content-center"> 
                             Already have an account? 
-                            <a href="#" class="blue-text ml-1">
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="blue-text ml-1">
                                 Log in
                             </a>
                         </div>
