@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="../css/tpl_mod.css">
   <link rel="stylesheet" href="../css/login-overlay.css">
   <link rel="stylesheet" href="../css/sign-up.css">
+  <link rel="stylesheet" href="../css/profile.css">
 
 </head>
 <body>
