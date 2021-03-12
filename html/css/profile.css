@@ -9,6 +9,9 @@
     --light-orange: rgb(255, 157, 100);
 }
 
+.container {
+  max-width: auto;
+}
 
 .circular--portrait {
     position: absolute;
