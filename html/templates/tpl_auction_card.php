@@ -3,8 +3,6 @@
      * Draws an auction card
      */
     ?>
-            <link rel="stylesheet" href="../css/tpl_auction_card.css" type="text/css">
-            
                 <!-- Card -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
                     <div class="card">
@@ -23,7 +21,7 @@
                                     <i class="fa fa-money money"></i>
                                         <span class="card-price">Currently at 21.000€</span>
                                     </p>
-                                    <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                                    <a href="../pages/auction_page.php" class="stretched-link"></a> <!-- Card as a link -->
                             </div>
                         </div>
                         <!-- End of Card Body -->
@@ -38,8 +36,6 @@
      * Draws an auction card
      */
     ?>
-            <link rel="stylesheet" href="../css/tpl_auction_card.css" type="text/css">
-            
                 <!-- Card -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
                     <div class="card">
@@ -58,7 +54,7 @@
                                     <i class="fa fa-money money"></i>
                                         <span class="card-price">Currently at 91.000€</span>
                                     </p>
-                                    <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                                    <a href="../pages/auction_page.php" class="stretched-link"></a> <!-- Card as a link -->
                             </div>
                         </div>
                         <!-- End of Card Body -->
@@ -73,8 +69,6 @@
      * Draws an auction card
      */
     ?>
-            <link rel="stylesheet" href="../css/tpl_auction_card.css" type="text/css">
-            
                 <!-- Card -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
                     <div class="card">
@@ -93,7 +87,7 @@
                                     <i class="fa fa-money money"></i>
                                         <span class="card-price">Currently at 20.500€</span>
                                     </p>
-                                    <a href="#" class="stretched-link"></a> <!-- Card as a link -->
+                                    <a href="../pages/auction_page.php" class="stretched-link"></a> <!-- Card as a link -->
                             </div>
                         </div>
                         <!-- End of Card Body -->

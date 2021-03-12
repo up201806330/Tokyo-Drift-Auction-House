@@ -17,9 +17,9 @@
     draw_auction_card_3();
     draw_auction_card_1();
     draw_auction_card_3();
-    
-    
-    close_main();
+    close_card_holder();
     
     draw_footer();
+    close_main();
+    
 ?>

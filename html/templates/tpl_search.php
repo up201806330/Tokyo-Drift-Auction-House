@@ -1,6 +1,6 @@
 <?php function open_main() { ?>
 
-<div class="container-fluid bg-light" style="flex: auto">
+<div class="container-fluid" id="search-background" style="flex: auto">
 <div class="row h-100">
 
 <?php } ?>
@@ -52,11 +52,11 @@
 
 <?php function draw_sidebar(){ ?>
 
-<a class="btn btn-primary d-lg-none" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
+<a class="btn d-lg-none" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
    Filter Results
 </a>
 
-<nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 bg-light border-end border-secondary collapse show">
+<nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary collapse show text-white">
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
       <li class="nav-item pt-3">
@@ -117,7 +117,7 @@
 
       <li class="nav-item pt-5">
         <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
-        <?php draw_multi_range_slider("multiRangeHorsepower", 0, 200); ?>
+        <?php draw_multi_range_slider("multiRangeHorsepower", 0, 100); ?>
       </li>
       
       <li class="nav-item pt-4">

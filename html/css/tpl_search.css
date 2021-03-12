@@ -190,3 +190,12 @@ input[type=checkbox]
     background-color: #8c0000;
     border-color: rgb(71, 71, 71);
 }
+
+#search-background{
+  background-color: rgb(223, 223, 223);
+}
+
+#sidebarMenu{
+  background-color:var(--footer-grey);
+  opacity: 0.95;
+}

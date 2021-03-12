@@ -1,0 +1,94 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+:root {
+    --red-darker: #8c0000;
+    --red-darkerer: #680101;
+    --red-brown: #bd2000;
+    --red-bright: #fa1e0e;
+    --yellow: #ffbe0f;
+    --light-orange: rgb(255, 157, 100);
+}
+
+
+
+.circular--portrait {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+  
+.circular--portrait img {
+    width: 100%;
+    height: auto;
+}
+
+
+.user-data-profile {
+  margin-left: 10%;
+}
+
+.username-text, .name-text, .based-on-text, .about-me-text {
+  padding-left: 3%;
+  transition: transform .3s;
+}
+
+.username-text:hover, .name-text:hover, .based-on-text:hover, .about-me-text:hover {
+  transform: translateX(10px);
+  transition: transform .3s;
+}
+
+.about-me-text {
+  padding-right: 5%;
+}
+
+.fa-cog {
+  font-size: 2em !important;
+}
+
+
+#edit-profile-pic-a {
+  z-index: 10;
+  position: relative;
+  top: 325px;
+  right: -50px;
+  box-shadow: 0 0 6px 3px #223223;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em !important;
+}
+
+#edit-profile-pic-a:-webkit-any-link {
+  text-decoration: none !important;
+}
+
+.fa-user-cog{
+  color: rgb(204, 174, 2);
+}
+
+.fa-wallet{
+  color: var(--red-darker);
+}
+
+.fa-store{
+  color: green;
+}
+
+.permission-icon {
+  display:inline-block;
+}
+
+.profile-auction-gallery {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+.profile-auction-gallery-title {
+  margin-left: 2em;
+}

@@ -23,7 +23,7 @@
     font-size: 1.5rem;
 }
 
-.navbar-expand-md .navbar-nav .nav-link {
+.navbar-nav .nav-link {
     padding-left:  1.5rem;
     padding-right: 1.5rem;
     font-size: 1.4rem;
@@ -41,7 +41,8 @@
 
 
 #navbarSupportedContent > ul.navbar-nav.ms-auto.mb-2.mb-lg-0 > li > a:hover,
-#navbarSupportedContent > ul > li > button:hover {
+#navbarSupportedContent > ul > li > button:hover,
+#navbarSupportedContent > ul > li > a:hover {
     color: rgb(255, 157, 100) !important;
     background-color: rgb(49, 49, 49) !important;
 }
@@ -53,8 +54,3 @@ body > header > nav > div > a:hover {
 body > header > nav {
     min-width: fit-content;
 }
-
-/* .bg-navbar {
-    background-color: #641f1f;
-    background-color: #070202;
-} */

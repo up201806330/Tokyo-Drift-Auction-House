@@ -1,0 +1,234 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+:root {
+    --red-darker: #8c0000;
+    --red-darkerer: #680101;
+    --red-brown: #bd2000;
+    --red-bright: #fa1e0e;
+    --yellow: #ffbe0f;
+    --light-orange: rgb(255, 157, 100);
+    --background-color: rgb(24, 24, 24);
+    --white: rgb(255, 255, 255);
+    --dark-grey: #1e2125;
+}
+
+.condition {
+    color: var(--red-darkerer);
+}
+
+.carousel{
+    max-width: 666px;
+}
+
+.car-details {
+    background-color: var(--dark-grey);
+    color: var(--white);
+    text-align: center;
+}
+
+#under_heart {
+    line-height: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display:inline-block;
+    position:relative;
+    max-width: 666px;
+}
+
+.heart {
+    position:absolute;
+    bottom: -10px;
+    left: 0px;
+    width: 30;
+    height: 30;
+    border-radius: 100%;
+    /*border: medium solid var(--red-darkerer);*/
+    text-align: center;
+    align-content: center;
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);;
+    font-size: 1.3rem;
+    color: var(--white);
+    padding: 0.6em;
+    z-index: 2;
+}
+
+.heart:hover {
+    color:rgb(255, 157, 100);
+    /*border: thin solid rgb(255, 157, 100);*/
+    background: rgb(49, 49, 49);
+}
+
+.auction_content {
+    background-color: var(--background-color);
+    color: var(--white);
+    text-align: center;
+}
+
+#auction_content_area {
+    width: 50%;
+}
+
+.profile_picture {
+    height: 100px;
+    width: 100px;
+}
+
+.profile_picture_comment {
+    height: 50px;
+    width: 50px;
+}
+
+.profile_text {
+    text-decoration: none;
+    color: var(--light-orange);
+}
+
+.profile_text:hover img{
+    opacity: 0.7;
+}
+
+.profile_text:hover h4, .profile_text:hover p, .profile_text:hover h6{
+    opacity: 0.5;
+}
+
+.profile_text:hover {
+    text-decoration: none;
+    color: var(--light-orange);
+    opacity: 0.7;
+}
+
+.current_bid {
+    display: inline-block;
+    /*border: medium solid var(--red-darkerer);*/
+    padding: 1.5rem;
+    background: none;
+    font-size: 3em;
+}
+
+#bid_button{
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
+    color: var(--white);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 2em;
+}
+
+#bid_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
+}
+
+#bid_input{
+    font-size: xx-large;
+    color: var(--light-orange);
+    border: 0;
+    border-bottom:medium solid var(--dark-grey);
+    padding: 0;
+    display: inline-block;
+    text-align: right;
+    background-color: var(--background-color);
+}
+
+#bid_input_box {
+    font-size: xx-large;
+    padding: 0;
+    background-color: var(--background-color);
+    border: 0;
+    color: var(--white);
+}
+
+.countdown_box {
+    /*padding: 1em;*/
+    margin: 0em 2em;
+    /*background-color: var(--dark-grey);*/
+}
+
+#comment_section{
+    background-color: var(--dark-grey);
+    overflow: auto;
+    width: 75%;
+    text-align: justify;
+}
+
+.comment{
+    background-color: var(--background-color);
+}
+
+#comment_input{
+    border: none;/*thin solid var(--red-darkerer);*/
+    background-color: var(--dark-grey);
+    color: var(--white);
+}
+
+#comment_button{
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
+    padding: 5px, 15px;
+    color: var(--white);
+}
+
+#comment_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
+}
+
+#moderator_button{
+    background: var(--yellow);
+    padding: 5px, 15px;
+    color: var(--background-color);
+}
+
+#moderator_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
+}
+
+.chat_button{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    text-align: center;
+    align-content: center;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-size: 1.3rem;
+    color: var(--white);
+    padding: 0.6em;
+    z-index: 3;
+    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
+}
+
+.chat_button:hover {
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
+}
+
+.chat_icon {
+    margin:auto;
+}
+
+.fire-text {
+    color: transparent;
+    background-image: linear-gradient(to left, #31e67c, #4e98f8, #e64124, #ffd23c);
+    font-weight: bold;
+    font-size: 3rem;
+    -webkit-background-clip: text;
+    animation: animate 5s linear infinite;
+    -webkit-background-size: 200%;
+    background-size: 200%;
+}
+
+.container_auction{
+    margin: auto !important; 
+}
+
+@media (max-width: 1050px) { 
+    #auction_content_area{
+        width: 100%;
+    }
+
+    #comment_section{
+        width: 100%;
+    }
+}
