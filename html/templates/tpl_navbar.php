@@ -22,6 +22,8 @@
   <script src="https://kit.fontawesome.com/2fb51e88be.js" crossorigin="anonymous"></script>
   
   <script src="../js/tpl_search.js"></script>
+  <script src="../js/login.js"></script>
+  <script src="../js/sign-in.js"></script>
 
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/homepage.css">
@@ -34,6 +36,8 @@
   <link rel="stylesheet" href="../css/login-overlay.css">
   <link rel="stylesheet" href="../css/sign-up.css">
   <link rel="stylesheet" href="../css/profile.css">
+  <link rel="stylesheet" href="../css/create_auction.css">
+
 
 </head>
 <body>

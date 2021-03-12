@@ -7,7 +7,7 @@
         ?>
 
         <!-- Form -->
-        <div class="container-fluid p-5 clearfix" id="create_auction">
+        <div class="container-fluid p-5 clearfix text-white text-center" id="create_auction">
             <h1>Create Auction</h1>
             <form>
                 <div class="row align-items-center">

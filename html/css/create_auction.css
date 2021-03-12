@@ -14,8 +14,8 @@
 
 body {
     background-color: var(--background-color);
-    color: var(--white);
-    text-align: center;
+    /* color: var(--white); */
+    /* text-align: center; */
 }
 
 #create_auction{
