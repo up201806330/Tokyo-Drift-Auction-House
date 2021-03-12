@@ -126,9 +126,21 @@
 
         <div class="profile-auction-gallery">
 
-            <h2 class="fs-1 pb-4 profile-auction-gallery-title">
+            <!-- <h2 class="fs-1 pb-4 profile-auction-gallery-title">
                 <strong>Current Auctions</strong>
-            </h2>
+            </h2> -->
+
+            <div class="dropdown pb-3" id="dropdown-auctions-profile">
+                <button class="btn bg-dark text-white border-dark dropdown-toggle fs-1 profile-auction-gallery-title rounded-pill" type="button" id="selectAuctionsProfile" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Auctions
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="selectAuctionsProfile">
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdownAuctionsProfile(this)">Currently Bidding</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdownAuctionsProfile(this)">Currently Selling</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdownAuctionsProfile(this)">Successfully Bought</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdownAuctionsProfile(this)">Successfully Sold</a></li>
+                </ul>
+            </div>
 
             <?php
             include_once('../templates/tpl_mod.php');
