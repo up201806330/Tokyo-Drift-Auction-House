@@ -16,7 +16,7 @@
                             <i class="fa fa-map-marker"></i>
                             <span class="hour">Pyongyang, NK</span>
                         </p>
-                        <a href="../pages/profile_page.php" class="stretched-link"></a>
+                        <a href="../pages/profile.php" class="stretched-link"></a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                             <i class="fa fa-map-marker"></i>
                             <span class="hour">Zagreb, Croatia</span>
                         </p>
-                        <a href="../pages/profile_page.php" class="stretched-link"></a>
+                        <a href="../pages/profile.php" class="stretched-link"></a>
                 </div>
             </div>
         </div>

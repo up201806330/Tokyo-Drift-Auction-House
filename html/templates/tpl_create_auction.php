@@ -4,8 +4,16 @@
      */
 ?>
 <div id="create_auction_background">
+
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb fs-5 createAuctionBreadcrumb">
+        <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
+        <li class="breadcrumb-item"><a href="../pages/profile.php">Profile</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create Auction</li>
+    </ol>
+    </nav>
     <!-- Form -->
-    <div class="container-fluid p-5 clearfix text-left border border-1 border-secondary rounded-3" id="create_auction">
+    <div class="container-fluid p-5 mb-5 clearfix text-left border border-1 border-secondary rounded-3" id="create_auction">
         <div class="display-3 text-center">Create Auction</div>
         <hr class="bg-dark border-5 border-top border-dark">
         <form>

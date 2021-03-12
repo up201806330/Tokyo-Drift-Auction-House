@@ -20,10 +20,16 @@
       <div class="display-3 text-white">
         Browse Auctions
       </div>
+      <nav aria-label="breadcrumb">
+      <ol class="breadcrumb fs-5 ps-2 pt-2">
+          <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Search</li>
+      </ol>
+      </nav>
     </div>
     <div class="col-12 col-sm-12 col-md-12 col-lg-7 pb-2">
       <div class="row mx-auto gx-4">
-        <div class="pt-4 col-12 col-sm-6">
+        <div class="pt-5 col-12 col-sm-6">
           <label for="searchByTags" class="form-label text-white">Search Tags</label>
           <div class="input-group" id="searchByTags">
             <input type="text" class="form-control" placeholder="Try some keywords" aria-label="Input search keywords" aria-describedby="button-search-1">
@@ -31,7 +37,7 @@
           </div>
         </div>
         <div class="col-12 col-sm-6 pt-sm-5 pb-xs-3">
-          <div class="dropdown mx-auto d-grid">
+          <div class="dropdown mx-auto d-grid pt-sm-4 orderDropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="selectOrderResults" data-bs-toggle="dropdown" aria-expanded="false">
               Order By
             </button>
@@ -52,7 +58,7 @@
 
 <?php function draw_sidebar(){ ?>
 
-<a class="btn d-lg-none" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
+<a class="btn toggleSidebar text-white border-top-1 rounded-0" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
    Filter Results
 </a>
 
@@ -125,19 +131,21 @@
         <?php draw_multi_range_slider("multiRangeYear", 0, 100); ?>
       </li>
 
-      <li class="nav-item pt-5">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
-          <label class="form-check-label" for="switchShowUsedCars">Show Used Cars</label>
-        </div>
-      </li>
-      
-      <li class="nav-item pt-4">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
-          <label class="form-check-label" for="switchFinalizedAuctions">Show Finalized Auctions</label>
-        </div>
-      </li>
+      <div class="text-end">
+        <li class="nav-item pt-5">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
+            <label class="form-check-label" for="switchShowUsedCars">Show Used Cars</label>
+          </div>
+        </li>
+        
+        <li class="nav-item pt-4">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
+            <label class="form-check-label" for="switchFinalizedAuctions">Show Finalized Auctions</label>
+          </div>
+        </li>
+    </div>
 
     </ul>
   </div>

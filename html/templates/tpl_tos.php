@@ -1,7 +1,13 @@
 <?php function draw_tos() { ?>
 
     <div class="container-fluid bg-light p-4">
-        <div class="display-2 pb-5 text-center">Terms of Service</div>
+        <div class="display-2 ">Terms of Service</div>
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb fs-5 ps-3 pt-1 pb-5">
+            <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Terms of Service</li>
+        </ol>
+        </nav>
 
         <a href="#userInteraction"><div class="btn btn-secondary" id="userInteraction"><div class="display-5 text-light">User Interaction</div></div></a>
         <div class="fw-light fs-2 pt-3 pb-3">Upon registry as a user of our website, you pledge to keep every auction a safe place, <b>free of harsh language and offensive comments</b>. Users who do not respect this rule <b>will be banned</b>.</div>

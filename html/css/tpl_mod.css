@@ -42,3 +42,8 @@
 #modContainer{
     max-width: 100%;
 }
+
+.marginsMod{
+    margin-left: 6em;
+    margin-right: 6em;
+}

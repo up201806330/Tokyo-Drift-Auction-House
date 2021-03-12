@@ -5,23 +5,35 @@ include_once('../templates/tpl_profile_card.php');
 function draw_mod(){
 ?>
     <div class="container bg-dark" id="modContainer">
-        <main class="mod col-md-8 mx-auto bg-light">
-            <div class="display-3 ps-4 pb-4 pt-5">
-                Manage user profiles
-            </div>
-            <div class="display-5 fs-3 pb-4 ps-3">
-                <i>You can manage these users' permissions. <a href="../pages/tos.php#admins">What's this?</a></i>
-            </div>
-            <?php draw_user_gallery(); ?>
+        <main class="mod col-md-10 mx-auto bg-light rounded">
+            <div class="marginsMod">
+                <div class="display-1 text-start ps-2">
+                    Moderator page
+                </div>
+                <nav aria-label="breadcrumb">
+                <ol class="breadcrumb fs-5 ps-4 pt-1 pb-5">
+                    <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../pages/profile.php">Profile</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Moderator page</li>
+                </ol>
+                </nav>
+                <div class="display-4 ps-4 pb-1 pt-1">
+                    Manage user profiles
+                </div>
+                <div class="display-5 fs-3 pb-4 ps-4">
+                    <i>You can manage these users' permissions. <a href="../pages/tos.php#admins">What's this?</a></i>
+                </div>
+                <?php draw_user_gallery(); ?>
 
-            <div class="display-3 ps-4 pb-3 pt-5">
-                Manage auctions
+                <div class="display-4 ps-4 pb-1 pt-5">
+                    Manage auctions
+                </div>
+                <div class="display-5 fs-3 pb-4 ps-4">
+                    <i>You have moderator privileges over these auctions. <a href="../pages/tos.php#mods">What's this?</a></i>
+                </div>
+                <?php draw_auction_gallery(); ?>
+                <div class="row p-4"></div>
             </div>
-            <div class="display-5 fs-3 pb-4 ps-3">
-                <i>You have moderator privileges over these auctions. <a href="../pages/tos.php#mods">What's this?</a></i>
-            </div>
-            <?php draw_auction_gallery(); ?>
-            <div class="row p-4"></div>
         </main>
     </div>
 <?php } ?>

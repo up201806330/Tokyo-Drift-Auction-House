@@ -10,10 +10,22 @@
 <div class="auction_background">
     <!-- Top Bar with car details -->
     <div class="container-fluid car-details">
+        
+    <div class="display-3 text-white text-start ps-1">
+        Auction
+      </div>
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb fs-5 ps-2 pt-1 pb-2">
+        <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
+        <li class="breadcrumb-item"><a href="../pages/search.php">Search</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Auction</li>
+    </ol>
+    </nav>
+
         <div class="row align-items-center text-center">
 
             <!-- Pictures Carrousel -->
-            <div class="col-lg mt-5 mb-5" id="under_heart">
+            <div class="col-lg mb-5" id="under_heart">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

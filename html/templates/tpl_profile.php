@@ -6,14 +6,21 @@
 
 <section class="bg-light">
 
-    <div class="container">
+<nav aria-label="breadcrumb">
+      <ol class="breadcrumb fs-5 ps-5 pt-2 pb-2">
+          <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Profile</li>
+      </ol>
+      </nav>
 
+    <div class="container">
+    
         <!-- Section: Images -->
         <section class="mb-3">
         
             <!-- Background image -->
             <div
-                class="p-5 text-center bg-image shadow-1-strong rounded-bottom d-flex justify-content-center"
+                class="p-5 text-center bg-image shadow-1-strong rounded d-flex justify-content-center"
                 style="
                 background-image: url('https://mdbootstrap.com/img/new/slides/041.jpg');
                 height: 400px;

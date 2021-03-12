@@ -12,7 +12,6 @@
 #create_auction{
     background-color: white;
     width: 75%;
-    margin: 5em auto;
 }
 
 .input_box{
@@ -68,4 +67,9 @@
     #image_input, #image_input_preview{
         width:100%;
     }
+}
+
+.createAuctionBreadcrumb{
+    padding-left: 220px;
+    padding-top: 100px;
 }
