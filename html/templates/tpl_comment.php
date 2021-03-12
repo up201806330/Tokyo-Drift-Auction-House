@@ -5,7 +5,7 @@
 ?>
 
 <!-- Comment for moderator -->
-<div class="comment p-2 clearfix">
+<div class="comment p-2 clearfix rounded-3 border border-1 border-secondary">
     <!-- User and date -->
     
         <div class="d-flex justify-content-between align-items-center">

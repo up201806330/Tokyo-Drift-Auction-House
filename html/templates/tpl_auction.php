@@ -82,112 +82,115 @@
         </div>
         
     </div>
-
-    <div class="auction_content">
-    <!-- Current Bid info -->
-    <div class="container pt-5" id="auction_content_area">
-        <div class="row align-items-center justify-content-around">
-            <div class="col-sm mt-3 mb-3">
-                <h2>Owner</h2>
-                <a href="../pages/profile.php" class="profile_text">
-                    <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
-                    <h4 class="m-0">Hanna Green</h4>
-                </a>
-            </div>
-            <div class="col-sm mt-3 mb-1">
-                <h2>Current Bid</h2>
-                <h1 class="current_bid">200000€</h1>
-            </div>
-            <div class="col-sm mt-3 mb-3">
-                <h2>Bidder</h2>
-                <a href="../pages/profile.php" class="profile_text">
-                    <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
-                    <h4 class="m-0">Hank Geller</h4>
-                </a>
+    
+        <div class="auction_content m-5 rounded-3 border border-2 border-dark">
+        <!-- Current Bid info -->
+        <div class="container" id="auction_content_area">
+            <div class="row align-items-center justify-content-around">
+                <div class="col-sm mt-3 mb-3">
+                    <h2>Owner</h2>
+                    <a href="../pages/profile.php" class="profile_text">
+                        <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
+                        <h4 class="m-0">Hanna Green</h4>
+                    </a>
+                </div>
+                <div class="col-sm mt-3 mb-1">
+                    <h2>Current Bid</h2>
+                    <h1 class="current_bid">200000€</h1>
+                </div>
+                <div class="col-sm mt-3 mb-3">
+                    <h2>Bidder</h2>
+                    <a href="../pages/profile.php" class="profile_text">
+                        <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
+                        <h4 class="m-0">Hank Geller</h4>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Place Bid -->
-    <div class="container mt-5" id="auction_content_area">
-        <form>
-            <div class="row align-items-center">
-                <div class="col-sm">
-                    <div class="input-group">
-                        <input type="number" min="0.00" step="1" value="205000" class="form-control" id="bid_input" placeholder="Your Bid">
-                            <div class="input-group-append">
-                                <span class="input-group-text append_box" id="bid_input_box">€</span>
-                            </div>
+        <!-- Place Bid -->
+        <div class="container mt-5" id="auction_content_area">
+            <form>
+                <div class="row align-items-center">
+                    <div class="col-sm">
+                        <div class="input-group">
+                            <input type="number" min="0.00" step="1" value="205000" class="form-control" id="bid_input" placeholder="Your Bid">
+                                <div class="input-group-append">
+                                    <span class="input-group-text append_box" id="bid_input_box">€</span>
+                                </div>
                         </div>
 
+                    </div>
+                    <div class="col-sm p-0 mt-3 mb-3">
+                        <button type="submit" class="btn rounded-pill" id="bid_button"><h2 class="m-0 p-2">PLACE BID</h2></button>
+                    </div>
                 </div>
-                <div class="col-sm p-0 mt-3 mb-3">
-                    <button type="submit" class="btn rounded-pill" id="bid_button"><h2 class="m-0 p-2">PLACE BID</h2></button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <!-- Countdown -->
-    <div class="container mt-5" id="auction_content_area">
-        <div class="d-flex flex-row justify-content-around align-items-center">
-            <div class>
-                <div class="countdown_box">
-                    <h1 class="display-1 m-0">4</h1>
-                </div>
-                <h4>Days</h4>
-            </div>
-            <div>
-                <div class="countdown_box">
-                    <h1  class="display-1 m-0">14</h1>
-                </div>
-                <h4>Hours</h4>
-            </div>
-            <div>
-                <div class="countdown_box">
-                    <h1  class="display-1 m-0">35</h1>
-                </div>
-                <h4>Minutes</h4>
-            </div>
-            <div>
-                <div class="countdown_box">
-                    <h1  class="display-1 m-0">23</h1>
-                </div>
-                <h4>Seconds</h4>
-            </div>
+            </form>
         </div>
-        <h4 class="d-flex justify-content-between mt-3">
-            <span> </span>
-            <span>T</span>
-            <span>I</span>
-            <span>L</span>
-            <span>L</span>
-            <span> </span>
-            <span> </span>
-            <span>A</span>
-            <span>U</span>
-            <span>C</span>
-            <span>T</span>
-            <span>I</span>
-            <span>O</span>
-            <span>N</span>
-            <span> </span>
-            <span> </span>
-            <span>B</span>
-            <span>E</span>
-            <span>G</span>
-            <span>I</span>
-            <span>N</span>
-            <span>S</span>
-            <span> </span>
-        </h4>
+
+        <!-- Countdown -->
+        <div class="container mt-5" id="auction_content_area">
+            <div class="d-flex flex-row justify-content-around align-items-center">
+                <div class>
+                    <div class="countdown_box">
+                        <h1 class="display-1 m-0">4</h1>
+                    </div>
+                    <h4>Days</h4>
+                </div>
+                <div>
+                    <div class="countdown_box">
+                        <h1  class="display-1 m-0">14</h1>
+                    </div>
+                    <h4>Hours</h4>
+                </div>
+                <div>
+                    <div class="countdown_box">
+                        <h1  class="display-1 m-0">35</h1>
+                    </div>
+                    <h4>Minutes</h4>
+                </div>
+                <div>
+                    <div class="countdown_box">
+                        <h1  class="display-1 m-0">23</h1>
+                    </div>
+                    <h4>Seconds</h4>
+                </div>
+            </div>
+            <h4 class="d-flex justify-content-between mt-3 pb-5">
+                <span> </span>
+                <span>T</span>
+                <span>I</span>
+                <span>L</span>
+                <span>L</span>
+                <span> </span>
+                <span> </span>
+                <span>A</span>
+                <span>U</span>
+                <span>C</span>
+                <span>T</span>
+                <span>I</span>
+                <span>O</span>
+                <span>N</span>
+                <span> </span>
+                <span> </span>
+                <span>B</span>
+                <span>E</span>
+                <span>G</span>
+                <span>I</span>
+                <span>N</span>
+                <span>S</span>
+                <span> </span>
+            </h4>
+        </div>
+
     </div>
 
     <!-- Comment Section -->
-    <div class="container-fluid p-0" id="comment_section">
+    <div class="display-1" style="margin-left: 20%;">Comment Section</div>
+    <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="comment_section">
         
         <!-- Place Comment -->
-        <div class="comment p-2 clearfix">
+        <div class="comment pb-2 clearfix rounded-3 border border-2">
             <form>
                 <!-- User and date -->
                 <a href="../pages/profile.php" class="profile_text">
@@ -214,9 +217,6 @@
                 draw_comment();
             ?>
         </div>
-       
-    </div>
-    </div>
 
     <!-- Chat Button -->
     <a href="#" class="chat_button">
