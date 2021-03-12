@@ -35,7 +35,7 @@ background-color: rgb(49, 49, 49) !important;
     -webkit-filter: blur(1px) grayscale(5%);
 }
 
-#font, #font2 {
+#font, #font2, #font3 {
     position: absolute;
     right: 15px;
     transform: translate(0, -50%);
@@ -43,7 +43,7 @@ background-color: rgb(49, 49, 49) !important;
     cursor: pointer;
 }
 
-.fa#font, .fa#font2 {
+.fa#font, .fa#font2, .fa#font3 {
     font-size: 20px;
 }
 

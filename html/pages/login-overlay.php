@@ -8,20 +8,7 @@
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
 </button> -->
-    <script>
-      function togglePw() {
-        var password = document.querySelector('[name=password]');
 
-        if (password.getAttribute('type')==='password') {
-          password.setAttribute('type', 'text');
-          document.getElementById("font").style.color='orange';
-        }
-        else {
-            password.setAttribute('type','password');
-            document.getElementById("font").style.color='black';
-        }
-      }
-    </script>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
