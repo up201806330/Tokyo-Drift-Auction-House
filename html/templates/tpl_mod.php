@@ -10,7 +10,7 @@ function draw_mod(){
                 Manage user profiles
             </div>
             <div class="display-5 fs-3 pb-4 ps-3">
-                <i>You can manage these users' permissions. <a href="#">What's this?</a></i>
+                <i>You can manage these users' permissions. <a href="../pages/tos.php#admins">What's this?</a></i>
             </div>
             <?php draw_user_gallery(); ?>
 
@@ -18,7 +18,7 @@ function draw_mod(){
                 Manage auctions
             </div>
             <div class="display-5 fs-3 pb-4 ps-3">
-                <i>You have moderator privileges over these auctions. <a href="#">What's this?</a></i>
+                <i>You have moderator privileges over these auctions. <a href="../pages/tos.php#mods">What's this?</a></i>
             </div>
             <?php draw_auction_gallery(); ?>
             <div class="row p-4"></div>

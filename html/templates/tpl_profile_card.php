@@ -5,8 +5,8 @@
             <img src="../assets/happycouple.jpg" alt="..." class="cover car-img-thumbnail">
 
             <div class="card-body">
-                <h4 class="card-title text-center">
-                    Mr Edupz 
+                <h4 class="card-title text-center " id="profileCardAdmin">
+                    <div >Mr Edupz</div>
                     <i class="fas fa-user-cog fa-sm"></i> 
                     <i class="fas fa-wallet fa-sm"></i>
                     <i class="fas fa-store fa-sm"></i>
@@ -32,7 +32,7 @@
 
             <div class="card-body">
                 <h4 class="card-title text-center">
-                    Tana Mongoose 
+                    <div>Tana Mongoose</div>
                     <i class="fas fa-wallet fa-sm"></i>
                 </h4> 
                     <div class="card-body-info">
