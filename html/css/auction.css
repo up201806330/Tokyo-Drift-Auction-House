@@ -1,13 +1,4 @@
-@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
-
 :root {
-    --red-darker: #8c0000;
-    --red-darkerer: #680101;
-    --red-brown: #bd2000;
-    --red-bright: #fa1e0e;
-    --yellow: #ffbe0f;
-    --light-orange: rgb(255, 157, 100);
-    --background-color: rgb(24, 24, 24);
     --white: rgb(255, 255, 255);
     --dark-grey: #1e2125;
 }
