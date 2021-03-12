@@ -93,7 +93,7 @@ a.btn-social,
     width: inherit !important;
 } */
 
-@media (max-width: 768px) { 
+@media (max-width: 767px) { 
     .find-us-row {
         margin-left: 16.6666666667% !important;
     }
