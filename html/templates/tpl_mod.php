@@ -5,9 +5,9 @@ include_once('../templates/tpl_profile_card.php');
 function draw_mod(){
 ?>
     <div class="container bg-dark" id="modContainer">
-        <main class="mod col-md-10 mx-auto bg-light rounded">
+        <main class="mod col-12 col-md-10 mx-auto bg-light rounded">
             <div class="marginsMod">
-                <div class="display-1 text-start ps-2">
+                <div class="display-1 text-start pt-5 ps-2">
                     Moderator page
                 </div>
                 <nav aria-label="breadcrumb">
@@ -17,7 +17,7 @@ function draw_mod(){
                     <li class="breadcrumb-item active" aria-current="page">Moderator page</li>
                 </ol>
                 </nav>
-                <div class="display-4 ps-4 pb-1 pt-1">
+                <div class="display-4 ps-4 pb-1 pt-0 pt-md-5">
                     Manage user profiles
                 </div>
                 <div class="display-5 fs-3 pb-4 ps-4">
@@ -25,7 +25,7 @@ function draw_mod(){
                 </div>
                 <?php draw_user_gallery(); ?>
 
-                <div class="display-4 ps-4 pb-1 pt-5">
+                <div class="display-4 ps-4 pb-1 pt-0 pt-md-5">
                     Manage auctions
                 </div>
                 <div class="display-5 fs-3 pb-4 ps-4">
@@ -42,7 +42,7 @@ function draw_mod(){
 function draw_user_gallery(){ ?>
 
 
-<div class="row row-cols-3 justify-content-start mod-gallery mx-5 overflow-auto p-4 mb-5 rounded-3 border border-5 border-secondary">
+<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery  overflow-auto p-sm-4 p-0 mb-5 mx-0 mx-md-5 rounded-3 border border-5 border-secondary">
 <?php draw_profile_card_1(); ?>
 <?php draw_profile_card_2(); ?>
 <?php draw_profile_card_1(); ?>
@@ -55,7 +55,7 @@ function draw_user_gallery(){ ?>
 
 <?php function draw_auction_gallery() { ?>
 
-<div class="row row-cols-3 justify-content-start mod-gallery mx-5 overflow-auto p-4 rounded-3 border border-5 border-secondary">
+<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery overflow-auto p-sm-4 p-0  mx-0 mx-md-5 rounded-3 border border-5 border-secondary">
 <?php
 draw_auction_card_1();
 draw_auction_card_2();

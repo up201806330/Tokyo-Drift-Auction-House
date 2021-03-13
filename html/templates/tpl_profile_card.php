@@ -1,5 +1,5 @@
 <?php function draw_profile_card_1() { ?>
-    <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
+    <div class="col  mb-3 card-container">
         <div class="card">
             
             <img src="../assets/happycouple.jpg" alt="..." class="cover car-img-thumbnail">
@@ -25,7 +25,7 @@
 <?php } ?>
 
 <?php function draw_profile_card_2() { ?>
-    <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
+    <div class="col  mb-3 card-container">
         <div class="card">
             
             <img src="../assets/happycouple.jpg" alt="..." class="cover car-img-thumbnail">

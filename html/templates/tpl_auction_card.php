@@ -4,7 +4,7 @@
      */
     ?>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
+                <div class="col mb-3 card-container">
                     <div class="card">
                         
                         <img src="../assets/supercar-homepage-bg.jpg" alt="..." class="cover car-img-thumbnail">
@@ -37,7 +37,7 @@
      */
     ?>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
+                <div class="col mb-3 card-container">
                     <div class="card">
                         
                         <img src="../assets/supercar-2.jpg" alt="..." class="cover car-img-thumbnail">
@@ -70,7 +70,7 @@
      */
     ?>
                 <!-- Card -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4  mb-3 card-container">
+                <div class="col mb-3 card-container">
                     <div class="card">
                         
                         <img src="../assets/oldcar-1.jpg" alt="..." class="cover car-img-thumbnail">

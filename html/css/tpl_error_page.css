@@ -10,8 +10,6 @@ main#error {
     background: rgb(49, 49, 49);
     color: rgb(255, 157, 100) !important;
 
-    max-width: 25em;
-
     border-radius: 20px;
 
     padding: 3.5em 1.5em;
@@ -22,7 +20,7 @@ main#error {
 }
 
 #error img.main-icon {
-    max-width: 12em;
+    max-width: 50%;
 }
 
 #home {
