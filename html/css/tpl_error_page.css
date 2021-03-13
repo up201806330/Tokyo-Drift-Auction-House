@@ -7,8 +7,8 @@ body {
 main#error {
     margin: 0;
 
-    background: rgb(161,94,12);
-    background: linear-gradient(-0deg, var(--orange-darker) 0%, var(--red-darker) 100%);
+    background: rgb(49, 49, 49);
+    color: rgb(255, 157, 100) !important;
 
     max-width: 25em;
 
@@ -33,4 +33,5 @@ main#error {
 
 #home:hover {
     background-color: var(--background-color-lighter) !important;
+    color: rgb(255, 157, 100) !important;
 }
