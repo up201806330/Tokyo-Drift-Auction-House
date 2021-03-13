@@ -3,10 +3,10 @@
      * Draws sign up page
      */
     ?>
-<div class="sign-in-container" >
+<div class="sign-in-container">
 
 
-<div class="modal modal-dialog modal-dialog-centered">
+<div class="modal modal-dialog modal-dialog-centered" id="sign-up-content">
     <div class="modal-content">
 
         <div class="modal-header sign-in-header">

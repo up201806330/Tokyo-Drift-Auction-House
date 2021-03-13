@@ -71,3 +71,8 @@
     overflow: auto;
     background-color: rgb(223, 223, 223);
 }
+
+
+#sign-up-content {
+    z-index: 0;
+}
