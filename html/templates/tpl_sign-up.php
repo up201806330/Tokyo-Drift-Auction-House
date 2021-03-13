@@ -73,7 +73,7 @@
                         
 
                         <!-- google button -->
-                        <a class="modal-footer justify-content-center login-button px-5 pt-3" href="../pages/profile.php"> 
+                        <a class="modal-footer justify-content-center login-button pt-3 text-decoration-none" href="../pages/profile.php"> 
                             <div class='g-sign-in-button'>
                                 <div class=content-wrapper>
                                     <div class='logo-wrapper'>
