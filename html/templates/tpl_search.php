@@ -158,7 +158,7 @@
 
 <main class="col ms-sm-auto pt-4 px-md-4">
 <p class="fs-3 pt-3"><u>6</u> Results Found</p>
-<div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 d-flex justify-content-sm-start justify-content-center">
+<div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-sm-start justify-content-center">
 
 <?php } ?>
 

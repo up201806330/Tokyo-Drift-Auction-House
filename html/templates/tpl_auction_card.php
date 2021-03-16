@@ -11,7 +11,7 @@
 
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="card-title text-center">Lamborghini Aventador</h4>
+                            <h4 class="card-title text-center text-nowrap">Lamborghini Aventador</h4>
                                 <div class="card-body-info">
                                     <p class="card-text time-remaining-text">
                                         <i class="fa fa-clock-o clock"></i>
@@ -44,7 +44,7 @@
 
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="card-title text-center">McLaren P20</h4>
+                            <h4 class="card-title text-center text-nowrap">McLaren P20</h4>
                                 <div class="card-body-info">
                                     <p class="card-text time-remaining-text">
                                         <i class="fa fa-clock-o clock"></i>
@@ -77,7 +77,7 @@
 
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="card-title text-center">Bentley 1</h4>
+                            <h4 class="card-title text-center text-nowrap">Bentley 1</h4>
                                 <div class="card-body-info">
                                     <p class="card-text time-remaining-text">
                                         <i class="fa fa-clock-o clock"></i>

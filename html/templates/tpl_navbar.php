@@ -54,7 +54,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
           <li class="nav-item dropdown">
             <a class="nav-link text-white navbar-content-bold rounded-pill dropdown-toggle" aria-current="page" href="#" data-bs-toggle="dropdown">Explore By Category</a>
             <ul class="dropdown-menu dropdown-menu-dark ps-3 pb-4 pe-3 pt-2" data-hover="dropdown">

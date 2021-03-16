@@ -2,8 +2,10 @@
     /**
      * Draws homepage
      */
-    ?>
 
+    include_once("../templates/tpl_auction_card.php");
+    ?>
+    
 <div>
     <!-- Search Top Part of Homepage -->
     <!-- <div class="overlay" id="overlay" onclick="resetBg()"></div> -->
@@ -27,7 +29,7 @@
         <h4 class="fire-deals-text text-md-start pt-5">Fire Deals</h4>
         
         <!-- Container For All Displayed Auctions -->
-        <div class="container">
+        <div class="container-fluid">
             <div class="row px-5 mx-auto">
                 <?php
                     include_once("../templates/tpl_auction_card.php");
