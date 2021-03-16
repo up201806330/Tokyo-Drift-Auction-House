@@ -1,8 +1,5 @@
-<?php function draw_create_auction() {
-    /**
-     * Draws sign up page
-     */
-?>
+<?php function draw_create_auction() { ?>
+
 <div id="create_auction_background">
 
     <!-- Form -->
@@ -95,6 +92,31 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="form-group form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="private" onclick="privateChange()">
+                <label class="form-check-label private_label" for="private">Private Auction</label>
+            </div>
+            <div id="private_content" class="overflow-auto">
+                <h5 class="text-center">Invited Bidders</h5>
+                <div class="input-group form-container">
+                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autofocus="autofocus" autocomplete="off" onclick="setBgToDark()">
+                    <span class="input-group-btn">
+                        <a href="../pages/search.php">
+                            <button class="btn btn-search">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </a>
+                    </span>
+                </div>
+                <?php draw_user_row() ?>
+                <?php draw_user_row() ?>
+                <?php draw_user_row() ?>
+                <?php draw_user_row() ?>
+                <?php draw_user_row() ?>
+                <?php draw_user_row() ?>
+                <?php draw_user_row() ?>
+                <?php draw_user_row() ?>
             </div>
 
             <div class="text-center">

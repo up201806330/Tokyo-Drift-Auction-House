@@ -24,6 +24,7 @@
   <script src="../js/tpl_search.js"></script>
   <script src="../js/login.js"></script>
   <script src="../js/sign-in.js"></script>
+  <script src="../js/create_auction.js"></script>
 
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/homepage.css">
