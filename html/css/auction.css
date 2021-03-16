@@ -111,18 +111,16 @@
     padding: 0;
     display: inline-block;
     text-align: right;
-    background-color: rgb(223, 223, 223);
 }
 
 #bid_input_box {
     font-size: xx-large;
     padding: 0;
-    background-color: rgb(223, 223, 223);
     border: 0;
 }
 
-.countdown_box {
-    margin: 0em 2em;
+.input-group-text{
+    background-color: white;
 }
 
 #comment_section{

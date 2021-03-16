@@ -95,7 +95,7 @@
         
     </div>
     
-        <div class="auction_content m-5 rounded-3 border border-2 border-dark">
+        <div class="auction_content m-5 rounded-3 border border-2 border-dark bg-white">
         <!-- Current Bid info -->
         <div class="container" id="auction_content_area">
             <div class="row align-items-center justify-content-around">
@@ -111,7 +111,7 @@
                     <h1 class="current_bid">200000€</h1>
                 </div>
                 <div class="col-sm mt-3 mb-3">
-                    <h2>Bidder</h2>
+                    <h2>Top Bidder</h2>
                     <a href="../pages/profile.php" class="profile_text">
                         <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
                         <h4 class="m-0">Hank Geller</h4>
@@ -142,30 +142,30 @@
 
         <!-- Countdown -->
         <div class="container mt-5" id="auction_content_area">
-            <div class="d-flex flex-row justify-content-around align-items-center">
-                <div class>
-                    <div class="countdown_box">
-                        <h1 class="display-1 m-0">4</h1>
+            <div class="row d-flex flex-row justify-content-around align-items-center">
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-6 countdown_box">
+                            <h1 class="display-1 m-0">4</h1>
+                            <h4>Days</h4>
+                        </div>
+                        <div class="col-6 countdown_box">
+                            <h1  class="display-1 m-0">14</h1>
+                            <h4>Hours</h4>
+                        </div>
                     </div>
-                    <h4>Days</h4>
                 </div>
-                <div>
-                    <div class="countdown_box">
-                        <h1  class="display-1 m-0">14</h1>
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-6 countdown_box">
+                            <h1  class="display-1 m-0">35</h1>
+                            <h4>Minutes</h4>
+                        </div>
+                        <div class="col-6 countdown_box">
+                            <h1  class="display-1 m-0">23</h1>
+                            <h4>Seconds</h4>
+                        </div>
                     </div>
-                    <h4>Hours</h4>
-                </div>
-                <div>
-                    <div class="countdown_box">
-                        <h1  class="display-1 m-0">35</h1>
-                    </div>
-                    <h4>Minutes</h4>
-                </div>
-                <div>
-                    <div class="countdown_box">
-                        <h1  class="display-1 m-0">23</h1>
-                    </div>
-                    <h4>Seconds</h4>
                 </div>
             </div>
             <h4 class="d-flex justify-content-between mt-3 pb-5">
