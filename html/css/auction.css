@@ -28,10 +28,9 @@
     /*margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;*/
-    margin:auto;
+    /* margin:auto; */
     display:inline-block;
     position:relative;
-    max-width: 666px;
 }
 
 .heart {
@@ -241,9 +240,5 @@
 
     .comment{
         margin:1.5em;
-    }
-
-    #under_heart{
-        width: 75%;
     }
 }

@@ -25,7 +25,7 @@
         <div class="row align-items-center text-center">
 
             <!-- Pictures Carrousel -->
-            <div class="col-lg mb-5" id="under_heart">
+            <div class="col-12 col-lg-6 mb-5 ms-1 ms-md-4 d-flex justify-content-center justify-content-lg-start" id="under_heart">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
