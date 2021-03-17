@@ -29,11 +29,9 @@
         <h4 class="fire-deals-text text-md-start pt-5">Fire Deals</h4>
         
         <!-- Container For All Displayed Auctions -->
-        <div class="container-fluid">
+        <div class="d-flex justify-content-center">
             <div class="row px-5 mx-auto">
                 <?php
-                    include_once("../templates/tpl_auction_card.php");
-
                     draw_auction_card_1();
                     draw_auction_card_2();
                     draw_auction_card_3();
