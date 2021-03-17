@@ -43,7 +43,7 @@
             <div class="col-12 col-lg-6 bg-light mt-5 mt-lg-0">
                 <div class="row">
                     <div class="col-5">
-                        <h3 class="fs-1"><strong>About me</strong></h3>
+                        <h3 class="fs-1 text-nowrap"><strong>About me</strong></h3>
                     </div>
                     <div class="col d-flex justify-content-start align-items-center">
                         <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>

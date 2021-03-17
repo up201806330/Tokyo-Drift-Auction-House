@@ -30,7 +30,7 @@
         
         <!-- Container For All Displayed Auctions -->
         <div class="d-flex justify-content-center">
-            <div class="row px-5 mx-auto">
+            <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 d-flex justify-content-center justify-content-sm-start">
                 <?php
                     draw_auction_card_1();
                     draw_auction_card_2();

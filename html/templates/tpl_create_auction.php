@@ -45,7 +45,7 @@
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="year">Year</label>
-                        <input type="number" min="1950" max="2021" class="form-control input_box" id="year" placeholder="Year">
+                        <input required type="number" min="1950" max="2021" class="form-control input_box" id="year" placeholder="Year">
                     </div>
                 </div>
                 <div class="col-md">
@@ -62,8 +62,8 @@
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="condition">Condition</label>
-                        <select class="form-select input_box" aria-label="condition">
-                            <option selected disabled>Select a condition</option>
+                        <select required class="form-select input_box" aria-label="condition">
+                            <option selected value="" disabled>Select a condition</option>
                             <option value="mint">Mint</option>
                             <option value="clean">Clean</option>
                             <option value="average">Average</option>
@@ -90,7 +90,7 @@
                     <div class="form-group m-1 m-md-2">
                         <label for="startingBid">Starting Bid</label>
                         <div class="input-group" id="staring_bid_group">
-                            <input type="number" min="0" max="100000000" class="form-control input_box text-right" id="startingBid" placeholder="Starting Bid">
+                            <input required type="number" min="0" max="100000000" class="form-control input_box text-right" id="startingBid" placeholder="Starting Bid">
                             <div class="input-group-append">
                                 <span class="input-group-text append_box">€</span>
                             </div>
@@ -125,7 +125,7 @@
             </div>
 
             <div class="text-center">
-                <a role="button" class="btn float-end clearfix rounded-pill" id="submit_button" href="../pages/auction.php"><b>CREATE AUCTION</b></a>
+                <button class="btn float-end clearfix rounded-pill" type="submit" id="submit_button"><b>CREATE AUCTION</b></button>
             </div>
         </form>
     </div>

@@ -131,21 +131,19 @@
         <?php draw_multi_range_slider("multiRangeYear", 0, 100); ?>
       </li>
 
-      <div class="text-end">
-        <li class="nav-item pt-5">
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
-            <label class="form-check-label" for="switchShowUsedCars">Show Used Cars</label>
-          </div>
-        </li>
-        
-        <li class="nav-item pt-4">
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
-            <label class="form-check-label" for="switchFinalizedAuctions">Show Finalized Auctions</label>
-          </div>
-        </li>
-    </div>
+      <li class="nav-item pt-5">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
+          <label class="form-check-label ps-2" for="switchShowUsedCars">Show Used Cars</label>
+        </div>
+      </li>
+      
+      <li class="nav-item pt-4">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
+          <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
+        </div>
+      </li>
 
     </ul>
   </div>

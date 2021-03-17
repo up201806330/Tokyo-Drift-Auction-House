@@ -25,7 +25,7 @@
                 </button>
             </div>
         </div>
-    <p class="m-3 mt-0 text-justify">This car is really amazing! I had so much fun with! Unfortunately is time to get the 2021 so I need to get rid of this one so I'll have space on my garage! Let the best bid win!<p>
+    <p class="m-3 mt-0 text-justify">This car is really amazing, I had so much fun with it! Unfortunately, it's time to upgrade and so I need to free up some space on my garage! Let the best bid win!<p>
 </div>
 
 <?php } ?>

@@ -22,29 +22,29 @@
                     <form class="form-group">
                         <div class="row" style="--bs-gutter-x:0;">
                             <div class="col form-floating mb-3 align-self-start">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <input required type="text" class="form-control" id="floatingInput" placeholder="Jeff">
                                 <label for="floatingInput">First Name</label>
                             </div>
 
                             <div class="col form-floating mb-3 ">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <input required type="text" class="form-control" id="floatingInput" placeholder="Bezos">
                                 <label for="floatingInput">Last Name</label>
                             </div>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input required type="text" class="form-control" id="floatingInput" placeholder="jeffBezzie">
                             <label for="floatingInput">Username</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input required type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                             <label for="floatingInput">Email Address</label>
                         </div>
 
                         <div class="row" style="--bs-gutter-x:0;">
                             <div class="col form-floating mb-3">
-                                <input type="password" name="password3" class="form-control" id="floatingPassword3" placeholder="Password">
+                                <input required type="password" name="password3" class="form-control" id="floatingPassword3" placeholder="Password">
                                 <span>
                                     <i class="fa fa-eye" id="font3" onclick="togglePw3()" aria-hidden="true"></i>
                                 </span>
@@ -52,7 +52,7 @@
                             </div>  
 
                             <div class="col form-floating mb-3">
-                                <input type="password" name="password2" class="form-control" id="floatingPassword2" placeholder="Password">
+                                <input required type="password" name="password2" class="form-control" id="floatingPassword2" placeholder="Password">
                                 <span>
                                     <i class="fa fa-eye" id="font2" onclick="togglePw2()" aria-hidden="true"></i>
                                 </span>
@@ -60,9 +60,9 @@
                             </div>  
                         </div>
                         <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                            <a role="button" class="btn w-75 fw-bold" href="../pages/profile.php">
+                            <button class="btn w-75 fw-bold" href="../pages/profile.php">
                                 Sign up
-                            </a>
+                            </button>
                         </div>
 
                         <div class="row">
