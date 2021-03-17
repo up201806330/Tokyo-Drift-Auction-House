@@ -15,21 +15,25 @@
         <hr class="bg-dark border-5 border-top border-dark">
         <form>
             <div class="row align-items-center">
-                <div class="col-md">
+                <div class="col-md-12 col-lg-4">
                     <div class="form-group m-1 m-md-2">
                         <label for="auctionName">Auction Name</label>
-                        <input type="text" class="form-control input_box" id="auctionName" placeholder="Auction Name">
+                        <input required type="text" class="form-control input_box" id="auctionName" placeholder="Auction Name">
                     </div>
                     <div class="form-group m-1 m-md-2">
                         <label for="brand">Brand</label>
-                        <input type="text" class="form-control input_box" id="brand" placeholder="Brand">
+                        <input required type="text" class="form-control input_box" id="brand" placeholder="Brand">
                     </div>
                     <div class="form-group m-1 m-md-2">
                         <label for="model">Model</label>
-                        <input type="text" class="form-control input_box" id="model" placeholder="Model">
+                        <input required type="text" class="form-control input_box" id="model" placeholder="Model">
+                    </div>
+                    <div class="form-group m-1 m-md-2">
+                        <label for="category">Category</label>
+                        <input required type="text" class="form-control input_box" id="category" placeholder="Category">
                     </div>
                 </div>
-                <div class="col-md m-0">
+                <div class="col-md-12 col-lg-8 m-0">
                     <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block mx-auto mt-3 border border-2 border-secondary rounded-3" id="image_input_preview" alt="bmw i8">
                     <div class="form-group mb-3  m-1 m-md-2">
                         <input type="file" class="form-control mx-auto" id="image_input" placeholder="Images Upload" multiple>
@@ -59,7 +63,8 @@
                     <div class="form-group m-1 m-md-2">
                         <label for="condition">Condition</label>
                         <select class="form-select input_box" aria-label="condition">
-                            <option value="mint" selected>Mint</option>
+                            <option selected disabled>Select a condition</option>
+                            <option value="mint">Mint</option>
                             <option value="clean">Clean</option>
                             <option value="average">Average</option>
                             <option value="rough">Rough</option>

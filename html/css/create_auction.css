@@ -34,7 +34,6 @@
 
 #submit_button{
     background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
-    padding: 5px, 15px;
     color: var(--white);
     margin-top: 1em;
     margin-right: 2em;
@@ -51,7 +50,7 @@
 }
 
 #image_input_preview{
-    width: 50%;
+    width: 85%;
 }
 
 #private_content{
@@ -70,7 +69,7 @@
     border-bottom: thin solid var(--white);
 }
 
-@media (max-width: 1050px) { 
+@media (max-width: 1250px) { 
     #create_auction{
         width: 90%;
     }
@@ -78,10 +77,6 @@
     #submit_button{
         float: none !important;
         margin:0;
-    }
-
-    #image_input, #image_input_preview{
-        width:100%;
     }
 }
 
