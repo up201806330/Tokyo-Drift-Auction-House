@@ -95,23 +95,23 @@
         
     </div>
     
-        <div class="auction_content m-5 rounded-3 border border-2 border-dark bg-white">
+        <div class="auction_content rounded-3 border border-2 border-dark bg-white">
         <!-- Current Bid info -->
         <div class="container" id="auction_content_area">
-            <div class="row align-items-center justify-content-around">
-                <div class="col-sm mt-3 mb-3">
+            <div class="row mx-auto align-items-center justify-content-around">
+                <div class="col-12 col-md-4 mt-3 mb-3">
                     <h2>Owner</h2>
                     <a href="../pages/profile.php" class="profile_text">
                         <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
                         <h4 class="m-0">Hanna Green</h4>
                     </a>
                 </div>
-                <div class="col-sm mt-3 mb-1">
+                <div class="col-12 col-md-4 mt-3 mb-1">
                     <h2>Current Bid</h2>
                     <h1 class="current_bid">200000€</h1>
                 </div>
-                <div class="col-sm mt-3 mb-3">
-                    <h2>Top Bidder</h2>
+                <div class="col-12 col-md-4 mt-3 mb-3">
+                    <h2 class="text-nowrap">Top Bidder</h2>
                     <a href="../pages/profile.php" class="profile_text">
                         <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
                         <h4 class="m-0">Hank Geller</h4>
@@ -198,7 +198,7 @@
     </div>
 
     <!-- Comment Section -->
-    <div class="display-1" style="margin-left: 20%;">Comment Section</div>
+    <div class="display-1" style="margin-left: 15%;">Comment Section</div>
     <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="comment_section">
         
         <!-- Place Comment -->

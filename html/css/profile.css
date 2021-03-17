@@ -13,10 +13,11 @@
 
 .circular--portrait {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     overflow: hidden;
     border-radius: 50%;
+    border-style: solid; border-color: #233233;
 }
   
 .circular--portrait img {
@@ -25,16 +26,12 @@
 }
 
 
-.user-data-profile {
-  margin-left: 10%;
-}
-
 .username-text, .name-text, .based-on-text, .about-me-text {
   padding-left: 3%;
   transition: transform .3s;
 }
 
-.username-text:hover, .name-text:hover, .based-on-text:hover, .about-me-text:hover {
+.about-me-text:hover {
   transform: translateX(10px);
   transition: transform .3s;
 }
@@ -45,14 +42,15 @@
 
 .fa-cog {
   font-size: 2em !important;
+  color:rgb(31, 31, 31)
 }
 
 
 #edit-profile-pic-a {
   z-index: 10;
   position: relative;
-  top: 325px;
-  right: -50px;
+  top: 200px;
+  /* left: 180px; */
   box-shadow: 0 0 6px 3px #223223;
   border-radius: 50%;
   height: 40px;

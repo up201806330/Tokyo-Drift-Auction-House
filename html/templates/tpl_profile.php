@@ -4,148 +4,71 @@
      */
     ?>
 
-<section class="bg-light">
-
-<nav aria-label="breadcrumb">
-      <ol class="breadcrumb fs-5 ps-5 pt-2 pb-2">
+<section class="sign-in-container">
+<div class="container bg-light rounded">
+    <div class="display-1 pt-5 ps-2 text-start">Profile page</div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb fs-5 ps-4 pt-1">
           <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">Profile</li>
       </ol>
-      </nav>
+    </nav>
 
     <div class="container">
-    
-        <!-- Section: Images -->
-        <section class="mb-3">
-        
-            <!-- Background image -->
-            <div
-                class="p-5 text-center bg-image shadow-1-strong rounded d-flex justify-content-center"
-                style="
-                background-image: url('https://mdbootstrap.com/img/new/slides/041.jpg');
-                height: 400px;
-                "
-            >
-
-                <div class="d-flex justify-content-center circular--portrait" style="margin-top: 10rem; border-style: solid; border-color: #233233;">
-                    <img src="../assets/thisisfine_.jpg" alt="" class="position-absolute">
+        <div class="row ps-4">
+            <div class="col-12 col-lg-6">
+                <div class="container d-flex justify-content-center position-relative">
+                    <div class="d-flex justify-content-center circular--portrait img-fluid">
+                        <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" alt="" class="position-absolute">
+                    </div>
+                    <div class="position-absolute" style="margin-top:220px; margin-left:220px"><a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
                 </div>
-                <a href="#" style="color: #223223;" id="edit-profile-pic-a"><i class="fa fa-edit button"></i></a>
-            </div>
-            <!-- Background image -->
 
-        </section>
-        <!-- Section: Images -->
-
-        <div class="row">
-            <div class="col text-center pt-3">
-                <a class="permission-icon" href="../pages/mod.php" data-mdb-toggle="tooltip" title="Moderator">
-                    <i class="fas fa-user-cog fa-3x pe-3"></i> 
-                </a>
-                <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Buyer">
-                    <i class="fas fa-wallet fa-3x"></i>
-                </a>
-                <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Seller">
-                    <i class="fas fa-store fa-3x ps-3"></i>
-                </a>
-            </div>
+                <p class="display-5 fw-bold name-text text-center" style="margin-top:250px; margin-bottom: -0.4rem !important;" id="adminTextStatic">Hanna Green</p>
+                <p class="fs-5 fw-bold name-text text-muted text-center" style="letter-spacing: 3px; ">@greenOlives24</p>
+                <p class="fs-6 fw-bold name-text text-center" ><i class="fa fa-map-marker" style="margin-left:-0.5rem; margin-right:0.5rem;"></i>Amarante, Porto</p>
                 
+                <div class="container iconHolder d-flex justify-content-center">
+                    <a class="permission-icon" href="../pages/mod.php" data-mdb-toggle="tooltip" title="Moderator">
+                        <i class="fas fa-user-cog fa-3x pe-3"></i> 
+                    </a>
+                    <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Buyer">
+                        <i class="fas fa-wallet fa-3x"></i>
+                    </a>
+                    <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Seller">
+                        <i class="fas fa-store fa-3x ps-3"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 bg-light mt-5 mt-lg-0">
+                <div class="row">
+                    <div class="col-5">
+                        <h3 class="fs-1"><strong>About me</strong></h3>
+                    </div>
+                    <div class="col d-flex justify-content-start align-items-center">
+                        <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <p class="text-muted fs-3 about-me-text">
+                    Hello! I'm Hanna, a fellow car collector!<br>
+                    I've been collecting super cars for the last 10 years and once every few months I go look for another piece for my collection.
+                    I'm also an admin on this website when I have time.
+                </p>
+            </div>
         </div>
 
-
-        <!-- Section: User Data -->
-        <section class="user-data-profile">
-            
-            <div class="row">
-                <div class="col-md-12 col-lg-6">
-                    <div class="row username-row">
-                        <div class="col-md-6">
-
-                            <div class="row">
-                                <div class="col-9">
-                                    <h3 class="fs-1"><strong>Username</strong></h3>
-                                </div>
-                                <div class="col d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            
-                            <p class="text-muted fs-3 username-text">
-                                ThisIsFine
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row name-row">
-                        <div class="col-md-6">
-
-                            <div class="row">
-                                <div class="col-9">
-                                    <h3 class="fs-1"><strong>Name</strong></h3>
-                                </div>
-                                <div class="col d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                </div>
-                            </div>
-
-                            <p class="text-muted fs-3 name-text">
-                                André Mindelo
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row based-on-row">
-                        <div class="col-md-6">
-                            
-                            <div class="row">
-                                <div class="col-9">
-                                    <h3 class="fs-1"><strong>Based on</strong></h3>
-                                </div>
-                                <div class="col d-flex justify-content-center align-items-center">
-                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                </div>
-                            </div>
-
-                            <p class="text-muted fs-3 based-on-text">
-                                Amarante, Porto
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col my-auto">
-
-                    <div class="row">
-                        <div class="col-5">
-                            <h3 class="fs-1"><strong>About me</strong></h3>
-                        </div>
-                        <div class="col d-flex justify-content-start align-items-center">
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
-                    <p class="text-muted fs-3 about-me-text">
-                        Hello! I'm André, a fellow car collector!<br>
-                        I've been collecting super cars for the last 10 years and once every few months I go look for another piece for my collection.
-                    </p>
-                </div>
-            </div>
-            
-        </section>
-        <!-- Section: User Data -->
-
         <div class="profile-auction-gallery">
-
-            <!-- <h2 class="fs-1 pb-4 profile-auction-gallery-title">
-                <strong>Current Auctions</strong>
-            </h2> -->
-
+            <div class="display-3 ps-2 ms-5 pb-3">History</div>
             <div class="dropdown pb-3" id="dropdown-auctions-profile">
-                <button class="btn bg-dark text-white border-dark dropdown-toggle fs-1 profile-auction-gallery-title rounded-pill" type="button" id="selectAuctionsProfile" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn bg-dark text-white border-dark dropdown-toggle fs-4 profile-auction-gallery-title rounded-pill" type="button" id="selectAuctionsProfile" data-bs-toggle="dropdown" aria-expanded="false">
                 Select Auctions
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="selectAuctionsProfile">
-                    <li><a class="dropdown-item" href="#" onclick="updateDropdownAuctionsProfile(this)">Currently Bidding</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="updateDropdownAuctionsProfile(this)">Currently Selling</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="updateDropdownAuctionsProfile(this)">Successfully Bought</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="updateDropdownAuctionsProfile(this)">Successfully Sold</a></li>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectAuctionsProfile">
+                    <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Currently Bidding</a></li>
+                    <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Currently Selling</a></li>
+                    <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Successfully Bought</a></li>
+                    <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Successfully Sold</a></li>
                 </ul>
             </div>
 
@@ -155,7 +78,8 @@
             ?>
         </div>
     </div>
-
+    
+</div>
 </section>
 
 <?php } ?>

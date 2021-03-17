@@ -57,6 +57,7 @@
 
 .auction_content {
     text-align: center;
+    margin: 4em;
 }
 
 #auction_content_area {
@@ -212,9 +213,13 @@
     display: inline;
 }
 
-@media (max-width: 1050px) { 
+@media (max-width: 1200px) { 
     #auction_content_area{
         width: 100%;
+    }
+
+    .auction_content{
+        margin: 0%;
     }
 
     #comment_section{

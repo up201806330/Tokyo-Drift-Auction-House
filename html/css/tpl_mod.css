@@ -16,11 +16,15 @@
     color: green;
 }
 
+#adminTextStatic{
+    color: rgb(204, 174, 2);
+}
+
 #profileCardAdmin{
     /* Text Color Animation Cycle */
     color: transparent;
     /* background-image: linear-gradient(to left, #2ecc71, #4284db, #c2361e, #f39c12); */
-    background-image: linear-gradient(to left, #31e67c, #4e98f8, #e64124, #ffd23c);
+    background-image: linear-gradient(to left, #e64c31, #fffd99, #ac8400, #ffd23c);
     -webkit-background-clip: text;
     animation: animate 5s linear infinite;
     -webkit-background-size: 200%;
