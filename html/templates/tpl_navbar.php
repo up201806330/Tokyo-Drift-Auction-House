@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="../css/sign-up.css">
   <link rel="stylesheet" href="../css/profile.css">
   <link rel="stylesheet" href="../css/create_auction.css">
+  <link rel="stylesheet" href="../css/tpl_tos.css">
 
 
 </head>

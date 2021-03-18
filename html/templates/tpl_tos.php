@@ -9,22 +9,63 @@
         </ol>
         </nav>
 
-        <a href="#userInteraction"><div class="btn btn-secondary" id="userInteraction"><div class="display-5 text-light">User Interaction</div></div></a>
-        <div class="fw-light fs-2 pt-3 pb-3">Upon registry as a user of our website, you pledge to keep every auction a safe place, <b>free of harsh language and offensive comments</b>. Users who do not respect this rule <b>will be banned</b>.</div>
-
-        <a href="#buyer"><div class="btn btn-secondary" id="buyer"><div class="display-5 text-light">Buying</div></div></a>
-        <div class="fw-light fs-2 pt-3 pb-3">As a buyer, you must obey your capitalist God's commands and buy everyday</div>
-
-        <a href="#seller"><div class="btn btn-secondary" id="seller"><div class="display-5 text-light">Selling</div></div></a>
-        <div class="fw-light fs-2 pt-3 pb-3">As a seller, you can manage the interaction that users partake in your auction pages. By default, you'll be assigned <b>moderator privileges</b> to these pages, with the ability to opt out.</div>
-        <div class="fw-light fs-2 pt-3 pb-3">You are not allowed to bid on your own auctions, and any discovered attempts of <b>inflating auction prices</b> will be met with a <b>ban</b>.</div>
-
-        <a href="#auctions"><div class="btn btn-secondary" id="auctions"><div class="display-5 text-light">Auctions</div></div></a>
-        <div class="fw-light fs-2 pt-3 pb-3">An auction's date must always be set in the future. Auctions cannot be set to start at a past date. Auction duration is also fixed to a minimum of <b>1 hour</b>.</div>
-
-        <a href="#mods"><div class="btn btn-secondary" id="mods"><div class="display-5 text-light">Moderation</div></div></a>
-        <div class="fw-light fs-2 pt-3 pb-3"><b>Moderators</b> have the duty to uphold the peace in their assigned auctions. They have the ability to ban users from comment sections and remove select comments. </div>
-        <div class="fw-light fs-2 pt-3 pb-3" id="admins">Besides these responsibilities, <b>Admins</b> must also keep the website safe of troll auctions, removing them when need be, and problematic users, having the ability to <b>perma ban</b></div>
+        <main class="accordion-container">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        User Interaction
+                    </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body fw-light fs-2">Upon registry as a user of our website, you pledge to keep every auction a safe place, <b>free of harsh language and offensive comments</b>. Users who do not respect this rule <b>will be banned</b>.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Buying
+                    </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body fw-light fs-2">As a buyer, you must obey your capitalist God's commands and buy everyday.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Selling
+                    </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body fw-light fs-2">As a seller, you can manage the interaction that users partake in your auction pages. By default, you'll be assigned <b>moderator privileges</b> to these pages, with the ability to opt out.
+                    <br>
+                    You are not allowed to bid on your own auctions, and any discovered attempts of <b>inflating auction prices</b> will be met with a <b>ban</b>.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        Auctions
+                    </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body fw-light fs-2">An auction's date must always be set in the future. Auctions cannot be set to start at a past date. Auction duration is also fixed to a minimum of <b>1 hour</b>.</div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                        Moderation
+                    </button>
+                    </h2>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body fw-light fs-2"><b>Moderators</b> have the duty to uphold the peace in their assigned auctions. They have the ability to ban users from comment sections and remove select comments.
+                    <br>
+                    Besides these responsibilities, <b>Admins</b> must also keep the website safe of troll auctions, removing them when need be, and problematic users, having the ability to <b>perma ban</b>.</div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
     </div>
 
