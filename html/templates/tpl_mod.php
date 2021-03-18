@@ -1,6 +1,6 @@
 <?php
 include_once('../templates/tpl_auction_card.php');
-include_once('../templates/tpl_profile_card.php');
+include_once('../templates/tpl_user_row.php');
 
 function draw_mod(){
 ?>
@@ -42,13 +42,29 @@ function draw_mod(){
 function draw_user_gallery(){ ?>
 
 
-<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery  overflow-auto p-sm-4 p-0 mb-5 mx-0 mx-md-5 rounded-3 border border-5 border-secondary">
-<?php draw_profile_card_1(); ?>
-<?php draw_profile_card_2(); ?>
-<?php draw_profile_card_1(); ?>
-<?php draw_profile_card_2(); ?>
-<?php draw_profile_card_1(); ?>
-<?php draw_profile_card_2(); ?>
+<div class="row row-cols-1 mx-auto justify-content-start mod-gallery  overflow-auto p-sm-4 p-0 mb-5 mx-0 mx-md-5 rounded-3 border border-5 border-secondary">
+    <div class="input-group form-container pb-2">
+        <input type="text" name="search" class="form-control search-input" placeholder="Search for a user" autofocus="autofocus" autocomplete="off" onclick="setBgToDark()">
+        <span class="input-group-btn">
+            <a href="../pages/search.php">
+                <button class="btn btn-search">
+                    <i class="fa fa-search"></i>
+                </button>
+            </a>
+        </span>
+    </div>
+    <div class="accordion" id="userAccordion">
+        <?php draw_user_row_mod(1) ?>
+        <?php draw_user_row_mod_alt(2) ?>
+        <?php draw_user_row_mod(3) ?>
+        <?php draw_user_row_mod(4) ?>
+        <?php draw_user_row_mod_alt(5) ?>
+        <?php draw_user_row_mod_alt(6) ?>
+        <?php draw_user_row_mod_alt(7) ?>
+        <?php draw_user_row_mod(8) ?>
+        <?php draw_user_row_mod(9) ?>
+        <?php draw_user_row_mod(10) ?>
+    </div>
 </div>
 
 <?php } ?>
@@ -56,6 +72,16 @@ function draw_user_gallery(){ ?>
 <?php function draw_auction_gallery() { ?>
 
 <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery overflow-auto p-sm-4 p-0  mx-0 mx-md-5 rounded-3 border border-5 border-secondary">
+<div class="input-group form-container pb-4">
+        <input type="text" name="search" class="form-control search-input" placeholder="Search for an auction" autofocus="autofocus" autocomplete="off" onclick="setBgToDark()">
+        <span class="input-group-btn">
+            <a href="../pages/search.php">
+                <button class="btn btn-search">
+                    <i class="fa fa-search"></i>
+                </button>
+            </a>
+        </span>
+    </div>
 <?php
 draw_auction_card_1();
 draw_auction_card_2();

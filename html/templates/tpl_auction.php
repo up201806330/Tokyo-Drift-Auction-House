@@ -103,7 +103,7 @@
                     <h2>Owner</h2>
                     <a href="../pages/profile.php" class="profile_text">
                         <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
-                        <h4 class="m-0">Hanna Green</h4>
+                        <h4 class="m-0" style="color: rgb(204, 174, 2)">Hanna Green</h4>
                     </a>
                 </div>
                 <div class="col-12 col-md-4 mt-3 mb-1">

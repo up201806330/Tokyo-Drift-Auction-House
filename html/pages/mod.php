@@ -4,7 +4,7 @@
     include_once("../templates/tpl_footer.php");
     include_once('../templates/tpl_search.php');
     
-    draw_navbar();
+    draw_navbar_logged_in();
     draw_mod();
     draw_footer();
 

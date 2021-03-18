@@ -30,13 +30,13 @@
                 
                 <div class="container iconHolder d-flex justify-content-center">
                     <a class="permission-icon" href="../pages/mod.php" data-mdb-toggle="tooltip" title="Moderator">
-                        <i class="fas fa-user-cog fa-3x pe-3"></i> 
+                        <i class="fas fa-user-cog gold fa-3x pe-3"></i> 
                     </a>
                     <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Buyer">
-                        <i class="fas fa-wallet fa-3x"></i>
+                        <i class="fas fa-wallet red fa-3x"></i>
                     </a>
                     <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Seller">
-                        <i class="fas fa-store fa-3x ps-3"></i>
+                        <i class="fas fa-store green fa-3x ps-3"></i>
                     </a>
                 </div>
             </div>

@@ -115,12 +115,12 @@
                     </span>
                 </div>
                 <?php draw_user_row() ?>
+                <?php draw_user_row_alt() ?>
                 <?php draw_user_row() ?>
+                <?php draw_user_row_alt() ?>
                 <?php draw_user_row() ?>
-                <?php draw_user_row() ?>
-                <?php draw_user_row() ?>
-                <?php draw_user_row() ?>
-                <?php draw_user_row() ?>
+                <?php draw_user_row_alt() ?>
+                <?php draw_user_row_alt() ?>
                 <?php draw_user_row() ?>
             </div>
 
