@@ -28,16 +28,22 @@
     <div class="homepage-bg-bottom">
         <h4 class="fire-deals-text text-md-start pt-5">Fire Deals</h4>
         
+        <div class="container-fluid" id="search-background" style="flex: auto">
+<div class="row h-100">
         <!-- Container For All Displayed Auctions -->
-        <div class="d-flex justify-content-center">
-            <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 d-flex justify-content-center justify-content-sm-start">
-                <?php
+        <main class="col ms-sm-auto pt-4 px-md-4">
+            <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-center">
+
+               <?php
                     draw_auction_card_1();
                     draw_auction_card_2();
                     draw_auction_card_3();
+                    draw_auction_card_1();
                 ?>
             </div>
-        </div>
+        </main>
+
+</div></div>
         <!-- End of Container For All Displayed Auctions -->
     </div>
 </div>
