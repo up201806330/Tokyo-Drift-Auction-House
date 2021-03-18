@@ -1,12 +1,8 @@
 .accordion-container {
-    padding-bottom: 4rem !important;
+    margin-bottom: 4rem !important;
     height: 100% !important;
 }
 
-#accordionFlushExample > div {
-    margin-bottom: 1em;
-    margin-top: 1em;
-}
 
 #flush-headingOne > button,
 #flush-headingTwo > button,
@@ -29,4 +25,10 @@ body > div.container-fluid.bg-light.p-4 {
 .accordion-button:focus {
     border-color: rgb(223, 223, 223) !important;
     box-shadow: none !important;
+}
+
+@media (min-width: 768px) and (max-width: 1012px) {
+    .tos-whole > main { 
+        margin-bottom: 6.4rem !important;
+    }
 }

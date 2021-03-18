@@ -1,6 +1,6 @@
 <?php function draw_tos() { ?>
 
-    <div class="container-fluid bg-light p-4">
+    <div class="container-fluid bg-light p-4 tos-whole">
         <div class="display-2 ">Terms of Service</div>
         <nav aria-label="breadcrumb">
         <ol class="breadcrumb fs-5 ps-3 pt-1 pb-5">
@@ -9,7 +9,7 @@
         </ol>
         </nav>
 
-        <main class="accordion-container">
+        <main class="accordion-container border border-1 border-secondary rounded-3">
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
@@ -21,7 +21,7 @@
                     <div class="accordion-body fw-light fs-2">Upon registry as a user of our website, you pledge to keep every auction a safe place, <b>free of harsh language and offensive comments</b>. Users who do not respect this rule <b>will be banned</b>.</div>
                     </div>
                 </div>
-                <div class="accordion-item">
+                <div class="accordion-item mt-2">
                     <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                         Buying
@@ -31,7 +31,7 @@
                     <div class="accordion-body fw-light fs-2">As a buyer, you must obey your capitalist God's commands and buy everyday.</div>
                     </div>
                 </div>
-                <div class="accordion-item">
+                <div class="accordion-item mt-2">
                     <h2 class="accordion-header" id="flush-headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                         Selling
@@ -43,7 +43,7 @@
                     You are not allowed to bid on your own auctions, and any discovered attempts of <b>inflating auction prices</b> will be met with a <b>ban</b>.</div>
                     </div>
                 </div>
-                <div class="accordion-item">
+                <div class="accordion-item mt-2">
                     <h2 class="accordion-header" id="flush-headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
                         Auctions
