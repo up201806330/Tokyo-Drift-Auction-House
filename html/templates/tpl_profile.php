@@ -5,7 +5,7 @@
     ?>
 
 <section class="sign-in-container">
-<div class="container bg-light rounded">
+<div class="container bg-light rounded pb-1">
     <div class="display-1 pt-5 ps-2 text-start">Profile page</div>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb fs-5 ps-4 pt-1">
