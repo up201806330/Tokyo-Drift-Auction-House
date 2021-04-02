@@ -1,4 +1,3 @@
-
 DROP DOMAIN IF EXISTS nowtimestamp CASCADE;
 DROP TABLE IF EXISTS "user" CASCADE;
 DROP TABLE IF EXISTS "global_mod" CASCADE;
@@ -109,7 +108,7 @@ CREATE TABLE "auction_comment" (
 CREATE TABLE "ban" (
     id SERIAL PRIMARY KEY,
     user_id integer REFERENCES "user"(id) NOT NULL,
-    createdBy integer REFERENCES "admin"(id) NOT NULL,
+    createdBy integer REFERENCES "user"(id) NOT NULL,
     createdOn nowtimestamp,
     startTime nowtimestamp,
     endTime timestamp NOT NULL,
