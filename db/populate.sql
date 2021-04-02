@@ -21,6 +21,9 @@ INSERT INTO "user" (id,firstName,lastName,email,username,password,location,about
 (19,'Palmer','Maldonado','Aliquam.tincidunt@orci.com','paler_mal','HTJ05GKL1QF','East Linton','Hey hey hey hey hey hey!','2021-03-30 12:38:24'),
 (20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24');
 
+-- Seller Permissions --
+INSERT INTO "seller" (id) VALUES (2),(3),(4),(7);
+
 -- Vehicles --
 INSERT INTO "vehicle" (id,owner,brand,model,condition,manufactureYear,horsepower) VALUES
 (1,2,'BMW','1 Series','Mint',2008,150),
@@ -46,15 +49,15 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,manufactureYear,horsepower
 
 -- Auctions --
 INSERT INTO "auction" (id,auction_name,vehicle,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
-(1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
-(2,'BMW 3 Series 2010 Mint',2,10000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
-(3,'BMW 5 Series Exclusive',3,15000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
-(4,'BMW 7 Series Great for Sports People',4,20000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
-(5,'Mercedes A Clean',5,10000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Private'),
-(6,'Mercedes C Average',6,10000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Private'),
-(7,'Awesome Rolls Royce Ghost 16',7,30000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
-(8,'Clean RR Ghost 12',8,25000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
-(9,'RR Dawn 16 Perfect for Families',9,25000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
+(1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
+(2,'BMW 3 Series 2010 Mint',2,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
+(3,'BMW 5 Series Exclusive',3,15000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
+(4,'BMW 7 Series Great for Sports People',4,20000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
+(5,'Mercedes A Clean',5,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Private'),
+(6,'Mercedes C Average',6,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Private'),
+(7,'Awesome Rolls Royce Ghost 16',7,30000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
+(8,'Clean RR Ghost 12',8,25000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
+(9,'RR Dawn 16 Perfect for Families',9,25000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (10,'Old but never out of Style RR Phantom 03',10,20000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (11,'Clean RR Ghost 14',11,43000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (12,'Fantastic RR Ghost 14',12,48000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
@@ -70,10 +73,9 @@ INSERT INTO "auction" (id,auction_name,vehicle,startingBid,creationTime,starting
 -- User Permissions --
 INSERT INTO "global_mod" (id) VALUES (2),(5);
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (3,7),(3,8),(3,9),(3,10),(3,11),(3,12),(3,13),(3,14);
-INSERT INTO "auction_mod" (user_id,auction_id) VALUES (4,15),(4,16),(4,17),(4),18),(4,19),(4,20);
+INSERT INTO "auction_mod" (user_id,auction_id) VALUES (4,15),(4,16),(4,17),(4,18),(4,19),(4,20);
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (6,15),(6,16),(6,17);
 INSERT INTO "admin" (id) VALUES (1);
-INSERT INTO "seller" (id) VALUES (2),(3),(4),(7);
 
 -- Profile Photos --
 INSERT INTO "image" (id,path) VALUES
@@ -121,7 +123,7 @@ INSERT INTO "image" (id,path) VALUES
 (41, 'car_photos/17/1.png'),
 (42, 'car_photos/18/1.png'),
 (43, 'car_photos/19/1.png'),
-(44, 'car_photos/20/1.png'),
+(44, 'car_photos/20/1.png');
 
 INSERT INTO "vehicle_image" (vehicle,image,sequence_number) VALUES
 (1,21,1), (1,22,2), (1,23,3),
@@ -170,30 +172,31 @@ INSERT INTO "auction_comment" (id,user_id,auction_id,createdOn,content) VALUES
 (7,8,5,'2021-03-31 15:27:38','Cant wait to get my hands on this car!'),
 (8,8,7,'2021-03-31 15:27:38','Cant wait to get my hands on this car!'),
 (9,11,6,'2021-03-31 15:27:38','Thank you for inviting me for this auction. I really want this car!'),
-(9,13,6,'2021-03-31 13:27:38','Really looking forward for this auction'),
-(9,12,6,'2021-03-31 18:27:38','Great Car and great seller. Cant wait for this awesome auction.');
+(10,13,6,'2021-03-31 13:27:38','Really looking forward for this auction'),
+(11,12,6,'2021-03-31 18:27:38','Great Car and great seller. Cant wait for this awesome auction.');
 
 -- Banned Users --
-INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType,auction_id) VALUES
+INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType) VALUES
 (1, 20, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'Is a bot.','AllBan'),
 (2, 19, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him.','BuyerBan'),
-(3, 18, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont want him selling his cars in my website','SellerBan'),
+(3, 18, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont want him selling his cars in my website','SellerBan');
+INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType,auction_id) VALUES
 (4, 8, 3, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him for this auction','AuctionBan',14);
 
 -- Bids --
 INSERT INTO "bidding" (id,user_id,auction_id,amount,createdOn) VALUES
-(1,5,1,8000,'2021-04-01 17:06:32')
-(2,6,1,8300,'2021-04-01 17:20:32')
-(3,7,1,8500,'2021-04-01 17:45:32')
-(4,5,1,8800,'2021-04-01 17:56:32')
-(5,6,2,10000,'2021-04-01 17:06:32')
-(6,8,2,10500,'2021-04-01 17:20:32')
-(7,6,2,11000,'2021-04-01 17:45:32')
-(8,8,3,15000,'2021-04-01 17:56:32')
-(9,5,4,20000,'2021-04-01 17:06:32')
-(10,7,4,21000,'2021-04-01 17:20:32')
-(11,12,5,10000,'2021-04-01 17:45:32')
-(12,15,6,10000,'2021-04-01 17:56:32')
-(13,11,7,30000,'2021-04-01 17:20:32')
-(14,12,8,25000,'2021-04-01 17:45:32')
-(15,13,9,25000,'2021-04-01 17:56:32')
+(1,5,1,8000,'2021-04-01 17:06:32'),
+(2,6,1,8300,'2021-04-01 17:20:32'),
+(3,7,1,8500,'2021-04-01 17:45:32'),
+(4,5,1,8800,'2021-04-01 17:56:32'),
+(5,6,2,10000,'2021-04-01 17:06:32'),
+(6,8,2,10500,'2021-04-01 17:20:32'),
+(7,6,2,11000,'2021-04-01 17:45:32'),
+(8,8,3,15000,'2021-04-01 17:56:32'),
+(9,5,4,20000,'2021-04-01 17:06:32'),
+(10,7,4,21000,'2021-04-01 17:20:32'),
+(11,12,5,10000,'2021-04-01 17:45:32'),
+(12,15,6,10000,'2021-04-01 17:56:32'),
+(13,11,7,30000,'2021-04-01 17:20:32'),
+(14,12,8,25000,'2021-04-01 17:45:32'),
+(15,13,9,25000,'2021-04-01 17:56:32');
