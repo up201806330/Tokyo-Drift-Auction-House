@@ -1,3 +1,4 @@
+-- Users --
 INSERT INTO "user" (id,firstName,lastName,email,username,password,location,about,registeredOn) VALUES
 (1,'Roth','Hampton','tempor.augue.ac@sitametmetus.edu','roth_hampton','PXA24YEP6CV','Porto','I LOVE CARS and so I decided to build this website so I can share it with everyone else.','2021-03-30 12:38:24'),
 (2,'Bree','Espinoza','auctor.velit.eget@mollis.ca','bree_espinoza','ZED49VDV4VT','Muradiye','I love BMWs and I cant help myself when it comes to buying them. My girlfriend doesnt really approve of that so I need to sell some of them','2021-03-30 12:38:24'),
@@ -20,6 +21,7 @@ INSERT INTO "user" (id,firstName,lastName,email,username,password,location,about
 (19,'Palmer','Maldonado','Aliquam.tincidunt@orci.com','paler_mal','HTJ05GKL1QF','East Linton','Hey hey hey hey hey hey!','2021-03-30 12:38:24'),
 (20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24');
 
+-- Vehicles --
 INSERT INTO "vehicle" (id,owner,brand,model,condition,manufactureYear,horsepower) VALUES
 (1,2,'BMW','1 Series','Mint',2008,150),
 (2,2,'BMW','3 Series','Mint',2010,200),
@@ -42,6 +44,7 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,manufactureYear,horsepower
 (19,4,'Porsche','Panamera 4 Executive','Mint',2020,450),
 (20,4,'Tesla','S','Mint',2021,700);
 
+-- Auctions --
 INSERT INTO "auction" (id,auction_name,vehicle,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
 (1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
 (2,'BMW 3 Series 2010 Mint',2,10000,'2021-03-30 12:59:24','2021-04-01 12:00:00','2021-04-05 12:00:00','Public'),
@@ -64,6 +67,7 @@ INSERT INTO "auction" (id,auction_name,vehicle,startingBid,creationTime,starting
 (19,'New Panamera 4 Executive',19,160000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public'),
 (20,'Brand New Tesla S',20,230000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public');
 
+-- User Permissions --
 INSERT INTO "global_mod" (id) VALUES (2),(5);
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (3,7),(3,8),(3,9),(3,10),(3,11),(3,12),(3,13),(3,14);
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (4,15),(4,16),(4,17),(4),18),(4,19),(4,20);
@@ -71,11 +75,53 @@ INSERT INTO "auction_mod" (user_id,auction_id) VALUES (6,15),(6,16),(6,17);
 INSERT INTO "admin" (id) VALUES (1);
 INSERT INTO "seller" (id) VALUES (2),(3),(4),(7);
 
--- Images Missing --
+-- Profile Photos --
 INSERT INTO "image" (id,path) VALUES
-(1, 'image.png');
+(1, 'profile_photos/1.png'),
+(2, 'profile_photos/1.png'),
+(3, 'profile_photos/1.png'),
+(4, 'profile_photos/1.png'),
+(5, 'profile_photos/1.png'),
+(6, 'profile_photos/1.png'),
+(7, 'profile_photos/1.png'),
+(8, 'profile_photos/1.png'),
+(9, 'profile_photos/1.png'),
+(10, 'profile_photos/1.png'),
+(11, 'profile_photos/1.png'),
+(12, 'profile_photos/1.png'),
+(13, 'profile_photos/1.png'),
+(14, 'profile_photos/1.png'),
+(15, 'profile_photos/1.png'),
+(16, 'profile_photos/1.png'),
+(17, 'profile_photos/1.png'),
+(18, 'profile_photos/1.png'),
+(19, 'profile_photos/1.png'),
+(20, 'profile_photos/1.png');
 
 INSERT INTO "profile_image" (user_id,image) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
+
+-- Car Photos --
+INSERT INTO "image" (id,path) VALUES
+(21, 'car_photos/1/1.png'), (22, 'car_photos/1/2.png'), (23, 'car_photos/1/3.png'),
+(24, 'car_photos/2/1.png'), (25, 'car_photos/2/2.png'),
+(26, 'car_photos/3/1.png'),
+(27, 'car_photos/4/1.png'), (28, 'car_photos/4/2.png'),
+(29, 'car_photos/5/1.png'),
+(30, 'car_photos/6/1.png'),
+(31, 'car_photos/7/1.png'),
+(32, 'car_photos/8/1.png'),
+(33, 'car_photos/9/1.png'),
+(34, 'car_photos/10/1.png'),
+(35, 'car_photos/11/1.png'),
+(36, 'car_photos/12/1.png'),
+(37, 'car_photos/13/1.png'),
+(38, 'car_photos/14/1.png'),
+(39, 'car_photos/15/1.png'),
+(40, 'car_photos/16/1.png'),
+(41, 'car_photos/17/1.png'),
+(42, 'car_photos/18/1.png'),
+(43, 'car_photos/19/1.png'),
+(44, 'car_photos/20/1.png'),
 
 INSERT INTO "vehicle_image" (vehicle,image,sequence_number) VALUES
 (1,21,1), (1,22,2), (1,23,3),
@@ -99,10 +145,12 @@ INSERT INTO "vehicle_image" (vehicle,image,sequence_number) VALUES
 (19,43,1),
 (20,44,1);
 
+-- Public Auction Guests --
 INSERT INTO "auction_guest" (user_id, auction_id) VALUES
 (8,5),(9,5),(10,5),(11,5),(12,5),(13,5),
 (11,6),(12,6),(13,6),(14,6),(15,6);
 
+-- Favourite Auctions --
 INSERT INTO "favourite_auction" (user_id, auction_id) VALUES
 (8,1),(8,2),(8,3),(8,4),(8,5),
 (9,5),(9,6),(9,7),(9,8),(9,9),
@@ -111,6 +159,7 @@ INSERT INTO "favourite_auction" (user_id, auction_id) VALUES
 (12,6),(12,11),(12,19),(12,17),
 (13,15),(13,16);
 
+-- Auction Comments --
 INSERT INTO "auction_comment" (id,user_id,auction_id,createdOn,content) VALUES
 (1,8,1,'2021-03-31 15:27:38','Cant wait to get my hands on this car!'),
 (2,9,1,'2021-03-31 17:54:38','Lovely Car! Hope I can get it!'),
@@ -124,12 +173,14 @@ INSERT INTO "auction_comment" (id,user_id,auction_id,createdOn,content) VALUES
 (9,13,6,'2021-03-31 13:27:38','Really looking forward for this auction'),
 (9,12,6,'2021-03-31 18:27:38','Great Car and great seller. Cant wait for this awesome auction.');
 
+-- Banned Users --
 INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType,auction_id) VALUES
 (1, 20, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'Is a bot.','AllBan'),
 (2, 19, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him.','BuyerBan'),
 (3, 18, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont want him selling his cars in my website','SellerBan'),
 (4, 8, 3, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him for this auction','AuctionBan',14);
 
+-- Bids --
 INSERT INTO "bidding" (id,user_id,auction_id,amount,createdOn) VALUES
 (1,5,1,8000,'2021-04-01 17:06:32')
 (2,6,1,8300,'2021-04-01 17:20:32')
