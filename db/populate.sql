@@ -71,7 +71,7 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (20,4,'Tesla','S','Mint',2021,700);
 
 -- Auctions --
-INSERT INTO "auction" (id,auction_name,vehicle,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
+INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
 (1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (2,'BMW 3 Series 2010 Mint',2,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (3,'BMW 5 Series Exclusive',3,15000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
@@ -123,7 +123,7 @@ INSERT INTO "image" (id,path) VALUES
 (43, 'car_photos/19/1.png'),
 (44, 'car_photos/20/1.png');
 
-INSERT INTO "vehicle_image" (vehicle,image,sequence_number) VALUES
+INSERT INTO "vehicle_image" (vehicle_id,image_id,sequence_number) VALUES
 (1,21,1), (1,22,2), (1,23,3),
 (2,24,1),(2,25,2),
 (3,26,1),
@@ -198,3 +198,12 @@ INSERT INTO "bid" (id,user_id,auction_id,amount,createdOn) VALUES
 (13,11,7,30000,'2021-04-01 17:20:32'),
 (14,12,8,25000,'2021-04-01 17:45:32'),
 (15,13,9,25000,'2021-04-01 17:56:32');
+
+-- Invoices --
+INSERT INTO "invoice" (id,user_id,createdOn,vatNumber,value,description) VALUES
+(1,2,'2021-02-01 00:00:10','205538451', 500, 'Seller monthly fee'),
+(2,2,'2021-03-01 00:00:10','205538451', 500, 'Seller monthly fee'),
+(3,2,'2021-04-01 00:00:10','205538451', 500, 'Seller monthly fee'),
+(4,3,'2021-04-01 00:00:07','794830202', 500, 'Seller monthly fee'),
+(5,4,'2021-04-01 00:00:08','993546321', 500, 'Seller monthly fee'),
+(6,7,'2021-04-01 00:00:09','120520673', 500, 'Seller monthly fee');

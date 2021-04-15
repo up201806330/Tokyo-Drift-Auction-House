@@ -2,6 +2,7 @@ DROP DOMAIN IF EXISTS PASTTIMESTAMP     CASCADE;
 DROP DOMAIN IF EXISTS FUTURETIMESTAMP   CASCADE;
 DROP DOMAIN IF EXISTS EUROCENTS         CASCADE;
 DROP DOMAIN IF EXISTS EMAIL_T           CASCADE;
+DROP DOMAIN IF EXISTS VATNUMBER_T       CASCADE;
 DROP TYPE   IF EXISTS CONDITION_T       CASCADE;
 DROP TYPE   IF EXISTS AUCTIONTYPE_T     CASCADE;
 DROP TYPE   IF EXISTS BANTYPE_T         CASCADE;
@@ -26,6 +27,7 @@ CREATE DOMAIN   PASTTIMESTAMP   AS TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTA
 CREATE DOMAIN   FUTURETIMESTAMP AS TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP;
 CREATE DOMAIN   EUROCENTS       AS INTEGER      NOT NULL;
 CREATE DOMAIN   EMAIL_T         AS TEXT         CHECK(VALUE LIKE '_%@_%.__%');
+CREATE DOMAIN   VATNUMBER_T     AS CHAR(16);
 CREATE TYPE     CONDITION_T     AS ENUM ('Mint', 'Clean', 'Average', 'Rough');
 CREATE TYPE     AUCTIONTYPE_T   AS ENUM ('Public', 'Private');
 CREATE TYPE     BANTYPE_T       AS ENUM ('BuyerBan', 'SellerBan', 'AllBan', 'AuctionBan');
@@ -68,7 +70,7 @@ CREATE TABLE "vehicle" (
     condition   CONDITION_T NOT NULL DEFAULT 'Mint',
     year        INTEGER     NOT NULL CHECK(year <= date_part('year', CURRENT_TIMESTAMP)),
     horsepower  INTEGER     NOT NULL CHECK(horsepower >= 0),
-    description TEXT        NOT NULL
+    description TEXT
 );
 
 CREATE TABLE "auction" (
@@ -101,8 +103,8 @@ CREATE TABLE "vehicle_image" (
     vehicle_id      INTEGER     NOT NULL REFERENCES "vehicle"(id),
     image_id        INTEGER     NOT NULL REFERENCES "image"(id) ON DELETE CASCADE,
     sequence_number INTEGER     NOT NULL CHECK(sequence_number >= 0),
-	PRIMARY KEY(vehicle, image),
-    UNIQUE(vehicle, sequence_number)
+	PRIMARY KEY(vehicle_id, image_id),
+    UNIQUE(vehicle_id, sequence_number)
 );
 
 CREATE TABLE "auction_guest" (
