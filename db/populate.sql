@@ -1,31 +1,54 @@
+-- Profile Photos --
+INSERT INTO "image" (id,path) VALUES
+(1, 'profile_photos/1.png'),
+(2, 'profile_photos/1.png'),
+(3, 'profile_photos/1.png'),
+(4, 'profile_photos/1.png'),
+(5, 'profile_photos/1.png'),
+(6, 'profile_photos/1.png'),
+(7, 'profile_photos/1.png'),
+(8, 'profile_photos/1.png'),
+(9, 'profile_photos/1.png'),
+(10, 'profile_photos/1.png'),
+(11, 'profile_photos/1.png'),
+(12, 'profile_photos/1.png'),
+(13, 'profile_photos/1.png'),
+(14, 'profile_photos/1.png'),
+(15, 'profile_photos/1.png'),
+(16, 'profile_photos/1.png'),
+(17, 'profile_photos/1.png'),
+(18, 'profile_photos/1.png'),
+(19, 'profile_photos/1.png'),
+(20, 'profile_photos/1.png');
+
 -- Users --
-INSERT INTO "user" (id,firstName,lastName,email,username,password,location,about,registeredOn) VALUES
-(1,'Roth','Hampton','tempor.augue.ac@sitametmetus.edu','roth_hampton','PXA24YEP6CV','Porto','I LOVE CARS and so I decided to build this website so I can share it with everyone else.','2021-03-30 12:38:24'),
-(2,'Bree','Espinoza','auctor.velit.eget@mollis.ca','bree_espinoza','ZED49VDV4VT','Muradiye','I love BMWs and I cant help myself when it comes to buying them. My girlfriend doesnt really approve of that so I need to sell some of them','2021-03-30 12:38:24'),
-(3,'Tanek','Spence','Fusce.dolor@nisi.com','tanek_spence','DTQ16ULU3HP','Barry','Ive been in love with cars ever since I was a 4 year old and now I want to make a living out of it.','2021-03-30 12:38:24'),
-(4,'Fitzgerald','Cash','dolor.dapibus.gravida@sedduiFusce.edu','cash_fitz','UAU42EDT3XL','Perchtoldsdorf','Cars, cars, cars, You gotta love them.','2021-03-30 12:38:24'),
-(5,'Aimee','Cortez','nibh@dictum.co.uk','aimee_cortez','XXX07JUG7BH','Sargodha','Life without cars is like Rome without the Pope.','2021-03-30 12:38:24'),
-(6,'Barclay','Sargent','aliquet.Proin@Praesent.com','barclay','KDI43MJE4FP','Maunath Bhanjan','Just chilling and buying cars.','2021-03-30 12:38:24'),
-(7,'Fuller','Beck','mi.felis@pedeacurna.com','fuller_beck','NAQ18MSW3TI','Pekanbaru','Just trying to have some fun :)','2021-03-30 12:38:24'),
-(8,'Ulysses','Bennett','dictum@Donectempor.com','ulysses_bennte','CQW48UUT5TJ','Aylmer','Impulsive car buyer.','2021-03-30 12:38:24'),
-(9,'Ian','Walsh','nulla@Curabitursed.ca','ian_walsh','LQG38WSJ6NO','Borgomasino','Im a Bad Ass.','2021-03-30 12:38:24'),
-(10,'Valentine','Boyer','elit.pharetra.ut@aliquetsem.com','valentine_boyer','RIX27PKB7IJ','Sakhalin','Hello! Just loving cars.','2021-03-30 12:38:24'),
-(11,'Ulysses','Hayes','mauris@metusInnec.co.uk','ulysses_hayes','PPY94UIU8YF','Scala Coeli','Fast and Furious lover. JUst trying to bring things from the screen to real life.','2021-03-30 12:38:24'),
-(12,'Moses','Stanton','dui.nec.urna@dictumcursus.edu','moses_stanton','NPR54ONU1NS','Tallahassee','Im boreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeed','2021-03-30 12:38:24'),
-(13,'Silas','Olsen','faucibus.ut.nulla@fermentummetus.net','silas_olsen','MCH94KSM4NQ','Pishin Valley','what am i doing with my life?','2021-03-30 12:38:24'),
-(14,'Abra','Carson','tempor@pede.co.uk','abra_carson','EWV73ABO7RD','Belogorsk','Fast and furious is the best and you cant change my mind','2021-03-30 12:38:24'),
-(15,'Montana','Poole','convallis@diamSed.com','montana','EXV51KVN4UG','Saint-Nazaire','just trying to find a nice car for my family','2021-03-30 12:38:24'),
-(16,'Melvin','Burch','Nulla.tincidunt@nonnisiAenean.org','melvin_b','KJV18FNQ2TA','Bostaniçi','hey everyone. Im new to the car passion thing but i really want to get into business.','2021-03-30 12:38:24'),
-(17,'Jared','Head','mauris.a.nunc@eu.ca','NBU44UNP0BB','head_jared','Provost','life is boring but cars are not','2021-03-30 12:38:24'),
-(18,'Yvonne','Odonnell','condimentum@velvulputate.edu','odonnel_y','WYQ13QQL6SR','Saint-Médard-en-Jalles','Renaults are the best cars in the world.','2021-03-30 12:38:24'),
-(19,'Palmer','Maldonado','Aliquam.tincidunt@orci.com','paler_mal','HTJ05GKL1QF','East Linton','Hey hey hey hey hey hey!','2021-03-30 12:38:24'),
-(20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24');
+INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,location,about,registeredOn) VALUES
+(1,1,'Roth','Hampton','tempor.augue.ac@sitametmetus.edu','roth_hampton','PXA24YEP6CV','Porto','I LOVE CARS and so I decided to build this website so I can share it with everyone else.','2021-03-30 12:38:24'),
+(2,2,'Bree','Espinoza','auctor.velit.eget@mollis.ca','bree_espinoza','ZED49VDV4VT','Muradiye','I love BMWs and I cant help myself when it comes to buying them. My girlfriend doesnt really approve of that so I need to sell some of them','2021-03-30 12:38:24'),
+(3,3,'Tanek','Spence','Fusce.dolor@nisi.com','tanek_spence','DTQ16ULU3HP','Barry','Ive been in love with cars ever since I was a 4 year old and now I want to make a living out of it.','2021-03-30 12:38:24'),
+(4,4,'Fitzgerald','Cash','dolor.dapibus.gravida@sedduiFusce.edu','cash_fitz','UAU42EDT3XL','Perchtoldsdorf','Cars, cars, cars, You gotta love them.','2021-03-30 12:38:24'),
+(5,5,'Aimee','Cortez','nibh@dictum.co.uk','aimee_cortez','XXX07JUG7BH','Sargodha','Life without cars is like Rome without the Pope.','2021-03-30 12:38:24'),
+(6,6,'Barclay','Sargent','aliquet.Proin@Praesent.com','barclay','KDI43MJE4FP','Maunath Bhanjan','Just chilling and buying cars.','2021-03-30 12:38:24'),
+(7,7,'Fuller','Beck','mi.felis@pedeacurna.com','fuller_beck','NAQ18MSW3TI','Pekanbaru','Just trying to have some fun :)','2021-03-30 12:38:24'),
+(8,8,'Ulysses','Bennett','dictum@Donectempor.com','ulysses_bennte','CQW48UUT5TJ','Aylmer','Impulsive car buyer.','2021-03-30 12:38:24'),
+(9,9,'Ian','Walsh','nulla@Curabitursed.ca','ian_walsh','LQG38WSJ6NO','Borgomasino','Im a Bad Ass.','2021-03-30 12:38:24'),
+(10,10,'Valentine','Boyer','elit.pharetra.ut@aliquetsem.com','valentine_boyer','RIX27PKB7IJ','Sakhalin','Hello! Just loving cars.','2021-03-30 12:38:24'),
+(11,11,'Ulysses','Hayes','mauris@metusInnec.co.uk','ulysses_hayes','PPY94UIU8YF','Scala Coeli','Fast and Furious lover. JUst trying to bring things from the screen to real life.','2021-03-30 12:38:24'),
+(12,12,'Moses','Stanton','dui.nec.urna@dictumcursus.edu','moses_stanton','NPR54ONU1NS','Tallahassee','Im boreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeed','2021-03-30 12:38:24'),
+(13,13,'Silas','Olsen','faucibus.ut.nulla@fermentummetus.net','silas_olsen','MCH94KSM4NQ','Pishin Valley','what am i doing with my life?','2021-03-30 12:38:24'),
+(14,14,'Abra','Carson','tempor@pede.co.uk','abra_carson','EWV73ABO7RD','Belogorsk','Fast and furious is the best and you cant change my mind','2021-03-30 12:38:24'),
+(15,15,'Montana','Poole','convallis@diamSed.com','montana','EXV51KVN4UG','Saint-Nazaire','just trying to find a nice car for my family','2021-03-30 12:38:24'),
+(16,16,'Melvin','Burch','Nulla.tincidunt@nonnisiAenean.org','melvin_b','KJV18FNQ2TA','Bostaniçi','hey everyone. Im new to the car passion thing but i really want to get into business.','2021-03-30 12:38:24'),
+(17,17,'Jared','Head','mauris.a.nunc@eu.ca','NBU44UNP0BB','head_jared','Provost','life is boring but cars are not','2021-03-30 12:38:24'),
+(18,18,'Yvonne','Odonnell','condimentum@velvulputate.edu','odonnel_y','WYQ13QQL6SR','Saint-Médard-en-Jalles','Renaults are the best cars in the world.','2021-03-30 12:38:24'),
+(19,19,'Palmer','Maldonado','Aliquam.tincidunt@orci.com','paler_mal','HTJ05GKL1QF','East Linton','Hey hey hey hey hey hey!','2021-03-30 12:38:24'),
+(20,20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24');
 
 -- Seller Permissions --
 INSERT INTO "seller" (id) VALUES (2),(3),(4),(7);
 
 -- Vehicles --
-INSERT INTO "vehicle" (id,owner,brand,model,condition,manufactureYear,horsepower) VALUES
+INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (1,2,'BMW','1 Series','Mint',2008,150),
 (2,2,'BMW','3 Series','Mint',2010,200),
 (3,2,'BMW','5 Series','Mint',2009,220),
@@ -76,31 +99,6 @@ INSERT INTO "auction_mod" (user_id,auction_id) VALUES (3,7),(3,8),(3,9),(3,10),(
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (4,15),(4,16),(4,17),(4,18),(4,19),(4,20);
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (6,15),(6,16),(6,17);
 INSERT INTO "admin" (id) VALUES (1);
-
--- Profile Photos --
-INSERT INTO "image" (id,path) VALUES
-(1, 'profile_photos/1.png'),
-(2, 'profile_photos/1.png'),
-(3, 'profile_photos/1.png'),
-(4, 'profile_photos/1.png'),
-(5, 'profile_photos/1.png'),
-(6, 'profile_photos/1.png'),
-(7, 'profile_photos/1.png'),
-(8, 'profile_photos/1.png'),
-(9, 'profile_photos/1.png'),
-(10, 'profile_photos/1.png'),
-(11, 'profile_photos/1.png'),
-(12, 'profile_photos/1.png'),
-(13, 'profile_photos/1.png'),
-(14, 'profile_photos/1.png'),
-(15, 'profile_photos/1.png'),
-(16, 'profile_photos/1.png'),
-(17, 'profile_photos/1.png'),
-(18, 'profile_photos/1.png'),
-(19, 'profile_photos/1.png'),
-(20, 'profile_photos/1.png');
-
-INSERT INTO "profile_image" (user_id,image) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
 
 -- Car Photos --
 INSERT INTO "image" (id,path) VALUES
@@ -162,7 +160,7 @@ INSERT INTO "favourite_auction" (user_id, auction_id) VALUES
 (13,15),(13,16);
 
 -- Auction Comments --
-INSERT INTO "auction_comment" (id,user_id,auction_id,createdOn,content) VALUES
+INSERT INTO "comment" (id,user_id,auction_id,createdOn,content) VALUES
 (1,8,1,'2021-03-31 15:27:38','Cant wait to get my hands on this car!'),
 (2,9,1,'2021-03-31 17:54:38','Lovely Car! Hope I can get it!'),
 (3,10,1,'2021-03-31 19:03:38','I love this BMW. It will be the perfect gift for my daughter.'),
@@ -184,7 +182,7 @@ INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banTy
 (4, 8, 3, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him for this auction','AuctionBan',14);
 
 -- Bids --
-INSERT INTO "bidding" (id,user_id,auction_id,amount,createdOn) VALUES
+INSERT INTO "bid" (id,user_id,auction_id,amount,createdOn) VALUES
 (1,5,1,8000,'2021-04-01 17:06:32'),
 (2,6,1,8300,'2021-04-01 17:20:32'),
 (3,7,1,8500,'2021-04-01 17:45:32'),
