@@ -139,7 +139,7 @@ $BODY$
 BEGIN
     IF NEW.banType = 'BuyerBan' OR NEW.banType = 'AllBan' THEN
         DELETE FROM "bid" b
-        WHERE b.user = NEW.user
+        WHERE b.user = NEW.user;
     END IF;
     RETURN NEW;
 END
@@ -157,7 +157,7 @@ BEGIN
     DELETE FROM "bid" b
     WHERE 
         b.user = OLD.user AND
-        b.auction = OLD.auction
+        b.auction = OLD.auction;
     RETURN NEW;
 END
 $BODY$
@@ -167,3 +167,4 @@ CREATE TRIGGER removed_from_guest_list
     AFTER DELETE ON "auction_guest"
     FOR EACH ROW
     EXECUTE PROCEDURE removed_from_guest_list();
+    
