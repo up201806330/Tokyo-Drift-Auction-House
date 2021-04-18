@@ -70,3 +70,25 @@ CREATE TRIGGER cant_bid_own_auction
     BEFORE INSERT OR UPDATE ON "bid"
     FOR EACH ROW
     EXECUTE PROCEDURE cant_bid_own_auction();
+
+
+
+CREATE FUNCTION cant_bid_auction_over() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF NEW.createdOn >= (
+        SELECT endingTime
+        FROM "auction"
+        WHERE id = NEW.auction_id
+    ) THEN
+        RAISE EXCEPTION 'Bid cannot be placed after auction is over';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER cant_bid_auction_over
+    BEFORE INSERT OR UPDATE ON "bid"
+    FOR EACH ROW
+    EXECUTE PROCEDURE cant_bid_auction_over();
