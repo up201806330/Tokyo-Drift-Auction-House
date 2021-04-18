@@ -119,8 +119,11 @@ BEGIN
         SELECT auctionType
         FROM "auction"
         WHERE id = NEW.auction_id
-    ) = 'Private' AND NEW.user_id NOT IN (
-        SELECT user_id FROM "auction_guest" WHERE auction_id = NEW.auction_id
+    ) = 'Private' AND NOT EXISTS (
+        SELECT *
+        FROM "auction_guest"
+        WHERE auction_id = NEW.auction_id
+        AND user_id = NEW.user_id
     ) THEN
         RAISE EXCEPTION 'Bids can only be placed on private auctions by guests of that auction';
     END IF;
