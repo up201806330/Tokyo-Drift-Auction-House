@@ -128,3 +128,37 @@ CREATE TRIGGER only_guests_can_bid
     BEFORE INSERT OR UPDATE ON "bid"
     FOR EACH ROW
     EXECUTE PROCEDURE only_guests_can_bid();
+
+CREATE FUNCTION banned_bids() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF NEW.banType = 'BuyerBan' OR NEW.banType = 'AllBan' THEN
+        DELETE FROM "bidding" b
+        WHERE b.user = NEW.user
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER banned_bids
+    AFTER INSERT OR UPDATE ON "ban"
+    FOR EACH ROW
+    EXECUTE PROCEDURE banned_bids();
+
+CREATE FUNCTION removed_from_guest_list() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM "bidding" b
+    WHERE 
+        b.user = OLD.user AND
+        b.auction = OLD.auction
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER removed_from_guest_list
+    AFTER DELETE ON "auction_guest"
+    FOR EACH ROW
+    EXECUTE PROCEDURE removed_from_guest_list();
