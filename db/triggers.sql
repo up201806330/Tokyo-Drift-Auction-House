@@ -139,7 +139,7 @@ $BODY$
 BEGIN
     IF NEW.banType = 'BuyerBan' OR NEW.banType = 'AllBan' THEN
         DELETE FROM "bid" b
-        WHERE b.user = NEW.user;
+        WHERE b.user_id = NEW.user_id;
     END IF;
     RETURN NEW;
 END
