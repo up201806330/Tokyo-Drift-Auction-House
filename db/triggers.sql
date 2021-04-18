@@ -2,11 +2,13 @@ DROP TRIGGER IF EXISTS ban_user                 ON "ban";
 DROP TRIGGER IF EXISTS private_auction_guests   ON "auction_guest";
 DROP TRIGGER IF EXISTS cant_bid_own_auction     ON "bid";
 DROP TRIGGER IF EXISTS cant_bid_auction_over    ON "bid";
+DROP TRIGGER IF EXISTS only_guests_can_bid      ON "bid";
 
 DROP FUNCTION IF EXISTS ban_user              ;
 DROP FUNCTION IF EXISTS private_auction_guests;
 DROP FUNCTION IF EXISTS cant_bid_own_auction  ;
 DROP FUNCTION IF EXISTS cant_bid_auction_over ;
+DROP FUNCTION IF EXISTS only_guests_can_bid   ;
 
 CREATE FUNCTION ban_user() RETURNS TRIGGER AS
 $BODY$
@@ -102,3 +104,27 @@ CREATE TRIGGER cant_bid_auction_over
     BEFORE INSERT OR UPDATE ON "bid"
     FOR EACH ROW
     EXECUTE PROCEDURE cant_bid_auction_over();
+
+
+
+CREATE FUNCTION only_guests_can_bid() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (
+        SELECT auctionType
+        FROM "auction"
+        WHERE id = NEW.auction_id
+    ) = 'Private' AND NEW.user_id NOT IN (
+        SELECT user_id FROM "auction_guest" WHERE auction_id = NEW.auction_id
+    ) THEN
+        RAISE EXCEPTION 'Bids can only be placed on private auctions by guests of that auction';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER only_guests_can_bid
+    BEFORE INSERT OR UPDATE ON "bid"
+    FOR EACH ROW
+    EXECUTE PROCEDURE only_guests_can_bid();
