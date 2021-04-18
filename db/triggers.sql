@@ -1,3 +1,13 @@
+DROP TRIGGER IF EXISTS ban_user                 ON "ban";
+DROP TRIGGER IF EXISTS private_auction_guests   ON "auction_guest";
+DROP TRIGGER IF EXISTS cant_bid_own_auction     ON "bid";
+DROP TRIGGER IF EXISTS cant_bid_auction_over    ON "bid";
+
+DROP FUNCTION IF EXISTS ban_user              ;
+DROP FUNCTION IF EXISTS private_auction_guests;
+DROP FUNCTION IF EXISTS cant_bid_own_auction  ;
+DROP FUNCTION IF EXISTS cant_bid_auction_over ;
+
 CREATE FUNCTION ban_user() RETURNS TRIGGER AS
 $BODY$
 BEGIN
