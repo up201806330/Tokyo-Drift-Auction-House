@@ -3,12 +3,17 @@ DROP TRIGGER IF EXISTS private_auction_guests   ON "auction_guest";
 DROP TRIGGER IF EXISTS cant_bid_own_auction     ON "bid";
 DROP TRIGGER IF EXISTS cant_bid_auction_over    ON "bid";
 DROP TRIGGER IF EXISTS only_guests_can_bid      ON "bid";
+DROP TRIGGER IF EXISTS banned_bids              ON "ban";
+DROP TRIGGER IF EXISTS removed_from_guest_list  ON "auction_guest";
 
-DROP FUNCTION IF EXISTS ban_user              ;
-DROP FUNCTION IF EXISTS private_auction_guests;
-DROP FUNCTION IF EXISTS cant_bid_own_auction  ;
-DROP FUNCTION IF EXISTS cant_bid_auction_over ;
-DROP FUNCTION IF EXISTS only_guests_can_bid   ;
+
+DROP FUNCTION IF EXISTS ban_user               ;
+DROP FUNCTION IF EXISTS private_auction_guests ;
+DROP FUNCTION IF EXISTS cant_bid_own_auction   ;
+DROP FUNCTION IF EXISTS cant_bid_auction_over  ;
+DROP FUNCTION IF EXISTS only_guests_can_bid    ;
+DROP FUNCTION IF EXISTS banned_bids            ;
+DROP FUNCTION IF EXISTS removed_from_guest_list;
 
 CREATE FUNCTION ban_user() RETURNS TRIGGER AS
 $BODY$
@@ -133,7 +138,7 @@ CREATE FUNCTION banned_bids() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     IF NEW.banType = 'BuyerBan' OR NEW.banType = 'AllBan' THEN
-        DELETE FROM "bidding" b
+        DELETE FROM "bid" b
         WHERE b.user = NEW.user
     END IF;
     RETURN NEW;
@@ -149,7 +154,7 @@ CREATE TRIGGER banned_bids
 CREATE FUNCTION removed_from_guest_list() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    DELETE FROM "bidding" b
+    DELETE FROM "bid" b
     WHERE 
         b.user = OLD.user AND
         b.auction = OLD.auction
