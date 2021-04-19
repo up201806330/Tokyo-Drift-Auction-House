@@ -5,7 +5,7 @@ DROP TRIGGER IF EXISTS cant_bid_auction_over    ON "bid";
 DROP TRIGGER IF EXISTS only_guests_can_bid      ON "bid";
 DROP TRIGGER IF EXISTS banned_bids              ON "ban";
 DROP TRIGGER IF EXISTS removed_from_guest_list  ON "auction_guest";
-
+DROP TRIGGER IF EXISTS new_bid_higher           ON "bid";
 
 DROP FUNCTION IF EXISTS ban_user               ;
 DROP FUNCTION IF EXISTS private_auction_guests ;
@@ -14,6 +14,7 @@ DROP FUNCTION IF EXISTS cant_bid_auction_over  ;
 DROP FUNCTION IF EXISTS only_guests_can_bid    ;
 DROP FUNCTION IF EXISTS banned_bids            ;
 DROP FUNCTION IF EXISTS removed_from_guest_list;
+DROP FUNCTION IF EXISTS new_bid_higher         ;
 
 CREATE FUNCTION ban_user() RETURNS TRIGGER AS
 $BODY$
@@ -171,3 +172,25 @@ CREATE TRIGGER removed_from_guest_list
     FOR EACH ROW
     EXECUTE PROCEDURE removed_from_guest_list();
     
+
+
+CREATE FUNCTION new_bid_higher() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM "bid"
+        WHERE auction_id = NEW.auction_id
+        AND amount > NEW.amount
+    ) THEN
+        RAISE EXCEPTION 'Bids must be of a higher amount';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER new_bid_higher
+    BEFORE INSERT ON "bid"
+    FOR EACH ROW
+    EXECUTE PROCEDURE new_bid_higher();
