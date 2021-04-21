@@ -6,6 +6,7 @@ DROP TRIGGER IF EXISTS only_guests_can_bid      ON "bid";
 DROP TRIGGER IF EXISTS banned_bids              ON "ban";
 DROP TRIGGER IF EXISTS removed_from_guest_list  ON "auction_guest";
 DROP TRIGGER IF EXISTS new_bid_higher           ON "bid";
+DROP TRIGGER IF EXISTS update_fts               ON "auction";
 
 DROP FUNCTION IF EXISTS ban_user               ;
 DROP FUNCTION IF EXISTS private_auction_guests ;
@@ -15,6 +16,7 @@ DROP FUNCTION IF EXISTS only_guests_can_bid    ;
 DROP FUNCTION IF EXISTS banned_bids            ;
 DROP FUNCTION IF EXISTS removed_from_guest_list;
 DROP FUNCTION IF EXISTS new_bid_higher         ;
+DROP FUNCTION IF EXISTS update_fts             ;
 
 CREATE FUNCTION ban_user() RETURNS TRIGGER AS
 $BODY$
@@ -171,7 +173,7 @@ CREATE TRIGGER removed_from_guest_list
     AFTER DELETE ON "auction_guest"
     FOR EACH ROW
     EXECUTE PROCEDURE removed_from_guest_list();
-    
+
 
 
 CREATE FUNCTION new_bid_higher() RETURNS TRIGGER AS
@@ -194,3 +196,30 @@ CREATE TRIGGER new_bid_higher
     BEFORE INSERT ON "bid"
     FOR EACH ROW
     EXECUTE PROCEDURE new_bid_higher();
+
+
+
+CREATE FUNCTION update_fts() RETURN TRIGGER AS
+$BODY$
+BEGIN
+	IF TG_OP = 'INSERT' THEN
+		NEW.search = setweight(to_tsvector ('english', NEW.auction_name), 'A') || 
+                     setweight(to_tsvector ('english', NEW.brand), 'B') ||
+                     setweight(to_tsvector ('english', NEW.model), 'C');
+	END IF;
+	IF TG_OP = 'UPDATE' THEN
+		IF NEW.auction_name <> OLD.auction_name THEN
+			NEW.search = setweight(to_tsvector ('english', NEW.auction_name), 'A') || 
+                         setweight(to_tsvector ('english', NEW.brand), 'B') ||
+                         setweight(to_tsvector ('english', NEW.model), 'C');
+		ENDIF;
+	ENDIF;
+	RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_fts
+    BEFORE INSERT OR UPDATE ON "auction"
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_fts();

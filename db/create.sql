@@ -81,7 +81,8 @@ CREATE TABLE "auction" (
     creationTime    PASTTIMESTAMP   ,
     startingTime    TIMESTAMP       NOT NULL CHECK (startingTime >= creationTime),
     endingTime      TIMESTAMP       NOT NULL CHECK (endingTime >= startingTime + INTERVAL '1 hour'),
-    auctionType     AUCTIONTYPE_T   NOT NULL DEFAULT 'Public'
+    auctionType     AUCTIONTYPE_T   NOT NULL DEFAULT 'Public',
+    search TSVECTOR
 );
 
 CREATE TABLE "auction_mod" (
