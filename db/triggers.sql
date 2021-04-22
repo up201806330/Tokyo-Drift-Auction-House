@@ -201,17 +201,19 @@ CREATE TRIGGER new_bid_higher
 
 CREATE FUNCTION update_fts() RETURNS TRIGGER AS
 $BODY$
+DECLARE brand TEXT = (SELECT brand FROM "vehicle" WHERE id = NEW.vehicle_id);
+DECLARE model TEXT = (SELECT model FROM "vehicle" WHERE id = NEW.vehicle_id);
 BEGIN
 	IF TG_OP = 'INSERT' THEN
 		NEW.search = setweight(to_tsvector ('english', NEW.auction_name), 'A') || 
-                     setweight(to_tsvector ('english', NEW.brand), 'B') ||
-                     setweight(to_tsvector ('english', NEW.model), 'C');
+                     setweight(to_tsvector ('english', brand), 'B') ||
+                     setweight(to_tsvector ('english', model), 'C');
 	END IF;
 	IF TG_OP = 'UPDATE' THEN
 		IF NEW.auction_name <> OLD.auction_name THEN
 			NEW.search = setweight(to_tsvector ('english', NEW.auction_name), 'A') || 
-                         setweight(to_tsvector ('english', NEW.brand), 'B') ||
-                         setweight(to_tsvector ('english', NEW.model), 'C');
+                         setweight(to_tsvector ('english', brand), 'B') ||
+                         setweight(to_tsvector ('english', model), 'C');
 		END IF;
 	END IF;
 	RETURN NEW;
