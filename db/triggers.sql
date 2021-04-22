@@ -199,7 +199,7 @@ CREATE TRIGGER new_bid_higher
 
 
 
-CREATE FUNCTION update_fts() RETURN TRIGGER AS
+CREATE FUNCTION update_fts() RETURNS TRIGGER AS
 $BODY$
 BEGIN
 	IF TG_OP = 'INSERT' THEN
@@ -212,8 +212,8 @@ BEGIN
 			NEW.search = setweight(to_tsvector ('english', NEW.auction_name), 'A') || 
                          setweight(to_tsvector ('english', NEW.brand), 'B') ||
                          setweight(to_tsvector ('english', NEW.model), 'C');
-		ENDIF;
-	ENDIF;
+		END IF;
+	END IF;
 	RETURN NEW;
 END
 $BODY$
