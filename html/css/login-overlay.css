@@ -1,0 +1,59 @@
+.modal-content {
+    padding: 5% !important;
+}
+
+.modal-footer {
+    border: 0;
+}
+
+.login-close-cross {
+    padding-bottom: 0 !important;
+    border-bottom: 0;
+}
+
+.login-header {
+    padding-top: 0;
+    border: 0;
+}
+
+
+.login-button > a {
+    color: white;
+    background-color: rgb(27, 27, 27);
+}
+
+.login-button > a:hover {
+color: rgb(255, 157, 100) !important;
+background-color: rgb(49, 49, 49) !important;
+}
+
+.login-button > button {
+    color: white;
+    background-color: rgb(27, 27, 27);
+}
+
+.login-button > button:hover {
+color: rgb(255, 157, 100) !important;
+background-color: rgb(49, 49, 49) !important;
+}
+
+#exampleModal > div > div > hr:nth-child(5) {
+    margin-top: 0 !important;
+}
+
+.modal-open .container-fluid, .modal-open  .container {
+    -webkit-filter: blur(1px) grayscale(5%);
+}
+
+#font, #font2, #font3 {
+    position: absolute;
+    right: 15px;
+    transform: translate(0, -50%);
+    top: 50%;
+    cursor: pointer;
+}
+
+.fa#font, .fa#font2, .fa#font3 {
+    font-size: 20px;
+}
+
