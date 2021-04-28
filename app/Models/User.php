@@ -18,7 +18,33 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstName',
+        'lastName',
+        'email',
+        'username',
+        'password',
+        'location',
+        'about',
+        'registeredOn',
+        // profileImage not included
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'firstName' => 'string',
+        'lastName' => 'string',
+        'email' => 'string',
+        'username' => 'string',
+        'password' => 'string',
+        'location' => 'string',
+        'about' => 'string',
+        'registeredOn' => 'string', // to change (?)
+        'profileImage' => 'integer'
     ];
 
     /**
@@ -31,9 +57,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * The cards this user owns.
+     * Get all of the vehicle for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-     public function cards() {
-      return $this->hasMany('App\Models\Card');
+    public function vehicles(): HasMany
+    {
+        return $this->hasMany('App\Models\Vehicle');
     }
 }

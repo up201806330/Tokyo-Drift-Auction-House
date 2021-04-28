@@ -11,18 +11,24 @@
 |
 */
 // Home
-Route::get('/', 'Auth\LoginController@home');
+// Route::get('/', 'Auth\LoginController@home');
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
+Route::get('/auctions/{id}', 'AuctionController@show');
+// Route::get('/', function () {
+//     return view('pages.auction');
+// });
 
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
+
+// // Cards
+// Route::get('cards', 'CardController@list');
+// Route::get('cards/{id}', 'CardController@show');
+
+// // API
+// Route::put('api/cards', 'CardController@create');
+// Route::delete('api/cards/{card_id}', 'CardController@delete');
+// Route::put('api/cards/{card_id}/', 'ItemController@create');
+// Route::post('api/item/{id}', 'ItemController@update');
+// Route::delete('api/item/{id}', 'ItemController@delete');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
