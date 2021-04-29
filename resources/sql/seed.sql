@@ -39,7 +39,7 @@ CREATE TABLE image (
     path    TEXT    NOT NULL
 );
 
-CREATE TABLE user (
+CREATE TABLE "user" (
     id              SERIAL          PRIMARY KEY,
     firstName       TEXT            NOT NULL,
     lastName        TEXT            NOT NULL,
@@ -430,26 +430,26 @@ CREATE TRIGGER update_fts
 
 -- Profile Photos --
 INSERT INTO "image" (id,path) VALUES
-(1, 'profile_photos/1.png'),
-(2, 'profile_photos/1.png'),
-(3, 'profile_photos/1.png'),
-(4, 'profile_photos/1.png'),
-(5, 'profile_photos/1.png'),
-(6, 'profile_photos/1.png'),
-(7, 'profile_photos/1.png'),
-(8, 'profile_photos/1.png'),
-(9, 'profile_photos/1.png'),
-(10, 'profile_photos/1.png'),
-(11, 'profile_photos/1.png'),
-(12, 'profile_photos/1.png'),
-(13, 'profile_photos/1.png'),
-(14, 'profile_photos/1.png'),
-(15, 'profile_photos/1.png'),
-(16, 'profile_photos/1.png'),
-(17, 'profile_photos/1.png'),
-(18, 'profile_photos/1.png'),
-(19, 'profile_photos/1.png'),
-(20, 'profile_photos/1.png');
+(1, 'profile_photos/1.jpg'),
+(2, 'profile_photos/2.jpg'),
+(3, 'profile_photos/3.jpg'),
+(4, 'profile_photos/4.jpg'),
+(5, 'profile_photos/5.jpg'),
+(6, 'profile_photos/6.jpg'),
+(7, 'profile_photos/7.jpg'),
+(8, 'profile_photos/8.jpg'),
+(9, 'profile_photos/9.jpg'),
+(10, 'profile_photos/10.jpg'),
+(11, 'profile_photos/11.jpg'),
+(12, 'profile_photos/12.jpg'),
+(13, 'profile_photos/13.jpg'),
+(14, 'profile_photos/14.jpg'),
+(15, 'profile_photos/15.jpg'),
+(16, 'profile_photos/16.jpg'),
+(17, 'profile_photos/17.jpg'),
+(18, 'profile_photos/18.jpg'),
+(19, 'profile_photos/19.jpg'),
+(20, 'profile_photos/20.jpg');
 
 -- Users --
 INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,location,about,registeredOn) VALUES
