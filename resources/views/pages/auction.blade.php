@@ -38,11 +38,13 @@
                     @foreach($images_paths as $images_path)
                         @if($images_path->sequence_number == 1)
                             <div class="carousel-item active">
-                                <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
+                                {{-- TODO mini hack to resize imgs :/ --}}
+                                <img style="width:640px;height:360px;" src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
                             </div>
                         @else
                             <div class="carousel-item">
-                                <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
+                                {{-- TODO mini hack to resize imgs :/ --}}
+                                <img style="width:640px;height:360px;" src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
                             </div>
                         @endif
                     @endforeach
