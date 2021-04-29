@@ -76,6 +76,8 @@ class AuctionController extends Controller
 
         $owner = User::find($vehicle->owner);
 
+        $owner_profile_img = Image::find($owner->profileimage);
+
         $current_max_bid_amount = Bid::where('auction_id',  '=', $id)->max('amount');
 
         $current_max_bid = Bid::where([
@@ -85,13 +87,17 @@ class AuctionController extends Controller
 
         $highest_bidder = User::find($current_max_bid->user_id);
 
+        $highest_bidder_profile_img = Image::find($highest_bidder->profileimage);
+
         return view('pages.auction', [
             'auction'       => $auction,
             'vehicle'       => $vehicle,
             'images_paths'  => $images_paths,
             'max_bid'       => $current_max_bid_amount,
             'owner'         => $owner,
-            'highest_bidder'=> $highest_bidder
+            'owner_img'     => $owner_profile_img,
+            'highest_bidder'=> $highest_bidder,
+            'bidder_img'    => $highest_bidder_profile_img
         ]);
     }
 

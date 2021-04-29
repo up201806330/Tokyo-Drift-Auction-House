@@ -59,6 +59,17 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the profileImage that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function profileImage(): BelongsTo
+    {
+        return $this->belongsTo(Image::class, 'profileImage');
+    }
+
+
+    /**
      * Get all of the vehicle for the User
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -107,7 +107,7 @@
               <div class="col-12 col-md-4 mt-3 mb-3">
                   <h2>Owner</h2>
                   <a href="../pages/profile.php" class="profile_text">
-                      <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
+                      <img src="{{ asset('assets/' . $owner_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
                       
                       {{-- <h4 class="m-0" style="color: rgb(204, 174, 2)">Hanna Green</h4> --}}
                       <h4 class="m-0" style="color: rgb(204, 174, 2)">{{ $owner->username }}</h4>
@@ -120,7 +120,7 @@
               <div class="col-12 col-md-4 mt-3 mb-3">
                   <h2 class="text-nowrap">Top Bidder</h2>
                   <a href="../pages/profile.php" class="profile_text">
-                      <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
+                      <img src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
                       <h4 class="m-0">{{$highest_bidder->username}}</h4>
                   </a>
               </div>
