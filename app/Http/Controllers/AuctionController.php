@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Auction;
 use App\Models\VehicleImage;
+use App\Models\Image;
+use DB;
 
 class AuctionController extends Controller
 {
@@ -48,13 +50,28 @@ class AuctionController extends Controller
     public function show($id)
     {
         $auction = Auction::find($id);
-        $vehicle = $auction->vehicle->id;
+        $vehicle = $auction->vehicle;
 
         // gets images array of provided vehicle_id
-        $images = VehicleImage::where('vehicle_id', $vehicle)->get();
+        $images_infos = VehicleImage::where('vehicle_id', $vehicle->id)->get();
 
-        return $images;
-        // return view('pages.auction', ['auction' => $auction, 'vehicle' => $vehicle]);
+        // foreach ($images_infos as $img) {
+        //     echo $img->image_id;
+        // }
+
+        $images_paths = DB::table('image')
+                        ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
+                        ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
+                        ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
+                        ->where('vehicle.id', '=', $vehicle->id)
+                        ->get();
+
+        // return $images_paths;
+        
+        // return $images_infos;
+        // return $images_infos[1]->image_id;
+
+        return view('pages.auction', ['auction' => $auction, 'vehicle' => $vehicle, 'images_paths' => $images_paths]);
     }
 
     /**

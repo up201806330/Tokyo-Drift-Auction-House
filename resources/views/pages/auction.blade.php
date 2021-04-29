@@ -24,24 +24,31 @@
           <div class="col-12 col-lg-6 mb-5 ms-1 ms-md-4 d-flex justify-content-center justify-content-lg-start" id="under_heart">
               <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+
+                    @foreach($images_paths as $images_path)
+                        @if($images_path->sequence_number == 1)
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="{{'Slide' . $images_path->sequence_number}}"></button>
+                        @else
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$images_path->sequence_number - 1}}" aria-current="true" aria-label="{{'Slide' . $images_path->sequence_number}}"></button>
+                        @endif
+                    @endforeach
+
                   </div>
                   <div class="carousel-inner">
-                      <div class="carousel-item active">
-                          <img src="{{ asset('assets/car_photos/1/1.jpg') }}" class="d-block w-100" alt="bmw i8">
-                      </div>
-                      <div class="carousel-item">
-                          <img src="https://s3.observador.pt/wp-content/uploads/2020/03/11202440/bmw_i8_roadster_619.jpg" class="d-block w-100" alt="bmw i8">
-                      </div>
-                      <div class="carousel-item center-cropped">
-                          <img src="https://www.wattson.pt/wp-content/uploads/2019/02/P90301923_highRes_bmw-i8-roadster-04-2.jpg" class="d-block w-100" alt="bmw i8">
-                      </div>
-                      <div class="carousel-item center-cropped">
-                          <img src="https://garagem360.com.br/wp-content/uploads/2019/04/P90285395_highRes_the-new-bmw-i8-roads-1.jpg" class="d-block w-100" alt="bmw i8">
-                      </div>
+                    @foreach($images_paths as $images_path)
+                        @if($images_path->sequence_number == 1)
+                            <div class="carousel-item active">
+                                <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
+                            </div>
+                        @else
+                            <div class="carousel-item">
+                                <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
+                            </div>
+                        @endif
+                    @endforeach
+                      {{-- <div class="carousel-item center-cropped">
+                          <img src="{{ asset('assets/' . $images_paths[2]->path) }}" class="d-block w-100" alt="bmw i8">
+                      </div> --}}
                   </div>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
