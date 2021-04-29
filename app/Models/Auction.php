@@ -32,7 +32,7 @@ class Auction extends Model
   // }
 
   /**
-   * Get the user that owns the Auction
+   * Get the vehicle that owns the Auction
    *
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
    */

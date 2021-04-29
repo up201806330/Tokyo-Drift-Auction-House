@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Auction;
 use App\Models\VehicleImage;
 use App\Models\Image;
+use App\Models\User;
+use App\Models\Bid;
 use DB;
 
 class AuctionController extends Controller
@@ -66,19 +68,31 @@ class AuctionController extends Controller
                         ->where('vehicle.id', '=', $vehicle->id)
                         ->get();
 
-        $current_max_bid = DB::table('bid')
-                        ->join('auction', 'auction.id', '=', 'bid.auction_id')
-                        ->select('auction.id', 'bid.amount')
-                        ->where('auction.id', '=', $auction->id)
-                        ->max('bid.amount');
-        
-        
-        // return $current_bid;
-        // return $images_paths;
-        // return $images_infos;
-        // return $images_infos[1]->image_id;
+        // $current_max_bid_amount = DB::table('bid')
+        //                 ->join('auction', 'auction.id', '=', 'bid.auction_id')
+        //                 ->select('auction.id', 'bid.user_id', 'bid.amount')
+        //                 ->where('auction.id', '=', $auction->id)
+        //                 ->max('bid.amount');
 
-        return view('pages.auction', ['auction' => $auction, 'vehicle' => $vehicle, 'images_paths' => $images_paths, 'max_bid' => $current_max_bid]);
+        $owner = User::find($vehicle->owner);
+
+        $current_max_bid_amount = Bid::where('auction_id',  '=', $id)->max('amount');
+
+        $current_max_bid = Bid::where([
+            ['amount',      '=', $current_max_bid_amount],
+            ['auction_id',  '=', $id],
+        ])->firstOrFail();
+
+        $highest_bidder = User::find($current_max_bid->user_id);
+
+        return view('pages.auction', [
+            'auction'       => $auction,
+            'vehicle'       => $vehicle,
+            'images_paths'  => $images_paths,
+            'max_bid'       => $current_max_bid_amount,
+            'owner'         => $owner,
+            'highest_bidder'=> $highest_bidder
+        ]);
     }
 
     /**

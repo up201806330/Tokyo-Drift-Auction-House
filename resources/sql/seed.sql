@@ -39,7 +39,7 @@ CREATE TABLE image (
     path    TEXT    NOT NULL
 );
 
-CREATE TABLE "user" (
+CREATE TABLE user (
     id              SERIAL          PRIMARY KEY,
     firstName       TEXT            NOT NULL,
     lastName        TEXT            NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE "ban" (
     CONSTRAINT auction_id CHECK ((banType != 'AuctionBan') OR (banType = 'AuctionBan' AND auction_id IS NOT NULL))
 );
 
-CREATE TABLE "bid" (
+CREATE TABLE bid (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         REFERENCES "user"(id) NOT NULL,
     auction_id  INTEGER         REFERENCES "auction"(id) NOT NULL,

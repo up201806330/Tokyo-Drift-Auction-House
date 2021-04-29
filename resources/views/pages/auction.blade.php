@@ -8,7 +8,7 @@
   <div class="container-fluid car-details">
       
   <div class="display-3 text-white text-start ps-1">
-      Auction {{ $vehicle->id }}
+      Auction {{ $auction->id }}
     </div>
   <nav aria-label="breadcrumb">
   <ol class="breadcrumb fs-5 ps-2 pt-1 pb-2">
@@ -80,7 +80,7 @@
                   </div>
                   <div class="col fire-text d-flex align-items-center justify-content-center" style="font-size: 4rem;">
                       <i class="fa fa-fire m-3"></i>
-                      <h4 class="mb-0">{{$vehicle->condition}}</h4>
+                      <h4 class="mb-0">{{Str::upper($vehicle->condition)}}</h4>
                   </div>
               </div>
               <div class="row align-items-center m-3 text-center">
@@ -108,7 +108,9 @@
                   <h2>Owner</h2>
                   <a href="../pages/profile.php" class="profile_text">
                       <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
-                      <h4 class="m-0" style="color: rgb(204, 174, 2)">Hanna Green</h4>
+                      
+                      {{-- <h4 class="m-0" style="color: rgb(204, 174, 2)">Hanna Green</h4> --}}
+                      <h4 class="m-0" style="color: rgb(204, 174, 2)">{{ $owner->username }}</h4>
                   </a>
               </div>
               <div class="col-12 col-md-4 mt-3 mb-1">
@@ -119,7 +121,7 @@
                   <h2 class="text-nowrap">Top Bidder</h2>
                   <a href="../pages/profile.php" class="profile_text">
                       <img src="https://sunrift.com/wp-content/uploads/2014/12/Blake-profile-photo-square.jpg" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
-                      <h4 class="m-0">Hank Geller</h4>
+                      <h4 class="m-0">{{$highest_bidder->username}}</h4>
                   </a>
               </div>
           </div>
