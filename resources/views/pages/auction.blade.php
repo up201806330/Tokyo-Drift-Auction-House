@@ -86,13 +86,13 @@
               <div class="row align-items-center m-3 text-center">
                   <div class="col">
                       <p>Started at:</p>
-                      <h6>16h00</h6>
-                      <h6>02.03.2021</h6>
+                      <h6>{{\Carbon\Carbon::parse($auction->startingtime)->format('H:i:s')}}</h6>
+                      <h6>{{\Carbon\Carbon::parse($auction->startingtime)->format('Y-m-d')}}</h6>
                   </div>
                   <div class="col">
                       <p>Ends at:</p>
-                      <h6>16h00</h6>
-                      <h6>07.03.2021</h6>
+                      <h6>{{\Carbon\Carbon::parse($auction->endingTime)->format('H:i:s')}}</h6>
+                      <h6>{{\Carbon\Carbon::parse($auction->endingTime)->format('Y-m-d')}}</h6>
                   </div>
               </div>
           </div>

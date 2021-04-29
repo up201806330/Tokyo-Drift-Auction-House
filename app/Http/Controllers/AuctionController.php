@@ -72,6 +72,8 @@ class AuctionController extends Controller
         // return $images_infos[1]->image_id;
 
         return view('pages.auction', ['auction' => $auction, 'vehicle' => $vehicle, 'images_paths' => $images_paths]);
+
+        // return \Carbon\Carbon::parse($auction->startingtime)->format('Y-m-d');
     }
 
     /**
