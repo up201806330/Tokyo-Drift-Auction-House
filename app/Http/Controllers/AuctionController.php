@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Auction;
+use App\Models\VehicleImage;
 
 class AuctionController extends Controller
 {
@@ -47,10 +48,13 @@ class AuctionController extends Controller
     public function show($id)
     {
         $auction = Auction::find($id);
-        $vehicle = $auction->vehicle;
+        $vehicle = $auction->vehicle->id;
 
+        // gets images array of provided vehicle_id
+        $images = VehicleImage::where('vehicle_id', $vehicle)->get();
 
-        return view('pages.auction', ['auction' => $auction, 'vehicle' => $vehicle]);
+        return $images;
+        // return view('pages.auction', ['auction' => $auction, 'vehicle' => $vehicle]);
     }
 
     /**

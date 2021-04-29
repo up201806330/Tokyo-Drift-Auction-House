@@ -34,7 +34,7 @@ CREATE TYPE     CONDITION_T     AS ENUM ('Mint', 'Clean', 'Average', 'Rough');
 CREATE TYPE     AUCTIONTYPE_T   AS ENUM ('Public', 'Private');
 CREATE TYPE     BANTYPE_T       AS ENUM ('BuyerBan', 'SellerBan', 'AllBan', 'AuctionBan');
 
-CREATE TABLE "image" (
+CREATE TABLE image (
     id      SERIAL  PRIMARY KEY,
     path    TEXT    NOT NULL
 );
@@ -102,7 +102,7 @@ CREATE TABLE "invoice" (
     description TEXT            NOT NULL
 );
 
-CREATE TABLE "vehicle_image" (
+CREATE TABLE vehicle_image (
     vehicle_id      INTEGER     NOT NULL REFERENCES "vehicle"(id),
     image_id        INTEGER     NOT NULL REFERENCES "image"(id) ON DELETE CASCADE,
     sequence_number INTEGER     NOT NULL CHECK(sequence_number >= 0),
