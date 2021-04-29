@@ -113,7 +113,7 @@
               </div>
               <div class="col-12 col-md-4 mt-3 mb-1">
                   <h2>Current Bid</h2>
-                  <h1 class="current_bid">200000€</h1>
+                  <h1 class="current_bid">{{$max_bid}}</h1>
               </div>
               <div class="col-12 col-md-4 mt-3 mb-3">
                   <h2 class="text-nowrap">Top Bidder</h2>

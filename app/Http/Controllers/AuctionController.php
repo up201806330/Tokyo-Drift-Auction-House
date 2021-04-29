@@ -66,14 +66,19 @@ class AuctionController extends Controller
                         ->where('vehicle.id', '=', $vehicle->id)
                         ->get();
 
-        // return $images_paths;
+        $current_max_bid = DB::table('bid')
+                        ->join('auction', 'auction.id', '=', 'bid.auction_id')
+                        ->select('auction.id', 'bid.amount')
+                        ->where('auction.id', '=', $auction->id)
+                        ->max('bid.amount');
         
+        
+        // return $current_bid;
+        // return $images_paths;
         // return $images_infos;
         // return $images_infos[1]->image_id;
 
-        return view('pages.auction', ['auction' => $auction, 'vehicle' => $vehicle, 'images_paths' => $images_paths]);
-
-        // return \Carbon\Carbon::parse($auction->startingtime)->format('Y-m-d');
+        return view('pages.auction', ['auction' => $auction, 'vehicle' => $vehicle, 'images_paths' => $images_paths, 'max_bid' => $current_max_bid]);
     }
 
     /**
