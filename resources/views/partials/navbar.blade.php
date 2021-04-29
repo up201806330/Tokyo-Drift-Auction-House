@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->
     <a class="navbar-brand text-white navbar-content-bold nav-link" href="../pages/homepage.php">
-      <img class="logo filter-logo" src="../logo.svg" width="80" height="80">
+      <img class="logo filter-logo" src="{{ asset('/assets/logo.svg') }}" width="80" height="80">
       <div class="d-none d-sm-inline"> Tokyo Drift Auction House</div>
     </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

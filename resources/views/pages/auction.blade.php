@@ -31,7 +31,7 @@
                   </div>
                   <div class="carousel-inner">
                       <div class="carousel-item active">
-                          <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block w-100" alt="bmw i8">
+                          <img src="{{ asset('assets/car_photos/1/1.jpg') }}" class="d-block w-100" alt="bmw i8">
                       </div>
                       <div class="carousel-item">
                           <img src="https://s3.observador.pt/wp-content/uploads/2020/03/11202440/bmw_i8_roadster_619.jpg" class="d-block w-100" alt="bmw i8">
