@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Vehicle extends Model
 {
@@ -30,5 +31,6 @@ class Vehicle extends Model
   {
       return $this->belongsTo('App\Models\Auction');
   }
+
 
 }

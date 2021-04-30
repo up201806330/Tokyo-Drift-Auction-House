@@ -27,9 +27,9 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function showCreateForm()
     {
-        //
+        return view('pages.create_auction');
     }
 
     /**
@@ -62,11 +62,11 @@ class AuctionController extends Controller
         // }
 
         $images_paths = DB::table('image')
-                        ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
-                        ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
-                        ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
-                        ->where('vehicle.id', '=', $vehicle->id)
-                        ->get();
+        ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
+        ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
+        ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
+        ->where('vehicle.id', '=', $vehicle->id)
+        ->get();
 
         // $current_max_bid_amount = DB::table('bid')
         //                 ->join('auction', 'auction.id', '=', 'bid.auction_id')
@@ -78,7 +78,7 @@ class AuctionController extends Controller
 
         $owner_profile_img = Image::find($owner->profileimage);
 
-        $current_max_bid_amount = Bid::where('auction_id',  '=', $id)->max('amount');
+        $current_max_bid_amount = Bid::where('auction_id', '=', $id)->max('amount');
 
         $current_max_bid = Bid::where([
             ['amount',      '=', $current_max_bid_amount],
