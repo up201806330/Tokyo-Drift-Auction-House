@@ -13,11 +13,15 @@
 // Home
 // Route::get('/', 'Auth\LoginController@home');
 
+Route::get('/auctions/new', 'AuctionController@showCreateForm')->name('create_auction');
 Route::get('/auctions/{id}', 'AuctionController@show');
+Route::view('/home', 'pages.homepage')->name('home');
+// Route::get('/home', function() { return view('pages.homepage'); });
+
+
 // Route::get('/', function () {
 //     return view('pages.auction');
 // });
-
 
 // // Cards
 // Route::get('cards', 'CardController@list');

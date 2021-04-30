@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-xxl navbar-dark bg-navbar">
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->
-    <a class="navbar-brand text-white navbar-content-bold nav-link" href="../pages/homepage.php">
+    <a class="navbar-brand text-white navbar-content-bold nav-link" href="{{ route ('home') }} ">
       <img class="logo filter-logo" src="{{ asset('/assets/logo.svg') }}" width="80" height="80">
       <div class="d-none d-sm-inline"> Tokyo Drift Auction House</div>
     </a>
@@ -34,7 +34,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/create_auction.php">Create new auction</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ route('create_auction') }}">Create new auction</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
