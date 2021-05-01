@@ -13,9 +13,6 @@
                             -
                             {{\Carbon\Carbon::parse($datetime)->format('Y-m-d')}}
                         </p>
-                        {{-- <p class="m-0 date_hour"></p>
-                        <p class="date_hour_connector"> - </p>
-                        <p class="date_hour m-0">23.02.2021</p> --}}
                     </div>
                 </div>
             </a>

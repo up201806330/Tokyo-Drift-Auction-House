@@ -36,7 +36,6 @@
                                 'max_bid'       => $auction->getCurrentMaxBid(),
                                 'vehicle_imgs'  => $auction->getVehicleFromAuction(),
                                 'time_diff'     => \Carbon\Carbon::parse($auction->endingtime)->diffForHumans()
-                                // 'time_diff'     => \Carbon\Carbon::parse($auction->endingtime)->longAbsoluteDiffForHumans()
                             ))
                         @endforeach
                     

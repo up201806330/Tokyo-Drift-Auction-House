@@ -27,8 +27,7 @@ class HomepageController extends Controller
     }
 
     public function getRandomAuctions($nAuctions) {
-        // return Auction::inRandomOrder()->limit($nAuctions)->get();
-        return Auction::limit($nAuctions)->get();
+        return Auction::inRandomOrder()->limit($nAuctions)->get();
     }
 
 }

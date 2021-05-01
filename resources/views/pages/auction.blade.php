@@ -48,10 +48,8 @@
                             </div>
                         @endif
                     @endforeach
-                      {{-- <div class="carousel-item center-cropped">
-                          <img src="{{ asset('assets/' . $images_paths[2]->path) }}" class="d-block w-100" alt="bmw i8">
-                      </div> --}}
                   </div>
+                  
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
@@ -109,7 +107,6 @@
                   <a href="../pages/profile.php" class="profile_text">
                       <img src="{{ asset('assets/' . $owner_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
                       
-                      {{-- <h4 class="m-0" style="color: rgb(204, 174, 2)">Hanna Green</h4> --}}
                       <h4 class="m-0" style="color: rgb(204, 174, 2)">{{ $owner->username }}</h4>
                   </a>
               </div>
@@ -228,10 +225,7 @@
       </div>
 
       @foreach($comments as $comment)
-        <?php
-            // $user = User::find($comment->user_id);
-            // echo $user;
-        ?>
+
         @include('partials.comment', array(
             'username'  => $comment->username,
             'datetime'  => $comment->createdon,

@@ -11,7 +11,6 @@
                     <p class="card-text time-remaining-text">
                         <i class="fa fa-clock-o clock"></i>
                         <span class="hour">{{ $time_diff }}</span>
-                        {{-- <span class="hour">3 hours remaining</span> --}}
                     </p>
                     <p class="card-text current-value">
                     <i class="fa fa-money money"></i>
