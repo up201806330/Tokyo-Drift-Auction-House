@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Auction;
 use App\Models\VehicleImage;
+use App\Models\Auction;
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\User;
 use App\Models\Bid;
-use App\Models\Comment;
 use DB;
+
+use Carbon\Carbon;
 
 class AuctionController extends Controller
 {
@@ -20,7 +22,7 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -55,19 +57,14 @@ class AuctionController extends Controller
         $auction = Auction::find($id);
         $vehicle = $auction->vehicle;
 
-        // gets images array of provided vehicle_id
-        $images_infos = VehicleImage::where('vehicle_id', $vehicle->id)->get();
+        $images_paths = $auction->getVehicleFromAuction();
 
-        // foreach ($images_infos as $img) {
-        //     echo $img->image_id;
-        // }
-
-        $images_paths = DB::table('image')
-        ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
-        ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
-        ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
-        ->where('vehicle.id', '=', $vehicle->id)
-        ->get();
+        // $images_paths = DB::table('image')
+        // ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
+        // ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
+        // ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
+        // ->where('vehicle.id', '=', $vehicle->id)
+        // ->get();
 
         // $current_max_bid_amount = DB::table('bid')
         //                 ->join('auction', 'auction.id', '=', 'bid.auction_id')
@@ -76,17 +73,13 @@ class AuctionController extends Controller
         //                 ->max('bid.amount');
 
         $owner = User::find($vehicle->owner);
-
         $owner_profile_img = Image::find($owner->profileimage);
 
         $current_max_bid_amount = Bid::where('auction_id', '=', $id)->max('amount');
 
-        $current_max_bid = Bid::where([
-            ['amount',      '=', $current_max_bid_amount],
-            ['auction_id',  '=', $id],
-        ])->firstOrFail();
+        $current_max_bid = $auction->getCurrentMaxBid();
 
-        $highest_bidder = User::find($current_max_bid->user_id);
+        $highest_bidder = $auction->getCurrentMaxBidder();
 
         $highest_bidder_profile_img = Image::find($highest_bidder->profileimage);
 

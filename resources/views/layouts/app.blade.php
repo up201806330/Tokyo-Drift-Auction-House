@@ -29,14 +29,14 @@
     <link rel="stylesheet" href="{{ asset('css/homepage.css')}}">
     <link rel="stylesheet" href="{{ asset('css/tpl_navbar.css')}}">
     <link rel="stylesheet" href="{{ asset('css/tpl_footer.css')}}">
-    {{-- <link rel="stylesheet" href="../css/tpl_search.css')}}">
-    <link rel="stylesheet" href="../css/tpl_auction_card.css"> --}}
+    {{-- <link rel="stylesheet" href="../css/tpl_search.css')}}"> --}}
+    <link rel="stylesheet" href="../css/tpl_auction_card.css">
     <link rel="stylesheet" href="{{ asset('css/auction.css')}}">
     {{-- <link rel="stylesheet" href="../css/tpl_mod.css"> --}}
     {{-- <link rel="stylesheet" href="../css/login-overlay.css"> --}}
     {{-- <link rel="stylesheet" href="../css/sign-up.css"> --}}
     {{-- <link rel="stylesheet" href="../css/profile.css"> --}}
-    {{-- <link rel="stylesheet" href="../css/create_auction.css"> --}}
+    <link rel="stylesheet" href="../css/create_auction.css">
     {{-- <link rel="stylesheet" href="../css/tpl_tos.css"> --}}
 
     <script type="text/javascript">

@@ -15,7 +15,7 @@
 
 Route::get('/auctions/new', 'AuctionController@showCreateForm')->name('create_auction');
 Route::get('/auctions/{id}', 'AuctionController@show');
-Route::view('/home', 'pages.homepage');
+Route::get('/home', 'HomepageController@show')->name('homepage');
 
 // Route::get('/', function () {
 //     return view('pages.auction');

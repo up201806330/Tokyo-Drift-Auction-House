@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Bid;
+use DB;
 
 class Auction extends Model
 {
@@ -20,6 +23,32 @@ class Auction extends Model
     // not including the creationTime
     'auction_name', 'vehicle_id', 'startingBid', 'startingTime', 'endingTime', 'auctionType'
   ];
+
+
+  public function getVehicleFromAuction() {
+    return DB::table('image')
+    ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
+    ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
+    ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
+    ->where('vehicle.id', '=', $this->vehicle->id)
+    ->get();
+  }
+
+  public function getMaxBidAmount($auction_id) {
+    return Bid::where('auction_id', '=', $auction_id)->max('amount');
+  }
+
+  public function getCurrentMaxBid() {
+    return Bid::where([
+      ['amount',      '=', $this->getMaxBidAmount($this->id)],
+      ['auction_id',  '=', $this->id],
+    ])->firstOrFail();
+  }
+
+  public function getCurrentMaxBidder() {
+    return User::find($this->getCurrentMaxBid($this->id)->user_id);
+  }
+
 
   /**
    * Get the vehicle associated with the Auction
