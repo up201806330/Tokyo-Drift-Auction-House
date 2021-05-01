@@ -42,7 +42,7 @@ class Auction extends Model
     return Bid::where([
       ['amount',      '=', $this->getMaxBidAmount($this->id)],
       ['auction_id',  '=', $this->id],
-    ])->firstOrFail();
+    ])->first();
   }
 
   public function getCurrentMaxBidder() {
