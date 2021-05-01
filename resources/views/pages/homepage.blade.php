@@ -31,6 +31,7 @@
                     <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-center">
                         @foreach ($auctions as $auction)
                             @include('partials.auction_card', array(
+                                'id'            => $auction->id,
                                 'brand'         => $auction->vehicle->brand,
                                 'model'         => $auction->vehicle->model,
                                 'max_bid'       => $auction->getCurrentMaxBid(),

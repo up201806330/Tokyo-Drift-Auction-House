@@ -16,7 +16,7 @@
                     <i class="fa fa-money money"></i>
                         <span class="card-price">Currently at {{$max_bid->amount}}€</span>
                     </p>
-                    <a href="../pages/auction.php" class="stretched-link"></a> <!-- Card as a link -->
+                    <a href="{{ url('/auctions/' . $id) }}" class="stretched-link"></a> <!-- Card as a link -->
             </div>
         </div>
         <!-- End of Card Body -->
