@@ -8,6 +8,7 @@ use App\Models\VehicleImage;
 use App\Models\Image;
 use App\Models\User;
 use App\Models\Bid;
+use App\Models\Comment;
 use DB;
 
 class AuctionController extends Controller
@@ -89,6 +90,15 @@ class AuctionController extends Controller
 
         $highest_bidder_profile_img = Image::find($highest_bidder->profileimage);
 
+        // $auction_comments = Comment::where('auction_id', '=', $id)->get();
+        $auction_comments = DB::table('comment')
+                            ->join('user', 'user.id', '=', 'comment.user_id')
+                            ->where('comment.auction_id', '=', $id)
+                            ->select('auction_id', 'user.id', 'username', 'profileimage', 'createdon', 'content')
+                            ->orderBy('createdon', 'desc')
+                            ->get();
+        
+
         return view('pages.auction', [
             'auction'       => $auction,
             'vehicle'       => $vehicle,
@@ -97,7 +107,8 @@ class AuctionController extends Controller
             'owner'         => $owner,
             'owner_img'     => $owner_profile_img,
             'highest_bidder'=> $highest_bidder,
-            'bidder_img'    => $highest_bidder_profile_img
+            'bidder_img'    => $highest_bidder_profile_img,
+            'comments'      => $auction_comments
         ]);
     }
 

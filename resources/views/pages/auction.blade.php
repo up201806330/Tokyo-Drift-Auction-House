@@ -227,11 +227,23 @@
           </form>
       </div>
 
-      not yet here
+      @foreach($comments as $comment)
+        <?php
+            // $user = User::find($comment->user_id);
+            // echo $user;
+        ?>
+        @include('partials.comment', array(
+            'username'  => $comment->username,
+            'datetime'  => $comment->createdon,
+            'user_id'   => $comment->id,
+            'content'   => $comment->content
+        ))
 
-      <div class="not_moderator">
-          not yet here
-      </div>
+        {{-- <div class="not_moderator">
+            @include('partials.comment')
+        </div> --}}
+
+      @endforeach
 
   <!-- Chat Button -->
   <a href="#" class="chat_button">

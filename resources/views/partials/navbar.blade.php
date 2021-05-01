@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-xxl navbar-dark bg-navbar">
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->
-    <a class="navbar-brand text-white navbar-content-bold nav-link" href="{{ route ('home') }} ">
+    <a class="navbar-brand text-white navbar-content-bold nav-link" href="{{ url('home') }} ">
       <img class="logo filter-logo" src="{{ asset('/assets/logo.svg') }}" width="80" height="80">
       <div class="d-none d-sm-inline"> Tokyo Drift Auction House</div>
     </a>

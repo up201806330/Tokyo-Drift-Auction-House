@@ -122,7 +122,7 @@ CREATE TABLE "favourite_auction" (
 	PRIMARY KEY(user_id, auction_id)
 );
 
-CREATE TABLE "comment" (
+CREATE TABLE comment (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         NOT NULL REFERENCES "user"(id),
     auction_id  INTEGER         NOT NULL REFERENCES "auction"(id),
