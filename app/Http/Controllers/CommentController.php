@@ -27,13 +27,23 @@ class CommentController extends Controller
         $comment = new Comment;
 
         $comment->id = Comment::all()->max('id') + 1;
-        $comment->user_id = 1;
+        $comment->user_id = 2;
         $comment->auction_id = $auction_id;
         $comment->createdon = \Carbon\Carbon::now()->toDateTimeString();
         $comment->content = $request->get('content');
     
         $comment->save();
 
+        // return $comment->id;
+        return redirect()->back();
+    }
+
+    
+    public function delete(Request $request) {
+        // return $request->comment_id;
+        $comment = Comment::find($request->comment_id);
+
+        $comment->delete();
         return redirect()->back();
     }
 

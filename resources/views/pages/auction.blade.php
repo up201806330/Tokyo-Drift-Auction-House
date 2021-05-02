@@ -228,9 +228,11 @@
       @foreach($comments as $comment)
 
         @include('partials.comment', array(
+            'auction_id'=> $auction->id,
+            'comment_id'=> $comment->id,
             'username'  => $comment->username,
             'datetime'  => $comment->createdon,
-            'user_id'   => $comment->id,
+            'user_id'   => $comment->user_id,
             'content'   => $comment->content
         ))
 

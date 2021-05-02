@@ -87,7 +87,7 @@ class AuctionController extends Controller
         $auction_comments = DB::table('comment')
                             ->join('user', 'user.id', '=', 'comment.user_id')
                             ->where('comment.auction_id', '=', $id)
-                            ->select('auction_id', 'user.id', 'username', 'profileimage', 'createdon', 'content')
+                            ->select('auction_id', 'comment.id', 'comment.user_id', 'username', 'profileimage', 'createdon', 'content')
                             ->orderBy('createdon', 'desc')
                             ->get();
         

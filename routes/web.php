@@ -18,6 +18,8 @@ Route::get('/auctions/{id}', 'AuctionController@show');
 Route::post('/auctions/{id}', 'CommentController@create');
 Route::get('/home', 'HomepageController@show')->name('homepage');
 
+Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete');
+
 // Route::get('/', function () {
 //     return view('pages.auction');
 // });

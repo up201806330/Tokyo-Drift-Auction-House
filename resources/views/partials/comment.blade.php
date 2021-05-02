@@ -18,9 +18,18 @@
             </a>
             <div class="moderator area m-3 text-center">
                 <button type="button" class="btn rounded-pill m-1 moderator_button_ban" id="moderator_button">BAN FROM AUCTION</button>
-                <button type="button" class="btn rounded-pill m-1" id="moderator_button">
-                    <i class="fa fa-trash"></i>
-                </button>
+                
+                <form style="display: inline-block;" method="post" action="{{'/auctions/' . $auction_id . '/comments/' . $comment_id}}">
+                    @csrf
+                    <input type="hidden" name="_method" value="DELETE">
+                    {{-- <input type="hidden" name="comment_id" value="{{$comment_id}}"> --}}
+                    <button type="submit" class="btn rounded-pill m-1" id="moderator_button">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </form>
+                    
+
+
             </div>
         </div>
     <p class="m-3 mt-0 text-justify">
