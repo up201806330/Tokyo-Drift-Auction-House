@@ -207,7 +207,8 @@
       
       <!-- Place Comment -->
       <div class="comment pb-2 clearfix rounded-3 border border-2">
-          <form>
+          <form method="post" action="{{'/auctions/' . $auction->id}}">
+            @csrf
               <!-- User and date -->
               <a href="../pages/profile.php" class="profile_text">
                   <div class="d-flex justify-content-start align-items-center">
@@ -218,7 +219,7 @@
                   </div>
               </a>
               <div class="m-3 mt-0">
-                  <textarea class="form-control text-justify" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
+                  <textarea class="form-control text-justify" name="content" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
               </div>
               <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
           </form>
