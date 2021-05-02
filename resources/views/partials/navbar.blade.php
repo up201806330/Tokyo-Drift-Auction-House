@@ -1,4 +1,5 @@
 <header>
+  @include('partials.login')
   <nav class="navbar navbar-expand-xxl navbar-dark bg-navbar">
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->

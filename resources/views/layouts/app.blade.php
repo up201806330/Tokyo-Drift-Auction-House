@@ -21,8 +21,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     {{-- <script src="../js/tpl_search.js"></script> --}}
+    <script src="{{ asset('js/sign-in.js')}}"></script>
     {{-- <script src="../js/login.js"></script> --}}
-    {{-- <script src="../js/sign-in.js"></script> --}}
     {{-- <script src="../js/create_auction.js"></script> --}}
   
     <link rel="stylesheet" href="{{ asset('css/common.css')}}">
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../css/tpl_auction_card.css">
     <link rel="stylesheet" href="{{ asset('css/auction.css')}}">
     {{-- <link rel="stylesheet" href="../css/tpl_mod.css"> --}}
-    {{-- <link rel="stylesheet" href="../css/login-overlay.css"> --}}
+    <link rel="stylesheet" href="../css/login-overlay.css">
     {{-- <link rel="stylesheet" href="../css/sign-up.css"> --}}
     {{-- <link rel="stylesheet" href="../css/profile.css"> --}}
     <link rel="stylesheet" href="../css/create_auction.css">
