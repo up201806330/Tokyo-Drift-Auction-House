@@ -22,14 +22,14 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, $auction_id)
     {
         $comment = new Comment;
 
         $comment->id = Comment::all()->max('id') + 1;
         $comment->user_id = 1;
-        $comment->auction_id = 1;
-        $comment->createdon = '2021-03-31 15:27:38';
+        $comment->auction_id = $auction_id;
+        $comment->createdon = \Carbon\Carbon::now()->toDateTimeString();
         $comment->content = $request->get('content');
     
         $comment->save();
