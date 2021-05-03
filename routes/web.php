@@ -13,12 +13,20 @@
 // Home
 // Route::get('/', 'Auth\LoginController@home');
 
+
+// Auction
 Route::get('/auctions/new', 'AuctionController@showCreateForm')->name('create_auction');
 Route::get('/auctions/{id}', 'AuctionController@show');
 Route::post('/auctions/{id}', 'CommentController@create');
+
+// Homepage
 Route::get('/home', 'HomepageController@show')->name('homepage');
 
+// Comment Section
 Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete');
+
+// Profile
+Route::get('/users/{id}', 'UserController@showProfile')->name('show_profile');
 
 // Route::get('/', function () {
 //     return view('pages.auction');

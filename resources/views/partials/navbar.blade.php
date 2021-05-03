@@ -50,7 +50,7 @@
             </li>
           @else
             <li>
-              <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/profile.php"><i class="fas fa-user-alt me-3"></i>
+              <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/users/' . Auth::id()) }}"><i class="fas fa-user-alt me-3"></i>
                 {{App\Models\User::find(Auth::id())->username}}
               </a>
             </li>

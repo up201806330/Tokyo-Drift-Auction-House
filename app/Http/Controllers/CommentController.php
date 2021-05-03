@@ -30,6 +30,7 @@ class CommentController extends Controller
 
         $comment->id = Comment::all()->max('id') + 1;
 
+        // now probably never enters this if
         if (Auth::guest()) {
             $comment->user_id = 1;
         }

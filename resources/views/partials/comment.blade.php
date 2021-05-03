@@ -2,7 +2,7 @@
     <!-- User and date -->
     
         <div class="d-flex justify-content-between align-items-center">
-            <a href="../pages/profile.php" class="profile_text">
+            <a href="{{ route('show_profile', ['id' => $user_id]) }}" class="profile_text">
                 <div class="d-flex justify-content-start align-items-center">
                     <img src="{{ asset('assets/' . App\Models\User::findUserImage($user_id)->path) }}" class="rounded-circle profile_picture_comment m-3" alt="Hanna Green"> 
                     <div>

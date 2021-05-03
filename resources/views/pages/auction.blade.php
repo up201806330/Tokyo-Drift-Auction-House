@@ -104,7 +104,7 @@
         <div class="row mx-auto align-items-center justify-content-around">
             <div class="col-12 col-md-4 mt-3 mb-3">
                 <h2>Owner</h2>
-                <a href="../pages/profile.php" class="profile_text">
+                <a href="{{ url('/users/' . $owner->id) }}" class="profile_text">
                     <img src="{{ asset('assets/' . $owner_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
                       
                     <h4 class="m-0" style="color: rgb(204, 174, 2)">{{ $owner->username }}</h4>
@@ -116,7 +116,7 @@
             </div>
             <div class="col-12 col-md-4 mt-3 mb-3">
                 <h2 class="text-nowrap">Top Bidder</h2>
-                <a href="../pages/profile.php" class="profile_text">
+                <a href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
                     <img src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
                     <h4 class="m-0">{{$highest_bidder->username}}</h4>
                 </a>
@@ -211,7 +211,7 @@
             <form method="post" action="{{'/auctions/' . $auction->id}}">
             @csrf
                 <!-- User and date -->
-                <a href="../pages/profile.php" class="profile_text">
+                <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
                 @if (Auth::guest())
                     <div class="d-flex justify-content-start align-items-center">
                         <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture_comment m-3" alt="generic profile picture"> 
