@@ -16,6 +16,7 @@
                     </div>
                 </div>
             </a>
+            
             <div class="moderator area m-3 text-center">
                 <button type="button" class="btn rounded-pill m-1 moderator_button_ban" id="moderator_button">BAN FROM AUCTION</button>
                 
@@ -27,10 +28,8 @@
                         <i class="fa fa-trash"></i>
                     </button>
                 </form>
-                    
-
-
             </div>
+
         </div>
     <p class="m-3 mt-0 text-justify">
         {{$content}}
