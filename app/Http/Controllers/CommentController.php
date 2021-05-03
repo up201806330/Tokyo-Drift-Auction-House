@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\VehicleImage;
 use App\Models\Auction;
@@ -27,7 +29,13 @@ class CommentController extends Controller
         $comment = new Comment;
 
         $comment->id = Comment::all()->max('id') + 1;
-        $comment->user_id = 2;
+
+        if (Auth::guest()) {
+            $comment->user_id = 1;
+        }
+        else {
+            $comment->user_id = Auth::id();
+        }
         $comment->auction_id = $auction_id;
         $comment->createdon = \Carbon\Carbon::now()->toDateTimeString();
         $comment->content = $request->get('content');
@@ -40,7 +48,12 @@ class CommentController extends Controller
 
     
     public function delete(Request $request) {
-        // return $request->comment_id;
+        
+        if (! Gate::allows('commentOwner', Comment::find($request->comment_id))) {
+            // abort(403);
+            return redirect()->back();
+        }
+
         $comment = Comment::find($request->comment_id);
 
         $comment->delete();

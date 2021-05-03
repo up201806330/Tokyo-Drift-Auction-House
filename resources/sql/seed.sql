@@ -126,7 +126,7 @@ CREATE TABLE comment (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         NOT NULL REFERENCES "user"(id),
     auction_id  INTEGER         NOT NULL REFERENCES "auction"(id),
-    createdOn   PASTTIMESTAMP   ,
+    createdOn   TIMESTAMP   ,
     content     TEXT            NOT NULL
 );
 
