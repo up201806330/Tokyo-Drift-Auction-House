@@ -58,7 +58,7 @@
   
             <div class="modal-footer justify-content-center"> 
                 Don't have an account? 
-                <a href="../pages/sign-up.php" class="blue-text ml-1">
+                <a href="{{ route('register') }}" class="blue-text ml-1">
                     Sign up
                 </a>
             </div>

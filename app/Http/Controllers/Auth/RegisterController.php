@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cards';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -52,6 +52,11 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
+    }
+
+
+    public function showRegistrationForm() {
+        return view('auth.signup');
     }
 
     /**

@@ -46,7 +46,7 @@
             </li>
             <span class="left-vert-bar"></span>
             <li>
-              <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/sign-up.php">Sign up</a>
+              <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ route('register') }}">Sign up</a>
             </li>
           @else
             <li>

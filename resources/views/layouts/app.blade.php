@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="{{ asset('css/auction.css')}}">
     {{-- <link rel="stylesheet" href="../css/tpl_mod.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/login-overlay.css')}}">
-    {{-- <link rel="stylesheet" href="../css/sign-up.css"> --}}
+    <link rel="stylesheet" href="{{ asset('css/sign-up.css')}}">
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
     <link rel="stylesheet" href="{{ asset('css/create_auction.css')}}">
     {{-- <link rel="stylesheet" href="../css/tpl_tos.css"> --}}
