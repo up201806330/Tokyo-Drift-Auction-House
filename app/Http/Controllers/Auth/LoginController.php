@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cards';
+    protected $redirectTo = '/auctions/1';
 
     /**
      * Create a new controller instance.
@@ -42,7 +44,26 @@ class LoginController extends Controller
     }
 
     public function home() {
-        return redirect('login');
+        return redirect('/auctions/2');
     }
 
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/home');
+      }
+
+    // /**
+    //  * Get the failed login response instance.
+    //  *
+    //  * @param \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // protected function sendFailedLoginResponse(Request $request)
+    // {
+    //     return redirect()->route('login')
+    //         ->withInput($request->only($this->username(), 'remember'))
+    //         ->withErrors([
+    //             $this->username() => Illuminate\Support\Facades\Lang::get('auth.failed'),
+    //         ]);
+    // }
 }

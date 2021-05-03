@@ -1,5 +1,5 @@
 <header>
-  @include('partials.login')
+  @include('auth.login')
   <nav class="navbar navbar-expand-xxl navbar-dark bg-navbar">
   <div class="container-fluid">
     <!-- <a href="main.php"></a> -->
@@ -39,13 +39,25 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li>
-            <a type="button" class="nav-link btn text-white navbar-content-bold rounded-pill text-start" data-bs-toggle="modal" data-bs-target="#exampleModal">Log in</a>
-          </li>
-          <span class="left-vert-bar"></span>
-          <li>
-            <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/sign-up.php">Sign up</a>
-          </li>
+
+          @if (Auth::guest())
+            <li>
+              <a type="button" class="nav-link btn text-white navbar-content-bold rounded-pill text-start" data-bs-toggle="modal" data-bs-target="#exampleModal">Log in</a>
+            </li>
+            <span class="left-vert-bar"></span>
+            <li>
+              <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/sign-up.php">Sign up</a>
+            </li>
+          @else
+            <li>
+              <a class="nav-link text-white navbar-content-bold rounded-pill" href="../pages/profile.php"><i class="fas fa-user-alt me-3"></i>greenOlives24</a>
+            </li>
+            <span class="left-vert-bar"></span>
+            <li>
+              <a class="nav-link text-white navbar-content-bold rounded-pill" href="/logout">Log out</a>
+            </li>
+          @endif
+
         </ul>
       </div>
     </div>
