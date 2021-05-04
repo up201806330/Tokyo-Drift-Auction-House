@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -48,15 +49,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            // 'name' => 'required|string|max:255',
+            // 'email' => 'required|string|email|max:255|unique:users',
+            // 'password' => 'required|string|min:6|confirmed',
         ]);
-    }
-
-
-    public function showRegistrationForm() {
-        return view('auth.signup');
     }
 
     /**
@@ -67,10 +63,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        // // dd($data);
+
+        // $user = new User;
+
+        // $user->id = User::all()->max('id') + 1;
+        // // dd($user->id);
+        // $user->profileimage = $data['password2'];
+        // // dd(Image::find($user->profileimage)->path);
+        // $user->firstname = $data['firstname'];
+        // // dd($user->firstname);
+        // $user->lastname = $data['lastname'];
+        // // dd($user->lastname);
+        // $user->email = $data['email'];
+        // // dd($user->email);
+
         return User::create([
-            'name' => $data['name'],
+            'id' => User::all()->max('id') + 1,
+            'profileimage' => 8,
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'location' => 'idk',
+            'about' => 'about thing',
+            'registeredon' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
     }
 }
