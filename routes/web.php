@@ -27,6 +27,7 @@ Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete'
 
 // Profile
 Route::get('/users/{id}', 'UserController@showProfile')->name('show_profile');
+Route::post('/users/{id}', 'UserController@editProfile')->name('edit_profile');
 
 // Route::get('/', function () {
 //     return view('pages.auction');

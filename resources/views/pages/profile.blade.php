@@ -20,7 +20,24 @@
                         <div class="d-flex justify-content-center circular--portrait img-fluid">
                             <img src="{{ asset('assets/' . $profileImage->path) }}" alt="" class="position-absolute">
                         </div>
-                        <div class="position-absolute" style="margin-top:220px; margin-left:220px"><a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
+                        <div class="position-absolute" style="margin-top:220px; margin-left:220px">
+
+                            {{-- for a possible future profile image update --}}
+                            {{-- <form id="profile-image-form" method="post" action="{{'/users/' . $profileOwner->id}}">
+                                @csrf --}}
+                                <label for="file-input">
+                                    <i class="fa fa-cog" aria-hidden="true" style="pointer: cursor;"></i>
+                                </label>
+                                {{-- <input id="file-input" type="file" name="file" style="display: none;"/> --}}
+
+                            {{-- </form> --}}
+
+                            {{-- <script>
+                                document.getElementById("file-input").onchange = function() {
+                                    document.getElementById("profile-image-form").submit();
+                                };
+                            </script> --}}
+                        </div>
                     </div>
 
                     <p class="display-5 fw-bold name-text text-center" style="margin-top:250px; margin-bottom: -0.4rem !important;" id="adminTextStatic">{{$profileOwner->firstname}} {{$profileOwner->lastname}}</p>
@@ -45,13 +62,26 @@
                             <h3 class="fs-1 text-nowrap"><strong>About me</strong></h3>
                         </div>
                         <div class="col d-flex justify-content-start align-items-center">
-                            <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
+
+                            <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                            </a>
+
                         </div>
                     </div>
 
                     <p class="text-muted fs-3 about-me-text">
                         {{$profileOwner->about}}
                     </p>
+                    
+                    <div class="collapse" id="collapseExample">
+                        <form id="profile-about" method="post" action="{{'/users/' . $profileOwner->id}}">
+                            @csrf
+                            <textarea rows="5" cols="60" name="about_update"></textarea>
+                            <br><br>
+                            <input type="submit" value= "Update About" />
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -73,6 +103,7 @@
                 {{-- include_once('../templates/tpl_mod.php');
                 draw_auction_gallery(); --}}
                 <?php?>
+
             </div>
         </div>
         
