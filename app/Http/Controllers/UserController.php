@@ -23,13 +23,16 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified resource in database.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editProfile(Request $request, $user_id)
     {
-        //
+        // editing only the "about" part at the moment
+        User::where('id', $user_id)->update(['about' => $request->about_update]);
+
+        return redirect()->back();
     }
 }

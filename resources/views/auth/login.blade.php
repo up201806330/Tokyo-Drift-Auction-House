@@ -16,7 +16,7 @@
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="{{ old('email') }}" required autofocus>
-                        <label for="floatingInput">Username</label>
+                        <label for="floatingInput">Email</label>
                         
                         @if ($errors->has('email'))
                         <span class="error">

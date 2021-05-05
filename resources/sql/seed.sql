@@ -126,7 +126,7 @@ CREATE TABLE comment (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         NOT NULL REFERENCES "user"(id),
     auction_id  INTEGER         NOT NULL REFERENCES "auction"(id),
-    createdOn   TIMESTAMP   ,
+    createdOn   PASTTIMESTAMP   ,
     content     TEXT            NOT NULL
 );
 
@@ -473,7 +473,7 @@ INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,l
 (18,18,'Yvonne','Odonnell','condimentum@velvulputate.edu','odonnel_y','WYQ13QQL6SR','Saint-Médard-en-Jalles','Renaults are the best cars in the world.','2021-03-30 12:38:24'),
 (19,19,'Palmer','Maldonado','Aliquam.tincidunt@orci.com','paler_mal','HTJ05GKL1QF','East Linton','Hey hey hey hey hey hey!','2021-03-30 12:38:24'),
 (20,20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24'),
-(21,20, 'John', 'Doe','admin@example.com', 'johndoe', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'johnlocation', 'me john doe', '2020-05-30 12:38:24');
+(21,17, 'John', 'Doe','user@example.com', 'johndoe', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'johnlocation', 'i really like cars :)', '2020-05-30 12:38:24');
 
 -- Seller Permissions --
 INSERT INTO "seller" (id) VALUES (2),(3),(4),(7);

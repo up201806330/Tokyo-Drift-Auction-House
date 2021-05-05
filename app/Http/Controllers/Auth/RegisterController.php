@@ -89,7 +89,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'location' => 'idk',
             'about' => 'about thing',
-            'registeredon' => \Carbon\Carbon::now()->toDateTimeString(),
+            // 'registeredon' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
     }
 }
