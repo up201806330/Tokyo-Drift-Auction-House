@@ -27,7 +27,7 @@ function togglePw() {
 
   function togglePw3() {
 
-    var password = document.querySelector('[name=password3]');
+    var password = document.querySelector('[id=floatingPassword3]');
 
     if (password.getAttribute('type')==='password') {
       password.setAttribute('type', 'text');

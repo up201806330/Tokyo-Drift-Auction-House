@@ -232,23 +232,25 @@
             </form>
         </div>
     @endif
+    
+    <div>  
+        @foreach($comments as $comment)
 
-    @foreach($comments as $comment)
+        @include('partials.comment', array(
+            'auction_id'=> $auction->id,
+            'comment_id'=> $comment->id,
+            'username'  => $comment->username,
+            'datetime'  => $comment->createdon,
+            'user_id'   => $comment->user_id,
+            'content'   => $comment->content
+        ))
 
-    @include('partials.comment', array(
-        'auction_id'=> $auction->id,
-        'comment_id'=> $comment->id,
-        'username'  => $comment->username,
-        'datetime'  => $comment->createdon,
-        'user_id'   => $comment->user_id,
-        'content'   => $comment->content
-    ))
+        {{-- <div class="not_moderator">
+            @include('partials.comment')
+        </div> --}}
 
-    {{-- <div class="not_moderator">
-        @include('partials.comment')
-    </div> --}}
-
-    @endforeach
+        @endforeach
+    </div>
 
   <!-- Chat Button -->
   <a href="#" class="chat_button">

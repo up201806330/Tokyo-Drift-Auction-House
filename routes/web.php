@@ -20,7 +20,7 @@ Route::get('/auctions/{id}', 'AuctionController@show');
 Route::post('/auctions/{id}', 'CommentController@create');
 
 // Homepage
-Route::get('/home', 'HomepageController@show')->name('homepage');
+Route::get('/', 'HomepageController@show')->name('homepage');
 
 // Comment Section
 Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete');

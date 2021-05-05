@@ -65,16 +65,22 @@
                         <div class="col-5">
                             <h3 class="fs-1 text-nowrap"><strong>About me</strong></h3>
                         </div>
-                        @if (Auth::user()->id == $profileOwner->id)
-                            <div class="col d-flex justify-content-start align-items-center">
+                        @if (!Auth::guest())
+                            @if (Auth::user()->id == $profileOwner->id)
+                                <div class="col d-flex justify-content-start align-items-center">
 
-                                <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                </a>
+                                    <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                    </a>
 
-                            </div>
+                                </div>
+                            @endif
                         @endif
                     </div>
+                    
+                    @if(session('success'))
+                        <p>{{session('success')}}</p>
+                    @endif
 
                     <p class="text-muted fs-3 about-me-text">
                         {{$profileOwner->about}}
