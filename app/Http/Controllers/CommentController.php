@@ -43,22 +43,30 @@ class CommentController extends Controller
     
         $comment->save();
 
-        // return $comment->id;
-        return redirect()->back();
+        return $comment->id;
     }
 
     
-    public function delete(Request $request) {
-        
-        if (! Gate::allows('commentOwner', Comment::find($request->comment_id))) {
-            // abort(403);
+    public function delete(Request $request, $id, $comment_id) {
+        $comment = Comment::find($comment_id);
+
+        if (! Gate::allows('commentOwner', $comment)) {
             return redirect()->back();
         }
 
-        $comment = Comment::find($request->comment_id);
-
         $comment->delete();
-        return redirect()->back();
+    }
+
+
+    public function getAuctionComments(Request $request, $auction_id) {
+        if ($request->wantsJson()) {
+            $comments = Auction::find($auction_id)->getComments();
+            return response()->json($comments, 200);
+        }
+        else {
+            return response()->json(['error' => 'Error msg'], 415);
+        }
+
     }
 
 

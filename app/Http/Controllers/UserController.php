@@ -42,4 +42,10 @@ class UserController extends Controller
 
         return redirect()->back()->withSuccess('Updated successfully');
     }
+
+    public function showPhoto(Request $request, $user_id)
+    {
+        $user = User::find($user_id);
+        return redirect('assets/'.$user->getImage()->path);
+    }
 }

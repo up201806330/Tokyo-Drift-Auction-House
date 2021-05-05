@@ -35,7 +35,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ route('create_auction') }}">Create new auction</a>
+            <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/auctions/new') }}">Create new auction</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">

@@ -1,5 +1,16 @@
 @extends('layouts.app')
 
+@section('head')
+    <script src="{{ asset('js/Comment.js')}}"></script>
+    <script>
+        const auctionId = '{{$auction->id}}';
+
+        // Get comments
+        Comment.updateSection(auctionId);
+    </script>
+
+    @include('templates.tpl_comment');
+@endsection
 
 @section('content')
 
@@ -208,8 +219,7 @@
     @if (!Auth::guest())
         <!-- Place Comment -->
         <div class="comment pb-2 clearfix rounded-3 border border-2">
-            <form method="post" action="{{'/auctions/' . $auction->id}}">
-            @csrf
+            <form onsubmit="Comment.submit(this, auctionId); Comment.updateSection(auctionId); return false;">
                 <!-- User and date -->
                 <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
                 @if (Auth::guest())
@@ -233,23 +243,7 @@
         </div>
     @endif
     
-    <div>  
-        @foreach($comments as $comment)
-
-        @include('partials.comment', array(
-            'auction_id'=> $auction->id,
-            'comment_id'=> $comment->id,
-            'username'  => $comment->username,
-            'datetime'  => $comment->createdon,
-            'user_id'   => $comment->user_id,
-            'content'   => $comment->content
-        ))
-
-        {{-- <div class="not_moderator">
-            @include('partials.comment')
-        </div> --}}
-
-        @endforeach
+    <div id="other-comments">
     </div>
 
   <!-- Chat Button -->

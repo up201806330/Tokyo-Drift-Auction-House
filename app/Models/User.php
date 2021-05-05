@@ -62,11 +62,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getImage(){
+        return Image::find($this->profileimage);
+    }
+
 
     public static function findUserImage($id) {
         $user = User::find($id);
-        
-        return Image::find($user->profileimage);
+        return $user->getImage();
     }
 
 
