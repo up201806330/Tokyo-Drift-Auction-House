@@ -223,7 +223,7 @@ paths:
 
       responses:
         '200':
-          description: 'Ok.'            
+          description: 'Ok.'
 
 
   # M02: Auction
