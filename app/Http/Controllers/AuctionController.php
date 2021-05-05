@@ -59,19 +59,6 @@ class AuctionController extends Controller
 
         $images_paths = $auction->getVehicleFromAuction();
 
-        // $images_paths = DB::table('image')
-        // ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
-        // ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
-        // ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
-        // ->where('vehicle.id', '=', $vehicle->id)
-        // ->get();
-
-        // $current_max_bid_amount = DB::table('bid')
-        //                 ->join('auction', 'auction.id', '=', 'bid.auction_id')
-        //                 ->select('auction.id', 'bid.user_id', 'bid.amount')
-        //                 ->where('auction.id', '=', $auction->id)
-        //                 ->max('bid.amount');
-
         $owner = User::find($vehicle->owner);
         $owner_profile_img = Image::find($owner->profileimage);
 
