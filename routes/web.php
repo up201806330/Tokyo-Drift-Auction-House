@@ -37,7 +37,7 @@ Route::get('/users/{id}', 'UserController@showProfile')->name('show_profile');
 // Route::get('cards/{id}', 'CardController@show');
 
 // // API
-Route::get('/auctions/{id}/comments', 'CommentController@get');
+Route::get('/auctions/{id}/comments', 'CommentController@getAuctionComments');
 // Route::put('api/cards', 'CardController@create');
 // Route::delete('api/cards/{card_id}', 'CardController@delete');
 // Route::put('api/cards/{card_id}/', 'ItemController@create');

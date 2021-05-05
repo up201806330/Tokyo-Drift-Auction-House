@@ -60,7 +60,7 @@ class CommentController extends Controller
     }
 
 
-    public function get(Request $request, $auction_id) {
+    public function getAuctionComments(Request $request, $auction_id) {
         dd($request);
         if ($request->wantsJson()) {
             return response()->json([
