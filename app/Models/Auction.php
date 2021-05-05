@@ -69,4 +69,14 @@ class Auction extends Model
   {
       return $this->belongsTo(Vehicle::class, 'vehicle_id');
   }
+
+  public function getComments(){
+    // $auction_comments = Comment::where('auction_id', '=', $this->id)->get();
+    return DB::table('comment')
+      ->join('user', 'user.id', '=', 'comment.user_id')
+      ->where('comment.auction_id', '=', $this->id)
+      ->select('auction_id', 'comment.id', 'comment.user_id', 'username', 'profileimage', 'createdon', 'content')
+      ->orderBy('createdon', 'desc')
+      ->get();
+  }
 }

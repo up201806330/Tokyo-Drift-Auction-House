@@ -83,13 +83,7 @@ class AuctionController extends Controller
 
         $highest_bidder_profile_img = Image::find($highest_bidder->profileimage);
 
-        // $auction_comments = Comment::where('auction_id', '=', $id)->get();
-        $auction_comments = DB::table('comment')
-                            ->join('user', 'user.id', '=', 'comment.user_id')
-                            ->where('comment.auction_id', '=', $id)
-                            ->select('auction_id', 'comment.id', 'comment.user_id', 'username', 'profileimage', 'createdon', 'content')
-                            ->orderBy('createdon', 'desc')
-                            ->get();
+        $auction_comments = $auction->getComments();
         
 
         return view('pages.auction', [
