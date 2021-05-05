@@ -61,13 +61,9 @@ class CommentController extends Controller
 
 
     public function getAuctionComments(Request $request, $auction_id) {
-        dd($request);
         if ($request->wantsJson()) {
-            return response()->json([
-                'id' => $auction_id,
-                'name' => 'Abigail',
-                'state' => 'CA',
-            ], 200);
+            $comments = Auction::find($auction_id)->getComments();
+            return response()->json($comments, 200);
         }
         else {
             return response()->json(['error' => 'Error msg'], 415);
