@@ -47,16 +47,14 @@ class CommentController extends Controller
     }
 
     
-    public function delete(Request $request) {
-        
-        if (! Gate::allows('commentOwner', Comment::find($request->comment_id))) {
+    public function delete(Request $request, $id, $comment_id) {
+        $comment = Comment::find($comment_id);
+
+        if (! Gate::allows('commentOwner', $comment)) {
             return redirect()->back();
         }
 
-        $comment = Comment::find($request->comment_id);
-
         $comment->delete();
-        return redirect()->back();
     }
 
 

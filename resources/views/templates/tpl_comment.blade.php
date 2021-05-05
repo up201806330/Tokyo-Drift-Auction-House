@@ -18,9 +18,8 @@
             <div class="moderator area m-3 text-center">
                 <button type="button" class="btn rounded-pill m-1 moderator_button_ban" id="moderator_button" style="display:none;">BAN FROM AUCTION</button>
                 
-                    <form style="display: inline-block;" method="post" action="">
-                        @csrf
-                        <input type="hidden" name="_method" value="DELETE">
+                    <form style="display: inline-block;" onsubmit="Comment.delete(this, auctionId); Comment.updateSection(auctionId); return false;">
+                        <input type="hidden" name="id">
                         <button type="submit" class="btn rounded-pill m-1" id="moderator_button">
                             <i class="fa fa-trash"></i>
                         </button>
