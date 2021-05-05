@@ -11,18 +11,26 @@
 |
 */
 // Home
-Route::get('/', 'Auth\LoginController@home');
+// Route::get('/', 'Auth\LoginController@home');
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
+// Auction
+Route::get('/auctions/new', 'AuctionController@showCreateForm')->name('create_auction');
+Route::get('/auctions/{id}', 'AuctionController@show');
 
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
+// Homepage
+Route::get('/', 'HomepageController@show')->name('homepage');
+
+// Comment Section
+Route::post('/auctions/{id}/comments', 'CommentController@create');
+Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete');
+
+// Profile
+Route::get('/users/{id}', 'UserController@showProfile')->name('show_profile');
+Route::post('/users/{id}', 'UserController@editProfile')->name('edit_profile');
+Route::get('/users/{id}/photo', 'UserController@showPhoto')->name('show_profile_photo');
+
+// // API
+Route::get('/auctions/{id}/comments', 'CommentController@getAuctionComments');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

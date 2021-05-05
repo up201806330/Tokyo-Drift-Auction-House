@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
+use App\Models\Image;
 
 class User extends Authenticatable
 {
@@ -12,13 +15,42 @@ class User extends Authenticatable
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
+    protected $table = 'user';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id',
+        'profileimage',
+        'firstname',
+        'lastname',
+        'email',
+        'username',
+        'password',
+        'location',
+        'about',
+        'registeredon',
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'firstName' => 'string',
+        'lastName' => 'string',
+        'email' => 'string',
+        'username' => 'string',
+        'password' => 'string',
+        'location' => 'string',
+        'about' => 'string',
+        'registeredOn' => 'string', // to change (?)
+        'profileImage' => 'integer'
     ];
 
     /**
@@ -30,10 +62,35 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getImage(){
+        return Image::find($this->profileimage);
+    }
+
+
+    public static function findUserImage($id) {
+        $user = User::find($id);
+        return $user->getImage();
+    }
+
+
     /**
-     * The cards this user owns.
+     * Get the profileImage that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-     public function cards() {
-      return $this->hasMany('App\Models\Card');
+    public function profileImage(): BelongsTo
+    {
+        return $this->belongsTo(Image::class, 'profileImage');
+    }
+
+
+    /**
+     * Get all of the vehicle for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vehicles(): HasMany
+    {
+        return $this->hasMany('App\Models\Vehicle');
     }
 }

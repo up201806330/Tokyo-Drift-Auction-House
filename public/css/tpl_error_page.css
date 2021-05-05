@@ -1,0 +1,35 @@
+html,
+body {
+    height: 100%;
+    background-color: var(--background-color);
+}
+
+main#error {
+    margin: 0;
+
+    background: rgb(49, 49, 49);
+    color: rgb(255, 157, 100) !important;
+
+    border-radius: 20px;
+
+    padding: 3.5em 1.5em;
+}
+
+#error header {
+    margin: 0em 5em 1em 5em;
+}
+
+#error img.main-icon {
+    max-width: 50%;
+}
+
+#home {
+    width: 50% !important;
+    font-weight: bold;
+    background-color: var(--background-color) !important;
+}
+
+#home:hover {
+    background-color: var(--background-color-lighter) !important;
+    color: rgb(255, 157, 100) !important;
+}

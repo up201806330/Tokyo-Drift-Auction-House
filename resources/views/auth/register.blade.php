@@ -1,39 +1,127 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{ route('register') }}">
-    {{ csrf_field() }}
 
-    <label for="name">Name</label>
-    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
-    @if ($errors->has('name'))
-      <span class="error">
-          {{ $errors->first('name') }}
-      </span>
-    @endif
+<div class="sign-in-container">
 
-    <label for="email">E-Mail Address</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
-    @if ($errors->has('email'))
-      <span class="error">
-          {{ $errors->first('email') }}
-      </span>
-    @endif
+    <div class="modal modal-dialog modal-dialog-centered" id="sign-up-content">
+        <div class="modal-content">
 
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-      <span class="error">
-          {{ $errors->first('password') }}
-      </span>
-    @endif
+            <div class="modal-header sign-in-header">
+                <h2 class="modal-title mx-auto fw-bold" id="exampleModalLabel">Sign Up</h2>
+            </div>
 
-    <label for="password-confirm">Confirm Password</label>
-    <input id="password-confirm" type="password" name="password_confirmation" required>
+            <hr class="bg-dark border-5 border-top border-dark">
 
-    <button type="submit">
-      Register
-    </button>
-    <a class="button button-outline" href="{{ route('login') }}">Login</a>
-</form>
+            <div class="row">
+                <div class="col">
+                    <div id="ui">
+
+                        <form class="form-group" method="post" action="{{ route('register') }}">
+                            @csrf
+                            <div class="row" style="--bs-gutter-x:0;">
+                                <div class="col form-floating mb-3 align-self-start">
+                                    <input required type="text" name="firstname" class="form-control" id="floatingInput" placeholder="Jeff">
+                                    <label for="floatingInput">First Name</label>
+
+                                    @if ($errors->has('name'))
+                                    <span class="error">
+                                        {{ $errors->first('name') }}
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <div class="col form-floating mb-3 ">
+                                    <input type="text" name="lastname" class="form-control" id="floatingInput" placeholder="Bezos">
+                                    <label for="floatingInput">Last Name</label>
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input required type="text" name="username" class="form-control" id="floatingInput" placeholder="jeffBezzie">
+                                <label for="floatingInput">Username</label>
+
+                                @if ($errors->has('username'))
+                                <span class="error">
+                                    {{ $errors->first('username') }}
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input required type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">Email Address</label>
+                                
+                                @if ($errors->has('email'))
+                                <span class="error">
+                                    {{ $errors->first('email') }}
+                                </span>
+                                @endif
+
+                            </div>
+
+                            <div class="row" style="--bs-gutter-x:0;">
+                                <div class="col form-floating mb-3">
+                                    <input required type="password" name="password" class="form-control" id="floatingPassword3" placeholder="Password">
+                                    <span>
+                                        <i class="fa fa-eye" id="font3" onclick="togglePw3()" aria-hidden="true"></i>
+                                    </span>
+                                    <label for="floatingPassword3">Password</label> 
+                                </div>  
+
+                                <div class="col form-floating mb-3">
+                                    <input type="password" name="password2" class="form-control" id="floatingPassword2" placeholder="Password">
+                                    <span>
+                                        <i class="fa fa-eye" id="font2" onclick="togglePw2()" aria-hidden="true"></i>
+                                    </span>
+                                    <label for="floatingPassword2">Confirm Password</label> 
+                                </div>  
+                            </div>
+                            <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
+                                <button class="btn w-75 fw-bold" href="../pages/profile.php">
+                                    Sign up
+                                </button>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-5"><hr class="bg-dark border-5 border-top border-dark"></div>
+                                <div class="col-2 text-center">or</div>
+                                <div class="col-5"><hr class="bg-dark border-5 border-top border-dark"></div>
+                            </div>
+                            
+
+                            <!-- google button -->
+                            <a class="modal-footer justify-content-center login-button pt-3 text-decoration-none" href="../pages/profile.php"> 
+                                <div class='g-sign-in-button'>
+                                    <div class=content-wrapper>
+                                        <div class='logo-wrapper'>
+                                            <img src='https://developers.google.com/identity/images/g-logo.png'>
+                                        </div>
+                                        <span class='text-container'>
+                                            <span>Sign in with Google</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <hr class="bg-dark border-5 border-top border-dark">
+
+                            <div class="modal-footer justify-content-center"> 
+                                Already have an account? 
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="blue-text ml-1" role="button">
+                                    Log in
+                                </a>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 @endsection
