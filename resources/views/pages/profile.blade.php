@@ -25,9 +25,13 @@
                             {{-- for a possible future profile image update --}}
                             {{-- <form id="profile-image-form" method="post" action="{{'/users/' . $profileOwner->id}}">
                                 @csrf --}}
-                                <label for="file-input">
+
+
+                                {{-- <label for="file-input">
                                     <i class="fa fa-cog" aria-hidden="true" style="pointer: cursor;"></i>
-                                </label>
+                                </label> --}}
+
+
                                 {{-- <input id="file-input" type="file" name="file" style="display: none;"/> --}}
 
                             {{-- </form> --}}
@@ -61,13 +65,15 @@
                         <div class="col-5">
                             <h3 class="fs-1 text-nowrap"><strong>About me</strong></h3>
                         </div>
-                        <div class="col d-flex justify-content-start align-items-center">
+                        @if (Auth::user()->id == $profileOwner->id)
+                            <div class="col d-flex justify-content-start align-items-center">
 
-                            <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                <i class="fa fa-cog" aria-hidden="true"></i>
-                            </a>
+                                <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <i class="fa fa-cog" aria-hidden="true"></i>
+                                </a>
 
-                        </div>
+                            </div>
+                        @endif
                     </div>
 
                     <p class="text-muted fs-3 about-me-text">
