@@ -1,22 +1,28 @@
-function submit_comment(form, auction_id) {
-    console.log(form);
-    console.log("auction id: " + auction_id);
+class Comment {
+    constructor(auctionId, userId, date, content){
+        this.auctionId = auctionId;
+        this.userId    = userId;
+        this.date      = date;
+        this.content   = content;
+    }
 
-    // console.log(form.elements);
-    contents = document.querySelector('#comment_input').value;
+    static fromForm(auctionId, form){
+        content = form.querySelector('#comment_input').value;
+        return new Comment(auctionId, userId, null, content)
+    }
 
-    api.post(`auctions/${auction_id}/comments`, {
-        content: contents
-    });
+    submit() {
+        api.post(`auctions/${this.auctionId}/comments`, {
+            content: this.content
+        });
+    
+        return false;
+    }
 
-    // update_comments(auction_id);
-    console.log("ending function");
-    return false;
+    static submit(form, auctionId) {
+        let comment = Comment.fromForm(auctionId, form);
+        comment.submit();
+    
+        // update_comments(auction_id);
+    }  
 }
-
-
-// function update_comments() {
-//     data = await api.get(`auctions/${auction_id}/comments`);
-
-//     // TODO
-// }

@@ -211,7 +211,7 @@
     @if (!Auth::guest())
         <!-- Place Comment -->
         <div class="comment pb-2 clearfix rounded-3 border border-2">
-            <form onsubmit="return submit_comment(this, '{{$auction->id}}');">
+            <form onsubmit="Comment.submit(this, '{{$auction->id}}'); return false;">
             @csrf
                 <!-- User and date -->
                 <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">

@@ -39,9 +39,14 @@
     <link rel="stylesheet" href="{{ asset('css/create_auction.css')}}">
     {{-- <link rel="stylesheet" href="../css/tpl_tos.css"> --}}
 
+    {{-- REST API --}}
+    <script src="{{ asset('js/RestApi.js')}}"></script>
+    <script>
+      api = new RestApi('{{ config("app.url") }}');
+    </script>
+
     <script type="text/javascript">
-        // Fix for Firefox autofocus CSS bug
-        // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
+      const userId = <?= (Auth::guest() ? "null" : '"'.Auth::id().'"') ?>;
     </script>
 
     @yield('head')

@@ -67,19 +67,17 @@ class RestApi {
      * @param {Object} params Operation parameters
      */
     post(uri, params){
-        console.log("In Post Function");
-        console.log(uri);
-        console.log(params);
-        console.log(this._url_from_uri(uri));
+        let data = JSON.stringify(params);
         return fetch(
             this._url_from_uri(uri),
             {
                 method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content,
                 },
-                body: params
+                body: data
             }
         );
     }
@@ -92,9 +90,14 @@ class RestApi {
      */
     put(uri, params){
         let data;
+        let headers = {
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+        };
         if(!(params instanceof File)){
             console.log("Sending JSON data");
             data = JSON.stringify(params);
+            headers['Content-Type'] = 'application/json';
         } else {
             console.log("Sending file");
             data = params;
@@ -103,10 +106,7 @@ class RestApi {
             this._url_from_uri(uri),
             {
                 method: 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-                },
+                headers: headers,
                 body: data
             }
         );
