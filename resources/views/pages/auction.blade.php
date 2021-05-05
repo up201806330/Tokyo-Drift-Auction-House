@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('head')
+    <script src="{{ asset('js/comments.js')}}"></script>
+@endsection
 
 @section('content')
 
@@ -208,7 +211,7 @@
     @if (!Auth::guest())
         <!-- Place Comment -->
         <div class="comment pb-2 clearfix rounded-3 border border-2">
-            <form method="post" action="{{'/auctions/' . $auction->id}}">
+            <form onsubmit="return submit_comment(this, '{{$auction->id}}');">
             @csrf
                 <!-- User and date -->
                 <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">

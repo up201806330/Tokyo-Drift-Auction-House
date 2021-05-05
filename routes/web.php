@@ -17,12 +17,12 @@
 // Auction
 Route::get('/auctions/new', 'AuctionController@showCreateForm')->name('create_auction');
 Route::get('/auctions/{id}', 'AuctionController@show');
-Route::post('/auctions/{id}', 'CommentController@create');
 
 // Homepage
 Route::get('/home', 'HomepageController@show')->name('homepage');
 
 // Comment Section
+Route::post('/auctions/{id}/comments', 'CommentController@create');
 Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete');
 
 // Profile
@@ -37,6 +37,7 @@ Route::get('/users/{id}', 'UserController@showProfile')->name('show_profile');
 // Route::get('cards/{id}', 'CardController@show');
 
 // // API
+Route::get('/auctions/{id}/comments', 'CommentController@get');
 // Route::put('api/cards', 'CardController@create');
 // Route::delete('api/cards/{card_id}', 'CardController@delete');
 // Route::put('api/cards/{card_id}/', 'ItemController@create');

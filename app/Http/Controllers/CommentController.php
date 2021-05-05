@@ -43,15 +43,13 @@ class CommentController extends Controller
     
         $comment->save();
 
-        // return $comment->id;
-        return redirect()->back();
+        return $comment->id;
     }
 
     
     public function delete(Request $request) {
         
         if (! Gate::allows('commentOwner', Comment::find($request->comment_id))) {
-            // abort(403);
             return redirect()->back();
         }
 
@@ -59,6 +57,22 @@ class CommentController extends Controller
 
         $comment->delete();
         return redirect()->back();
+    }
+
+
+    public function get(Request $request, $auction_id) {
+        dd($request);
+        if ($request->wantsJson()) {
+            return response()->json([
+                'id' => $auction_id,
+                'name' => 'Abigail',
+                'state' => 'CA',
+            ], 200);
+        }
+        else {
+            return response()->json(['error' => 'Error msg'], 415);
+        }
+
     }
 
 

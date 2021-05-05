@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css/tpl_navbar.css')}}">
     <link rel="stylesheet" href="{{ asset('css/tpl_footer.css')}}">
     {{-- <link rel="stylesheet" href="../css/tpl_search.css')}}"> --}}
-    <link rel="stylesheet" href="../css/tpl_auction_card.css">
+    <link rel="stylesheet" href="{{ asset('css/tpl_auction_card.css')}}">
     <link rel="stylesheet" href="{{ asset('css/auction.css')}}">
     {{-- <link rel="stylesheet" href="../css/tpl_mod.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/login-overlay.css')}}">
@@ -39,10 +39,19 @@
     <link rel="stylesheet" href="{{ asset('css/create_auction.css')}}">
     {{-- <link rel="stylesheet" href="../css/tpl_tos.css"> --}}
 
+
+    <script src="{{ asset('js/RestApi.js')}}"></script>
+    <script>
+      api = new RestApi('{{ config("app.url") }}');
+    </script>
+
+
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
+
+    @yield('head')
 
   </head>
   <body>
