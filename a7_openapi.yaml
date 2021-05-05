@@ -205,6 +205,26 @@ paths:
                   description: 'Failed to edit. Redirect to user profile.'
                   value: '/users/{id}'
 
+  # User Photo
+  /users/{id}/photo:
+    get:
+      operationId: R107
+      summary: 'R107: Access user profile photo'
+      description: 'Access individual user profile photo. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok.'
+
 
   # M02: Auction
 
