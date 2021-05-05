@@ -35,4 +35,10 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
+    public function showPhoto(Request $request, $user_id)
+    {
+        $user = User::find($user_id);
+        return redirect('assets/'.$user->getImage()->path);
+    }
 }
