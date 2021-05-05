@@ -9,9 +9,8 @@
                         <h6 class="m-0"> {{$username}} </h6>
 
                         <p>
-                            {{\Carbon\Carbon::parse($datetime)->format('H:i:s')}}
-                            -
-                            {{\Carbon\Carbon::parse($datetime)->format('Y-m-d')}}
+                            {{\Carbon\Carbon::parse($datetime)->timezone('Europe/London')->format('H:i:s')}}
+                            {{\Carbon\Carbon::parse($datetime)->timezone('Europe/London')->format('Y-m-d')}}
                         </p>
                     </div>
                 </div>

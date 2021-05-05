@@ -38,7 +38,7 @@ class CommentController extends Controller
             $comment->user_id = Auth::id();
         }
         $comment->auction_id = $auction_id;
-        $comment->createdon = \Carbon\Carbon::now()->timezone('Europe/London')->toDateTimeString();
+        // $comment->createdon = \Carbon\Carbon::now()->toDateTimeString();
         $comment->content = $request->get('content');
     
         $comment->save();
