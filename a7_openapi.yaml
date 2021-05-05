@@ -1,0 +1,898 @@
+openapi: 3.0.0
+
+info:
+  version: '1.0'
+  title: 'LBAW Tokyo Drift Web API'
+  description: 'Web Resources Specification (A7) for Tokyo Drift'
+
+servers:
+- url: http://lbaw-prod.fe.up.pt
+  description: Production server
+
+externalDocs:
+  description: Find more info here.
+  url: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2174/-/wikis/home
+
+tags:
+  - name: 'M01: Authentication and Individual Profile'
+  - name: 'M02: Auction'
+  - name: 'M03: Bids, Comments & Favourites'
+  - name: 'M04: User and Auction Administration'
+  - name: 'M05: Static Pages'
+
+paths:
+  # M01: Authentication and Individual Profile
+
+  # login
+  /login:
+    post:
+      operationId: R101
+      summary: 'R101: Login Action'
+      description: 'Processes the login form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+ 
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+              required:
+                - username
+                - password
+      responses:
+        '302':
+          description: 'Redirect after processing the login credentials.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to homepage.'
+                  value: '/'
+                302Error:
+                  description: 'Failed authentication. Redirect to login form.'
+                  value: '/login'
+  
+  #logout
+  /logout:
+    post:
+      operationId: R102
+      summary: 'R102: Logout Action'
+      description: 'Logout the current authenticated used. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '302':
+          description: 'Redirect after processing logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful logout. Redirect to homepage.'
+                  value: '/'
+
+  #signup
+  /signup:
+    get:
+      operationId: R103
+      summary: 'R103: Sign Up Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show [UI08](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/sign-up.php)'
+
+    post:
+      operationId: R104
+      summary: 'R104: Sign Up Action'
+      description: 'Processes the new user registration form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - first_name
+                - last_name
+                - username
+                - email
+                - password
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Failure:
+                  description: 'Failed authentication. Redirect to sign-up form.'
+                  value: '/signup'
+
+  /users/{id}:
+    # view profile
+    get:
+      operationId: R105
+      summary: 'R105: View user profile'
+      description: 'Show the individual user profile. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI02](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/profile.php)'
+    
+    # edit profile
+    put:
+      operationId: R106
+      summary: 'R106: Edit Profile Action'
+      description: 'Processes the new user edition form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                about_me:
+                  type: string
+                picture:
+                  type: string
+                  format: binary
+                location:
+                  type: string
+
+      responses:
+        '302':
+          description: 'Redirect after processing the user new information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful profile edition. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Failure:
+                  description: 'Failed to edit. Redirect to user profile.'
+                  value: '/users/{id}'
+
+
+  # M02: Auction
+
+  # list auctions
+  /auctions:
+    get:
+      operationId: R201
+      summary: 'R201: List Auctions'
+      description: 'Show the auction edition form. Access: USR'
+      tags:
+        - 'M02: Auction'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI03](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/search.php)'
+
+  # search auctions
+  /api/auctions:
+    get:
+      operationId: R202
+      summary: 'R202: Search Auctions'
+      description: 'Show the auction edition form. Access: USR'
+      tags:
+        - 'M02: Auction'
+
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: condition
+          description: Condition of the car
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: category
+          description: Category of the car
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: min_hp
+          description: Minimal Horsepower
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: max_hp
+          description: Maximal Horsepower
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: min_year
+          description: Minimal Year
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: max_year
+          description: Maximal Year
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: used
+          description: Used Cars
+          schema:
+            type: boolean
+          required: true
+        - in: query
+          name: finalized
+          description: Finalized auctions
+          schema:
+            type: boolean
+          required: true
+
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    time:
+                      type: string
+                    bid:
+                      type: integer
+                    picture:
+                      type: string
+                      format: binary
+
+  /auctions/{id}:
+    # view auction
+    get:
+      operationId: R203
+      summary: 'R203: View Auction'
+      description: 'Show the individual auction. Access: USR, INV'
+      tags:
+        - 'M02: Auction'
+
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI04](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/auction.php)'
+
+    # delete auction
+    delete:
+      operationId: R204
+      summary: 'R204: Delete Auction Action'
+      description: 'Processes the delete auction request. Access: OWN, ADM'
+      tags:
+        - 'M02: Auction'
+
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '302':
+          description: 'Redirect after deleting auction.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful auction deletion. Redirect to homepage.'
+                  value: '/'
+                302Failure:
+                  description: 'Failed to delete. Redirect to auction page.'
+                  value: 'auctions/{id}'
+    
+    #edit auction
+    put:
+      operationId: R205
+      summary: 'R205: Edit Auction Action'
+      description: 'Processes the auction edition form submission. Access: OWN'
+      tags:
+        - 'M02: Auction'
+      
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                auction_name:
+                  type: string
+                brand:
+                  type: string
+                model:
+                  type: string
+                category:
+                  type: string
+                year:
+                  type: integer
+                horse_power:
+                  type: integer
+                condition:
+                  type: string
+                starting_time:
+                  type: object
+                ending_time:
+                  type: object
+                starting_bid:
+                  type: integer
+                private:
+                  type: boolean
+                invited_users:
+                  type: array
+                  items:
+                    type: integer
+                pictures:
+                  type: array
+                  items:
+                    type: integer
+                    format: binary
+              required:
+                - auction_name
+                - brand
+                - model
+                - category
+                - year
+                - horse_power
+                - condition
+                - starting_time
+                - ending_time
+                - starting_bid
+                - private
+                - pictures
+      responses:
+        '302':
+          description: 'Redirect after processing the auction edition information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful auction edition. Redirect to auction page.'
+                  value: '/auctions/{id}'
+                302Failure:
+                  description: 'Failed to edit. Redirect to acution page.'
+                  value: '/auctions/{id}'
+
+  #create auction
+  /auctions/new:
+    get:
+      operationId: R206
+      summary: 'R206: Create Auction'
+      description: 'Show the auction creation form. Access: SLR'
+      tags:
+        - 'M02: Auction'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI05](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/create_auction.php)'
+    
+    post:
+      operationId: R207
+      summary: 'R207: Create Auction Action'
+      description: 'Processes the new auction form submission. Access: SLR'
+      tags:
+        - 'M02: Auction'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                auction_name:
+                  type: string
+                brand:
+                  type: string
+                model:
+                  type: string
+                category:
+                  type: string
+                year:
+                  type: integer
+                horse_power:
+                  type: integer
+                condition:
+                  type: string
+                starting_time:
+                  type: object
+                ending_time:
+                  type: object
+                starting_bid:
+                  type: integer
+                private:
+                  type: boolean
+                invited_users:
+                  type: array
+                  items:
+                    type: integer
+                pictures:
+                  type: array
+                  items:
+                    type: integer
+                    format: binary
+              required:
+                - auction_name
+                - brand
+                - model
+                - category
+                - year
+                - horse_power
+                - condition
+                - starting_time
+                - ending_time
+                - starting_bid
+                - private
+                - pictures
+      responses:
+        '302':
+          description: 'Redirect after processing the new auction information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful auction creation. Redirect to auction page.'
+                  value: '/auctions/{id}'
+                302Failure:
+                  description: 'Failed to create. Redirect to homepage.'
+                  value: ''
+
+
+  # M03: Bids, Comments & Favourites
+
+  # add bid
+  /auctions/{id}/bids:
+    post:
+        operationId: R301
+        summary: 'R301: Add Bid to Auction Action'
+        description: 'Processes the add bid to auction request. Access: BUY, INV'
+        tags:
+          - 'M03: Bids, Comments & Favourites'
+
+        parameters:
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  bid:
+                    type: number
+                required:
+                - bid
+        responses:
+          '302':
+            description: 'Redirect after bidding auction.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful bid. Redirect to auction page.'
+                    value: '/auctions/{id}'
+                  302Failure:
+                    description: 'Failed to bid. Redirect to auction page.'
+                    value: '/auctions/{id}'
+
+  # add comment
+  /auctions/{id}/comments:
+    post:
+        operationId: R302
+        summary: 'R302: Add Comment to Auction Action'
+        description: 'Processes the add comment to auction request. Access: USR, INV'
+        tags:
+          - 'M03: Bids, Comments & Favourites'
+
+        parameters:
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  comment_content:
+                    type: string
+                required:
+                - comment_content
+        responses:
+          '302':
+            description: 'Redirect after comment.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful comment. Redirect to auction page.'
+                    value: '/auctions/{id}'
+                  302Failure:
+                    description: 'Failed to comment. Redirect to auction page.'
+                    value: '/auctions/{id}'
+
+  /auctions/{id}/favourites:
+    # add auction to favourites
+    post:
+        operationId: R303
+        summary: 'R303: Add Auction as Favourite Action'
+        description: 'Processes the auction favourite request. Access: USR, INV'
+        tags:
+          - 'M03: Bids, Comments & Favourites'
+
+        parameters:
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+
+        responses:
+          '302':
+            description: 'Redirect after favourite.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful add to favourites. Redirect to auction page.'
+                    value: '/auctions/{id}'
+                  302Failure:
+                    description: 'Failed to add to favourites. Redirect to auction page.'
+                    value: '/auctions/{id}'
+
+    # remove from favourites                
+    delete:
+        operationId: R304
+        summary: 'R304: Remove Auction as Favourite Action'
+        description: 'Processes the auction remove favourite request. Access: USR, INV'
+        tags:
+          - 'M03: Bids, Comments & Favourites'
+
+        parameters:
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+
+        responses:
+          '302':
+            description: 'Redirect after remove favourite.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful removal to favourites. Redirect to auction page.'
+                    value: '/auctions/{id}'
+                  302Failure:
+                    description: 'Failed to remove to favourites. Redirect to auction page.'
+                    value: '/auctions/{id}'
+
+
+  # M04: User and Auction Administration
+
+  # moderator page
+  /moderator:
+   get:
+      operationId: R401
+      summary: 'R401: Moderator View'
+      description: 'Show the moderator page. Access: MOD, ADM'
+      tags:
+        - 'M04: User and Auction Administration'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI06](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/mod.php)'
+
+  # delete comment
+  /auctions/{id}/comments/{comment_id}:
+    delete:
+        operationId: R402
+        summary: 'R402: Remove Comment Action'
+        description: 'Processes the remove comment request. Access: MOD, ADM'
+        tags:
+          - 'M04: User and Auction Administration'
+
+        parameters:
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+          - in: path
+            name: comment_id
+            schema:
+              type: integer
+            required: true
+
+        responses:
+          '302':
+            description: 'Redirect after comment removal.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful comment removal. Redirect to auction page.'
+                    value: '/auctions/{id}'
+                  302Failure:
+                    description: 'Failed to remove comment. Redirect to auction page.'
+                    value: '/auctions/{id}'
+
+  # ban user from auction
+  /auctions/{id}/banned/{user_id}:
+    put:
+        operationId: R403
+        summary: 'R403: Ban User from Auction Action'
+        description: 'Processes the auction user banning request. Access: MOD, ADM'
+        tags:
+          - 'M04: User and Auction Administration'
+
+        parameters:
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+          - in: path
+            name: user_id
+            schema:
+              type: integer
+            required: true
+
+        responses:
+          '302':
+            description: 'Redirect after user banning.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful user banning. Redirect to auction page.'
+                    value: '/auctions/{id}'
+                  302Failure:
+                    description: 'Failed to ban user. Redirect to auction page.'
+                    value: '/auctions/{id}'
+
+  # change user permissions
+  /moderator/users/{user_id}:
+    put:
+        operationId: R404
+        summary: 'R404: Change User Permissions Action'
+        description: 'Processes the auction user banning request. Access: MOD, ADM'
+        tags:
+          - 'M04: User and Auction Administration'
+
+        parameters:
+          - in: path
+            name: user_id
+            schema:
+              type: integer
+            required: true
+
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  global_mod:
+                    type: boolean
+                  buyer:
+                    type: boolean
+                  seller:
+                    type: boolean
+                  banned:
+                    type: boolean
+                required:
+                - global_mod
+                - buyer
+                - seller
+                - banned
+
+        responses:
+          '302':
+            description: 'Redirect after user banning.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful user permissions changed. Redirect to moderator page.'
+                    value: '/auctions/{id}'
+                  302Failure:
+                    description: 'Failed to change user permissions. Redirect to moderator page.'
+                    value: '/auctions/{id}'
+
+  # deactivate auction
+  /auctions/{id}/deactivated:
+    put:
+        operationId: R405
+        summary: 'R405: Deactivate Auction Action'
+        description: 'Processes the auction deactivation request. Access: MOD, ADM'
+        tags:
+          - 'M04: User and Auction Administration'
+
+        parameters:
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+
+        responses:
+          '302':
+            description: 'Redirect after auction deactivation.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful auction deactivation. Redirect to home page.'
+                    value: ''
+                  302Failure:
+                    description: 'Failed to deactivate auction. Redirect to auction page.'
+                    value: '/auctions/{id}'
+
+
+  # M05: Static Pages
+
+  # about
+  /about:
+    get:
+      operationId: R501
+      summary: 'R501: About'
+      description: 'Show the about page. Access: PUB'
+      tags:
+        - 'M05: Static Pages'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/about.php)'
+
+  # terms of service
+  /terms_of_service:
+    get:
+      operationId: R502
+      summary: 'R502: Terms of Service'
+      description: 'Show the ToS page. Access: PUB'
+      tags:
+        - 'M05: Static Pages'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI10](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/tos.php)'
+
+  # error page
+  /error:
+    get:
+      operationId: R503
+      summary: 'R503: Error'
+      description: 'Show the error page. Access: PUB'
+      tags:
+        - 'M05: Static Pages'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI12](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/404.php)'
+
+  # banned user notice
+  /banned:
+    get:
+      operationId: R504
+      summary: 'R504: Banned User Notice'
+      description: 'Show the banned user notice page. Access: PUB'
+      tags:
+        - 'M05: Static Pages'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI11](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/banned.php)'
