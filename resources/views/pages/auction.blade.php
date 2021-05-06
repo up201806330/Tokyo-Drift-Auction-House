@@ -9,7 +9,7 @@
         Comment.updateSection(auctionId);
     </script>
 
-    @include('templates.tpl_comment');
+    @include('templates.tpl_comment')
 @endsection
 
 @section('content')
