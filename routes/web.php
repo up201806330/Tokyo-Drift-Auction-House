@@ -21,6 +21,7 @@ Route::get('/auctions/{id}', 'AuctionController@show');
 // Homepage
 Route::get('/', 'HomepageController@show')->name('homepage');
 Route::get('/about', function () { return view('pages.about'); })->name('about');
+Route::get('/terms_of_service', function () { return view('pages.tos'); })->name('tos');
 
 // Comment Section
 Route::post('/auctions/{id}/comments', 'CommentController@create');

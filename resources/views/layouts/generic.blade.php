@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{{ asset('css/sign-up.css')}}">
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
     <link rel="stylesheet" href="{{ asset('css/create_auction.css')}}">
-    {{-- <link rel="stylesheet" href="../css/tpl_tos.css"> --}}
+    <link rel="stylesheet" href="{{ asset('css/tpl_tos.css')}}">
 
     {{-- REST API --}}
     <script src="{{ asset('js/RestApi.js')}}"></script>
