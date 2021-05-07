@@ -20,6 +20,7 @@ Route::get('/auctions/{id}', 'AuctionController@show');
 
 // Homepage
 Route::get('/', 'HomepageController@show')->name('homepage');
+Route::get('/about', function () { return view('pages.about'); })->name('about');
 
 // Comment Section
 Route::post('/auctions/{id}/comments', 'CommentController@create');

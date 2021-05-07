@@ -13,7 +13,7 @@
 
             <div class="col-md-2 col-lg-2 col-xl-3 mx-auto my-auto">
                 <h5 class="mb-4 mt-4 font-weight-bold text-nowrap"><a href="../pages/tos.php" class="nav-link text-white tos">Terms of Service</a></p>
-                <h5 class="mb-4 mt-4 font-weight-bold text-nowrap"><a href="../pages/about.php" class="nav-link text-white tos">About & Contacts</a></p>
+                <h5 class="mb-4 mt-4 font-weight-bold text-nowrap"><a href="{{ route('about') }}" class="nav-link text-white tos">About & Contacts</a></p>
             </div>
 
             <div class="col-md-5 col-lg-5 col-xl-4 mx-auto">
