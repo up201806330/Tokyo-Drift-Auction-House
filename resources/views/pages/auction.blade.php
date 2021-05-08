@@ -12,8 +12,9 @@
     <script src="{{ asset('js/Countdown.js')}}"></script>
 
     <script>
-        const dateTime = '{{$auction->endingtime}}';
-        setup(dateTime);
+        const startDateTime = '{{$auction->startingtime}}';
+        const endDateTime = '{{$auction->endingtime}}';
+        setup(startDateTime, endDateTime);
     </script>
 
     @include('templates.tpl_comment');
@@ -191,29 +192,62 @@
             </div>
         </div>
         <h4 class="d-flex justify-content-between mt-3 pb-5">
-            <span> </span>
-            <span>T</span>
-            <span>I</span>
-            <span>L</span>
-            <span>L</span>
-            <span> </span>
-            <span> </span>
-            <span>A</span>
-            <span>U</span>
-            <span>C</span>
-            <span>T</span>
-            <span>I</span>
-            <span>O</span>
-            <span>N</span>
-            <span> </span>
-            <span> </span>
-            <span>B</span>
-            <span>E</span>
-            <span>G</span>
-            <span>I</span>
-            <span>N</span>
-            <span>S</span>
-            <span> </span>
+
+            @if (\Carbon\Carbon::now() > $auction->endingtime)
+                <span> </span>
+                <span>A</span>
+                <span>U</span>
+                <span>C</span>
+                <span>T</span>
+                <span>I</span>
+                <span>O</span>
+                <span>N</span>
+                <span> </span>
+                <span> </span>
+                <span>H</span>
+                <span>A</span>
+                <span>S</span>
+                <span> </span>
+                <span> </span>
+                <span>E</span>
+                <span>N</span>
+                <span>D</span>
+                <span>E</span>
+                <span>D</span>
+                <span> </span>
+            @else
+                <span> </span>
+                <span>T</span>
+                <span>I</span>
+                <span>L</span>
+                <span>L</span>
+                <span> </span>
+                <span> </span>
+                <span>A</span>
+                <span>U</span>
+                <span>C</span>
+                <span>T</span>
+                <span>I</span>
+                <span>O</span>
+                <span>N</span>
+                <span> </span>
+                <span> </span>
+                @if ($auction->startingtime > \Carbon\Carbon::now())
+                    <span>B</span>
+                    <span>E</span>
+                    <span>G</span>
+                    <span>I</span>
+                    <span>N</span>
+                    <span>S</span>
+                @else
+                    <span>E</span>
+                    <span>N</span>
+                    <span>D</span>
+                    <span>S</span>
+                @endif
+                <span> </span>
+
+            @endif
         </h4>
     </div>
 

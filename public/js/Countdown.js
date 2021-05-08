@@ -1,13 +1,19 @@
 let endingDate;
 
-function setup(newEndingDate) {
+function setup(newStartingDate, newEndingDate) {
         endingDate = newEndingDate;
-        // console.log(endingDate);
+        startingDate = newStartingDate;
     
         let timer = setInterval(_ => {
             let now = new Date().getTime();
+
+            let startingDateObj = new Date(startingDate).getTime();
             let endingDateObj = new Date(endingDate).getTime();
-            let t = endingDateObj - now;
+
+            let t;
+
+            if (now < startingDateObj) { console.log("here"); t = startingDateObj - now; }
+            else { t = endingDateObj - now; }
 
             if (t > 0) {
 
