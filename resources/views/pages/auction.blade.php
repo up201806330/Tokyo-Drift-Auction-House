@@ -9,6 +9,13 @@
         Comment.updateSection(auctionId);
     </script>
 
+    <script src="{{ asset('js/Countdown.js')}}"></script>
+
+    <script>
+        const dateTime = '{{$auction->endingtime}}';
+        setup(dateTime);
+    </script>
+
     @include('templates.tpl_comment');
 @endsection
 
@@ -161,11 +168,11 @@
             <div class="col-12 col-md-6">
                 <div class="row">
                     <div class="col-6 countdown_box">
-                        <h1 class="display-1 m-0">4</h1>
+                        <h1 class="display-1 m-0" id="days"></h1>
                         <h4>Days</h4>
                     </div>
                     <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0">14</h1>
+                        <h1  class="display-1 m-0" id="hours"></h1>
                         <h4>Hours</h4>
                     </div>
                 </div>
@@ -173,11 +180,11 @@
             <div class="col-12 col-md-6">
                 <div class="row">
                     <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0">35</h1>
+                        <h1  class="display-1 m-0" id="minutes"></h1>
                         <h4>Minutes</h4>
                     </div>
                     <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0">23</h1>
+                        <h1  class="display-1 m-0" id="seconds"></h1>
                         <h4>Seconds</h4>
                     </div>
                 </div>
