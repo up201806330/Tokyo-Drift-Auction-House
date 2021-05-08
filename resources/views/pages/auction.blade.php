@@ -131,7 +131,7 @@
             </div>
             <div class="col-12 col-md-4 mt-3 mb-1">
                 <h2>Current Bid</h2>
-                <h1 class="current_bid">{{$max_bid}}</h1>
+                <h1 class="current_bid">{{$max_bid}} €</h1>
             </div>
             <div class="col-12 col-md-4 mt-3 mb-3">
                 <h2 class="text-nowrap">Top Bidder</h2>
@@ -144,24 +144,26 @@
     </div>
 
     <!-- Place Bid -->
-    <div class="container mt-5" id="auction_content_area">
-        <form>
-            <div class="row align-items-center">
-                <div class="col-sm">
-                    <div class="input-group">
-                        <input type="number" min="0.00" step="1" value="205000" class="form-control" id="bid_input" placeholder="Your Bid">
-                            <div class="input-group-append">
-                                <span class="input-group-text append_box" id="bid_input_box">€</span>
-                            </div>
-                    </div>
+    @if (!Auth::guest())
+        <div class="container mt-5" id="auction_content_area">
+            <form>
+                <div class="row align-items-center">
+                    <div class="col-sm">
+                        <div class="input-group">
+                            <input type="number" min="0.00" step="1" value="205000" class="form-control" id="bid_input" placeholder="Your Bid">
+                                <div class="input-group-append">
+                                    <span class="input-group-text append_box" id="bid_input_box">€</span>
+                                </div>
+                        </div>
 
+                    </div>
+                    <div class="col-sm p-0 mt-3 mb-3">
+                        <button type="submit" class="btn rounded-pill" id="bid_button"><h2 class="m-0 p-2">PLACE BID</h2></button>
+                    </div>
                 </div>
-                <div class="col-sm p-0 mt-3 mb-3">
-                    <button type="submit" class="btn rounded-pill" id="bid_button"><h2 class="m-0 p-2">PLACE BID</h2></button>
-                </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
+    @endif
 
     <!-- Countdown -->
     <div class="container mt-5" id="auction_content_area">
