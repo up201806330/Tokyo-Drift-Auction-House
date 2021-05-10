@@ -41,7 +41,22 @@ class UserController extends Controller
             User::where('id', $user_id)->update(['about' => $request->about_update]);
         }
         
+        if ($request->file('profileimage')) {
+            $file = $request->file('profileimage');
+
+            $newFileName = ".jpg";
+
+            // Upload file
+            // $file->move(base_path('public\assets\profile_photos'), "$user_id".$newFileName);
+            // TODO not working without hardcoding for John Doe in specific cuz his user_id isnt the same as the image name
+            $file->move(base_path('public\assets\profile_photos'), "17".$newFileName);
+
+            // dd($file);
+        }
+
         else {
+            dd('no :(');
+            
             User::where('id', $user_id)->update(
                 [
                     'firstname' => $request->firstname,

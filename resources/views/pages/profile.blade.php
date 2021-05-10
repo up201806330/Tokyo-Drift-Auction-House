@@ -20,6 +20,33 @@
                         <div class="d-flex justify-content-center circular--portrait img-fluid">
                             <img src="{{ asset('assets/' . $profileImage->path) }}" alt="" class="position-absolute">
                         </div>
+                        
+                        <div class="position-absolute" style="margin-bottom:220px; margin-left:220px">
+                            @if (!Auth::guest())
+                                @if (Auth::user()->id == $profileOwner->id)
+                                    <div class="col d-flex justify-content-start align-items-center">
+
+                                        <form id="profile-image-form" method="post" action="{{'/users/' . $profileOwner->id}}" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="col mb-3">
+                                                <label for="formFile" class="form-label">
+                                                    <i class="fa fa-cog edit-cog" aria-hidden="true" style="cursor: pointer;"></i>
+                                                </label>
+                                                <input class="form-control" type="file" id="formFile" name="profileimage" style="display: none;">
+                                            </div>
+                                        </form>
+
+                                        <script>
+                                            document.getElementById("formFile").onchange = function() {
+                                                document.getElementById("profile-image-form").submit();
+                                            };
+                                        </script>
+
+                                    </div>
+                                @endif
+                            @endif
+                        </div>
+
                         <div class="position-absolute" style="margin-top:220px; margin-left:220px">
 
                             {{-- for a possible future profile image update --}}
@@ -141,13 +168,16 @@
                         </div>
                     </div>
 
-                    {{-- <input type="submit" value= "Update" /> --}}
-                    <div class="modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
-                        <button type="submit" class="btn w-100 fw-bold">
-                            {{ __('Update') }}
-                        </button>
+                    <div class="row" style="--bs-gutter-x:0;">
+                        
+                        <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
+                            <button type="submit" class="btn w-100 fw-bold">
+                                {{ __('Update') }}
+                            </button>
+                        </div>
                     </div>
                 </form>
+
             </div>
 
             <div class="profile-auction-gallery">
