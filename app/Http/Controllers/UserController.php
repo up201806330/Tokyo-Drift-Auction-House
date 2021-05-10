@@ -33,12 +33,24 @@ class UserController extends Controller
     public function editProfile(Request $request, $user_id)
     {
         if (! Gate::allows('profileOwner', Auth::user())) {
-            // abort(403);
             return redirect()->back();
         }
 
         // editing only the "about" part at the moment
-        User::where('id', $user_id)->update(['about' => $request->about_update]);
+        if ($request->has('about_update')) {
+            User::where('id', $user_id)->update(['about' => $request->about_update]);
+        }
+        
+        else {
+            User::where('id', $user_id)->update(
+                [
+                    'firstname' => $request->firstname,
+                    'lastname' => $request->lastname,
+                    'username' => $request->username,
+                    'location' => $request->location
+                ]
+            );
+        }
 
         return redirect()->back()->withSuccess('Updated successfully');
     }

@@ -41,6 +41,19 @@
                                     document.getElementById("profile-image-form").submit();
                                 };
                             </script> --}}
+
+                            @if (!Auth::guest())
+                                @if (Auth::user()->id == $profileOwner->id)
+                                    <div class="col d-flex justify-content-start align-items-center">
+
+                                        <a class="" data-bs-toggle="collapse" href="#generalCollapse" role="button" aria-expanded="false" aria-controls="generalCollapse">
+                                            <i class="fa fa-cog edit-cog" aria-hidden="true"></i>
+                                        </a>
+
+                                    </div>
+                                @endif
+                            @endif
+
                         </div>
                     </div>
 
@@ -59,6 +72,9 @@
                             <i class="fas fa-store green fa-3x ps-3"></i>
                         </a>
                     </div>
+
+                    <br>
+                    
                 </div>
                 <div class="col-12 col-lg-6 bg-light mt-5 mt-lg-0">
                     <div class="row">
@@ -69,8 +85,8 @@
                             @if (Auth::user()->id == $profileOwner->id)
                                 <div class="col d-flex justify-content-start align-items-center">
 
-                                    <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                    <a class="" data-bs-toggle="collapse" href="#aboutCollapse" role="button" aria-expanded="false" aria-controls="aboutCollapse">
+                                        <i class="fa fa-cog edit-cog" aria-hidden="true"></i>
                                     </a>
 
                                 </div>
@@ -86,7 +102,7 @@
                         {{$profileOwner->about}}
                     </p>
                     
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="aboutCollapse">
                         <form id="profile-about" method="post" action="{{'/users/' . $profileOwner->id}}">
                             @csrf
                             <textarea rows="5" cols="60" name="about_update"></textarea>
@@ -95,6 +111,43 @@
                         </form>
                     </div>
                 </div>
+            </div>
+
+            
+            <div class="collapse" id="generalCollapse">
+                <form id="profile-general" method="post" action="{{'/users/' . $profileOwner->id}}">
+                    @csrf
+                    <div class="row" style="--bs-gutter-x:0;">
+                        <div class="col form-floating mb-3 align-self-start">
+                            <input required type="text" name="firstname" class="form-control" id="floatingInput" value="{{ old('firstname', $profileOwner->firstname) }}">
+                            <label for="floatingInput">First Name</label>
+                        </div>
+
+                        <div class="col form-floating mb-3 ">
+                            <input type="text" name="lastname" class="form-control" id="floatingInput" value="{{ old('lastname', $profileOwner->lastname) }}">
+                            <label for="floatingInput">Last Name</label>
+                        </div>
+                    </div>
+
+                    <div class="row" style="--bs-gutter-x:0;">
+                        <div class="col form-floating mb-3">
+                            <input required type="text" name="username" class="form-control" id="floatingInput" value="{{ old('username', $profileOwner->username) }}">
+                            <label for="floatingInput">Username</label>
+                        </div>
+
+                        <div class="col form-floating mb-3">
+                            <input required type="text" name="location" class="form-control" id="floatingInput" value="{{ old('location', $profileOwner->location) }}">
+                            <label for="floatingInput">Location</label>
+                        </div>
+                    </div>
+
+                    {{-- <input type="submit" value= "Update" /> --}}
+                    <div class="modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
+                        <button type="submit" class="btn w-100 fw-bold">
+                            {{ __('Update') }}
+                        </button>
+                    </div>
+                </form>
             </div>
 
             <div class="profile-auction-gallery">

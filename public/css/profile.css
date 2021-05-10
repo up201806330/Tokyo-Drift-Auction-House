@@ -25,10 +25,22 @@
     height: auto;
 }
 
+.edit-cog {
+  transition: transform .3s;
+}
+
+.edit-cog:hover {
+  transform: rotate(90deg);
+  transition: transform .3s;
+}
+
 
 .username-text, .name-text, .based-on-text, .about-me-text {
-  padding-left: 3%;
   transition: transform .3s;
+}
+
+.username-text:hover, .name-text:hover, .based-on-text:hover, .about-me-text:hover {
+  transform: scale(1.05,1.05);
 }
 
 .about-me-text:hover {
