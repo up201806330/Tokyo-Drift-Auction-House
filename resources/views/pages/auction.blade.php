@@ -260,222 +260,47 @@
 </section>
 
 <div class="auction_background">
-    <!-- Top Bar with car details -->
-    <div class="container-fluid car-details">
-      
 
-    <div class="row align-items-center mx-auto">
-
-        <!-- Car Info -->
-        <div class="col-lg text-nowrap">
-            {{-- <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1> --}}
-                {{-- <div class="row align-items-center m-3">
-                    <div class="col">
-                        <h2>{{$vehicle->brand}}</h2>
-                        <h4>{{$vehicle->year}}</h4>
-                    </div>
-                    <div class="col">
-                        <h2>{{$vehicle->model}}</h2>
-                        <h4>{{$vehicle->horsepower}} hp</h4>
-                    </div>
-                    <div class="col fire-text d-flex align-items-center justify-content-center" style="font-size: 4rem;">
-                        <i class="fa fa-fire m-3"></i>
-                        <h4 class="mb-0">{{Str::upper($vehicle->condition)}}</h4>
-                    </div>
-                </div> --}}
-            {{-- <div class="row align-items-center m-3 text-center">
-                <div class="col">
-                    <p>Start date:</p>
-                    <h6>{{\Carbon\Carbon::parse($auction->startingtime)->format('H:i:s')}}</h6>
-                    <h6>{{\Carbon\Carbon::parse($auction->startingtime)->format('Y-m-d')}}</h6>
-                </div>
-                <div class="col">
-                    <p>End date:</p>
-                    <h6>{{\Carbon\Carbon::parse($auction->endingTime)->format('H:i:s')}}</h6>
-                    <h6>{{\Carbon\Carbon::parse($auction->endingTime)->format('Y-m-d')}}</h6>
-                </div>
-            </div> --}}
-        </div>
-    </div>
-      
-</div>
-  
-{{-- <div class="auction_content rounded-3 border border-2 border-dark bg-white"> --}}
-    <!-- Current Bid info -->
-    {{-- <div class="container" id="auction_content_area">
-        <div class="row mx-auto align-items-center justify-content-around">
-            <div class="col-12 col-md-4 mt-3 mb-3">
-                <h2>Owner</h2>
-                <a href="{{ url('/users/' . $owner->id) }}" class="profile_text">
-                    <img src="{{ asset('assets/' . $owner_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
-                      
-                    <h4 class="m-0" style="color: rgb(204, 174, 2)">{{ $owner->username }}</h4>
-                </a>
-            </div>
-            <div class="col-12 col-md-4 mt-3 mb-1">
-                <h2>Current Bid</h2>
-                <h1 class="current_bid">{{$max_bid}} €</h1>
-            </div>
-            <div class="col-12 col-md-4 mt-3 mb-3">
-                <h2 class="text-nowrap">Top Bidder</h2>
-                <a href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
-                    <img src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
-                    <h4 class="m-0">{{$highest_bidder->username}}</h4>
-                </a>
-            </div>
-        </div>
-    </div> --}}
-
-    <!-- Place Bid -->
-    {{-- @if (!Auth::guest())
-        <div class="container mt-5" id="auction_content_area">
-            <form>
-                <div class="row align-items-center">
-                    <div class="col-sm">
-                        <div class="input-group">
-                            <input type="number" min="0.00" step="1" value="205000" class="form-control" id="bid_input" placeholder="Your Bid">
-                                <div class="input-group-append">
-                                    <span class="input-group-text append_box" id="bid_input_box">€</span>
-                                </div>
+    <!-- Comment Section -->
+    <div class="display-1" style="margin-left: 15%;">Comment Section</div>
+        <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="comment_section">
+        
+        @if (!Auth::guest())
+            <!-- Place Comment -->
+            <div class="comment pb-2 clearfix rounded-3 border border-2">
+                <form onsubmit="Comment.submit(this, auctionId); Comment.updateSection(auctionId); return false;">
+                    <!-- User and date -->
+                    <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
+                    @if (Auth::guest())
+                        <div class="d-flex justify-content-start align-items-center">
+                            <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture_comment m-3" alt="generic profile picture"> 
                         </div>
-
-                    </div>
-                    <div class="col-sm p-0 mt-3 mb-3">
-                        <button type="submit" class="btn rounded-pill" id="bid_button"><h2 class="m-0 p-2">PLACE BID</h2></button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    @endif --}}
-
-    <!-- Countdown -->
-    {{-- <div class="container mt-5" id="auction_content_area">
-        <div class="row d-flex flex-row justify-content-around align-items-center">
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col-6 countdown_box">
-                        <h1 class="display-1 m-0" id="days"></h1>
-                        <h4>Days</h4>
-                    </div>
-                    <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0" id="hours"></h1>
-                        <h4>Hours</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0" id="minutes"></h1>
-                        <h4>Minutes</h4>
-                    </div>
-                    <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0" id="seconds"></h1>
-                        <h4>Seconds</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h4 class="d-flex justify-content-between mt-3 pb-5">
-
-            @if (\Carbon\Carbon::now() > $auction->endingtime)
-                <span> </span>
-                <span>A</span>
-                <span>U</span>
-                <span>C</span>
-                <span>T</span>
-                <span>I</span>
-                <span>O</span>
-                <span>N</span>
-                <span> </span>
-                <span> </span>
-                <span>H</span>
-                <span>A</span>
-                <span>S</span>
-                <span> </span>
-                <span> </span>
-                <span>E</span>
-                <span>N</span>
-                <span>D</span>
-                <span>E</span>
-                <span>D</span>
-                <span> </span>
-            @else
-                <span> </span>
-                <span>T</span>
-                <span>I</span>
-                <span>L</span>
-                <span>L</span>
-                <span> </span>
-                <span> </span>
-                <span>A</span>
-                <span>U</span>
-                <span>C</span>
-                <span>T</span>
-                <span>I</span>
-                <span>O</span>
-                <span>N</span>
-                <span> </span>
-                <span> </span>
-                @if ($auction->startingtime > \Carbon\Carbon::now())
-                    <span>B</span>
-                    <span>E</span>
-                    <span>G</span>
-                    <span>I</span>
-                    <span>N</span>
-                    <span>S</span>
-                @else
-                    <span>E</span>
-                    <span>N</span>
-                    <span>D</span>
-                    <span>S</span>
-                @endif
-                <span> </span>
-
-            @endif
-        </h4>
-    </div> --}}
-
-{{-- </div> --}}
-
-<!-- Comment Section -->
-<div class="display-1" style="margin-left: 15%;">Comment Section</div>
-    <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="comment_section">
-      
-    @if (!Auth::guest())
-        <!-- Place Comment -->
-        <div class="comment pb-2 clearfix rounded-3 border border-2">
-            <form onsubmit="Comment.submit(this, auctionId); Comment.updateSection(auctionId); return false;">
-                <!-- User and date -->
-                <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
-                @if (Auth::guest())
-                    <div class="d-flex justify-content-start align-items-center">
-                        <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture_comment m-3" alt="generic profile picture"> 
-                    </div>
-                @else
-                    <div class="d-flex justify-content-start align-items-center">
-                        <img src="{{ asset('assets/' . App\Models\User::findUserImage(Auth::id())->path) }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
-                        <div>
-                            <h6 class="m-0">{{App\Models\User::find(Auth::id())->username}}</h6>
+                    @else
+                        <div class="d-flex justify-content-start align-items-center">
+                            <img src="{{ asset('assets/' . App\Models\User::findUserImage(Auth::id())->path) }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
+                            <div>
+                                <h6 class="m-0">{{App\Models\User::find(Auth::id())->username}}</h6>
+                            </div>
                         </div>
+                    @endif
+                    </a>
+                    <div class="m-3 mt-0">
+                        <textarea class="form-control text-justify" name="content" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
                     </div>
-                @endif
-                </a>
-                <div class="m-3 mt-0">
-                    <textarea class="form-control text-justify" name="content" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
-                </div>
-                <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
-            </form>
+                    <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
+                </form>
+            </div>
+        @endif
+        
+        <div id="other-comments">
         </div>
-    @endif
-    
-    <div id="other-comments">
+
+    <!-- Chat Button -->
+    <a href="#" class="chat_button">
+        <i class="fa fa-comments chat_icon"></i>
+    </a>
     </div>
 
-  <!-- Chat Button -->
-  <a href="#" class="chat_button">
-      <i class="fa fa-comments chat_icon"></i>
-  </a>
 </div>
 
 @endsection
