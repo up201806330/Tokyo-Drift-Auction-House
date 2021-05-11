@@ -10,21 +10,6 @@
     background-color: rgb(223, 223, 223);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .auction_background{
     display: block;
     overflow: auto;
@@ -35,13 +20,9 @@
     color: var(--red-darkerer);
 }
 
-/* .carousel, .carousel-item > img {
-    max-width: 640px;
-    min-width: 640px;
-    max-height:360px;
-    min-height:360px;
-} */
-.carousel, .carousel-item > img { width:600px; height:360px; }
+.carousel, .carousel-item > img {
+    width:600px; height:360px;
+}
 
 .car-details {
     background-color: var(--dark-grey);
@@ -51,10 +32,6 @@
 
 #under_heart {
     line-height: 0px;
-    /*margin-top: 0px;
-    margin-left: 0px;
-    margin-right: 0px;*/
-    /* margin:auto; */
     display:inline-block;
     position:relative;
 }
@@ -120,9 +97,6 @@
 #bid_button{
     background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
     color: var(--white);
-    /* padding-left: 2rem;
-    padding-right: 2rem;
-    font-size: 2em; */
 }
 
 #bid_button:hover {
@@ -135,7 +109,6 @@
     align-self: center;
     width: 20%
 }
-
 
 
 .bid-input > input[type=number] {
@@ -152,18 +125,7 @@
 }
 
 
-
-/* #bid_input{
-    font-size: xx-large;
-    border: 0;
-    border-bottom:thin solid var(--dark-grey);
-    padding: 0;
-    display: inline-block;
-    text-align: right;
-} */
-
 #bid_input_box {
-    /* font-size: xx-large; */
     padding: 0;
     border: 0;
 }
@@ -246,7 +208,6 @@
     color: transparent;
     background-image: linear-gradient(to left, #31e67c, #4e98f8, #e64124, #ffd23c);
     font-weight: bold;
-    /* font-size: 3rem; */
     -webkit-background-clip: text;
     animation: animate 5s linear infinite;
     -webkit-background-size: 200%;
