@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Profile | ' . $profileOwner->username )
+@section('title', $vehicle->year . "' " . $vehicle->brand . " " . $vehicle->model)
 
 @section('head')
     <script src="{{ asset('js/Comment.js')}}"></script>
@@ -154,23 +154,22 @@
 
                 <div class="col fs-3">
                     <div class="text-center">Current Bid</div>
-                    <div class="text-center fs-1">{{$max_bid}}€</div>
-                    
+                    <div class="text-center fs-1">{{$max_bid}}€</div>                    
                     
                     <!-- Place Bid -->
                     @if (!Auth::guest())
-                        {{-- <div class="row-sm"> --}}
                         <div class="row text-center">
-                            <form class="row justify-content-center">
+                            <form class="row justify-content-center" method="post" action="{{'/auctions/' . $auction->id . '/bids'}}">
+                                @csrf
                                 <div class="col bid-input input-group mb-3">
  
-                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepDown();">
+                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepDown();" style="cursor:pointer;">
                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                     </span>
 
-                                    <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$max_bid + 1}}" max="100000000" value="{{$max_bid + 1}}">
+                                    <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$max_bid + 1}}" max="100000000" value="{{$max_bid + 1}}" name="amount">
 
-                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepUp();">
+                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepUp();"  style="cursor:pointer;">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </span>
                                     

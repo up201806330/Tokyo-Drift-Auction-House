@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\VehicleImage;
 use App\Models\Auction;
@@ -97,6 +98,19 @@ class AuctionController extends Controller
             'bidder_img'    => $highest_bidder_profile_img,
             'comments'      => $auction_comments
         ]);
+    }
+
+    public function bid(Request $request, $auction_id) {
+        $bid = new Bid;
+
+        $bid->id = Bid::all()->max('id') + 1;
+        $bid->user_id = Auth::id();
+        $bid->auction_id = $auction_id;
+        $bid->amount = $request->get('amount');
+
+        $bid->save();
+
+        return redirect()->back();
     }
 
     /**
