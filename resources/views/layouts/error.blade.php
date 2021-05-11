@@ -3,6 +3,8 @@
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/tpl_error_page.css') }}">
+    
+    @section('title', 'Page Not Found')
 @endsection
 
 @section('body')

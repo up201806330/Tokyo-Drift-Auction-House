@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Profile | ' . $profileOwner->username )
+
 @section('head')
     <script src="{{ asset('js/Comment.js')}}"></script>
     <script>
@@ -252,50 +254,58 @@
 
     <!-- End of White Box -->
     </div>
-</section>
 
-<div class="auction_background">
-
+    
     <!-- Comment Section -->
-    <div class="display-1" style="margin-left: 15%;">Comment Section</div>
+    <div class="display-1 text-center" style="margin-bottom: 0.5em;">Comment Section</div>
+    <div class="around-container container bg-light rounded mb-5">
+
         <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="comment_section">
         
-        @if (!Auth::guest())
-            <!-- Place Comment -->
-            <div class="comment pb-2 clearfix rounded-3 border border-2">
-                <form onsubmit="Comment.submit(this, auctionId); Comment.updateSection(auctionId); return false;">
-                    <!-- User and date -->
-                    <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
-                    @if (Auth::guest())
-                        <div class="d-flex justify-content-start align-items-center">
-                            <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture_comment m-3" alt="generic profile picture"> 
+            @if (!Auth::guest())
+                <!-- Place Comment -->
+                <div class="comment pb-2 clearfix rounded-3 border border-2">
+                    <form onsubmit="Comment.submit(this, auctionId); Comment.updateSection(auctionId); return false;">
+                        <!-- User and date -->
+                        <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
+                            @if (Auth::guest())
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture_comment m-3" alt="generic profile picture"> 
+                                </div>
+                            @else
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <img src="{{ asset('assets/' . App\Models\User::findUserImage(Auth::id())->path) }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
+                                    <div>
+                                        <h6 class="m-0">{{App\Models\User::find(Auth::id())->username}}</h6>
+                                    </div>
+                                </div>
+                            @endif
+                        </a>
+                        <div class="m-3 mt-0">
+                            <textarea class="form-control text-justify" name="content" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
                         </div>
-                    @else
-                        <div class="d-flex justify-content-start align-items-center">
-                            <img src="{{ asset('assets/' . App\Models\User::findUserImage(Auth::id())->path) }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
-                            <div>
-                                <h6 class="m-0">{{App\Models\User::find(Auth::id())->username}}</h6>
-                            </div>
-                        </div>
-                    @endif
-                    </a>
-                    <div class="m-3 mt-0">
-                        <textarea class="form-control text-justify" name="content" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
-                    </div>
-                    <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
-                </form>
-            </div>
-        @endif
+                        <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
+                    </form>
+                </div>
+            @endif
         
-        <div id="other-comments">
-        </div>
+            <div id="other-comments">
+            </div>
 
-    <!-- Chat Button -->
-    <a href="#" class="chat_button">
-        <i class="fa fa-comments chat_icon"></i>
-    </a>
+        </div>
+        
+        <!-- Chat Button -->
+        <a href="#" class="chat_button">
+            <i class="fa fa-comments chat_icon"></i>
+        </a>
+    
+    <!-- End of White Box -->
     </div>
 
-</div>
+
+
+</section>
+
+
 
 @endsection

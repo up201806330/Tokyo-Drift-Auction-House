@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Terms of Service')
+
 @section('content')
 
 <div class="container-fluid bg-light p-4 tos-whole">

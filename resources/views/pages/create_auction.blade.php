@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Create auction')
+
 @section('content')
 
 <div id="create_auction_background">

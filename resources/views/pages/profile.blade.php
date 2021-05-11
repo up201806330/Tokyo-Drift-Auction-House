@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Profile | ' . $profileOwner->username )
 
 @section('content')
 

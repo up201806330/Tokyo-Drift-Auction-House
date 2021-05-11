@@ -134,12 +134,20 @@
     background-color: white;
 }
 
+.around-container {
+    padding-top: var(--bs-gutter-x,.75rem);
+    padding-bottom: var(--bs-gutter-x,.75rem);
+}
+
 #comment_section{
     background-color: var(--dark-grey);
     overflow: auto;
-    width: 75%;
     text-align: justify;
     margin: 2em auto 3em;
+
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .comment{
@@ -233,6 +241,7 @@
 
     #comment_section{
         width: 100%;
+        margin-top: 0;
         margin-bottom: 0;
     }
 

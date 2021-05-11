@@ -36,27 +36,23 @@ class UserController extends Controller
             return redirect()->back();
         }
 
-        // editing only the "about" part at the moment
+        // editing only the "about" part
         if ($request->has('about_update')) {
             User::where('id', $user_id)->update(['about' => $request->about_update]);
         }
         
+        // editing only the profile image
         if ($request->file('profileimage')) {
             $file = $request->file('profileimage');
 
-            $newFileName = ".jpg";
+            $fileNameExtension = ".jpg";
 
             // Upload file
-            // $file->move(base_path('public\assets\profile_photos'), "$user_id".$newFileName);
-            // TODO not working without hardcoding for John Doe in specific cuz his user_id isnt the same as the image name
-            $file->move(base_path('public\assets\profile_photos'), "17".$newFileName);
-
-            // dd($file);
+            $file->move(base_path('public\assets\profile_photos'), User::find($user_id)->profileimage . $newFileName);
         }
 
+        // editing profile information
         else {
-            dd('no :(');
-            
             User::where('id', $user_id)->update(
                 [
                     'firstname' => $request->firstname,
