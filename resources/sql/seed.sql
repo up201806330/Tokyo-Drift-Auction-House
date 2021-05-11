@@ -503,9 +503,9 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 
 -- Auctions --
 INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
-(1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
-(2,'BMW 3 Series 2010 Mint',2,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
-(3,'BMW 5 Series Exclusive',3,15000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
+(1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-05-11 19:00:00','Public'),
+(2,'BMW 3 Series 2010 Mint',2,10000,'2021-03-30 12:59:24','2021-05-11 20:00:00','2021-05-15 12:00:00','Public'),
+(3,'BMW 5 Series Exclusive',3,15000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-05-08 17:00:00','Public'),
 (4,'BMW 7 Series Great for Sports People',4,20000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (5,'Mercedes A Clean',5,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Private'),
 (6,'Mercedes C Average',6,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Private'),
