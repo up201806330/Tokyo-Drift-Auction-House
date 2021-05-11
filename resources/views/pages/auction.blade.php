@@ -118,7 +118,7 @@
         </div>
 
         <!-- Dates -->
-        <div class="row text-white text-center align-items-center my-2 mx-auto">
+        <div class="row text-white text-center align-items-center my-3 mx-auto">
             <div class="col-lg text-nowrap rounded-start bg-dark">
                 <div class="row py-2 fs-4">
                     <div class="col">   Starting date:  </div>
@@ -138,7 +138,7 @@
         <div class="rounded-3 border border-2 border-dark">
 
             <!-- Current Bid info -->
-            <div class="row mt-4 mb-4">
+            <div class="row mt-5 mb-4 mx-auto">
                 <div class="col fs-3">
                     <div class="text-center">Owner</div>
                     <div class="text-center">
@@ -158,25 +158,20 @@
                     <!-- Place Bid -->
                     @if (!Auth::guest())
                         {{-- <div class="row-sm"> --}}
-                        <div class="row text-center justify-content-around">
-                            <form class="row justify-content-around">
-                                <div class="bid-input input-group mb-3">
-                                    {{-- <button type="button" onclick="this.parentNode.querySelector('[type=number]').stepDown();"> --}}
+                        <div class="row text-center">
+                            <form class="row justify-content-center">
+                                <div class="col bid-input input-group mb-3">
+ 
                                     <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepDown();">
                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                     </span>
-                                    {{-- </button> --}}
 
                                     <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$max_bid + 1}}" max="100000000" value="{{$max_bid + 1}}">
-                                    {{-- <input type="number" name="bidamount" min="{{$max_bid + 1}}" max="100000000" value="{{$max_bid + 1}}" id="bid_input"> --}}
 
                                     <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepUp();">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </span>
                                     
-                                    {{-- <button class="btn btn-secondary" type="button" onclick="this.parentNode.querySelector('[type=number]').stepUp();">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button> --}}
                                 </div>
 
                                 <button type="submit" class="btn rounded-pill" id="bid_button"><h4 class="m-0 p-2">Place Bid</h4></button>
