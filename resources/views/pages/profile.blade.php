@@ -9,7 +9,7 @@
         <div class="display-1 pt-5 ps-2 text-start">Profile page</div>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fs-5 ps-4 pt-1">
-                <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Profile</li>
             </ol>
         </nav>

@@ -11,8 +11,7 @@
         <div class="display-3 text-start">Create Auction</div>
         <nav aria-label="breadcrumb">
         <ol class="breadcrumb fs-5 pt-2 ps-2">
-            <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="../pages/profile.php">Profile</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Create Auction</li>
         </ol>
         </nav>

@@ -78,6 +78,13 @@ class Comment {
             )
         );
 
+        if (comments.length == 0) {
+            let noCommentsDiv = document.createElement("div");
+            noCommentsDiv.setAttribute('class', 'py-2 fs-2 text-center');
+            noCommentsDiv.innerHTML = "Be the first one to comment!";
+            commentsEl.appendChild(noCommentsDiv);
+        }
+
         comments.sort((a, b) => b.createdOn.getTime() - a.createdOn.getTime());
         for(let comment of comments){
             let commentEl = comment.asElement();

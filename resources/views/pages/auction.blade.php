@@ -31,7 +31,7 @@
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fs-5 ps-2 pt-1 pb-2">
-                <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="../pages/search.php">Search</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</li>
             </ol>
