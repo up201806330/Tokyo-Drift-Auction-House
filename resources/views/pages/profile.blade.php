@@ -50,26 +50,6 @@
 
                         <div class="position-absolute" style="margin-top:220px; margin-left:220px">
 
-                            {{-- for a possible future profile image update --}}
-                            {{-- <form id="profile-image-form" method="post" action="{{'/users/' . $profileOwner->id}}">
-                                @csrf --}}
-
-
-                                {{-- <label for="file-input">
-                                    <i class="fa fa-cog" aria-hidden="true" style="pointer: cursor;"></i>
-                                </label> --}}
-
-
-                                {{-- <input id="file-input" type="file" name="file" style="display: none;"/> --}}
-
-                            {{-- </form> --}}
-
-                            {{-- <script>
-                                document.getElementById("file-input").onchange = function() {
-                                    document.getElementById("profile-image-form").submit();
-                                };
-                            </script> --}}
-
                             @if (!Auth::guest())
                                 @if (Auth::user()->id == $profileOwner->id)
                                     <div class="col d-flex justify-content-start align-items-center">

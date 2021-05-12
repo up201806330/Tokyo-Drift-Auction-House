@@ -26,10 +26,8 @@ class HomepageController extends Controller
         return view('pages.homepage', ['auctions' => $auctionsForHomepage]);
     }
 
-    // not working for auctions with no bids I think
     public function getRandomAuctions($nAuctions) {
-        return Auction::limit($nAuctions)->get();
-        // return Auction::inRandomOrder()->limit($nAuctions)->get();
+        return Auction::inRandomOrder()->limit($nAuctions)->get();
     }
 
 }

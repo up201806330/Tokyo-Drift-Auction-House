@@ -16,6 +16,7 @@
 
 // Auction
 Route::get('/auctions/new', 'AuctionController@showCreateForm')->name('create_auction');
+Route::post('/auctions/{id}/bids', 'AuctionController@bid')->name('bid');
 Route::get('/auctions/{id}', 'AuctionController@show');
 
 // Homepage
