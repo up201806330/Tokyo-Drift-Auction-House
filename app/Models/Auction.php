@@ -49,6 +49,16 @@ class Auction extends Model
     return User::find($this->getCurrentMaxBid($this->id)->user_id);
   }
 
+  public function getAdequateTimeDifference() {
+    if (\Carbon\Carbon::now() > $this->endingtime)
+      return "Ended "       . \Carbon\Carbon::parse($this->endingtime)->diffForHumans();
+
+    else if ($this->startingtime > \Carbon\Carbon::now())
+      return "Starts in "   . \Carbon\Carbon::parse($this->startingtime)->diffForHumans();
+    
+    else return "Ends in "  . \Carbon\Carbon::parse($this->endingtime)->diffForHumans();
+  }
+
 
   /**
    * Get the vehicle associated with the Auction

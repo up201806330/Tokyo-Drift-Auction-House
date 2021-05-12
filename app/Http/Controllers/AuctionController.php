@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\VehicleImage;
@@ -75,18 +76,33 @@ class AuctionController extends Controller
 
         $owner = User::find($vehicle->owner);
         $owner_profile_img = Image::find($owner->profileimage);
-
-        $current_max_bid_amount = Bid::where('auction_id', '=', $id)->max('amount');
-
-        $current_max_bid = $auction->getCurrentMaxBid();
-
-        $highest_bidder = $auction->getCurrentMaxBidder();
-
-        $highest_bidder_profile_img = Image::find($highest_bidder->profileimage);
-
         $auction_comments = $auction->getComments();
-        
 
+        try {
+            $current_max_bid_amount = Bid::where('auction_id', '=', $id)->max('amount');
+
+            $current_max_bid = $auction->getCurrentMaxBid();
+
+            $highest_bidder = $auction->getCurrentMaxBidder();
+
+            $highest_bidder_profile_img = Image::find($highest_bidder->profileimage);
+
+            
+        }
+        catch (Exception $e) {
+            return view('pages.auction', [
+                'auction'       => $auction,
+                'vehicle'       => $vehicle,
+                'images_paths'  => $images_paths,
+                'max_bid'       => null,
+                'owner'         => $owner,
+                'owner_img'     => $owner_profile_img,
+                'highest_bidder'=> null,
+                'bidder_img'    => null,
+                'comments'      => $auction_comments
+            ]);
+        }
+        
         return view('pages.auction', [
             'auction'       => $auction,
             'vehicle'       => $vehicle,

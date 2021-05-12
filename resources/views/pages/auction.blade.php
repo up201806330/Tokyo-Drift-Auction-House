@@ -154,7 +154,12 @@
 
                 <div class="col fs-3">
                     <div class="text-center">Current Bid</div>
-                    <div class="text-center fs-1">{{$max_bid}}€</div>                    
+                    @if (isset($max_bid))
+                        <div class="text-center fs-1">{{$max_bid}}€</div>  
+                    @else
+                        <div class="text-center fs-1">No bids</div>  
+                    @endif
+                                      
                     
                     <!-- Place Bid -->
                     @if (!Auth::guest())
@@ -166,8 +171,12 @@
                                     <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepDown();" style="cursor:pointer;">
                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                     </span>
-
-                                    <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$max_bid + 1}}" max="100000000" value="{{$max_bid + 1}}" name="amount">
+                                    
+                                    @if (isset($max_bid))
+                                        <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$max_bid + 1}}" max="100000000" value="{{$max_bid + 1}}" name="amount">
+                                    @else
+                                        <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$auction->startingbid}}" max="100000000" value="{{$auction->startingbid}}" name="amount">
+                                    @endif
 
                                     <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepUp();"  style="cursor:pointer;">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
@@ -185,10 +194,17 @@
                 <div class="col fs-3">
                     <div class="text-center">Top Bidder</div>
                     <div class="text-center">
-                        <a href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
-                            <img src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
-                            <h4 class="">{{$highest_bidder->username}}</h4>
-                        </a>
+                        @if (isset($highest_bidder))
+                            <a href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
+                                <img src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
+                                <h4 class="">{{$highest_bidder->username}}</h4>
+                            </a>
+                        @else
+                            <a href="" class="profile_text">
+                                <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
+                                {{-- <h4 class="">{{$highest_bidder->username}}</h4> --}}
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
