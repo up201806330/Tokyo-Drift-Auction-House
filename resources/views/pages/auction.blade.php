@@ -4,6 +4,7 @@
 
 @section('head')
     <script src="{{ asset('js/Comment.js')}}"></script>
+    <script src="{{ asset('js/Bid.js')}}"></script>
     <script>
         const auctionId = '{{$auction->id}}';
 
