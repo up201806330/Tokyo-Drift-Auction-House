@@ -21,7 +21,7 @@
         </ol>
         </nav>
         <hr class="bg-dark border-5 border-top border-dark">
-        <form method="post" action="{{ route('create_auction') }}">
+        <form method="post" action="{{ route('create_auction') }}" onsubmit="return validateForm()">
             @csrf
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-4">
