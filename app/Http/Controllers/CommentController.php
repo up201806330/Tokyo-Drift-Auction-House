@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\Request;
-use App\Models\VehicleImage;
 use App\Models\Auction;
 use App\Models\Comment;
-use App\Models\Image;
-use App\Models\User;
-use App\Models\Bid;
-use DB;
-
-use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -24,7 +18,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $auction_id)
+    public function create(Request $request, int $auction_id) : int
     {
         $comment = new Comment;
 
@@ -45,7 +39,7 @@ class CommentController extends Controller
     }
 
     
-    public function delete(Request $request, $id, $comment_id) {
+    public function delete(Request $request, int $id, int $comment_id) {
         $comment = Comment::find($comment_id);
 
         if (! Gate::allows('commentOwner', $comment)) {
@@ -56,7 +50,7 @@ class CommentController extends Controller
     }
 
 
-    public function getAuctionComments(Request $request, $auction_id) {
+    public function getAuctionComments(Request $request, int $auction_id) : JsonResponse {
         if ($request->wantsJson()) {
             $comments = Auction::find($auction_id)->getComments();
             return response()->json($comments, 200);

@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\VehicleImage;
 use App\Models\Auction;
-use App\Models\Comment;
-use App\Models\Image;
-use App\Models\User;
-use App\Models\Bid;
-use DB;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 
 class HomepageController extends Controller
 {
@@ -19,14 +14,14 @@ class HomepageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show() : View
     {
         $auctionsForHomepage = $this->getRandomAuctions(3);
 
         return view('pages.homepage', ['auctions' => $auctionsForHomepage]);
     }
 
-    public function getRandomAuctions($nAuctions) {
+    public function getRandomAuctions($nAuctions) : Collection {
         return Auction::inRandomOrder()->limit($nAuctions)->get();
     }
 
