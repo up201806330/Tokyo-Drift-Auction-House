@@ -1,19 +1,29 @@
-let endingDate;
 
-function setup(newStartingDate, newEndingDate) {
-        endingDate = newEndingDate;
-        startingDate = newStartingDate;
-    
-        let timer = setInterval(_ => {
-            let now = new Date().getTime();
+class CountdownClock {
+    constructor(startDate, endDate){
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.timer = null;
 
-            let startingDateObj = new Date(startingDate).getTime();
-            let endingDateObj = new Date(endingDate).getTime();
+        console.log(this.startDate);
+        console.log(this.endDate);
+    }
+
+    start(){
+        let self = this;
+        this.timer = setInterval(() => self.run(), 1000);
+    }
+
+    run(){
+            let nowTime = new Date().getTime();
+
+            let startTime = this.startDate.getTime();
+            let endTime = this.endDate.getTime();
 
             let t;
 
-            if (now < startingDateObj) { console.log("here"); t = startingDateObj - now; }
-            else { t = endingDateObj - now; }
+            if (nowTime < startTime) { console.log("here"); t = startTime - nowTime; }
+            else { t = endTime - nowTime; }
 
             if (t > 0) {
 
@@ -38,14 +48,12 @@ function setup(newStartingDate, newEndingDate) {
                 document.querySelector('#hours').innerText = hours;
                 document.querySelector('#minutes').innerText = mins;
                 document.querySelector('#seconds').innerText = secs;
-            }
-            else {
+            } else {
                 // Set time on document
                 document.querySelector('#days').innerText = "00";
                 document.querySelector('#hours').innerText = "00";
                 document.querySelector('#minutes').innerText = "00";
                 document.querySelector('#seconds').innerText = "00";
             }
-
-        }, 1000);
+    }
 }

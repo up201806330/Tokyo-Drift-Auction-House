@@ -19,4 +19,20 @@ class Utils {
 
         return newDate;
     }
+
+    /**
+     * Left-pad a string.
+     * 
+     * @param {String} s        String to pad
+     * @param {Number} n        Minimum number of characters
+     * @param {String} filler   Padding string
+     */
+    static padLeft(s, n, filler){
+        let nFillers = n - s.length;
+        while(nFillers > 0){
+            s = filler + s;
+            nFillers--;
+        }
+        return s;
+    }
 }
