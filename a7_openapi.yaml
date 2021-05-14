@@ -454,7 +454,7 @@ paths:
                   description: 'Successful auction edition. Redirect to auction page.'
                   value: '/auctions/{id}'
                 302Failure:
-                  description: 'Failed to edit. Redirect to acution page.'
+                  description: 'Failed to edit. Redirect to action page.'
                   value: '/auctions/{id}'
 
   #create auction
@@ -879,7 +879,7 @@ paths:
           description: 'Ok. Show [UI09](http://lbaw2174-piu.lbaw-prod.fe.up.pt/pages/about.php)'
 
   # terms of service
-  /terms_of_service:
+  /tos:
     get:
       operationId: R502
       summary: 'R502: Terms of Service'
