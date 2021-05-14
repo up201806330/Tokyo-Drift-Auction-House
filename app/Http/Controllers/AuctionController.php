@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Auth;
-use Illuminate\Http\Request;
-use App\Models\VehicleImage;
 use App\Models\Auction;
-use App\Models\Comment;
+use App\Models\Bid;
 use App\Models\Image;
 use App\Models\User;
-use App\Models\Bid;
-use DB;
-
-use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuctionController extends Controller
 {
@@ -22,7 +20,7 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() : void
     {
 
     }
@@ -32,7 +30,7 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showCreateForm()
+    public function showCreateForm() : View
     {
         return view('pages.create_auction');
     }
@@ -43,7 +41,7 @@ class AuctionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) : void
     {
         //
     }
@@ -52,9 +50,9 @@ class AuctionController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\View
      */
-    public function show($id)
+    public function show(int $id) : View
     {
         $auction = Auction::find($id);
         $vehicle = $auction->vehicle;
@@ -116,7 +114,7 @@ class AuctionController extends Controller
         ]);
     }
 
-    public function bid(Request $request, $auction_id) {
+    public function bid(Request $request, int $auction_id) : RedirectResponse {
         $bid = new Bid;
 
         $bid->user_id = Auth::id();
@@ -128,7 +126,7 @@ class AuctionController extends Controller
         return redirect()->back();
     }
 
-    public function getHighestBid(Request $request, $auction_id) {
+    public function getHighestBid(Request $request, int $auction_id) : JsonResponse {
         $auction = Auction::find($auction_id);
         $highestBid = $auction->getCurrentMaxBid();
         $highestBidder = $auction->getCurrentMaxBidder();
@@ -146,7 +144,7 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id) : void
     {
         //
     }
@@ -158,7 +156,7 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id) : void
     {
         //
     }
@@ -169,7 +167,7 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id) : void
     {
         //
     }
