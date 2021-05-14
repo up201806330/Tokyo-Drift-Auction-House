@@ -31,7 +31,7 @@ class Bid {
             bidPrimitive['auction_id'],
             bidPrimitive['user_id'],
             bidPrimitive['username'],
-            new Date(bidPrimitive['createdon']),
+            Utils.DateFromUTC(bidPrimitive['createdon']),
             parseFloat(bidPrimitive['amount'])
         )
 
