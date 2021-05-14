@@ -156,7 +156,7 @@
                 <div class="col fs-3">
                     <div class="text-center">Current Bid</div>
                     @if (isset($max_bid))
-                        <div class="text-center fs-1">{{$max_bid}}€</div>  
+                        <div id="max-bid" class="text-center fs-1">{{$max_bid}}€</div>  
                     @else
                         <div class="text-center fs-1">No bids</div>  
                     @endif
@@ -165,7 +165,7 @@
                     <!-- Place Bid -->
                     @if (!Auth::guest())
                         <div class="row text-center">
-                            <form class="row justify-content-center" method="post" action="{{'/auctions/' . $auction->id . '/bids'}}">
+                            <form class="row justify-content-center" onsubmit="Bid.submit(this, auctionId); Bid.updateSection(auctionId); return false;">
                                 @csrf
                                 <div class="col bid-input input-group mb-3">
  
@@ -196,9 +196,9 @@
                     <div class="text-center">Top Bidder</div>
                     <div class="text-center">
                         @if (isset($highest_bidder))
-                            <a href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
-                                <img src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
-                                <h4 class="">{{$highest_bidder->username}}</h4>
+                            <a id="max-bidder-anchor" href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
+                                <img id="max-bidder-img" src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
+                                <h4 id="max-bidder-username" class="">{{$highest_bidder->username}}</h4>
                             </a>
                         @else
                             <a href="" class="profile_text">
