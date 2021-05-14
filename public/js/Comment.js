@@ -73,7 +73,7 @@ class Comment {
                 commentPrimitive['auction_id'],
                 commentPrimitive['user_id'],
                 commentPrimitive['username'],
-                new Date(commentPrimitive['createdon']),
+                Utils.DateFromUTC(commentPrimitive['createdon']),
                 commentPrimitive['content']
             )
         );
