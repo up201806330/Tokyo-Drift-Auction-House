@@ -124,6 +124,10 @@
   -webkit-appearance: none;
 }
 
+.auction-status {
+    text-indent:0.7em;
+    letter-spacing: 0.7em;
+}
 
 #bid_input_box {
     padding: 0;

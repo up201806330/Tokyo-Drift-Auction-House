@@ -265,31 +265,17 @@
                         </div>
                     </div>
                 </div>
-                <h4 class="d-flex justify-content-between mt-3 pb-5">
 
+                <h4 class="center-block mt-3 pb-5 auction-status text-center">
                     @if (\Carbon\Carbon::now() > $auction->endingtime)
-                        <span> </span>
-                        <span>A</span><span>U</span><span>C</span><span>T</span><span>I</span><span>O</span><span>N</span>
-                        <span> </span><span> </span>
-                        <span>H</span><span>A</span><span>S</span>
-                        <span> </span><span> </span>
-                        <span>E</span><span>N</span><span>D</span><span>E</span><span>D</span>
-                        <span> </span>
-                    @else
-                        <span> </span>
-                        <span>T</span><span>I</span><span>L</span><span>L</span>
-                        <span> </span><span> </span>
-                        <span>A</span><span>U</span><span>C</span><span>T</span><span>I</span><span>O</span><span>N</span>
-                        <span> </span><span> </span>
-                        @if ($auction->startingtime > \Carbon\Carbon::now())
-                            <span>B</span><span>E</span><span>G</span><span>I</span><span>N</span><span>S</span>
-                        @else
-                            <span>E</span><span>N</span><span>D</span><span>S</span>
+                        AUCTION HAS ENDED
+                        @else UNTIL AUCTION 
+                            @if ($auction->startingtime > \Carbon\Carbon::now()) BEGINS
+                            @else ENDS
                         @endif
-                        <span> </span>
-
                     @endif
                 </h4>
+                
             </div>
 
         <!-- End of bordered box -->
