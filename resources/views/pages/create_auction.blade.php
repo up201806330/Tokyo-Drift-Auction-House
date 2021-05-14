@@ -17,29 +17,30 @@
         </nav>
         <hr class="bg-dark border-5 border-top border-dark">
         <form method="post" action="{{ route('create_auction') }}">
+            @csrf
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-4">
                     <div class="form-group m-1 m-md-2">
                         <label for="auctionName">Auction Name</label>
-                        <input required type="text" class="form-control input_box" id="auctionName" placeholder="Auction Name">
+                        <input required type="text" class="form-control input_box" id="auctionName" name="auctionName" placeholder="Auction Name">
                     </div>
                     <div class="form-group m-1 m-md-2">
                         <label for="brand">Brand</label>
-                        <input required type="text" class="form-control input_box" id="brand" placeholder="Brand">
+                        <input required type="text" class="form-control input_box" id="brand" name="brand" placeholder="Brand">
                     </div>
                     <div class="form-group m-1 m-md-2">
                         <label for="model">Model</label>
-                        <input required type="text" class="form-control input_box" id="model" placeholder="Model">
+                        <input required type="text" class="form-control input_box" id="model" name="model" placeholder="Model">
                     </div>
                     <div class="form-group m-1 m-md-2">
                         <label for="category">Category</label>
-                        <input required type="text" class="form-control input_box" id="category" placeholder="Category">
+                        <input required type="text" class="form-control input_box" id="category" name="category" placeholder="Category">
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-8 m-0">
                     <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block mx-auto mt-3 border border-2 border-secondary rounded-3" id="image_input_preview" alt="bmw i8">
                     <div class="form-group mb-3  m-1 m-md-2">
-                        <input type="file" class="form-control mx-auto" id="image_input" placeholder="Images Upload" multiple>
+                        <input type="file" class="form-control mx-auto" id="image_input" name="imageInput" placeholder="Images Upload" multiple>
                     </div>
                 </div>
             </div>
@@ -48,14 +49,14 @@
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="year">Year</label>
-                        <input required type="number" min="1950" max="2021" class="form-control input_box" id="year" placeholder="Year">
+                        <input required type="number" min="1950" max="2021" class="form-control input_box" id="year" name="year" placeholder="Year">
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="horsePower">Horse Power</label>
                         <div class="input-group">
-                            <input type="number" min="0" max="2000" class="form-control input_box text-right" id="horsePower" placeholder="Horse Power">
+                            <input type="number" min="0" max="2000" class="form-control input_box text-right" id="horsePower" name="horsepower" placeholder="Horse Power">
                             <div class="input-group-append">
                                 <span class="input-group-text append_box">hp</span>
                             </div>
@@ -65,12 +66,12 @@
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="condition">Condition</label>
-                        <select required class="form-select input_box" aria-label="condition">
+                        <select required class="form-select input_box" name="condition" aria-label="condition">
                             <option selected value="" disabled>Select a condition</option>
-                            <option value="mint">Mint</option>
-                            <option value="clean">Clean</option>
-                            <option value="average">Average</option>
-                            <option value="rough">Rough</option>
+                            <option value="Mint">Mint</option>
+                            <option value="Clean">Clean</option>
+                            <option value="Average">Average</option>
+                            <option value="Rough">Rough</option>
                         </select>
                     </div>
                 </div>
@@ -93,7 +94,7 @@
                     <div class="form-group m-1 m-md-2">
                         <label for="startingBid">Starting Bid</label>
                         <div class="input-group" id="staring_bid_group">
-                            <input required type="number" min="0" max="100000000" class="form-control input_box text-right" id="startingBid" placeholder="Starting Bid">
+                            <input required type="number" min="0" max="100000000" class="form-control input_box text-right" id="startingBid" name="startingBid" placeholder="Starting Bid">
                             <div class="input-group-append">
                                 <span class="input-group-text append_box">€</span>
                             </div>

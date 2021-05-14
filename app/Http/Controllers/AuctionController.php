@@ -7,6 +7,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\VehicleImage;
 use App\Models\Auction;
+use App\Models\Vehicle;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\User;
@@ -53,15 +54,15 @@ class AuctionController extends Controller
             return redirect('/login');
         }
 
-        $vehicle = new Vehicle;
-
-        $vehicle->id = Vehicle::all()->max('id') + 1;
-        $vehicle->owner = Auth::id();
-        $vehicle->brand = $request->get('brand');
-        $vehicle->model = $request->get('model');
-        $vehicle->condition = $request->get('condition');
-        $vehicle->year = $request->get('year');
-        $vehicle->horsepower = $request->get('horsepower');
+        $vehicle = new Vehicle([
+            'id' => Vehicle::all()->max('id') + 1,
+            'owner' => Auth::id(),
+            'brand' => $request->get('brand'),
+            'model' => $request->get('model'),
+            'condition' => $request->get('condition'),
+            'year' => $request->get('year'),
+            'horsepower' => $request->get('horsepower'),
+        ]);
 
         $vehicle->save();
 

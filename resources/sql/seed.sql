@@ -75,6 +75,11 @@ CREATE TABLE vehicle (
     description TEXT
 );
 
+SELECT pg_get_serial_sequence('vehicle', 'id');
+
+-- reset the sequence, regardless whether table has rows or not:
+SELECT setval(pg_get_serial_sequence('vehicle', 'id'), coalesce(max(id),0) + 1, false) FROM vehicle;
+
 CREATE TABLE auction (
     id              SERIAL          PRIMARY KEY,
     auction_name    TEXT            NOT NULL,
