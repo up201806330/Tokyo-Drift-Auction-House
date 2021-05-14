@@ -32,10 +32,10 @@ class Bid {
             bidPrimitive['user_id'],
             bidPrimitive['username'],
             new Date(bidPrimitive['createdon']),
-            bidPrimitive['amount']
+            parseFloat(bidPrimitive['amount'])
         )
 
-        document.querySelector("#max-bid").innerHTML = `${bid.amount}€`;
+        document.querySelector("#max-bid").innerHTML = `${bid.amount.toFixed(2)}€`;
         document.querySelector("#max-bidder-anchor").href = `users/${bid.userId}`;
         document.querySelector("#max-bidder-img").src = `users/${bid.userId}/photo`;
         document.querySelector("#max-bidder-username").innerHTML = bid.username;
