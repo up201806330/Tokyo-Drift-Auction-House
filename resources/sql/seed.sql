@@ -75,10 +75,6 @@ CREATE TABLE vehicle (
     description TEXT
 );
 
-SELECT pg_get_serial_sequence('vehicle', 'id');
-
--- reset the sequence, regardless whether table has rows or not:
-SELECT setval(pg_get_serial_sequence('vehicle', 'id'), coalesce(max(id),0) + 1, false) FROM vehicle;
 
 CREATE TABLE auction (
     id              SERIAL          PRIMARY KEY,
@@ -506,6 +502,9 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (19,4,'Porsche','Panamera 4 Executive','Mint',2020,450),
 (20,4,'Tesla','S','Mint',2021,700);
 
+-- reset the sequence, regardless whether table has rows or not:
+SELECT setval(pg_get_serial_sequence('vehicle', 'id'), coalesce(max(id),0) + 1, false) FROM vehicle;
+
 -- Auctions --
 INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
 (1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-05-12 19:00:00','Public'),
@@ -528,6 +527,9 @@ INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,start
 (18,'Luxury Aventador S',18,390000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public'),
 (19,'New Panamera 4 Executive',19,160000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public'),
 (20,'Brand New Tesla S',20,230000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public');
+
+-- reset the sequence, regardless whether table has rows or not:
+SELECT setval(pg_get_serial_sequence('auction', 'id'), coalesce(max(id),0) + 1, false) FROM auction;
 
 -- User Permissions --
 INSERT INTO "global_mod" (id) VALUES (2),(5);
