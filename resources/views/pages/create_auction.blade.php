@@ -16,7 +16,7 @@
         </ol>
         </nav>
         <hr class="bg-dark border-5 border-top border-dark">
-        <form>
+        <form method="post" action="{{ route('create_auction') }}">
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-4">
                     <div class="form-group m-1 m-md-2">

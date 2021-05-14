@@ -34,7 +34,50 @@ class AuctionController extends Controller
      */
     public function showCreateForm()
     {
+        if (Auth::guest()) {
+            // TODO -> em vez de redirecionar, aparecer overlay
+            return redirect('/login');
+        }
         return view('pages.create_auction');
+    }
+
+    /**
+   * Creates a new auction.
+   *
+   * @param  Request request containing the description
+   * @return Response
+   */
+    public function create(Request $request)
+    {
+        if (Auth::guest()) {
+            return redirect('/login');
+        }
+
+        $vehicle = new Vehicle;
+
+        $vehicle->id = Vehicle::all()->max('id') + 1;
+        $vehicle->owner = Auth::id();
+        $vehicle->brand = $request->get('brand');
+        $vehicle->model = $request->get('model');
+        $vehicle->condition = $request->get('condition');
+        $vehicle->year = $request->get('year');
+        $vehicle->horsepower = $request->get('horsepower');
+
+        $vehicle->save();
+
+        $auction = new Auction;
+
+        $auction->id = Auction::all()->max('id') + 1;        
+        $auction->auction_name = $request->get('auction_name');
+        $auction->vehicle_id = $vehicle->id;
+        $auction->startingBid = $request->get('startingBid');
+        $auction->startingTime = $request->get('startingTime');
+        $auction->endingTime = $request->get('endingTime');
+        $auction->auctionType = $request->get('auctionType');
+
+        $auction->save();
+
+        return redirect()->back();
     }
 
     /**

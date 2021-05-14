@@ -23,6 +23,16 @@ class Vehicle extends Model
   ];
 
   /**
+   * Get the user that owns the Vehicle
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+   */
+  public function owner()
+  {
+      return $this->belongsTo(User::class, 'owner');
+  }
+
+  /**
    * Get the auction that owns the Vehicle
    *
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

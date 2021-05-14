@@ -7,6 +7,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Tokyo Drift Auction House</title>
   <link rel="shortcut icon" href="../logo.svg">
   
