@@ -80,7 +80,6 @@ class RegisterController extends Controller
         // // dd($user->email);
 
         return User::create([
-            'id' => User::all()->max('id') + 1,
             'profileimage' => 8,
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],

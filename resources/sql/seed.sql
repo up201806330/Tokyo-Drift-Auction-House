@@ -451,6 +451,8 @@ INSERT INTO "image" (id,path) VALUES
 (19, 'profile_photos/19.jpg'),
 (20, 'profile_photos/20.jpg');
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('image', 'id'), (SELECT MAX(id) FROM "image")+1);
+
 -- Users --
 INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,location,about,registeredOn) VALUES
 (1,1,'Roth','Hampton','tempor.augue.ac@sitametmetus.edu','roth_hampton','PXA24YEP6CV','Porto','I LOVE CARS and so I decided to build this website so I can share it with everyone else.','2021-03-30 12:38:24'),
@@ -475,8 +477,12 @@ INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,l
 (20,20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24'),
 (21,17, 'John', 'Doe','user@example.com', 'johndoe', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'johnlocation', 'i really like cars :)', '2020-05-30 12:38:24');
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('user', 'id'), (SELECT MAX(id) FROM "user")+1);
+
 -- Seller Permissions --
 INSERT INTO "seller" (id) VALUES (2),(3),(4),(7);
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('seller', 'id'), (SELECT MAX(id) FROM "seller")+1);
 
 -- Vehicles --
 INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
@@ -501,6 +507,8 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (19,4,'Porsche','Panamera 4 Executive','Mint',2020,450),
 (20,4,'Tesla','S','Mint',2021,700);
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('vehicle', 'id'), (SELECT MAX(id) FROM "vehicle")+1);
+
 -- Auctions --
 INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
 (1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-05-12 19:00:00','Public'),
@@ -523,6 +531,8 @@ INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,start
 (18,'Luxury Aventador S',18,390000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public'),
 (19,'New Panamera 4 Executive',19,160000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public'),
 (20,'Brand New Tesla S',20,230000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public');
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('auction', 'id'), (SELECT MAX(id) FROM "auction")+1);
 
 -- User Permissions --
 INSERT INTO "global_mod" (id) VALUES (2),(5);
@@ -553,6 +563,8 @@ INSERT INTO "image" (id,path) VALUES
 (42, 'car_photos/18/1.jpg'),
 (43, 'car_photos/19/1.jpg'),
 (44, 'car_photos/20/1.jpg');
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('image', 'id'), (SELECT MAX(id) FROM "image")+1);
 
 INSERT INTO "vehicle_image" (vehicle_id,image_id,sequence_number) VALUES
 (1,21,1), (1,22,2), (1,23,3),
@@ -603,6 +615,8 @@ INSERT INTO "comment" (id,user_id,auction_id,createdOn,content) VALUES
 (9,11,6,'2021-03-31 15:27:38','Thank you for inviting me for this auction. I really want this car!'),
 (10,13,6,'2021-03-31 13:27:38','Really looking forward for this auction'),
 (11,12,6,'2021-03-31 18:27:38','Great Car and great seller. Cant wait for this awesome auction.');
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('comment', 'id'), (SELECT MAX(id) FROM "comment")+1);
 
 -- Banned Users --
 INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType) VALUES
