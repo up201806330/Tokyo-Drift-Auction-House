@@ -165,7 +165,7 @@
                     <!-- Place Bid -->
                     @if (!Auth::guest())
                         <div class="row text-center">
-                            <form class="row justify-content-center" onsubmit="Bid.submit(this, auctionId); Bid.updateSection(auctionId); return false;">
+                            <form class="row justify-content-center" onsubmit="Bid.submit(this, auctionId).then(() => Bid.updateSection(auctionId)); return false;">
                                 @csrf
                                 <div class="col bid-input input-group mb-3">
  
@@ -281,7 +281,7 @@
             @if (!Auth::guest())
                 <!-- Place Comment -->
                 <div class="comment pb-2 clearfix rounded-3 border border-2">
-                    <form onsubmit="Comment.submit(this, auctionId); Comment.updateSection(auctionId); return false;">
+                    <form onsubmit="Comment.submit(this, auctionId).then(() => Comment.updateSection(auctionId)); return false;">
                         <!-- User and date -->
                         <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
                             @if (Auth::guest())
