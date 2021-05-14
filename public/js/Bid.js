@@ -26,6 +26,9 @@ class Bid {
 
     static async updateSection(auctionId){
         let bidPrimitive = await api.get(`auctions/${auctionId}/bids/highest`).then(response => response.json());
+
+        if(Object.keys(bidPrimitive).length === 0) return;
+
         let bid = new Bid(
             bidPrimitive['id'],
             bidPrimitive['auction_id'],
