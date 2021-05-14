@@ -119,7 +119,6 @@ class AuctionController extends Controller
     public function bid(Request $request, $auction_id) {
         $bid = new Bid;
 
-        $bid->id = Bid::all()->max('id') + 1;
         $bid->user_id = Auth::id();
         $bid->auction_id = $auction_id;
         $bid->amount = $request->get('amount');
