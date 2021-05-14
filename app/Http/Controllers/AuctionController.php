@@ -132,11 +132,11 @@ class AuctionController extends Controller
         $auction = Auction::find($auction_id);
         $highestBid = $auction->getCurrentMaxBid();
         $highestBidder = $auction->getCurrentMaxBidder();
-        $highestBid['username'] = $highestBidder->username;
+        if($highestBidder !== null) $highestBid['username'] = $highestBidder->username;
         if ($request->wantsJson()) {
             return response()->json($highestBid, 200);
         } else {
-            return response()->json(['error' => 'Error msg'], 415);
+            return response('', 415);
         }
     }
 
