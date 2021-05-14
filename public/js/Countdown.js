@@ -1,12 +1,9 @@
 
 class CountdownClock {
     constructor(startDate, endDate){
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.begin = startDate;
+        this.end = endDate;
         this.timer = null;
-
-        console.log(this.startDate);
-        console.log(this.endDate);
     }
 
     start(){
@@ -15,33 +12,16 @@ class CountdownClock {
     }
 
     run(){
-            let nowTime = new Date().getTime();
+            let now = new Date();
 
-            let startTime = this.startDate.getTime();
-            let endTime = this.endDate.getTime();
-
-            let t;
-
-            if (nowTime < startTime) { console.log("here"); t = startTime - nowTime; }
-            else { t = endTime - nowTime; }
+            let t = (now < this.begin ? this.begin.getTime() : this.end.getTime()) - now.getTime();
 
             if (t > 0) {
 
-                let days = Math.floor(t / (1000 * 60 * 60 * 24));
-                // prefix any number below 10 with a "0" E.g. 1 = 01
-                if (days < 10) { days = "0" + days; }
-                
-                // calculate hours
-                let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                if (hours < 10) { hours = "0" + hours; }
-            
-                // calculate minutes
-                let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-                if (mins < 10) { mins = "0" + mins; }
-
-                // calculate seconds
-                let secs = Math.floor((t % (1000 * 60)) / 1000);
-                if (secs < 10) { secs = "0" + secs; }
+                let days  = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0'); // calculate days
+                let hours = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');  // calculate hours
+                let mins  = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0'); // calculate minutes
+                let secs  = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0'); // calculate seconds
         
                 // Set time on document
                 document.querySelector('#days').innerText = days;
