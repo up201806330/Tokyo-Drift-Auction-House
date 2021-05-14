@@ -27,9 +27,6 @@
     </script>
 
     <script>
-        console.log('{{$auction->startingtime}}');
-        console.log('{{$auction->endingtime}}');
-
         let countdown = new CountdownClock(
             Utils.DateFromUTC('{{$auction->startingtime}}'),
             Utils.DateFromUTC('{{$auction->endingtime}}')
