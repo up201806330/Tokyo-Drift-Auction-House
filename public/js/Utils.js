@@ -11,7 +11,7 @@ class Utils {
         let newDate = new Date();
         newDate.setUTCFullYear    (date.getFullYear    ());
         newDate.setUTCMonth       (date.getMonth       ());
-        newDate.setUTCDate        (date.getDay         ());
+        newDate.setUTCDate        (date.getDate        ());
         newDate.setUTCHours       (date.getHours       ());
         newDate.setUTCMinutes     (date.getMinutes     ());
         newDate.setUTCSeconds     (date.getSeconds     ());
