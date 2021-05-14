@@ -164,7 +164,7 @@
                     
                     <!-- Place Bid -->
                     @if (!Auth::guest())
-                        <div class="row text-center">
+                        <div class="row text-center  d-flex justify-content-center">
                             <form class="row justify-content-center" onsubmit="Bid.submit(this, auctionId).then(() => Bid.updateSection(auctionId)); return false;">
                                 @csrf
                                 <div class="col bid-input input-group mb-3">
@@ -212,7 +212,7 @@
             
             <!-- Countdown -->
             <div class="container mt-5" id="auction_content_area">
-                <div class="row d-flex flex-row justify-content-around align-items-center">
+                <div class="row d-flex flex-row justify-content-around align-items-center text-center">
                     <div class="col-12 col-md-6">
                         <div class="row">
                             <div class="col-6 countdown_box">
