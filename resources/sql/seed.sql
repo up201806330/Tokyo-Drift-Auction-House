@@ -2,7 +2,7 @@
 
 DROP DOMAIN IF EXISTS PASTTIMESTAMP     CASCADE;
 DROP DOMAIN IF EXISTS FUTURETIMESTAMP   CASCADE;
-DROP DOMAIN IF EXISTS EUROCENTS         CASCADE;
+DROP DOMAIN IF EXISTS EURO_T            CASCADE;
 DROP DOMAIN IF EXISTS EMAIL_T           CASCADE;
 DROP DOMAIN IF EXISTS VATNUMBER_T       CASCADE;
 DROP TYPE   IF EXISTS CONDITION_T       CASCADE;
@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS "bid"                  CASCADE;
 
 CREATE DOMAIN   PASTTIMESTAMP   AS TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP CHECK(VALUE <= CURRENT_TIMESTAMP);
 CREATE DOMAIN   FUTURETIMESTAMP AS TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP;
-CREATE DOMAIN   EUROCENTS       AS INTEGER      NOT NULL;
+CREATE DOMAIN   EURO_T          AS NUMERIC(17, 2) NOT NULL;
 CREATE DOMAIN   EMAIL_T         AS TEXT         CHECK(VALUE LIKE '_%@_%.__%');
 CREATE DOMAIN   VATNUMBER_T     AS CHAR(16);
 CREATE TYPE     CONDITION_T     AS ENUM ('Mint', 'Clean', 'Average', 'Rough');
@@ -79,7 +79,7 @@ CREATE TABLE auction (
     id              SERIAL          PRIMARY KEY,
     auction_name    TEXT            NOT NULL,
     vehicle_id      INTEGER         NOT NULL REFERENCES "vehicle"(id),
-    startingBid     EUROCENTS       CHECK (startingBid >= 0),
+    startingBid     EURO_T          CHECK (startingBid >= 0),
     creationTime    PASTTIMESTAMP   ,
     startingTime    TIMESTAMP       NOT NULL CHECK (startingTime >= creationTime),
     endingTime      TIMESTAMP       NOT NULL CHECK (endingTime >= startingTime + INTERVAL '1 hour'),
@@ -98,7 +98,7 @@ CREATE TABLE "invoice" (
     user_id     INTEGER         NOT NULL REFERENCES "user"(id),
     createdOn   PASTTIMESTAMP   ,
     vatNumber   VATNUMBER_T     ,
-    value       EUROCENTS       CHECK(value >= 0),
+    value       EURO_T          CHECK(value >= 0),
     description TEXT            NOT NULL
 );
 
@@ -147,7 +147,7 @@ CREATE TABLE bid (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         REFERENCES "user"(id) NOT NULL,
     auction_id  INTEGER         REFERENCES "auction"(id) NOT NULL,
-    amount      EUROCENTS       CHECK (amount > 0),
+    amount      EURO_T          CHECK (amount > 0),
     createdOn   PASTTIMESTAMP
 );
 
