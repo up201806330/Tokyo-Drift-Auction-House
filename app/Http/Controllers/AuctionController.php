@@ -55,7 +55,8 @@ class AuctionController extends Controller
         }
 
         $vehicle = new Vehicle([
-            'id' => Vehicle::all()->max('id') + 1,
+            //'id' => Vehicle::all()->max('id') + 1,
+            'id' => 21,
             'owner' => Auth::id(),
             'brand' => $request->get('brand'),
             'model' => $request->get('model'),
@@ -69,12 +70,17 @@ class AuctionController extends Controller
         $auction = new Auction;
 
         $auction->id = Auction::all()->max('id') + 1;        
-        $auction->auction_name = $request->get('auction_name');
+        $auction->auction_name = $request->get('auctionName');
         $auction->vehicle_id = $vehicle->id;
-        $auction->startingBid = $request->get('startingBid');
-        $auction->startingTime = $request->get('startingTime');
-        $auction->endingTime = $request->get('endingTime');
-        $auction->auctionType = $request->get('auctionType');
+        $auction->startingbid = $request->get('startingBid');
+        $auction->startingtime = $request->get('startingTime');
+        $auction->endingtime = $request->get('endingTime');
+
+        if ($request->get('private') == 'on'){
+            $auction->auctiontype = 'Private';
+            //$auction->invited = ;
+            //add invited
+        }
 
         $auction->save();
 

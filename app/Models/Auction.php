@@ -21,7 +21,7 @@ class Auction extends Model
    */
   protected $fillable = [
     // not including the creationTime
-    'auction_name', 'vehicle_id', 'startingBid', 'startingTime', 'endingTime', 'auctionType'
+    'auction_name', 'vehicle_id', 'startingbid', 'startingtime', 'endingtime', 'auctiontype'
   ];
 
 

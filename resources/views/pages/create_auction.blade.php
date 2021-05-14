@@ -2,6 +2,11 @@
 
 @section('title', 'Create auction')
 
+@section('head')
+<script src="{{ asset('js/create_auction.js')}}"></script>
+
+@endsection
+
 @section('content')
 
 <div id="create_auction_background">
@@ -103,7 +108,7 @@
                 </div>
             </div>
             <div class="form-group form-check form-switch m-3 m-md-4">
-                <input class="form-check-input" type="checkbox" id="private" onclick="privateChange()">
+                <input class="form-check-input" type="checkbox" id="private" name="private" onclick="privateChange()">
                 <label class="form-check-label private_label" for="private">Private Auction</label>
             </div>
             <div id="private_content" class="overflow-auto">
