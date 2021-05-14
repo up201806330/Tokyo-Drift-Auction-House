@@ -6,7 +6,7 @@
     <script src="{{ asset('js/DateFormatter.js')}}"></script>
     <script src="{{ asset('js/Comment.js')}}"></script>
     <script src="{{ asset('js/Bid.js')}}"></script>
-    <script src="{{ asset('js/Countdown.js')}}"></script>
+    <script src="{{ asset('js/CountdownClock.js')}}"></script>
 
     <script>
         const auctionId = '{{$auction->id}}';
@@ -29,7 +29,20 @@
     <script>
         let countdown = new CountdownClock(
             Utils.DateFromUTC('{{$auction->startingtime}}'),
-            Utils.DateFromUTC('{{$auction->endingtime}}')
+            Utils.DateFromUTC('{{$auction->endingtime}}'),
+            function (t) {
+                if (t > 0) {
+                    document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
+                    document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
+                    document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
+                    document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
+                } else {
+                    document.querySelector('#days'   ).innerText = "00";
+                    document.querySelector('#hours'  ).innerText = "00";
+                    document.querySelector('#minutes').innerText = "00";
+                    document.querySelector('#seconds').innerText = "00";
+                }
+            }
         );
         countdown.start();
     </script>
