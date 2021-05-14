@@ -626,6 +626,8 @@ INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banTy
 INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType,auction_id) VALUES
 (4, 8, 3, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him for this auction','AuctionBan',14);
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('ban', 'id'), (SELECT MAX(id) FROM "ban")+1);
+
 -- Bids --
 INSERT INTO "bid" (id,user_id,auction_id,amount,createdOn) VALUES
 (1,5,1,8000,'2021-04-01 17:06:32'),
@@ -644,6 +646,8 @@ INSERT INTO "bid" (id,user_id,auction_id,amount,createdOn) VALUES
 (14,12,8,25000,'2021-04-01 17:45:32'),
 (15,13,9,25000,'2021-04-01 17:56:32');
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('bid', 'id'), (SELECT MAX(id) FROM "bid")+1);
+
 -- Invoices --
 INSERT INTO "invoice" (id,user_id,createdOn,vatNumber,value,description) VALUES
 (1,2,'2021-02-01 00:00:10','205538451', 500, 'Seller monthly fee'),
@@ -652,3 +656,5 @@ INSERT INTO "invoice" (id,user_id,createdOn,vatNumber,value,description) VALUES
 (4,3,'2021-04-01 00:00:07','794830202', 500, 'Seller monthly fee'),
 (5,4,'2021-04-01 00:00:08','993546321', 500, 'Seller monthly fee'),
 (6,7,'2021-04-01 00:00:09','120520673', 500, 'Seller monthly fee');
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('invoice', 'id'), (SELECT MAX(id) FROM "invoice")+1);

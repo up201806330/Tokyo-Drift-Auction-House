@@ -3,21 +3,48 @@
 @section('title', $vehicle->year . "' " . $vehicle->brand . " " . $vehicle->model)
 
 @section('head')
+    <script src="{{ asset('js/DateFormatter.js')}}"></script>
     <script src="{{ asset('js/Comment.js')}}"></script>
     <script src="{{ asset('js/Bid.js')}}"></script>
+    <script src="{{ asset('js/CountdownClock.js')}}"></script>
+
     <script>
         const auctionId = '{{$auction->id}}';
-
-        // Get comments
-        Comment.updateSection(auctionId);
     </script>
 
-    <script src="{{ asset('js/Countdown.js')}}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            // Get comments
+            Comment.updateSection(auctionId);
+
+            // Get bids
+            Bid.updateSection(auctionId);
+
+            // Update start and end times
+            document.querySelector('#start-date').innerHTML = DateFormatter.formatLocal(Utils.DateFromUTC("{{ $auction->startingtime }}"), "%Y-%m-%d @ %H:%M:%S");
+            document.querySelector('#end-date'  ).innerHTML = DateFormatter.formatLocal(Utils.DateFromUTC("{{ $auction->endingtime   }}"), "%Y-%m-%d @ %H:%M:%S");
+        });
+    </script>
 
     <script>
-        const startDateTime = '{{$auction->startingtime}}';
-        const endDateTime = '{{$auction->endingtime}}';
-        setup(startDateTime, endDateTime);
+        let countdown = new CountdownClock(
+            Utils.DateFromUTC('{{$auction->startingtime}}'),
+            Utils.DateFromUTC('{{$auction->endingtime}}'),
+            function (t) {
+                if (t > 0) {
+                    document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
+                    document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
+                    document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
+                    document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
+                } else {
+                    document.querySelector('#days'   ).innerText = "00";
+                    document.querySelector('#hours'  ).innerText = "00";
+                    document.querySelector('#minutes').innerText = "00";
+                    document.querySelector('#seconds').innerText = "00";
+                }
+            }
+        );
+        countdown.start();
     </script>
 
     @include('templates.tpl_comment')
@@ -125,14 +152,14 @@
             <div class="col-lg text-nowrap rounded-start bg-dark">
                 <div class="row py-2 fs-4">
                     <div class="col">   Starting date:  </div>
-                    <div class="col">   {{\Carbon\Carbon::parse($auction->startingtime)->format('Y-m-d')}} @ {{\Carbon\Carbon::parse($auction->startingtime)->format('H:i:s')}} </div>
+                    <div id="start-date" class="col">   {{\Carbon\Carbon::parse($auction->startingtime)->format('Y-m-d @ H:i:s')}} UTC </div>
                 </div>
             </div>
 
             <div class="col-lg text-nowrap rounded-end bg-dark">
                 <div class="row py-2 fs-4">
                     <div class="col">   Closing date:   </div>
-                    <div class="col">   {{\Carbon\Carbon::parse($auction->endingtime)->format('Y-m-d')}} @ {{\Carbon\Carbon::parse($auction->endingtime)->format('H:i:s')}} </div>
+                    <div id="end-date" class="col">   {{\Carbon\Carbon::parse($auction->endingtime)->format('Y-m-d @ H:i:s')}} UTC </div>
                 </div>
             </div>
         </div>
