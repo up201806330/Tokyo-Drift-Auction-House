@@ -27,21 +27,23 @@
     </script>
 
     <script>
+        let startingTime = Utils.DateFromUTC('{{$auction->startingtime}}');
+        let endingTime   = Utils.DateFromUTC('{{$auction->endingtime  }}');
+
         let countdown = new CountdownClock(
-            Utils.DateFromUTC('{{$auction->startingtime}}'),
-            Utils.DateFromUTC('{{$auction->endingtime}}'),
+            (
+                new Date() < startingTime ?
+                startingTime :
+                endingTime
+            ),
             function (t) {
-                if (t > 0) {
-                    document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
-                    document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
-                    document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
-                    document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
-                } else {
-                    document.querySelector('#days'   ).innerText = "00";
-                    document.querySelector('#hours'  ).innerText = "00";
-                    document.querySelector('#minutes').innerText = "00";
-                    document.querySelector('#seconds').innerText = "00";
-                }
+                t = Math.max(-t, 0);
+                document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
+                document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
+                document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
+                document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
+
+                countdown.begin = (new Date() < startingTime ? startingTime : endingTime);
             }
         );
         countdown.start();

@@ -1,8 +1,7 @@
 
 class CountdownClock {
-    constructor(startDate, endDate, callback){
+    constructor(startDate, callback){
         this.begin = startDate;
-        this.end = endDate;
         this.callback = callback;
         this.timer = null;
     }
@@ -15,7 +14,7 @@ class CountdownClock {
     run(){
         let now = new Date();
 
-        let t = (now < this.begin ? this.begin.getTime() : this.end.getTime()) - now.getTime();
+        let t = now.getTime() - this.begin.getTime();
 
         this.callback(t);
     }
