@@ -129,6 +129,18 @@ class AuctionController extends Controller
         return redirect()->back();
     }
 
+    public function getHighestBid(Request $request, $auction_id) {
+        $auction = Auction::find($auction_id);
+        $highestBid = $auction->getCurrentMaxBid();
+        $highestBidder = $auction->getCurrentMaxBidder();
+        $highestBid['username'] = $highestBidder->username;
+        if ($request->wantsJson()) {
+            return response()->json($highestBid, 200);
+        } else {
+            return response()->json(['error' => 'Error msg'], 415);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
