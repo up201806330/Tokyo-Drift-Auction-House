@@ -28,6 +28,7 @@ Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete'
 Route::get   ('/auctions/{id}/comments'             , 'CommentController@getAuctionComments'        );
 Route::post  ('/auctions/{id}/comments'             , 'CommentController@create'                    );
 Route::get   ('/auctions/{id}'                      , 'AuctionController@show'                      );
+Route::post  ('/auctions/{id}'                      , 'AuctionController@editAuction'               );
 Route::get   ('/users/{id}/photo'                   , 'UserController@showPhoto'                    )->name('show_profile_photo');
 Route::get   ('/users/{id}'                         , 'UserController@showProfile'                  )->name('show_profile'      );
 Route::post  ('/users/{id}'                         , 'UserController@editProfile'                  )->name('edit_profile'      );

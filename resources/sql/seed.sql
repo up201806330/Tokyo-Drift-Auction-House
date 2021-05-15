@@ -456,7 +456,7 @@ SELECT pg_catalog.setval(pg_get_serial_sequence('image', 'id'), (SELECT MAX(id) 
 -- Users --
 INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,location,about,registeredOn) VALUES
 (1,1,'Roth','Hampton','tempor.augue.ac@sitametmetus.edu','roth_hampton','PXA24YEP6CV','Porto','I LOVE CARS and so I decided to build this website so I can share it with everyone else.','2021-03-30 12:38:24'),
-(2,2,'Bree','Espinoza','auctor.velit.eget@mollis.ca','bree_espinoza','ZED49VDV4VT','Muradiye','I love BMWs and I cant help myself when it comes to buying them. My girlfriend doesnt really approve of that so I need to sell some of them','2021-03-30 12:38:24'),
+(2,2,'Bree','Espinoza','auctor.velit.eget@mollis.ca','bree_espinoza','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','Muradiye','I love BMWs and I cant help myself when it comes to buying them. My girlfriend doesnt really approve of that so I need to sell some of them','2021-03-30 12:38:24'),
 (3,3,'Tanek','Spence','Fusce.dolor@nisi.com','tanek_spence','DTQ16ULU3HP','Barry','Ive been in love with cars ever since I was a 4 year old and now I want to make a living out of it.','2021-03-30 12:38:24'),
 (4,4,'Fitzgerald','Cash','dolor.dapibus.gravida@sedduiFusce.edu','cash_fitz','UAU42EDT3XL','Perchtoldsdorf','Cars, cars, cars, You gotta love them.','2021-03-30 12:38:24'),
 (5,5,'Aimee','Cortez','nibh@dictum.co.uk','aimee_cortez','XXX07JUG7BH','Sargodha','Life without cars is like Rome without the Pope.','2021-03-30 12:38:24'),
