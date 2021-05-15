@@ -9,6 +9,40 @@
     --light-orange: rgb(255, 157, 100);
 }
 
+.notification {
+    background-color: rgb(93, 218, 21);
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 30px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: 7px center;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    vertical-align: middle;
+    box-shadow: 4px 4px 4px #000;
+    -webkit-box-shadow: 4px 4px 4px #000;
+    -moz-box-shadow: 4px 4px 4px #000;
+    z-index: 99;
+
+
+    opacity: 0;
+    animation: fadeIn 4s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  30% { opacity: 1; }
+  to { opacity: 0; }
+}
+
 
 
 .circular--portrait {

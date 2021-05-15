@@ -101,10 +101,6 @@
                             @endif
                         @endif
                     </div>
-                    
-                    @if(session('success'))
-                        <p>{{session('success')}}</p>
-                    @endif
 
                     <p class="text-muted fs-3 about-me-text">
                         {{$profileOwner->about}}
@@ -176,15 +172,17 @@
                     </ul>
                 </div>
 
-                <?php?>
-                {{-- include_once('../templates/tpl_mod.php');
-                draw_auction_gallery(); --}}
-                <?php?>
 
             </div>
         </div>
         
     </div>
 </section>
+
+@if(session('success'))
+    <div class="notification">
+        {{session('success')}}
+    </div>
+@endif
 
 @endsection

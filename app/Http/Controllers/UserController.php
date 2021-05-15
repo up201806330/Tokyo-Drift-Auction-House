@@ -31,7 +31,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editProfile(Request $request, int $user_id) : Response
+    public function editProfile(Request $request, int $user_id) : RedirectResponse
     {
         if (! Gate::allows('profileOwner', Auth::user())) {
             return redirect()->back();
@@ -43,7 +43,7 @@ class UserController extends Controller
         }
         
         // editing only the profile image
-        if ($request->file('profileimage')) {
+        else if ($request->file('profileimage')) {
             $file = $request->file('profileimage');
 
             $fileNameExtension = ".jpg";
