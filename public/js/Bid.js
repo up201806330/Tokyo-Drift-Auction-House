@@ -45,8 +45,11 @@ class Bid {
             document.querySelector("#max-bidder-anchor").href = `users/${bid.userId}`;
             document.querySelector("#max-bidder-img").src = `users/${bid.userId}/photo`;
             document.querySelector("#max-bidder-username").innerHTML = bid.username;
-            document.querySelector("#bid_input").min = bid.amount+1;
-            document.querySelector("#bid_input").value = bid.amount+1;
+            let bidInput = document.querySelector("#bid_input");
+            if(bidInput != null) {
+                bidInput.min = bid.amount+1;
+                bidInput.value = bid.amount+1;
+            }
 
             document.querySelector("#bid-container").animate([
                 {
