@@ -132,7 +132,7 @@
             <div class="col-lg text-nowrap">
                 
                 <!-- General "name" -->
-                <div class="row rounded-3 bg-dark text-white text-center my-2">
+                <div class="row rounded-3 bg-dark text-white text-center my-2 text-wrap">
                     <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
                 </div>
 
