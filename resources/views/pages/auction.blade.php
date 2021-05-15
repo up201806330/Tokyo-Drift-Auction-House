@@ -209,7 +209,7 @@
                     </div>
                     
                     <!-- Place Bid -->
-                    @if (!Auth::guest())
+                    @if (!Auth::guest() and (\Carbon\Carbon::now() < $auction->endingtime) and (\Carbon\Carbon::now() >= $auction->startingtime))
                         <div class="row text-center d-flex justify-content-center mt-2">
                             <form class="row justify-content-center" onsubmit="Bid.submit(this, auctionId).then(() => Bid.updateSection(auctionId)); return false;">
                                 @csrf
