@@ -215,17 +215,17 @@
                                 @csrf
                                 <div class="col bid-input input-group mb-2 p-0">
  
-                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepDown();" style="cursor:pointer;">
+                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepDown(5000);" style="cursor:pointer;">
                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                     </span>
                                     
                                     @if (isset($max_bid))
-                                        <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$max_bid + 1}}" max="100000000" value="{{$max_bid + 1}}" name="amount">
+                                        <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$max_bid + 1}}" max="100000000" step="0.01" value="{{$max_bid + 1}}" name="amount">
                                     @else
-                                        <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$auction->startingbid}}" max="100000000" value="{{$auction->startingbid}}" name="amount">
+                                        <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$auction->startingbid}}" max="100000000" step="0.01" value="{{$auction->startingbid}}" name="amount">
                                     @endif
 
-                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepUp();"  style="cursor:pointer;">
+                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepUp(5000);"  style="cursor:pointer;">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                     </span>
                                     
