@@ -27,24 +27,40 @@
     </script>
 
     <script>
-        let countdown = new CountdownClock(
-            Utils.DateFromUTC('{{$auction->startingtime}}'),
-            Utils.DateFromUTC('{{$auction->endingtime}}'),
+        // Auction countdown
+        let startingTime = Utils.DateFromUTC('{{$auction->startingtime}}');
+        let endingTime   = Utils.DateFromUTC('{{$auction->endingtime  }}');
+        let auctionCountdown = new CountdownClock(
+            (
+                new Date() < startingTime ?
+                startingTime :
+                endingTime
+            ),
             function (t) {
-                if (t > 0) {
-                    document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
-                    document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
-                    document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
-                    document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
-                } else {
-                    document.querySelector('#days'   ).innerText = "00";
-                    document.querySelector('#hours'  ).innerText = "00";
-                    document.querySelector('#minutes').innerText = "00";
-                    document.querySelector('#seconds').innerText = "00";
-                }
+                t = Math.max(-t, 0);
+                document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
+                document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
+                document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
+                document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
+
+                auctionCountdown.begin = (new Date() < startingTime ? startingTime : endingTime);
             }
         );
-        countdown.start();
+        auctionCountdown.start();
+    </script>
+
+    <script>
+        // Bid last updated countdown
+        let bidCountdown = new CountdownClock(
+            new Date(),
+            function (t) {
+                let s = `Last updated ${Math.floor(t/1000)} seconds ago`;
+                document.querySelector('#bid-last-updated').innerHTML = s;
+            }
+        );
+        bidCountdown.start();
+
+        let periodicBidUpdateTimer = setInterval(() => Bid.updateSection(auctionId), 10000);
     </script>
 
     @include('templates.tpl_comment')
@@ -87,12 +103,12 @@
                             @if($images_path->sequence_number == 1)
                                 <div class="carousel-item active">
                                     {{-- TODO mini hack to resize imgs :/ --}}
-                                    <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
+                                    <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100 img-cover" alt="bmw i8">
                                 </div>
                             @else
                                 <div class="carousel-item">
                                     {{-- TODO mini hack to resize imgs :/ --}}
-                                    <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
+                                    <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100 img-cover" alt="bmw i8">
                                 </div>
                             @endif
                         @endforeach
@@ -181,20 +197,23 @@
                 </div>
 
                 <div class="col fs-3">
-                    <div class="text-center">Current Bid</div>
-                    @if (isset($max_bid))
-                        <div id="max-bid" class="text-center fs-1">{{$max_bid}}€</div>  
-                    @else
-                        <div class="text-center fs-1">No bids</div>  
-                    @endif
-                                      
+                    <div id="bid-container" class="p-1">
+                        <div class="text-center">Current Bid</div>
+                        @if (isset($max_bid))
+                            <div id="max-bid" class="text-center fs-1 flash-bid">{{$max_bid}}€</div>  
+                        @else
+                            <div class="text-center fs-1">No bids</div>  
+                        @endif
+
+                        <div id="bid-last-updated" class="text-center fs-6 text-secondary pb-1">Last updated 0 seconds ago</div>
+                    </div>
                     
                     <!-- Place Bid -->
                     @if (!Auth::guest())
-                        <div class="row text-center  d-flex justify-content-center">
+                        <div class="row text-center d-flex justify-content-center mt-2">
                             <form class="row justify-content-center" onsubmit="Bid.submit(this, auctionId).then(() => Bid.updateSection(auctionId)); return false;">
                                 @csrf
-                                <div class="col bid-input input-group mb-3">
+                                <div class="col bid-input input-group mb-2 p-0">
  
                                     <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepDown();" style="cursor:pointer;">
                                         <i class="fa fa-minus" aria-hidden="true"></i>
