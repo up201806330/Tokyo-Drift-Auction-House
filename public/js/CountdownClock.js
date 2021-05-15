@@ -8,7 +8,7 @@ class CountdownClock {
 
     start(){
         let self = this;
-        this.timer = setInterval(() => self.run(), 1000);
+        this.timer = setInterval(() => self.run(), 100);
     }
 
     run(){

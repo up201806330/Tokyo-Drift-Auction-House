@@ -94,6 +94,10 @@
     font-size: 3em;
 }
 
+#bid-container {
+    border-radius: 1.0em;
+}
+
 #bid_button{
     background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
     color: var(--white);
