@@ -157,14 +157,18 @@ class AuctionController extends Controller
         $vehicle = Vehicle::find($auction->vehicle_id);
         
         // update vehicle information
-        Vehicle::where('id', $auction->vehicle_id)->update(
-            [
-                'brand'     => $request->brand,
-                'model'     => $request->model,
-                'year'      => $request->year,
-                'condition' => $request->condition,
-                'horsepower'=> $request->horsepower,
-        ]);
+        try {
+            Vehicle::where('id', $auction->vehicle_id)->update(
+                [
+                    'brand'     => $request->brand,
+                    'model'     => $request->model,
+                    'year'      => $request->year,
+                    'condition' => $request->condition,
+                    'horsepower'=> $request->horsepower,
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors(['Invalid Vehicle Information']);
+        }
 
         // update auction information
         Auction::where('id', $auction_id)->update(

@@ -456,11 +456,16 @@
 
 
 </section>
-
-@if(session('success'))
-    <div class="notification">
-        {{session('success')}}
+@if($errors->any())
+    <div class="notification red-notif">
+        {{$errors->first()}}
     </div>
+@else
+    @if(session('success'))
+        <div class="notification green-notif">
+            {{session('success')}}
+        </div>
+    @endif
 @endif
 
 @endsection

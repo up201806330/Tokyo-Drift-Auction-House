@@ -10,7 +10,6 @@
 }
 
 .notification {
-    background-color: rgb(93, 218, 21);
     position: fixed;
     right: 20px;
     bottom: 20px;
@@ -41,6 +40,14 @@
   from { opacity: 0; }
   30% { opacity: 1; }
   to { opacity: 0; }
+}
+
+.green-notif {
+  background-color: rgb(93, 218, 21);
+}
+
+.red-notif {
+  background-color: rgb(218, 28, 21);
 }
 
 
