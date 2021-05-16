@@ -174,7 +174,7 @@
                     </div>
                     <div class="row py-2 fs-4 align-items-center">
                         <div class="col">   Condition:                          </div>
-                        <div class="col fire-text">   <i class="fa fa-fire m-3"></i> {{Str::upper($vehicle->condition)}} </div>
+                        <div class="col fire-text">   <i class="fas fa-fire m-3"></i> {{Str::upper($vehicle->condition)}} </div>
                     </div>
                 </div>
             </div>
