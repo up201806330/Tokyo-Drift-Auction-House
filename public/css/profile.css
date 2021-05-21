@@ -7,12 +7,13 @@
     --red-bright: #fa1e0e;
     --yellow: #ffbe0f;
     --light-orange: rgb(255, 157, 100);
+    --light-green: rgb(93, 218, 21);
 }
 
 .notification {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    right: 30px;
+    bottom: 30px;
     color: rgb(255, 255, 255);
     padding: 15px 15px 15px 30px;
     -webkit-border-top-right-radius: 5px;
@@ -34,6 +35,20 @@
     animation-delay: 0.5s;
     animation-fill-mode: forwards;
 
+
+    font-size: 1.5em;
+}
+
+.fa-times {
+  color: var(--red-bright);
+  line-height: inherit !important;
+  font-size: 1.25em;
+}
+
+.fa-check {
+  color: var(--light-green);
+  line-height: inherit !important;
+  font-size: 1.25em;
 }
 
 @keyframes fadeIn {
@@ -43,13 +58,19 @@
 }
 
 .green-notif {
-  background-color: rgb(93, 218, 21);
+  background-color: var(--light-green);
 }
 
 .red-notif {
-  background-color: rgb(218, 28, 21);
+  background-color: var(--red-bright);
 }
 
+.cross-container {
+  background-color: white;
+  border-color: black;
+  width: 50px !important;
+  height: 50px !important;
+}
 
 
 .circular--portrait {
