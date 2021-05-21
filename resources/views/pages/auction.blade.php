@@ -133,7 +133,24 @@
                 
                 <!-- General "name" -->
                 <div class="row rounded-3 bg-dark text-white text-center my-2 text-wrap">
-                    <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
+
+                    @if (!Auth::guest())
+                        @if (Auth::user()->id == $owner->id)
+                            <div class="col-10">
+                                <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
+                            </div>
+                            {{-- <div class="col d-flex justify-content-start align-items-center"> --}}
+                            <div class="col-2 d-flex justify-content-start align-items-center">
+                                <a class="" data-bs-toggle="collapse" href="#editAuctionCollapse" role="button" aria-expanded="false" aria-controls="editAuctionCollapse">
+                                    <i class="fa fa-cog edit-cog" aria-hidden="true" style="color:white;"></i>
+                                </a>
+
+                            </div>
+                            {{-- </div> --}}
+                        @endif
+                    @else
+                        <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
+                    @endif
                 </div>
 
                 <!-- Specific Information -->
@@ -157,7 +174,7 @@
                     </div>
                     <div class="row py-2 fs-4 align-items-center">
                         <div class="col">   Condition:                          </div>
-                        <div class="col fire-text">   <i class="fa fa-fire m-3"></i> {{Str::upper($vehicle->condition)}} </div>
+                        <div class="col fire-text">   <i class="fas fa-fire m-3"></i> {{Str::upper($vehicle->condition)}} </div>
                     </div>
                 </div>
             </div>
@@ -178,6 +195,92 @@
                     <div id="end-date" class="col">   {{\Carbon\Carbon::parse($auction->endingtime)->format('Y-m-d @ H:i:s')}} UTC </div>
                 </div>
             </div>
+        </div>
+
+
+        <!-- Edit Auction Collapsable -->
+        <div class="collapse" id="editAuctionCollapse">
+            <form id="profile-general" method="post" action="{{'/auctions/' . $auction->id}}">
+                @csrf
+                <div class="row" style="--bs-gutter-x:0;">
+                    <div class="col form-floating mb-3 align-self-start">
+                        <input required type="text" name="brand" class="form-control" id="floatingInput" value="{{ old('brand', $vehicle->brand) }}">
+                        <label for="floatingInput">Brand</label>
+                    </div>
+
+                    <div class="col form-floating mb-3 ">
+                        <input required type="text" name="model" class="form-control" id="floatingInput" value="{{ old('model', $vehicle->model) }}">
+                        <label for="floatingInput">Model</label>
+                    </div>
+
+                    <div class="col form-floating mb-3 ">
+                        <input required type="text" name="year" class="form-control" id="floatingInput" value="{{ old('year', $vehicle->year) }}">
+                        <label for="floatingInput">Year</label>
+                    </div>
+                </div>
+
+                <div class="row" style="--bs-gutter-x:0;">
+                    <div class="col form-floating mb-3 align-self-start">
+                        {{-- <input required type="text" name="condition" class="form-control" id="floatingInput" value="{{ old('condition', $vehicle->condition) }}"> --}}
+                        
+                        <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
+                            {{-- <option selected value="" disabled>Select a condition</option> --}}
+                            <option selected="false" value="Mint">Mint</option>
+                            <option selected="false" value="Clean">Clean</option>
+                            <option selected="false" value="Average">Average</option>
+                            <option selected="false" value="Rough">Rough</option>
+                        </select>
+                        <label for="floatingInput">Condition</label>
+                    </div>
+
+                    <script>
+                        // change the default selected option to the current one
+                        let options = document.querySelectorAll('#selectCondition option');
+                        let optionsArray = Array.prototype.slice.call(options);
+                        console.log(optionsArray);
+                        optionsArray.forEach(option => {
+                            console.log(option.getAttribute('value'));
+                            if (option.getAttribute('value') == '{{$vehicle->condition}}') { option.selected = true; }
+                            else { option.selected = false; }
+                        });
+                    </script>
+
+                    <div class="col form-floating mb-3 ">
+                        <input required type="text" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
+                        <label for="floatingInput">Horsepower</label>
+                    </div>
+                </div>
+
+                <div class="row" style="--bs-gutter-x:0;">
+                    <div class="col form-floating mb-3">
+                        <input required type="date" name="startingdate" class="form-control input_box" id="floatingInput" value="{{ old('startingdate', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
+                        <label for="floatingInput">Starting Date</label>
+                    </div>
+                    <div class="col form-floating mb-3">
+                        <input required type="time" name="startingtime" class="form-control input_box" id="floatingInput" value="{{ old('startingtime', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('H:i:s')) }}">
+                        <label for="floatingInput">Starting Time</label>
+                    </div>
+
+                    <div class="col form-floating mb-3">
+                        <input required type="date" name="endingdate" class="form-control" id="floatingInput" value="{{ old('endingdate', \Carbon\Carbon::parse($auction->endingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
+                        <label for="floatingInput">Closing Date</label>
+                    </div>
+                    <div class="col form-floating mb-3">
+                        <input required type="time" name="endingtime" class="form-control input_box" id="floatingInput" value="{{ old('endingtime', \Carbon\Carbon::parse($auction->endingtime)->setTimezone('Europe/London')->format('H:i:s')) }}">
+                        <label for="floatingInput">Closing Time</label>
+                    </div>
+                </div>
+
+                <div class="row" style="--bs-gutter-x:0;">
+                    
+                    <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
+                        <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
+                            {{ __('Save Changes') }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+
         </div>
 
         <!-- Start of bordered box -->
@@ -353,7 +456,30 @@
 
 
 </section>
-
-
+@if($errors->any())
+    <div class="notification red-notif">
+        <div class="row align-items-center">
+            <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="col justify-content-center">
+                {{$errors->first()}}
+            </div>
+        </div>        
+    </div>
+@else
+    @if(session('success'))
+        <div class="notification green-notif">
+            <div class="row align-items-center">
+                <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="col justify-content-center">
+                    {{session('success')}}
+                </div>
+            </div>        
+        </div>
+    @endif
+@endif
 
 @endsection
