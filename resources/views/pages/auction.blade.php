@@ -213,18 +213,15 @@
                         <label for="floatingInput">Model</label>
                     </div>
 
-                    <div class="col form-floating mb-3 ">
-                        <input required type="text" name="year" class="form-control" id="floatingInput" value="{{ old('year', $vehicle->year) }}">
+                    <div class="col form-floating mb-3 year-input">
+                        <input required type="number" name="year" class="form-control" id="floatingInput" value="{{ old('year', $vehicle->year) }}">
                         <label for="floatingInput">Year</label>
                     </div>
                 </div>
 
                 <div class="row" style="--bs-gutter-x:0;">
                     <div class="col form-floating mb-3 align-self-start">
-                        {{-- <input required type="text" name="condition" class="form-control" id="floatingInput" value="{{ old('condition', $vehicle->condition) }}"> --}}
-                        
                         <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
-                            {{-- <option selected value="" disabled>Select a condition</option> --}}
                             <option selected="false" value="Mint">Mint</option>
                             <option selected="false" value="Clean">Clean</option>
                             <option selected="false" value="Average">Average</option>
@@ -237,16 +234,16 @@
                         // change the default selected option to the current one
                         let options = document.querySelectorAll('#selectCondition option');
                         let optionsArray = Array.prototype.slice.call(options);
-                        console.log(optionsArray);
+                        
                         optionsArray.forEach(option => {
-                            console.log(option.getAttribute('value'));
-                            if (option.getAttribute('value') == '{{$vehicle->condition}}') { option.selected = true; }
-                            else { option.selected = false; }
+                            if (option.getAttribute('value') == '{{$vehicle->condition}}') {
+                                option.selected = true;
+                            } else { option.selected = false; }
                         });
                     </script>
 
-                    <div class="col form-floating mb-3 ">
-                        <input required type="text" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
+                    <div class="col form-floating mb-3 horsepower-input">
+                        <input required type="number" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
                         <label for="floatingInput">Horsepower</label>
                     </div>
                 </div>
@@ -270,6 +267,55 @@
                         <label for="floatingInput">Closing Time</label>
                     </div>
                 </div>
+
+                // TODO add if to "convert" condition 'select' field to 'input' (text) field when it is supposed to be "readonly" cuz that attribute only seems to work in 'input' :)
+
+                <script>
+                    // car related elements
+                    let brandElement = document.querySelector('input[name="brand"]');
+                    let modelElement = document.querySelector('input[name="model"]');
+                    let yearElement = document.querySelector('input[name="year"]');
+                    // let conditionElement = document.querySelector('select[name="condition"]');
+                    let horsepowerElement = document.querySelector('input[name="horsepower"]');
+                    
+                    // date related elements
+                    let startingDateElement = document.querySelector('input[name="startingdate"]');
+                    let startingTimeElement = document.querySelector('input[name="startingtime"]');
+                    let endingDateElement = document.querySelector('input[name="endingdate"]');
+                    let endingTimeElement = document.querySelector('input[name="endingtime"]');
+
+                    // auction already started
+                    if (new Date() > startingTime) {
+                        
+                        brandElement.readOnly = true;
+                        modelElement.readOnly = true;
+                        yearElement.readOnly = true;
+                        
+                        horsepowerElement.readOnly = true;
+
+                        startingDateElement.readOnly = true;
+                        startingTimeElement.readOnly = true;
+
+                        // auction already over
+                        if (new Date() > endingTime) {
+                            endingDateElement.readOnly = true;
+                            endingTimeElement.readOnly = true;
+                        }
+                        else {
+                            endingDateElement.readOnly = false;
+                            endingTimeElement.readOnly = false;
+                        }
+                    } else {
+                        brandElement.readOnly = false;
+                        modelElement.readOnly = false;
+                        yearElement.readOnly = false;
+                        
+                        horsepowerElement.readOnly = false;
+
+                        startingDateElement.readOnly = false;
+                        startingTimeElement.readOnly = false;
+                    }
+                </script>
 
                 <div class="row" style="--bs-gutter-x:0;">
                     
