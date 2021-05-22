@@ -220,34 +220,40 @@
                 </div>
 
                 <div class="row" style="--bs-gutter-x:0;">
-                    <div class="col form-floating mb-3 align-self-start">
-                        <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
-                            <option selected="false" value="Mint">Mint</option>
-                            <option selected="false" value="Clean">Clean</option>
-                            <option selected="false" value="Average">Average</option>
-                            <option selected="false" value="Rough">Rough</option>
-                        </select>
-                        <label for="floatingInput">Condition</label>
-                    </div>
+                    @if (\Carbon\Carbon::now()->lte($auction->startingtime))
+                        <div class="col form-floating mb-3 align-self-start">
+                            <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
+                                <option selected="false" value="Mint">Mint</option>
+                                <option selected="false" value="Clean">Clean</option>
+                                <option selected="false" value="Average">Average</option>
+                                <option selected="false" value="Rough">Rough</option>
+                            </select>
+                            <label for="floatingInput">Condition</label>
+                        </div>
 
-                    <script>
-                        // change the default selected option to the current one
-                        let options = document.querySelectorAll('#selectCondition option');
-                        let optionsArray = Array.prototype.slice.call(options);
-                        
-                        optionsArray.forEach(option => {
-                            if (option.getAttribute('value') == '{{$vehicle->condition}}') {
-                                option.selected = true;
-                            } else { option.selected = false; }
-                        });
-                    </script>
+                        <script>
+                            // change the default selected option to the current one
+                            let options = document.querySelectorAll('#selectCondition option');
+                            let optionsArray = Array.prototype.slice.call(options);
+                            
+                            optionsArray.forEach(option => {
+                                if (option.getAttribute('value') == '{{$vehicle->condition}}') {
+                                    option.selected = true;
+                                } else { option.selected = false; }
+                            });
+                        </script>
+                    @else
+                        <div class="col form-floating mb-3 year-input">
+                            <input required type="text" name="condition" class="form-control" id="floatingInput" value="{{$vehicle->condition}}" readonly>
+                            <label for="floatingInput">Condition</label>
+                        </div>
+                    @endif
 
                     <div class="col form-floating mb-3 horsepower-input">
                         <input required type="number" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
                         <label for="floatingInput">Horsepower</label>
                     </div>
                 </div>
-
                 <div class="row" style="--bs-gutter-x:0;">
                     <div class="col form-floating mb-3">
                         <input required type="date" name="startingdate" class="form-control input_box" id="floatingInput" value="{{ old('startingdate', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
@@ -268,14 +274,11 @@
                     </div>
                 </div>
 
-                // TODO add if to "convert" condition 'select' field to 'input' (text) field when it is supposed to be "readonly" cuz that attribute only seems to work in 'input' :)
-
                 <script>
                     // car related elements
                     let brandElement = document.querySelector('input[name="brand"]');
                     let modelElement = document.querySelector('input[name="model"]');
                     let yearElement = document.querySelector('input[name="year"]');
-                    // let conditionElement = document.querySelector('select[name="condition"]');
                     let horsepowerElement = document.querySelector('input[name="horsepower"]');
                     
                     // date related elements
@@ -317,14 +320,23 @@
                     }
                 </script>
 
-                <div class="row" style="--bs-gutter-x:0;">
-                    
-                    <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
-                        <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
-                            {{ __('Save Changes') }}
-                        </button>
+                @if (\Carbon\Carbon::now() < $auction->endingtime)
+                    <div class="row" style="--bs-gutter-x:0;">
+                        
+                        <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
+                            <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
+                                {{ __('Save Changes') }}
+                            </button>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="row" style="--bs-gutter-x:0;">
+                            
+                        <div class="col modal-footer justify-content-center login-button px-5 pt-0 pb-4 rounded-pill fw-bold"> 
+                                {{ __('No Changes Allowed') }}
+                        </div>
+                    </div>
+                @endif
             </form>
 
         </div>
@@ -398,7 +410,6 @@
                         @else
                             <a href="" class="profile_text">
                                 <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
-                                {{-- <h4 class="">{{$highest_bidder->username}}</h4> --}}
                             </a>
                         @endif
                     </div>
