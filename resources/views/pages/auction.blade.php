@@ -293,34 +293,27 @@
                         brandElement.readOnly = true;
                         modelElement.readOnly = true;
                         yearElement.readOnly = true;
-                        
                         horsepowerElement.readOnly = true;
 
                         startingDateElement.readOnly = true;
                         startingTimeElement.readOnly = true;
+                        endingDateElement.readOnly = true;
+                        endingTimeElement.readOnly = true;
 
-                        // auction already over
-                        if (new Date() > endingTime) {
-                            endingDateElement.readOnly = true;
-                            endingTimeElement.readOnly = true;
-                        }
-                        else {
-                            endingDateElement.readOnly = false;
-                            endingTimeElement.readOnly = false;
-                        }
                     } else {
                         brandElement.readOnly = false;
                         modelElement.readOnly = false;
                         yearElement.readOnly = false;
-                        
                         horsepowerElement.readOnly = false;
 
                         startingDateElement.readOnly = false;
                         startingTimeElement.readOnly = false;
+                        endingDateElement.readOnly = false;
+                        endingTimeElement.readOnly = false;
                     }
                 </script>
 
-                @if (\Carbon\Carbon::now() < $auction->endingtime)
+                @if (\Carbon\Carbon::now() < $auction->startingtime)
                     <div class="row" style="--bs-gutter-x:0;">
                         
                         <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
