@@ -213,44 +213,47 @@
                         <label for="floatingInput">Model</label>
                     </div>
 
-                    <div class="col form-floating mb-3 ">
-                        <input required type="text" name="year" class="form-control" id="floatingInput" value="{{ old('year', $vehicle->year) }}">
+                    <div class="col form-floating mb-3 year-input">
+                        <input required type="number" name="year" class="form-control" id="floatingInput" value="{{ old('year', $vehicle->year) }}">
                         <label for="floatingInput">Year</label>
                     </div>
                 </div>
 
                 <div class="row" style="--bs-gutter-x:0;">
-                    <div class="col form-floating mb-3 align-self-start">
-                        {{-- <input required type="text" name="condition" class="form-control" id="floatingInput" value="{{ old('condition', $vehicle->condition) }}"> --}}
-                        
-                        <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
-                            {{-- <option selected value="" disabled>Select a condition</option> --}}
-                            <option selected="false" value="Mint">Mint</option>
-                            <option selected="false" value="Clean">Clean</option>
-                            <option selected="false" value="Average">Average</option>
-                            <option selected="false" value="Rough">Rough</option>
-                        </select>
-                        <label for="floatingInput">Condition</label>
-                    </div>
+                    @if (\Carbon\Carbon::now()->lte($auction->startingtime))
+                        <div class="col form-floating mb-3 align-self-start">
+                            <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
+                                <option selected="false" value="Mint">Mint</option>
+                                <option selected="false" value="Clean">Clean</option>
+                                <option selected="false" value="Average">Average</option>
+                                <option selected="false" value="Rough">Rough</option>
+                            </select>
+                            <label for="floatingInput">Condition</label>
+                        </div>
 
-                    <script>
-                        // change the default selected option to the current one
-                        let options = document.querySelectorAll('#selectCondition option');
-                        let optionsArray = Array.prototype.slice.call(options);
-                        console.log(optionsArray);
-                        optionsArray.forEach(option => {
-                            console.log(option.getAttribute('value'));
-                            if (option.getAttribute('value') == '{{$vehicle->condition}}') { option.selected = true; }
-                            else { option.selected = false; }
-                        });
-                    </script>
+                        <script>
+                            // change the default selected option to the current one
+                            let options = document.querySelectorAll('#selectCondition option');
+                            let optionsArray = Array.prototype.slice.call(options);
+                            
+                            optionsArray.forEach(option => {
+                                if (option.getAttribute('value') == '{{$vehicle->condition}}') {
+                                    option.selected = true;
+                                } else { option.selected = false; }
+                            });
+                        </script>
+                    @else
+                        <div class="col form-floating mb-3 year-input">
+                            <input required type="text" name="condition" class="form-control" id="floatingInput" value="{{$vehicle->condition}}" readonly>
+                            <label for="floatingInput">Condition</label>
+                        </div>
+                    @endif
 
-                    <div class="col form-floating mb-3 ">
-                        <input required type="text" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
+                    <div class="col form-floating mb-3 horsepower-input">
+                        <input required type="number" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
                         <label for="floatingInput">Horsepower</label>
                     </div>
                 </div>
-
                 <div class="row" style="--bs-gutter-x:0;">
                     <div class="col form-floating mb-3">
                         <input required type="date" name="startingdate" class="form-control input_box" id="floatingInput" value="{{ old('startingdate', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
@@ -271,14 +274,62 @@
                     </div>
                 </div>
 
-                <div class="row" style="--bs-gutter-x:0;">
+                <script>
+                    // car related elements
+                    let brandElement = document.querySelector('input[name="brand"]');
+                    let modelElement = document.querySelector('input[name="model"]');
+                    let yearElement = document.querySelector('input[name="year"]');
+                    let horsepowerElement = document.querySelector('input[name="horsepower"]');
                     
-                    <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
-                        <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
-                            {{ __('Save Changes') }}
-                        </button>
+                    // date related elements
+                    let startingDateElement = document.querySelector('input[name="startingdate"]');
+                    let startingTimeElement = document.querySelector('input[name="startingtime"]');
+                    let endingDateElement = document.querySelector('input[name="endingdate"]');
+                    let endingTimeElement = document.querySelector('input[name="endingtime"]');
+
+                    // auction already started
+                    if (new Date() > startingTime) {
+                        
+                        brandElement.readOnly = true;
+                        modelElement.readOnly = true;
+                        yearElement.readOnly = true;
+                        horsepowerElement.readOnly = true;
+
+                        startingDateElement.readOnly = true;
+                        startingTimeElement.readOnly = true;
+                        endingDateElement.readOnly = true;
+                        endingTimeElement.readOnly = true;
+
+                    } else {
+                        brandElement.readOnly = false;
+                        modelElement.readOnly = false;
+                        yearElement.readOnly = false;
+                        horsepowerElement.readOnly = false;
+
+                        startingDateElement.readOnly = false;
+                        startingTimeElement.readOnly = false;
+                        endingDateElement.readOnly = false;
+                        endingTimeElement.readOnly = false;
+                    }
+                </script>
+
+                @if (\Carbon\Carbon::now() < $auction->startingtime)
+                    <div class="row" style="--bs-gutter-x:0;">
+                        
+                        <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
+                            <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
+                                {{ __('Save Changes') }}
+                            </button>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="row" style="--bs-gutter-x:0;">
+                            
+                        <div class="col modal-footer justify-content-center login-button px-5 pt-0 pb-4 rounded-pill fw-bold"> 
+                                {{ __('No Changes Allowed') }}
+                        </div>
+                    </div>
+                @endif
             </form>
 
         </div>
@@ -352,7 +403,6 @@
                         @else
                             <a href="" class="profile_text">
                                 <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
-                                {{-- <h4 class="">{{$highest_bidder->username}}</h4> --}}
                             </a>
                         @endif
                     </div>

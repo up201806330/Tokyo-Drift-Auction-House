@@ -123,8 +123,19 @@
     align-self: center;
 }
 
+.horsepower-input > input[type=number],
+.year-input > input[type=number] {
+    -webkit-appearance: textfield;
+       -moz-appearance: textfield;
+            appearance: textfield;  
+}
+
 .bid-input > input[type=number]::-webkit-inner-spin-button, 
-.bid-input > input[type=number]::-webkit-outer-spin-button { 
+.bid-input > input[type=number]::-webkit-outer-spin-button,
+.horsepower-input > input[type=number]::-webkit-inner-spin-button,
+.horsepower-input > input[type=number]::-webkit-outer-spin-button, 
+.year-input > input[type=number]::-webkit-inner-spin-button,
+.year-input > input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none;
 }
 
