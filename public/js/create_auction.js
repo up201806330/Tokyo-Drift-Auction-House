@@ -48,6 +48,20 @@ function validateForm() {
     alert("Ending Date must be at least one hour after Starting date.");
     return false;
   }
+
+  let users = document.getElementById("user_rows").children;
+  let hidden_users = document.getElementById("hidden_user_rows");
+  for (let item of users) {
+    let private_user = item.querySelector(".private_user").checked;
+    if (private_user){
+      let user_id = item.querySelector(".user_id").innerHTML;
+      let input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "invited[]";
+      input.value = user_id;
+      hidden_users.appendChild(input);
+    }
+  }
 } 
 
 function updateUsers(){

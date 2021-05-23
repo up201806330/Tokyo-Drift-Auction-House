@@ -115,7 +115,7 @@
                 <div class="input-group form-container">
                     <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
                     <span class="input-group-btn">
-                        <button class="btn btn-search"  onclick="updateUsers()">
+                        <button class="btn btn-search" type="button" onclick="updateUsers()">
                             <i class="fa fa-search"></i>
                         </button>
                     </span>
@@ -124,6 +124,7 @@
                 <div id="user_rows">
                     @foreach($users as $user)
                         <div class="user_row d-flex justify-content-between align-items-center">
+                            <span class="user_id d-none">{{$user['id']}}</span>
                             <a href="../pages/profile.php" class="profile_text">
                                 <div class="d-flex justify-content-start align-items-center">
                                     <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
@@ -132,12 +133,13 @@
                             </a>
                             <div class="moderator area text-center">
                                 <div class="form-group form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="private">
+                                    <input class="form-check-input private_user" type="checkbox">
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+                <div id="hidden_user_rows"></div>
             </div>
 
             <div class="text-center">

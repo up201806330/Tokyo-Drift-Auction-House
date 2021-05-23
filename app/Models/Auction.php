@@ -91,4 +91,11 @@ class Auction extends Model
       ->orderBy('createdon', 'desc')
       ->get();
   }
+
+  /**
+  * Get the guests associated with the Auction
+  */
+  public function guests(){
+    return $this->belongsToMany(User::class);
+  }
 }

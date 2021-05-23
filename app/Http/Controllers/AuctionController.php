@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\Bid;
 use App\Models\Image;
 use App\Models\User;
+use App\Models\AuctionGuest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -88,13 +89,19 @@ class AuctionController extends Controller
             'endingtime' => $request->get('endingTime'),
         ]);
 
+        $auction->save();
+
         if ($request->get('private') == 'on'){
             $auction->auctiontype = 'Private';
-            //$auction->invited = ;
-            //add invited
+            $auction->save();
+            
+            $invited_users = $request->get('invited');
+            foreach($invited_users as $user){
+                $auction->guests()->attach($user);
+            }
+            $auction->save();
         }
 
-        $auction->save();
 
         return redirect()->back();
     }
