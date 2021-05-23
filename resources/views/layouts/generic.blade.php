@@ -21,6 +21,7 @@
     {{-- <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
+    <script src="{{ asset('js/Utils.js')}}"></script>
     {{-- <script src="../js/tpl_search.js"></script> --}}
     <script src="{{ asset('js/sign-in.js')}}"></script>
     {{-- <script src="../js/login.js"></script> --}}

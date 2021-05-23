@@ -2,7 +2,7 @@
 
 DROP DOMAIN IF EXISTS PASTTIMESTAMP     CASCADE;
 DROP DOMAIN IF EXISTS FUTURETIMESTAMP   CASCADE;
-DROP DOMAIN IF EXISTS EUROCENTS         CASCADE;
+DROP DOMAIN IF EXISTS EURO_T            CASCADE;
 DROP DOMAIN IF EXISTS EMAIL_T           CASCADE;
 DROP DOMAIN IF EXISTS VATNUMBER_T       CASCADE;
 DROP TYPE   IF EXISTS CONDITION_T       CASCADE;
@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS "bid"                  CASCADE;
 
 CREATE DOMAIN   PASTTIMESTAMP   AS TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP CHECK(VALUE <= CURRENT_TIMESTAMP);
 CREATE DOMAIN   FUTURETIMESTAMP AS TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP;
-CREATE DOMAIN   EUROCENTS       AS INTEGER      NOT NULL;
+CREATE DOMAIN   EURO_T          AS NUMERIC(17, 2) NOT NULL;
 CREATE DOMAIN   EMAIL_T         AS TEXT         CHECK(VALUE LIKE '_%@_%.__%');
 CREATE DOMAIN   VATNUMBER_T     AS CHAR(16);
 CREATE TYPE     CONDITION_T     AS ENUM ('Mint', 'Clean', 'Average', 'Rough');
@@ -80,7 +80,7 @@ CREATE TABLE auction (
     id              SERIAL          PRIMARY KEY,
     auction_name    TEXT            NOT NULL,
     vehicle_id      INTEGER         NOT NULL REFERENCES "vehicle"(id),
-    startingBid     EUROCENTS       CHECK (startingBid >= 0),
+    startingBid     EURO_T          CHECK (startingBid >= 0),
     creationTime    PASTTIMESTAMP   ,
     startingTime    TIMESTAMP       NOT NULL CHECK (startingTime >= creationTime),
     endingTime      TIMESTAMP       NOT NULL CHECK (endingTime >= startingTime + INTERVAL '1 hour'),
@@ -99,7 +99,7 @@ CREATE TABLE "invoice" (
     user_id     INTEGER         NOT NULL REFERENCES "user"(id),
     createdOn   PASTTIMESTAMP   ,
     vatNumber   VATNUMBER_T     ,
-    value       EUROCENTS       CHECK(value >= 0),
+    value       EURO_T          CHECK(value >= 0),
     description TEXT            NOT NULL
 );
 
@@ -148,7 +148,7 @@ CREATE TABLE bid (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         REFERENCES "user"(id) NOT NULL,
     auction_id  INTEGER         REFERENCES "auction"(id) NOT NULL,
-    amount      EUROCENTS       CHECK (amount > 0),
+    amount      EURO_T          CHECK (amount > 0),
     createdOn   PASTTIMESTAMP
 );
 
@@ -452,10 +452,12 @@ INSERT INTO "image" (id,path) VALUES
 (19, 'profile_photos/19.jpg'),
 (20, 'profile_photos/20.jpg');
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('image', 'id'), (SELECT MAX(id) FROM "image")+1);
+
 -- Users --
 INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,location,about,registeredOn) VALUES
 (1,1,'Roth','Hampton','tempor.augue.ac@sitametmetus.edu','roth_hampton','PXA24YEP6CV','Porto','I LOVE CARS and so I decided to build this website so I can share it with everyone else.','2021-03-30 12:38:24'),
-(2,2,'Bree','Espinoza','auctor.velit.eget@mollis.ca','bree_espinoza','ZED49VDV4VT','Muradiye','I love BMWs and I cant help myself when it comes to buying them. My girlfriend doesnt really approve of that so I need to sell some of them','2021-03-30 12:38:24'),
+(2,2,'Bree','Espinoza','auctor.velit.eget@mollis.ca','bree_espinoza','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','Muradiye','I love BMWs and I cant help myself when it comes to buying them. My girlfriend doesnt really approve of that so I need to sell some of them','2021-03-30 12:38:24'),
 (3,3,'Tanek','Spence','Fusce.dolor@nisi.com','tanek_spence','DTQ16ULU3HP','Barry','Ive been in love with cars ever since I was a 4 year old and now I want to make a living out of it.','2021-03-30 12:38:24'),
 (4,4,'Fitzgerald','Cash','dolor.dapibus.gravida@sedduiFusce.edu','cash_fitz','UAU42EDT3XL','Perchtoldsdorf','Cars, cars, cars, You gotta love them.','2021-03-30 12:38:24'),
 (5,5,'Aimee','Cortez','nibh@dictum.co.uk','aimee_cortez','XXX07JUG7BH','Sargodha','Life without cars is like Rome without the Pope.','2021-03-30 12:38:24'),
@@ -476,8 +478,12 @@ INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,l
 (20,20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24'),
 (21,17, 'John', 'Doe','user@example.com', 'johndoe', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'johnlocation', 'i really like cars :)', '2020-05-30 12:38:24');
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('user', 'id'), (SELECT MAX(id) FROM "user")+1);
+
 -- Seller Permissions --
 INSERT INTO "seller" (id) VALUES (2),(3),(4),(7);
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('seller', 'id'), (SELECT MAX(id) FROM "seller")+1);
 
 -- Vehicles --
 INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
@@ -507,9 +513,9 @@ SELECT setval(pg_get_serial_sequence('vehicle', 'id'), coalesce(max(id),0) + 1, 
 
 -- Auctions --
 INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
-(1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-05-12 19:00:00','Public'),
+(1,'BMW 1 Series 2008 Good State',1,8000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2022-05-12 19:00:00','Public'),
 (2,'BMW 3 Series 2010 Mint',2,10000,'2021-03-30 12:59:24','2021-05-12 20:00:00','2021-05-15 12:00:00','Public'),
-(3,'BMW 5 Series Exclusive',3,15000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-05-08 17:00:00','Public'),
+(3,'BMW 5 Series Exclusive',3,15000,'2021-03-30 12:59:24','2021-08-15 12:00:00','2021-08-30 17:00:00','Public'),
 (4,'BMW 7 Series Great for Sports People',4,20000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (5,'Mercedes A Clean',5,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Private'),
 (6,'Mercedes C Average',6,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Private'),
@@ -561,6 +567,8 @@ INSERT INTO "image" (id,path) VALUES
 (43, 'car_photos/19/1.jpg'),
 (44, 'car_photos/20/1.jpg');
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('image', 'id'), (SELECT MAX(id) FROM "image")+1);
+
 INSERT INTO "vehicle_image" (vehicle_id,image_id,sequence_number) VALUES
 (1,21,1), (1,22,2), (1,23,3),
 (2,24,1),(2,25,2),
@@ -611,6 +619,8 @@ INSERT INTO "comment" (id,user_id,auction_id,createdOn,content) VALUES
 (10,13,6,'2021-03-31 13:27:38','Really looking forward for this auction'),
 (11,12,6,'2021-03-31 18:27:38','Great Car and great seller. Cant wait for this awesome auction.');
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('comment', 'id'), (SELECT MAX(id) FROM "comment")+1);
+
 -- Banned Users --
 INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType) VALUES
 (1, 20, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'Is a bot.','AllBan'),
@@ -618,6 +628,8 @@ INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banTy
 (3, 18, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont want him selling his cars in my website','SellerBan');
 INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType,auction_id) VALUES
 (4, 8, 3, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him for this auction','AuctionBan',14);
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('ban', 'id'), (SELECT MAX(id) FROM "ban")+1);
 
 -- Bids --
 INSERT INTO "bid" (id,user_id,auction_id,amount,createdOn) VALUES
@@ -637,6 +649,8 @@ INSERT INTO "bid" (id,user_id,auction_id,amount,createdOn) VALUES
 (14,12,8,25000,'2021-04-01 17:45:32'),
 (15,13,9,25000,'2021-04-01 17:56:32');
 
+SELECT pg_catalog.setval(pg_get_serial_sequence('bid', 'id'), (SELECT MAX(id) FROM "bid")+1);
+
 -- Invoices --
 INSERT INTO "invoice" (id,user_id,createdOn,vatNumber,value,description) VALUES
 (1,2,'2021-02-01 00:00:10','205538451', 500, 'Seller monthly fee'),
@@ -645,3 +659,5 @@ INSERT INTO "invoice" (id,user_id,createdOn,vatNumber,value,description) VALUES
 (4,3,'2021-04-01 00:00:07','794830202', 500, 'Seller monthly fee'),
 (5,4,'2021-04-01 00:00:08','993546321', 500, 'Seller monthly fee'),
 (6,7,'2021-04-01 00:00:09','120520673', 500, 'Seller monthly fee');
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('invoice', 'id'), (SELECT MAX(id) FROM "invoice")+1);

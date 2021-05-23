@@ -44,12 +44,9 @@
                     </div>     
             
                     <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                        <button type="submit" class="btn w-100 fw-bold">
+                        <button type="submit" class="btn rounded-pill w-100 fw-bold">
                             {{ __('Login') }}
                         </button>
-                        {{-- <a role="button" class="btn w-100 fw-bold">
-                        Login
-                        </a> --}}
                     </div>
                 </form>
             </div>

@@ -94,6 +94,10 @@
     font-size: 3em;
 }
 
+#bid-container {
+    border-radius: 1.0em;
+}
+
 #bid_button{
     background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
     color: var(--white);
@@ -119,11 +123,26 @@
     align-self: center;
 }
 
+.horsepower-input > input[type=number],
+.year-input > input[type=number] {
+    -webkit-appearance: textfield;
+       -moz-appearance: textfield;
+            appearance: textfield;  
+}
+
 .bid-input > input[type=number]::-webkit-inner-spin-button, 
-.bid-input > input[type=number]::-webkit-outer-spin-button { 
+.bid-input > input[type=number]::-webkit-outer-spin-button,
+.horsepower-input > input[type=number]::-webkit-inner-spin-button,
+.horsepower-input > input[type=number]::-webkit-outer-spin-button, 
+.year-input > input[type=number]::-webkit-inner-spin-button,
+.year-input > input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none;
 }
 
+.auction-status {
+    text-indent:0.7em;
+    letter-spacing: 0.7em;
+}
 
 #bid_input_box {
     padding: 0;
@@ -160,15 +179,17 @@
     background-color: rgb(223, 223, 223);
 }
 
-#comment_button{
-    background: linear-gradient(-45deg, rgba(161,94,12,1) 0%, rgba(140,0,0,1) 100%, rgba(0,212,255,1) 100%);
+#comment_button, #save_about, #save-general {
     padding: 5px, 15px;
-    color: var(--white);
+    border-radius: 1px;
+    border-color: rgb(49, 49, 49);
+    transition: 0.3s;
 }
 
-#comment_button:hover {
+#comment_button:hover, #save_about:hover, #save-general:hover {
     color: rgb(255, 157, 100);
     background: rgb(49, 49, 49);
+    transition: 0.3s;
 }
 
 #moderator_button{

@@ -15,7 +15,7 @@
         </nav>
 
         <div class="container">
-            <div class="row ps-4">
+            <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="container d-flex justify-content-center position-relative">
                         <div class="d-flex justify-content-center circular--portrait img-fluid">
@@ -101,26 +101,23 @@
                             @endif
                         @endif
                     </div>
-                    
-                    @if(session('success'))
-                        <p>{{session('success')}}</p>
-                    @endif
 
                     <p class="text-muted fs-3 about-me-text">
                         {{$profileOwner->about}}
                     </p>
                     
                     <div class="collapse" id="aboutCollapse">
-                        <form id="profile-about" method="post" action="{{'/users/' . $profileOwner->id}}">
+                        <form id="profile-about" method="post" action="{{'/users/' . $profileOwner->id}}" class="text-center">
                             @csrf
-                            <textarea rows="5" cols="60" name="about_update"></textarea>
-                            <br><br>
-                            <input type="submit" value= "Update About" />
+                            <textarea class="form-control" name="about_update" style="max-width: 100%;"></textarea>
+                            <br>
+                            <input type="submit" id="save_about" class="btn m-3 mt-0 rounded-pill w-75 fw-bold" value="Save Changes" />
                         </form>
                     </div>
                 </div>
             </div>
 
+            <br>
             
             <div class="collapse" id="generalCollapse">
                 <form id="profile-general" method="post" action="{{'/users/' . $profileOwner->id}}">
@@ -152,8 +149,8 @@
                     <div class="row" style="--bs-gutter-x:0;">
                         
                         <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
-                            <button type="submit" class="btn w-100 fw-bold">
-                                {{ __('Update') }}
+                            <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
+                                {{ __('Save Changes') }}
                             </button>
                         </div>
                     </div>
@@ -175,15 +172,17 @@
                     </ul>
                 </div>
 
-                <?php?>
-                {{-- include_once('../templates/tpl_mod.php');
-                draw_auction_gallery(); --}}
-                <?php?>
 
             </div>
         </div>
         
     </div>
 </section>
+
+@if(session('success'))
+    <div class="notification">
+        {{session('success')}}
+    </div>
+@endif
 
 @endsection

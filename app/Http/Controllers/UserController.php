@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\User;
-use DB;
-
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
 
-    public function showProfile($id)
+    public function showProfile(int $id) : View
     {
         $profileOwner = User::find($id);
         $profileImage = Image::find($profileOwner->profileimage);
@@ -30,7 +31,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editProfile(Request $request, $user_id)
+    public function editProfile(Request $request, int $user_id) : RedirectResponse
     {
         if (! Gate::allows('profileOwner', Auth::user())) {
             return redirect()->back();
@@ -42,7 +43,7 @@ class UserController extends Controller
         }
         
         // editing only the profile image
-        if ($request->file('profileimage')) {
+        else if ($request->file('profileimage')) {
             $file = $request->file('profileimage');
 
             $fileNameExtension = ".jpg";
@@ -66,7 +67,7 @@ class UserController extends Controller
         return redirect()->back()->withSuccess('Updated successfully');
     }
 
-    public function showPhoto(Request $request, $user_id)
+    public function showPhoto(Request $request, int $user_id) : RedirectResponse
     {
         $user = User::find($user_id);
         return redirect('assets/'.$user->getImage()->path);

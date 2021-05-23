@@ -10,49 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Home
-// Route::get('/', 'Auth\LoginController@home');
 
+use Illuminate\Support\Facades\Route;
 
-// Auction
-Route::get('/auctions/new', 'AuctionController@showCreateForm')->name('create_auction');
-Route::post('/auctions/new', 'AuctionController@create')->name('create_auction');
-Route::post('/auctions/{id}/bids', 'AuctionController@bid')->name('bid');
-Route::get('/auctions/{id}', 'AuctionController@show');
-
-// Homepage
-Route::get('/', 'HomepageController@show')->name('homepage');
-Route::get('/about', function () { return view('pages.about'); })->name('about');
-Route::get('/terms_of_service', function () { return view('pages.tos'); })->name('tos');
-
-// Comment Section
-Route::post('/auctions/{id}/comments', 'CommentController@create');
-Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete');
-
-// Profile
-Route::get('/users/{id}', 'UserController@showProfile')->name('show_profile');
-Route::post('/users/{id}', 'UserController@editProfile')->name('edit_profile');
-Route::get('/users/{id}/photo', 'UserController@showPhoto')->name('show_profile_photo');
-
-// Route::get('/', function () {
-//     return view('pages.auction');
-// });
-
-// // Cards
-// Route::get('cards', 'CardController@list');
-// Route::get('cards/{id}', 'CardController@show');
-
-// // API
-Route::get('/auctions/{id}/comments', 'CommentController@getAuctionComments');
-// Route::put('api/cards', 'CardController@create');
-// Route::delete('api/cards/{card_id}', 'CardController@delete');
-// Route::put('api/cards/{card_id}/', 'ItemController@create');
-// Route::post('api/item/{id}', 'ItemController@update');
-// Route::delete('api/item/{id}', 'ItemController@delete');
-
-// Authentication
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::get   ('/'                                   , 'HomepageController@show'                     )->name('homepage'          );
+Route::get   ('/about'                              , function () { return view('pages.about'); }   )->name('about'             );
+Route::get   ('/tos'                                , function () { return view('pages.tos'  ); }   )->name('tos'               );
+Route::get   ('/login'                              , 'Auth\LoginController@showLoginForm'          )->name('login'             );
+Route::post  ('/login'                              , 'Auth\LoginController@login'                  );
+Route::get   ('/logout'                             , 'Auth\LoginController@logout'                 )->name('logout'            );
+Route::get   ('/register'                           , 'Auth\RegisterController@showRegistrationForm')->name('register'          );
+Route::post  ('/register'                           , 'Auth\RegisterController@register'            );
+Route::get   ('/auctions/new'                       , 'AuctionController@showCreateForm'            )->name('create_auction'    );
+Route::post  ('/auctions/new'                       , 'AuctionController@create'                    )->name('create_auction'    );
+Route::get   ('/auctions/{id}/bids/highest'         , 'AuctionController@getHighestBid'             )->name('highest_bid'       );
+Route::post  ('/auctions/{id}/bids'                 , 'AuctionController@bid'                       )->name('bid'               );
+Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete'                    );
+Route::get   ('/auctions/{id}/comments'             , 'CommentController@getAuctionComments'        );
+Route::post  ('/auctions/{id}/comments'             , 'CommentController@create'                    );
+Route::get   ('/auctions/{id}'                      , 'AuctionController@show'                      );
+Route::post  ('/auctions/{id}'                      , 'AuctionController@editAuction'               );
+Route::get   ('/users/{id}/photo'                   , 'UserController@showPhoto'                    )->name('show_profile_photo');
+Route::get   ('/users/{id}'                         , 'UserController@showProfile'                  )->name('show_profile'      );
+Route::post  ('/users/{id}'                         , 'UserController@editProfile'                  )->name('edit_profile'      );

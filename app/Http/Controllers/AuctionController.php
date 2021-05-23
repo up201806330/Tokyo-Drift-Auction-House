@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Auth;
-use Illuminate\Http\Request;
-use App\Models\VehicleImage;
 use App\Models\Auction;
 use App\Models\Vehicle;
 use App\Models\Comment;
+use App\Models\Bid;
 use App\Models\Image;
 use App\Models\User;
-use App\Models\Bid;
-use DB;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-use Carbon\Carbon;
+use \Carbon\Carbon;
 
 class AuctionController extends Controller
 {
@@ -23,7 +24,7 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() : void
     {
 
     }
@@ -33,7 +34,7 @@ class AuctionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showCreateForm()
+    public function showCreateForm() : View
     {
         if (Auth::guest()) {
             // TODO -> em vez de redirecionar, aparecer overlay
@@ -90,7 +91,7 @@ class AuctionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) : void
     {
         //
     }
@@ -99,9 +100,9 @@ class AuctionController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\View
      */
-    public function show($id)
+    public function show(int $id) : View
     {
         $auction = Auction::find($id);
         $vehicle = $auction->vehicle;
@@ -163,10 +164,9 @@ class AuctionController extends Controller
         ]);
     }
 
-    public function bid(Request $request, $auction_id) {
+    public function bid(Request $request, int $auction_id) : RedirectResponse {
         $bid = new Bid;
 
-        $bid->id = Bid::all()->max('id') + 1;
         $bid->user_id = Auth::id();
         $bid->auction_id = $auction_id;
         $bid->amount = $request->get('amount');
@@ -176,27 +176,55 @@ class AuctionController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function getHighestBid(Request $request, int $auction_id) : JsonResponse {
+        $auction = Auction::find($auction_id);
+        $highestBid = $auction->getCurrentMaxBid();
+        $highestBidder = $auction->getCurrentMaxBidder();
+        if($highestBidder !== null) $highestBid['username'] = $highestBidder->username;
+        if ($request->wantsJson()) {
+            return response()->json($highestBid, 200);
+        } else {
+            return response('', 415);
+        }
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in database.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function editAuction(Request $request, int $auction_id) : RedirectResponse
     {
-        //
+
+        $start = new Carbon($request->startingdate . ' ' . $request->startingtime, 'Europe/London');
+        $end = new Carbon($request->endingdate . ' ' . $request->endingtime, 'Europe/London');
+        
+        $auction = Auction::find($auction_id);
+        $vehicle = Vehicle::find($auction->vehicle_id);
+        
+        // update vehicle information
+        try {
+            Vehicle::where('id', $auction->vehicle_id)->update(
+                [
+                    'brand'     => $request->brand,
+                    'model'     => $request->model,
+                    'year'      => $request->year,
+                    'condition' => $request->condition,
+                    'horsepower'=> $request->horsepower,
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors(['Invalid Vehicle Information']);
+        }
+
+        // update auction information
+        Auction::where('id', $auction_id)->update(
+            [
+                'startingtime'  => Carbon::parse($start->setTimezone('UTC'))->format('Y-m-d H:i:s'),
+                'endingtime'    => Carbon::parse($end->setTimezone('UTC'))->format('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()->back()->withSuccess('Updated successfully');
     }
 
     /**
@@ -205,7 +233,7 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id) : void
     {
         //
     }
