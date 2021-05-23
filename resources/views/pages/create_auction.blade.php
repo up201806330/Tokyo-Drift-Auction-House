@@ -42,10 +42,15 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-8 m-0">
-                    <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block mx-auto mt-3 border border-2 border-secondary rounded-3" id="image_input_preview" alt="bmw i8">
+                <fieldset class="form-group text-center">
+                    <button class="btn btn-search" type="button" onclick="button_click()">Upload Image</button>
+                    <input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>
+                </fieldset>
+                    <div id="preview-images-zone"></div>
+                    <!-- <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block mx-auto mt-3 border border-2 border-secondary rounded-3" id="image_input_preview" alt="bmw i8">
                     <div class="form-group mb-3  m-1 m-md-2">
                         <input type="file" class="form-control mx-auto" id="image_input" name="imageInput" placeholder="Images Upload" multiple>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             

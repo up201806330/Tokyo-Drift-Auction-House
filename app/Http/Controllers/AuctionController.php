@@ -89,19 +89,17 @@ class AuctionController extends Controller
             'endingtime' => $request->get('endingTime'),
         ]);
 
-        $auction->save();
-
         if ($request->get('private') == 'on'){
             $auction->auctiontype = 'Private';
             $auction->save();
-            
+
             $invited_users = $request->get('invited');
             foreach($invited_users as $user){
                 $auction->guests()->attach($user);
             }
-            $auction->save();
         }
 
+        $auction->save();
 
         return redirect()->back();
     }
