@@ -3,8 +3,7 @@
 @section('title', 'Create auction')
 
 @section('head')
-<script src="{{ asset('js/create_auction.js')}}"></script>
-
+    <script src="{{ asset('js/create_auction.js')}}"></script>
 @endsection
 
 @section('content')
@@ -114,17 +113,31 @@
             <div id="private_content" class="overflow-auto">
                 <h5 class="text-center">Invited Bidders</h5>
                 <div class="input-group form-container">
-                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" onclick="setBgToDark()">
+                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
                     <span class="input-group-btn">
-                        <a href="../pages/search.php">
-                            <button class="btn btn-search">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </a>
+                        <button class="btn btn-search"  onclick="updateUsers()">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </span>
                 </div>
-                not here yet
-
+                <!-- Show the users for selection, filter through js-->
+                <div id="user_rows">
+                    @foreach($users as $user)
+                        <div class="user_row d-flex justify-content-between align-items-center">
+                            <a href="../pages/profile.php" class="profile_text">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                        <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+                                </div>
+                            </a>
+                            <div class="moderator area text-center">
+                                <div class="form-group form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="private">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
 
             <div class="text-center">

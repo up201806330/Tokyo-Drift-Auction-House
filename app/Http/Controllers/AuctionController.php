@@ -40,7 +40,21 @@ class AuctionController extends Controller
             // TODO -> em vez de redirecionar, aparecer overlay
             return redirect('/login');
         }
-        return view('pages.create_auction');
+
+        $all_users = User::all();
+        $users=[];
+        foreach($all_users as $user){
+            $new_user = [
+                'id' => $user->id,
+                'username' => $user->username,
+                'image_path' => Image::find($user->profileimage)->path,
+            ];
+            array_push($users, $new_user);
+        }
+        
+        return view('pages.create_auction', [
+            'users' => $users,
+        ]);
     }
 
     /**
