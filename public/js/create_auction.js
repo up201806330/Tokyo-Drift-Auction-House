@@ -5,7 +5,7 @@ window.onload = function() {
 
   let iso_start = new Date()
   iso_start.setMinutes(iso_start.getMinutes() + 10);
-  let iso_end = iso_start;
+  let iso_end = new Date(iso_start);
   iso_end.setHours(iso_start.getHours() + 24);
 
   iso_start = iso_start.toISOString();
