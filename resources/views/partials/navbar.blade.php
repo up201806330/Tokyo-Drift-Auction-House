@@ -35,7 +35,11 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/auctions/new') }}">Create new auction</a>
+            @if (Auth::guest())
+              <a type="button" class="nav-link text-white navbar-content-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Create new auction</a>
+            @else
+              <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/auctions/new') }}">Create new auction</a>
+            @endif
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">

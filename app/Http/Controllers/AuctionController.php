@@ -68,9 +68,9 @@ class AuctionController extends Controller
    */
     public function create(Request $request)
     {
-        //if user not authenticated, redirect him to login
+        //if user not authenticated, redirect him to homepage
         if (Auth::guest()) {
-            return redirect('/login');
+            return redirect('/');
         }
 
         //create vehicle
@@ -131,7 +131,7 @@ class AuctionController extends Controller
 
             $num++;
         }
-        //return redirect()->back();
+        return redirect('/');
     }
 
     /**
