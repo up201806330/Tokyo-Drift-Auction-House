@@ -8,6 +8,7 @@ use App\Models\Vehicle;
 use App\Models\Comment;
 use App\Models\Bid;
 use App\Models\Image;
+use App\Models\VehicleImage;
 use App\Models\User;
 use App\Models\AuctionGuest;
 use Illuminate\Contracts\View\View;
@@ -110,8 +111,24 @@ class AuctionController extends Controller
         $pictures = $request->file('picture');
         $num = 1;
         foreach($pictures as $picture){
+            //save file in storage
             $fileNameExtension = $picture->extension();
-            $picture->move($directory, $num . '.' . $fileNameExtension);
+            $fileName = $num . '.' . $fileNameExtension;
+            $picture->move($directory, $fileName);
+            
+            //save image in db
+            $image = new Image([
+                'path' => 'car_photos/' . $vehicle->id . '/' . $fileName,
+            ]);
+            $image->save();
+
+            $vehicle_image = new VehicleImage([
+                'vehicle_id' => $vehicle->id,
+                'image_id' => $image->id,
+                'sequence_number' => $num,
+            ]);
+            $vehicle_image->save();
+
             $num++;
         }
         //return redirect()->back();

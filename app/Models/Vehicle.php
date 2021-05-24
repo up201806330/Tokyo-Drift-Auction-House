@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use DB;
 
 class Vehicle extends Model
@@ -42,5 +43,14 @@ class Vehicle extends Model
       return $this->belongsTo('App\Models\Auction');
   }
 
+  /**
+   * Get the images of the Auction
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function images()
+    {
+        return $this->hasMany('App\Models\VehicleImage');
+    }
 
 }
