@@ -15,6 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use \Carbon\Carbon;
 
@@ -66,10 +67,12 @@ class AuctionController extends Controller
    */
     public function create(Request $request)
     {
+        //if user not authenticated, redirect him to login
         if (Auth::guest()) {
             return redirect('/login');
         }
 
+        //create vehicle
         $vehicle = new Vehicle([
             'owner' => Auth::id(),
             'brand' => $request->get('brand'),
@@ -78,9 +81,9 @@ class AuctionController extends Controller
             'year' => $request->get('year'),
             'horsepower' => $request->get('horsepower'),
         ]);
-
         $vehicle->save();
 
+        //create auction
         $auction = new Auction([   
             'auction_name' => $request->get('auctionName'),
             'vehicle_id' => $vehicle->id,
@@ -89,6 +92,7 @@ class AuctionController extends Controller
             'endingtime' => $request->get('endingTime'),
         ]);
 
+        //private auction handling
         if ($request->get('private') == 'on'){
             $auction->auctiontype = 'Private';
             $auction->save();
@@ -98,10 +102,19 @@ class AuctionController extends Controller
                 $auction->guests()->attach($user);
             }
         }
-
         $auction->save();
 
-        return redirect()->back();
+        //pictures
+        $directory = base_path('public/assets/car_photos/' . $vehicle->id);
+        Storage::makeDirectory($directory);
+        $pictures = $request->file('picture');
+        $num = 1;
+        foreach($pictures as $picture){
+            $fileNameExtension = $picture->extension();
+            $picture->move($directory, $num . '.' . $fileNameExtension);
+            $num++;
+        }
+        //return redirect()->back();
     }
 
     /**

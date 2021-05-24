@@ -20,7 +20,7 @@
         </ol>
         </nav>
         <hr class="bg-dark border-5 border-top border-dark">
-        <form method="post" action="{{ route('create_auction') }}" onsubmit="return validateForm()">
+        <form method="post" enctype="multipart/form-data" action="{{ route('create_auction') }}" onsubmit="return validateForm()">
             @csrf
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-4">
@@ -42,15 +42,12 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-8 m-0">
-                <fieldset class="form-group text-center">
-                    <button class="btn btn-search" type="button" onclick="button_click()">Upload Image</button>
-                    <input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>
-                </fieldset>
+                    <fieldset class="form-group text-center">
+                        <button class="btn btn-search" type="button" onclick="button_click()">Upload Image</button>
+                        <input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>
+                    </fieldset>
                     <div id="preview-images-zone"></div>
-                    <!-- <img src="https://www.automaistv.com.br/wp-content/uploads/2019/04/bmw_i8_roadster_34-990x660.jpg" class="d-block mx-auto mt-3 border border-2 border-secondary rounded-3" id="image_input_preview" alt="bmw i8">
-                    <div class="form-group mb-3  m-1 m-md-2">
-                        <input type="file" class="form-control mx-auto" id="image_input" name="imageInput" placeholder="Images Upload" multiple>
-                    </div> -->
+                    <div id="hidden-input-pictures"></div>
                 </div>
             </div>
             

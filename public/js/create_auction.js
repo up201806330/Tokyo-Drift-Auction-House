@@ -3,22 +3,23 @@ window.onload = function() {
   elem_start = document.getElementById("startingTime");
   elem_end = document.getElementById("endingTime");
 
-  var iso_start = new Date()
+  let iso_start = new Date()
   iso_start.setMinutes(iso_start.getMinutes() + 10);
-  var iso_end = iso_start;
-  iso_end.setHours(iso_start.getHours() + 8);
+  let iso_end = iso_start;
+  iso_end.setHours(iso_start.getHours() + 24);
 
   iso_start = iso_start.toISOString();
   iso_end = iso_end.toISOString();
 
-  var minDate_start = iso_start.substring(0,iso_start.length-1);
-  var minDate_end = iso_end.substring(0,iso_end.length-1);
+  let minDate_start = iso_start.substring(0,iso_start.length-1);
+  let minDate_end = iso_end.substring(0,iso_end.length-1);
 
   elem_start.value = minDate_start;
   elem_start.min = minDate_start;
   elem_end.value = minDate_end;
   elem_end.min = minDate_end;
 
+  // add listener for image input
   document.getElementById('pro-image').addEventListener('change', readImage, false);
 }
 
@@ -28,8 +29,8 @@ function button_click(){
 
 // Show the area to select guests for private auctions
 function privateChange() {
-    var input = document.getElementById("private");
-    var content = document.getElementById("private_content");
+    let input = document.getElementById("private");
+    let content = document.getElementById("private_content");
     if (input.checked) {
       content.style.display = "block";
     } else {
@@ -37,8 +38,8 @@ function privateChange() {
     }
 } 
 
-// Validate form on submit -> verify times and place the hidden inputs for guests
 function validateForm() {
+  //verify times
   elem_start = document.getElementById("startingTime");
   elem_end = document.getElementById("endingTime");
 
@@ -58,17 +59,35 @@ function validateForm() {
     return false;
   }
 
-  let users = document.getElementById("user_rows").children;
-  let hidden_users = document.getElementById("hidden_user_rows");
-  for (let item of users) {
-    let private_user = item.querySelector(".private_user").checked;
-    if (private_user){
-      let user_id = item.querySelector(".user_id").innerHTML;
-      let input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "invited[]";
-      input.value = user_id;
-      hidden_users.appendChild(input);
+  //check if there is at least one photo
+  let hidden_pictures = document.getElementById("hidden-input-pictures").children;
+  if (hidden_pictures.length == 0){
+    alert("You must upload at least one photo.");
+    return false;
+  }
+
+  //Private auction handling
+  var input = document.getElementById("private");
+   if (input.checked) {
+    let users = document.getElementById("user_rows").children;
+
+    //check if there is at least one invited guest
+    if (users.length == 0){
+      alert("If your auction is private, you must select at least one invited user.");
+      return false;
+    }
+    //place the hidden inputs for guests
+    let hidden_users = document.getElementById("hidden_user_rows");
+    for (let item of users) {
+      let private_user = item.querySelector(".private_user").checked;
+      if (private_user){
+        let user_id = item.querySelector(".user_id").innerHTML;
+        let input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "invited[]";
+        input.value = user_id;
+        hidden_users.appendChild(input);
+      }
     }
   }
 } 
@@ -94,26 +113,41 @@ function readImage() {
   if (window.File && window.FileList && window.FileReader) {
       let files = event.target.files; //FileList object
       let output = document.getElementById("preview-images-zone");
+      let hidden_pictures = document.getElementById("hidden-input-pictures");
 
       for (let i = 0; i < files.length; i++) {
           let file = files[i];
           if (!file.type.match('image')) continue;
           
           let picReader = new FileReader();
-          
+
           picReader.addEventListener('load', function (event) {
+              //create hidden input for for submission
+              let input = document.createElement("input");
+              input.type = "file";
+              input.name = "picture[]";
+              input.classList.add("d-none");
+
+              const dataTransfer = new DataTransfer();
+              dataTransfer.items.add(file);
+              input.files = dataTransfer.files;
+              hidden_pictures.appendChild(input);
+
+              //create picture preview
               let picFile = event.target;
 
               let preview_image = document.createElement("div");
               preview_image.classList.add("preview-image")
               preview_image.id = "preview-show-" + num;
 
+              //add delete button to image preview
               let delete_button = document.createElement("div");
               delete_button.classList.add("image-cancel");
               delete_button.id = num;
               delete_button.onclick = function(element){
                 let no = element.target.id;
                 document.getElementById("preview-show-" + no).remove();
+                input.remove();
               };
               delete_button.innerHTML = "x";
 
@@ -135,6 +169,7 @@ function readImage() {
 
           picReader.readAsDataURL(file);
       }
+      //clear input
       document.getElementById("pro-image").value = '';
   } else {
       console.log('Browser not support');
