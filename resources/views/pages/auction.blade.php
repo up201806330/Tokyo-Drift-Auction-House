@@ -123,9 +123,18 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                <a href=# class="heart">
-                    <i class="fa fa-heart"></i>
-                </a>
+                @if (!Auth::guest())
+                        @if ($favourite)
+                            <form method="delete" action="{{ route('remove_favourite', ['id' => $auction->id]) }}">
+                            <button type="submit" class="heart heart_favourite">
+                        @else
+                            <form method="post" action="{{ route('add_favourite', ['id' => $auction->id]) }}">
+                            <button type="submit" class="heart">
+                        @endif
+                                <i class="fa fa-heart"></i>
+                            </button>
+                    <form>
+                @endif
             </div>
 
             <!-- Vehicle Information 1 -->
@@ -496,9 +505,9 @@
         </div>
         
         <!-- Chat Button -->
-        <a href="#" class="chat_button">
+        <!--<a href="#" class="chat_button">
             <i class="fa fa-comments chat_icon"></i>
-        </a>
+        </a>-->
     
     <!-- End of White Box -->
     </div>

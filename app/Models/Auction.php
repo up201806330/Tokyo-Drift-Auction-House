@@ -98,4 +98,11 @@ class Auction extends Model
   public function guests(){
     return $this->belongsToMany(User::class);
   }
+
+  /**
+  * Get the users that favourited the Auction
+  */
+  public function user_favourite(){
+    return $this->belongsToMany(Favourite::class);
+  }
 }
