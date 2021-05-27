@@ -49,7 +49,7 @@
             
             <div class="row align-items-center">
                 <div class="col-md">
-                    <div class="form-group m-1 m-md-2">
+                    <div class="form-group m-1 m-md-2 year-input">
                         <label for="year">Year</label>
                         <input required type="number" min="1950" max="2021" class="form-control input_box" id="year" name="year" placeholder="Year">
                     </div>
@@ -57,7 +57,7 @@
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="horsePower">Horse Power</label>
-                        <div class="input-group">
+                        <div class="input-group horsepower-input">
                             <input type="number" min="0" max="2000" class="form-control input_box text-right" id="horsePower" name="horsepower" placeholder="Horse Power">
                             <div class="input-group-append">
                                 <span class="input-group-text append_box">hp</span>
@@ -103,7 +103,7 @@
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="startingBid">Starting Bid</label>
-                        <div class="input-group" id="staring_bid_group">
+                        <div class="input-group year-input" id="staring_bid_group">
                             <input required type="number" min="0" max="100000000" class="form-control input_box text-right" id="startingBid" name="startingBid" placeholder="Starting Bid">
                             <div class="input-group-append">
                                 <span class="input-group-text append_box">€</span>
