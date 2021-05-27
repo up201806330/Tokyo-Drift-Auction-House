@@ -33,7 +33,7 @@
                                                 <label for="formFile" class="form-label">
                                                     <i class="fa fa-cog edit-cog" aria-hidden="true" style="cursor: pointer;"></i>
                                                 </label>
-                                                <input class="form-control" type="file" id="formFile" name="profileimage" style="display: none;">
+                                                <input class="form-control" type="file" id="formFile" name="profileimage" style="display: none;" accept="image/png, image/jpeg">
                                             </div>
                                         </form>
 

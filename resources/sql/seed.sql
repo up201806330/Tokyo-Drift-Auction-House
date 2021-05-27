@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS "auction_mod"          CASCADE;
 DROP TABLE IF EXISTS "image"                CASCADE;
 DROP TABLE IF EXISTS "invoice"              CASCADE;
 DROP TABLE IF EXISTS "vehicle_image"        CASCADE;
-DROP TABLE IF EXISTS "auction_guest"        CASCADE;
+DROP TABLE IF EXISTS "auction_user"         CASCADE;
 DROP TABLE IF EXISTS "favourite_auction"    CASCADE;
 DROP TABLE IF EXISTS "comment"              CASCADE;
 DROP TABLE IF EXISTS "ban"                  CASCADE;
@@ -75,6 +75,7 @@ CREATE TABLE vehicle (
     description TEXT
 );
 
+
 CREATE TABLE auction (
     id              SERIAL          PRIMARY KEY,
     auction_name    TEXT            NOT NULL,
@@ -110,16 +111,17 @@ CREATE TABLE vehicle_image (
     UNIQUE(vehicle_id, sequence_number)
 );
 
-CREATE TABLE "auction_guest" (
+CREATE TABLE "auction_user" (
     user_id     INTEGER     REFERENCES "user"(id),
     auction_id  INTEGER     REFERENCES "auction"(id),
 	PRIMARY KEY(user_id, auction_id)
 );
 
 CREATE TABLE "favourite_auction" (
+    id          SERIAL      PRIMARY KEY,
     user_id     INTEGER     REFERENCES "user"(id),
     auction_id  INTEGER     REFERENCES "auction"(id),
-	PRIMARY KEY(user_id, auction_id)
+	UNIQUE(user_id, auction_id)
 );
 
 CREATE TABLE comment (
@@ -193,17 +195,17 @@ USING GIST (search);
 -- Triggers
 
 DROP TRIGGER IF EXISTS ban_user                 ON "ban";
-DROP TRIGGER IF EXISTS private_auction_guests   ON "auction_guest";
+DROP TRIGGER IF EXISTS private_auction_users    ON "auction_user";
 DROP TRIGGER IF EXISTS cant_bid_own_auction     ON "bid";
 DROP TRIGGER IF EXISTS cant_bid_auction_over    ON "bid";
 DROP TRIGGER IF EXISTS only_guests_can_bid      ON "bid";
 DROP TRIGGER IF EXISTS banned_bids              ON "ban";
-DROP TRIGGER IF EXISTS removed_from_guest_list  ON "auction_guest";
+DROP TRIGGER IF EXISTS removed_from_guest_list  ON "auction_user";
 DROP TRIGGER IF EXISTS new_bid_higher           ON "bid";
 DROP TRIGGER IF EXISTS update_fts               ON "auction";
 
 DROP FUNCTION IF EXISTS ban_user               ;
-DROP FUNCTION IF EXISTS private_auction_guests ;
+DROP FUNCTION IF EXISTS private_auction_users ;
 DROP FUNCTION IF EXISTS cant_bid_own_auction   ;
 DROP FUNCTION IF EXISTS cant_bid_auction_over  ;
 DROP FUNCTION IF EXISTS only_guests_can_bid    ;
@@ -242,7 +244,7 @@ CREATE TRIGGER ban_user
 
 
 
-CREATE FUNCTION private_auction_guests() RETURNS TRIGGER AS
+CREATE FUNCTION private_auction_users() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     IF NOT EXISTS(
@@ -257,10 +259,10 @@ END
 $BODY$
 LANGUAGE plpgsql;
  
-CREATE TRIGGER private_auction_guests
-    BEFORE INSERT OR UPDATE ON "auction_guest"
+CREATE TRIGGER private_auction_users
+    BEFORE INSERT OR UPDATE ON "auction_user"
     FOR EACH ROW
-    EXECUTE PROCEDURE private_auction_guests(); 
+    EXECUTE PROCEDURE private_auction_users(); 
 
 
 
@@ -318,7 +320,7 @@ BEGIN
         WHERE id = NEW.auction_id
     ) = 'Private' AND NOT EXISTS (
         SELECT *
-        FROM "auction_guest"
+        FROM "auction_user"
         WHERE auction_id = NEW.auction_id
         AND user_id = NEW.user_id
     ) THEN
@@ -364,7 +366,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER removed_from_guest_list
-    AFTER DELETE ON "auction_guest"
+    AFTER DELETE ON "auction_user"
     FOR EACH ROW
     EXECUTE PROCEDURE removed_from_guest_list();
 
@@ -507,7 +509,8 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (19,4,'Porsche','Panamera 4 Executive','Mint',2020,450),
 (20,4,'Tesla','S','Mint',2021,700);
 
-SELECT pg_catalog.setval(pg_get_serial_sequence('vehicle', 'id'), (SELECT MAX(id) FROM "vehicle")+1);
+-- reset the sequence, regardless whether table has rows or not:
+SELECT setval(pg_get_serial_sequence('vehicle', 'id'), coalesce(max(id),0) + 1, false) FROM vehicle;
 
 -- Auctions --
 INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,startingTime,endingTime,auctionType) VALUES
@@ -532,7 +535,8 @@ INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,start
 (19,'New Panamera 4 Executive',19,160000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public'),
 (20,'Brand New Tesla S',20,230000,'2021-03-30 12:59:24','2021-04-05 12:00:00','2021-04-08 12:00:00','Public');
 
-SELECT pg_catalog.setval(pg_get_serial_sequence('auction', 'id'), (SELECT MAX(id) FROM "auction")+1);
+-- reset the sequence, regardless whether table has rows or not:
+SELECT setval(pg_get_serial_sequence('auction', 'id'), coalesce(max(id),0) + 1, false) FROM auction;
 
 -- User Permissions --
 INSERT INTO "global_mod" (id) VALUES (2),(5);
@@ -589,18 +593,20 @@ INSERT INTO "vehicle_image" (vehicle_id,image_id,sequence_number) VALUES
 (20,44,1);
 
 -- Public Auction Guests --
-INSERT INTO "auction_guest" (user_id, auction_id) VALUES
+INSERT INTO "auction_user" (user_id, auction_id) VALUES
 (8,5),(9,5),(10,5),(11,5),(12,5),(13,5),
 (11,6),(12,6),(13,6),(14,6),(15,6);
 
 -- Favourite Auctions --
-INSERT INTO "favourite_auction" (user_id, auction_id) VALUES
-(8,1),(8,2),(8,3),(8,4),(8,5),
-(9,5),(9,6),(9,7),(9,8),(9,9),
-(10,8),(10,9),
-(11,6),(11,5),
-(12,6),(12,11),(12,19),(12,17),
-(13,15),(13,16);
+INSERT INTO "favourite_auction" (id, user_id, auction_id) VALUES
+(1,8,1),(2,8,2),(3,8,3),(4,8,4),(5,8,5),
+(6,9,5),(7,9,6),(8,9,7),(9,9,8),(10,9,9),
+(11,10,8),(12,10,9),
+(13,11,6),(14,11,5),
+(15,12,6),(16,12,11),(17,12,19),(18,12,17),
+(19,13,15),(20,13,16);
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('favourite_auction', 'id'), (SELECT MAX(id) FROM "favourite_auction")+1);
 
 -- Auction Comments --
 INSERT INTO "comment" (id,user_id,auction_id,createdOn,content) VALUES

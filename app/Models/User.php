@@ -93,4 +93,18 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Vehicle');
     }
+
+    /**
+     * Get all of the auctions that User is invited to
+     */
+    public function auctionGuest(){
+        return $this->belongsToMany(Auction::class);
+    }
+
+    /**
+     * Get all of the auctions that User has favourited
+     */
+    public function auctionFavourite(){
+        return $this->belongsToMany(Favourite::class);
+    }
 }

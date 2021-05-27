@@ -20,6 +20,7 @@ class VehicleImage extends Model
     'vehicle_id', 'image_id', 'sequence_number'
   ];
 
+  protected $primaryKey = 'image_id';
 
   /**
    * Get the user that owns the Auction
