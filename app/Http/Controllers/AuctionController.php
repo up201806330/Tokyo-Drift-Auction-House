@@ -50,6 +50,21 @@ class AuctionController extends Controller
     }
 
     /**
+     * Display all Auctions.
+     *
+     * @return \Illuminate\Http\View
+     */
+    public function showAll() : View {
+
+        $all_auctions = Auction::all();
+
+        return view('pages.search', [
+            'all_auctions' => $all_auctions
+        ]);
+    }
+
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

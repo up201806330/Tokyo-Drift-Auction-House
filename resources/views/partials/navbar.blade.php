@@ -19,7 +19,7 @@
                 <div class="col-12 col-sm-4">
                   <li><span class="dropdown-header fs-3 ps-3">Trending Categories</span></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item fs-3 text-decoration-underline" href="../pages/search.php"><b>Sports</b></a></li>
+                  <li><a class="dropdown-item fs-3 text-decoration-underline" href="{{ route('search') }}"><b>Sports</b></a></li>
                   <li><a class="dropdown-item fs-3 text-decoration-underline" href="../pages/search.php"><b>Family</b></a></li>
                   <li><a class="dropdown-item fs-3 text-decoration-underline" href="../pages/search.php"><b>Budget</b></a></li>
                 </div>
