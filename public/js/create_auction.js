@@ -1,23 +1,23 @@
 window.onload = function() {
   // Fill starting and ending times and define minimum values accordingly to present
-  elem_start = document.getElementById("startingTime");
-  elem_end = document.getElementById("endingTime");
+  /*date_start = document.getElementById("startingDate");
+  time_start = document.getElementById("startingTime");
+  date_end = document.getElementById("endingDate");
+  time_end = document.getElementById("endingTime");
 
   let iso_start = new Date()
   iso_start.setMinutes(iso_start.getMinutes() + 10);
   let iso_end = new Date(iso_start);
   iso_end.setHours(iso_start.getHours() + 24);
 
-  iso_start = iso_start.toISOString();
-  iso_end = iso_end.toISOString();
-
-  let minDate_start = iso_start.substring(0,iso_start.length-1);
-  let minDate_end = iso_end.substring(0,iso_end.length-1);
-
-  elem_start.value = minDate_start;
-  elem_start.min = minDate_start;
-  elem_end.value = minDate_end;
-  elem_end.min = minDate_end;
+  date_start.value = iso_start.toDateString();
+  date_start.min = iso_start.toDateString();
+  time_start.value = iso_start.toTimeString();
+  time_start.min = iso_start.toTimeString();
+  date_end.value = iso_end.toDateString();
+  date_end.min = iso_end.toDateString();
+  time_end.value = iso_end.toTimeString();
+  time_end.min = iso_end.toTimeString();*/
 
   // add listener for image input
   document.getElementById('pro-image').addEventListener('change', readImage, false);
@@ -40,21 +40,25 @@ function privateChange() {
 
 function validateForm() {
   //verify times
-  elem_start = document.getElementById("startingTime");
-  elem_end = document.getElementById("endingTime");
+  date_start = document.getElementById("startingDate").value;
+  time_start = document.getElementById("startingTime").value;
+  date_end = document.getElementById("endingDate").value;
+  time_end = document.getElementById("endingTime").value;
 
-  date_start = new Date(elem_start.value);
-  date_end = new Date(elem_end.value);
+  console.log(date_start);
+  console.log(time_start);
+  date_time_start = new Date(date_start + "T" +  time_start);
+  date_time_end = new Date(date_end + "T" +  time_end);
   today = new Date();
   today.setMinutes(today.getMinutes() + 1);
 
-  date_start.setHours(date_start.getHours() + 1);
+  date_time_start.setHours(date_time_start.getHours() + 1);
 
-  if (date_start.getTime() <= today.getTime()) {
+  if (date_time_start.getTime() <= today.getTime()) {
     alert("Auction must start no sooner than a minute from now.");
     return false;
   }
-  if (date_start.getTime() >= date_end.getTime()) {
+  if (date_time_start.getTime() >= date_time_end.getTime()) {
     alert("Ending Date must be at least one hour after Starting date.");
     return false;
   }

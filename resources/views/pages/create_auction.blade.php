@@ -36,10 +36,6 @@
                         <label for="model">Model</label>
                         <input required type="text" class="form-control input_box" id="model" name="model" placeholder="Model">
                     </div>
-                    <div class="form-group m-1 m-md-2">
-                        <label for="category">Category</label>
-                        <input required type="text" class="form-control input_box" id="category" name="category" placeholder="Category">
-                    </div>
                 </div>
                 <div class="col-md-12 col-lg-8 m-0">
                     <fieldset class="form-group text-center">
@@ -53,7 +49,7 @@
             
             <div class="row align-items-center">
                 <div class="col-md">
-                    <div class="form-group m-1 m-md-2">
+                    <div class="form-group m-1 m-md-2 year-input">
                         <label for="year">Year</label>
                         <input required type="number" min="1950" max="2021" class="form-control input_box" id="year" name="year" placeholder="Year">
                     </div>
@@ -61,7 +57,7 @@
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="horsePower">Horse Power</label>
-                        <div class="input-group">
+                        <div class="input-group horsepower-input">
                             <input type="number" min="0" max="2000" class="form-control input_box text-right" id="horsePower" name="horsepower" placeholder="Horse Power">
                             <div class="input-group-append">
                                 <span class="input-group-text append_box">hp</span>
@@ -86,20 +82,28 @@
             <div class="row align-items-center">
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
+                        <label for="startingDate">Starting Date</label>
+                        <input required type="date" name="startingdate" class="form-control input_box" id="startingDate" value="">
+                    </div>
+                    <div class="form-group m-1 m-md-2">
                         <label for="startingTime">Starting Time</label>
-                        <input type="datetime-local" class="form-control input_box" id="startingTime" name="startingTime" value="2021-03-15T19:30">
+                        <input required type="time" name="startingtime" class="form-control input_box" id="startingTime" value="00:00" step="60">
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
-                        <label for="endingTime">Ending Time</label>
-                        <input type="datetime-local" class="form-control input_box" id="endingTime" name="endingTime" value="2021-03-20T19:30">
+                        <label for="endingDate">Closing Date</label>
+                        <input required type="date" name="endingdate" class="form-control input_box" id="endingDate" value="">
+                    </div>
+                    <div class="form-group m-1 m-md-2">
+                        <label for="endingTime">Closing Time</label>
+                        <input required type="time" name="endingtime" class="form-control input_box" id="endingTime" value="00:00" step="60">
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
                         <label for="startingBid">Starting Bid</label>
-                        <div class="input-group" id="staring_bid_group">
+                        <div class="input-group year-input" id="staring_bid_group">
                             <input required type="number" min="0" max="100000000" class="form-control input_box text-right" id="startingBid" name="startingBid" placeholder="Starting Bid">
                             <div class="input-group-append">
                                 <span class="input-group-text append_box">€</span>

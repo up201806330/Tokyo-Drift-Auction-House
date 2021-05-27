@@ -85,13 +85,16 @@ class AuctionController extends Controller
         ]);
         $vehicle->save();
 
+        $start = new Carbon($request->startingdate . ' ' . $request->startingtime, 'Europe/London');
+        $end = new Carbon($request->endingdate . ' ' . $request->endingtime, 'Europe/London');
+
         //create auction
         $auction = new Auction([   
             'auction_name' => $request->get('auctionName'),
             'vehicle_id' => $vehicle->id,
             'startingbid' => $request->get('startingBid'),
-            'startingtime' => $request->get('startingTime'),
-            'endingtime' => $request->get('endingTime'),
+            'startingtime' => Carbon::parse($start->setTimezone('UTC'))->format('Y-m-d H:i:s'),
+            'endingtime' => Carbon::parse($end->setTimezone('UTC'))->format('Y-m-d H:i:s'),
         ]);
 
         //private auction handling
