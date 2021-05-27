@@ -118,9 +118,10 @@ CREATE TABLE "auction_user" (
 );
 
 CREATE TABLE "favourite_auction" (
+    id          SERIAL      PRIMARY KEY,
     user_id     INTEGER     REFERENCES "user"(id),
     auction_id  INTEGER     REFERENCES "auction"(id),
-	PRIMARY KEY(user_id, auction_id)
+	UNIQUE(user_id, auction_id)
 );
 
 CREATE TABLE comment (
@@ -597,13 +598,15 @@ INSERT INTO "auction_user" (user_id, auction_id) VALUES
 (11,6),(12,6),(13,6),(14,6),(15,6);
 
 -- Favourite Auctions --
-INSERT INTO "favourite_auction" (user_id, auction_id) VALUES
-(8,1),(8,2),(8,3),(8,4),(8,5),
-(9,5),(9,6),(9,7),(9,8),(9,9),
-(10,8),(10,9),
-(11,6),(11,5),
-(12,6),(12,11),(12,19),(12,17),
-(13,15),(13,16);
+INSERT INTO "favourite_auction" (id, user_id, auction_id) VALUES
+(1,8,1),(2,8,2),(3,8,3),(4,8,4),(5,8,5),
+(6,9,5),(7,9,6),(8,9,7),(9,9,8),(10,9,9),
+(11,10,8),(12,10,9),
+(13,11,6),(14,11,5),
+(15,12,6),(16,12,11),(17,12,19),(18,12,17),
+(19,13,15),(20,13,16);
+
+SELECT pg_catalog.setval(pg_get_serial_sequence('favourite_auction', 'id'), (SELECT MAX(id) FROM "favourite_auction")+1);
 
 -- Auction Comments --
 INSERT INTO "comment" (id,user_id,auction_id,createdOn,content) VALUES

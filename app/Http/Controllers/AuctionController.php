@@ -11,6 +11,7 @@ use App\Models\Image;
 use App\Models\VehicleImage;
 use App\Models\User;
 use App\Models\AuctionGuest;
+use App\Models\Favourite;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -137,6 +138,57 @@ class AuctionController extends Controller
         return redirect('/');
     }
 
+     /**
+     * Creates a new auction.
+     *
+     * @param  Request request containing the description
+     * @return Response
+     */
+    public function addFavourite(Request $request)
+    {
+        $auction_id = $request->route('id');
+        //if user not authenticated, redirect him to homepage
+        if (Auth::guest()) {
+            return redirect('/auctions/' . $auction_id);
+        }
+
+        $user_id = Auth::id();
+        $favourite_db = Favourite::where('auction_id', $auction_id)->where('user_id', $user_id)->get();
+        if ($favourite_db->isEmpty()){
+            $favourite = new Favourite([
+                'auction_id' => $auction_id,
+                'user_id' => $user_id,
+            ]);
+            $favourite->save();
+        }
+
+        return redirect('/auctions/' . $auction_id);
+    }
+
+    /**
+     * Creates a new auction.
+     *
+     * @param  Request request containing the description
+     * @return Response
+     */
+    public function removeFavourite(Request $request)
+    {
+        $auction_id = $request->route('id');
+
+        //if user not authenticated, redirect him to homepage
+        if (Auth::guest()) {
+            return redirect('/auctions/' . $auction_id);
+        }
+
+        $user_id = Auth::id();
+        $favourite_db = Favourite::where('auction_id', $auction_id)->where('user_id', $user_id)->first();
+        if ($favourite_db){
+            $favourite_db->delete();
+        }
+
+        return redirect('/auctions/' . $auction_id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -178,6 +230,15 @@ class AuctionController extends Controller
         $owner_profile_img = Image::find($owner->profileimage);
         $auction_comments = $auction->getComments();
 
+        $favourite = false;
+        //know if this auction is favourited by user
+        if (!Auth::guest()) {
+            $user_id = Auth::id();
+            $favourite_db = Favourite::where('auction_id', $auction->id)->where('user_id', $user_id)->get();
+            if (!($favourite_db->isEmpty()))
+                $favourite = true;
+        }
+
         try {
             $current_max_bid_amount = Bid::where('auction_id', '=', $id)->max('amount');
 
@@ -199,7 +260,8 @@ class AuctionController extends Controller
                 'owner_img'     => $owner_profile_img,
                 'highest_bidder'=> null,
                 'bidder_img'    => null,
-                'comments'      => $auction_comments
+                'comments'      => $auction_comments,
+                'favourite'     => $favourite,
             ]);
         }
         
@@ -212,7 +274,8 @@ class AuctionController extends Controller
             'owner_img'     => $owner_profile_img,
             'highest_bidder'=> $highest_bidder,
             'bidder_img'    => $highest_bidder_profile_img,
-            'comments'      => $auction_comments
+            'comments'      => $auction_comments,
+            'favourite'     => $favourite,
         ]);
     }
 

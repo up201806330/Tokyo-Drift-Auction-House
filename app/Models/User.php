@@ -100,4 +100,11 @@ class User extends Authenticatable
     public function auctionGuest(){
         return $this->belongsToMany(Auction::class);
     }
+
+    /**
+     * Get all of the auctions that User has favourited
+     */
+    public function auctionFavourite(){
+        return $this->belongsToMany(Favourite::class);
+    }
 }
