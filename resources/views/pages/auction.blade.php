@@ -125,7 +125,9 @@
                 </div>
                 @if (!Auth::guest())
                         @if ($favourite)
-                            <form method="delete" action="{{ route('remove_favourite', ['id' => $auction->id]) }}">
+                            <form method="post" action="{{ route('add_favourite', ['id' => $auction->id]) }}">
+                            @method('delete')
+                            @csrf
                             <button type="submit" class="heart heart_favourite">
                         @else
                             <form method="post" action="{{ route('add_favourite', ['id' => $auction->id]) }}">
