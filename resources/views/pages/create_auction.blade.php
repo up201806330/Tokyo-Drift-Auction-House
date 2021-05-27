@@ -36,10 +36,6 @@
                         <label for="model">Model</label>
                         <input required type="text" class="form-control input_box" id="model" name="model" placeholder="Model">
                     </div>
-                    <div class="form-group m-1 m-md-2">
-                        <label for="category">Category</label>
-                        <input required type="text" class="form-control input_box" id="category" name="category" placeholder="Category">
-                    </div>
                 </div>
                 <div class="col-md-12 col-lg-8 m-0">
                     <fieldset class="form-group text-center">
@@ -86,14 +82,22 @@
             <div class="row align-items-center">
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
+                        <label for="startingDate">Starting Date</label>
+                        <input required type="date" name="startingdate" class="form-control input_box" id="startingDate" value="">
+                    </div>
+                    <div class="form-group m-1 m-md-2">
                         <label for="startingTime">Starting Time</label>
-                        <input type="datetime-local" class="form-control input_box" id="startingTime" name="startingTime" value="2021-03-15T19:30">
+                        <input required type="time" name="startingtime" class="form-control input_box" id="startingTime" value="00:00" step="60">
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group m-1 m-md-2">
-                        <label for="endingTime">Ending Time</label>
-                        <input type="datetime-local" class="form-control input_box" id="endingTime" name="endingTime" value="2021-03-20T19:30">
+                        <label for="endingDate">Closing Date</label>
+                        <input required type="date" name="endingdate" class="form-control input_box" id="endingDate" value="">
+                    </div>
+                    <div class="form-group m-1 m-md-2">
+                        <label for="endingTime">Closing Time</label>
+                        <input required type="time" name="endingtime" class="form-control input_box" id="endingTime" value="00:00" step="60">
                     </div>
                 </div>
                 <div class="col-md">
