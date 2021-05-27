@@ -18,87 +18,92 @@
 <nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary collapse show text-white">
 <div class="position-sticky pt-3">
     <ul class="nav flex-column">
-    <li class="nav-item pt-3">
-        <div class="display-6">
-        Filter results
-        </div class="display-6">
-    </li>
-    
-    <li class="nav-item pt-5">
-        <div class="dropdown mx-auto d-grid gap-2">
-            <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="selectConditionFilter" data-bs-toggle="dropdown" aria-expanded="false">
-            Condition
+        <li class="nav-item pt-3">
+            <div class="display-6">
+            Filter results
+            </div class="display-6">
+        </li>
+        
+        <li class="nav-item pt-5">
+            <div class="dropdown mx-auto d-grid gap-2">
+                <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="selectConditionFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                Condition
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectConditionFilter">
+                <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Mint</b></a></li>
+                <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Clean</b> or better</a></li>
+                <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Average</b> or better</a></li>
+                <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Rough</b> or better</a></li>
+                </ul>
+            </div>
+        </li>
+        
+        <li class="nav-item pt-5">
+            <div class="d-grid gap-2 col-12 ">
+            <div class="btn-group dropdown">
+            <button type="button" class="btn-lg btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
             </button>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectConditionFilter">
-            <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Mint</b></a></li>
-            <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Clean</b> or better</a></li>
-            <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Average</b> or better</a></li>
-            <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Rough</b> or better</a></li>
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkboxSports" checked>
+                    <label class="form-check-label" for="checkboxSports">
+                    Sports
+                    </label>
+                </div>
+                </a></li>
+                <li><a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkboxAntiques" checked>
+                    <label class="form-check-label" for="checkboxAntiques">
+                    Antiques
+                    </label>
+                </div>
+                </a></li>
+                <li><a class="dropdown-item" href="#">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkboxFamily" checked>
+                    <label class="form-check-label" for="checkboxFamily">
+                    Family
+                    </label>
+                </div>
+                </a></li>
             </ul>
-        </div>
-    </li>
-    
-    <li class="nav-item pt-5">
-        <div class="d-grid gap-2 col-12 ">
-        <div class="btn-group dropdown">
-        <button type="button" class="btn-lg btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Categories
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" href="#">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="checkboxSports" checked>
-                <label class="form-check-label" for="checkboxSports">
-                Sports
-                </label>
             </div>
-            </a></li>
-            <li><a class="dropdown-item" href="#">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="checkboxAntiques" checked>
-                <label class="form-check-label" for="checkboxAntiques">
-                Antiques
-                </label>
             </div>
-            </a></li>
-            <li><a class="dropdown-item" href="#">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="checkboxFamily" checked>
-                <label class="form-check-label" for="checkboxFamily">
-                Family
-                </label>
-            </div>
-            </a></li>
-        </ul>
-        </div>
-        </div>
-    </li>
+        </li>
 
-    <li class="nav-item pt-5">
-        <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
-        <?php draw_multi_range_slider("multiRangeHorsepower", 0, 100); ?>
-    </li>
-    
-    <li class="nav-item pt-4">
-        <label class="form-slider-label" for="multiRangeYear">Year of manufacture</label>
-        <?php draw_multi_range_slider("multiRangeYear", 0, 100); ?>
-    </li>
+        <li class="nav-item pt-5">
+            <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
+            <?php draw_multi_range_slider("multiRangeHorsepower", 0, 100); ?>
+        </li>
+        
+        <li class="nav-item pt-4">
+            <label class="form-slider-label" for="multiRangeYear">Year of manufacture</label>
+            <?php draw_multi_range_slider("multiRangeYear", 0, 100); ?>
+        </li>
 
-    <li class="nav-item pt-5">
-        <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
-        <label class="form-check-label ps-2" for="switchShowUsedCars">Show Used Cars</label>
-        </div>
-    </li>
-    
-    <li class="nav-item pt-4">
-        <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
-        <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
-        </div>
-    </li>
+        <li class="nav-item pt-5">
+            <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
+            <label class="form-check-label ps-2" for="switchShowUsedCars">Show Used Cars</label>
+            </div>
+        </li>
+        
+        <li class="nav-item pt-4">
+            <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
+            <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
+            </div>
+        </li>
+
+        <li class="d-flex align-self-center">
+            <button class="btn float-end clearfix rounded-pill" type="submit" id="submit_button"><b>SEARCH</b></button>
+        </li>
 
     </ul>
+    
 </div>
 </nav>
 
