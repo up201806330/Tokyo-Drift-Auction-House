@@ -209,13 +209,13 @@ class AuctionController extends Controller
         $vehicle = $auction->vehicle;
 
         if ($user_id != $vehicle->owner) {
-            return redirect('/auctions/' . $auction_id + 1);
+            return redirect('/auctions/' . $auction_id);
         }
 
         $bids = $auction->bids;
 
         if (!($bids->isEmpty())){
-            return redirect('/auctions/' . $auction_id + 2);
+            return redirect('/auctions/' . $auction_id);
         }
 
         $vehicle->delete();
