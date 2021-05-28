@@ -48,7 +48,7 @@ class Auction extends Model
   public function getCurrentMaxBidder() {
     $maxBid = $this->getCurrentMaxBid();
     if($maxBid == null) return null;
-    return User::find($maxBid->user_id);
+    return User::findOrFail($maxBid->user_id);
   }
 
   public function getAdequateTimeDifference() {

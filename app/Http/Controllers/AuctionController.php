@@ -51,7 +51,7 @@ class AuctionController extends Controller
             $new_user = [
                 'id' => $user->id,
                 'username' => $user->username,
-                'image_path' => Image::find($user->profileimage)->path,
+                'image_path' => Image::findOrFail($user->profileimage)->path,
             ];
             array_push($users, $new_user);
         }
@@ -205,7 +205,7 @@ class AuctionController extends Controller
         }
 
         $user_id = Auth::id();
-        $auction = Auction::find($auction_id);
+        $auction = Auction::findOrFail($auction_id);
         $vehicle = $auction->vehicle;
 
         if ($user_id != $vehicle->owner) {
@@ -242,7 +242,7 @@ class AuctionController extends Controller
      */
     public function show(int $id) : View
     {
-        $auction = Auction::find($id);
+        $auction = Auction::findOrFail($id);
         $vehicle = $auction->vehicle;
 
         $images_paths = $auction->getVehicleFromAuction();
@@ -260,8 +260,8 @@ class AuctionController extends Controller
         //                 ->where('auction.id', '=', $auction->id)
         //                 ->max('bid.amount');
 
-        $owner = User::find($vehicle->owner);
-        $owner_profile_img = Image::find($owner->profileimage);
+        $owner = User::findOrFail($vehicle->owner);
+        $owner_profile_img = Image::findOrFail($owner->profileimage);
         $auction_comments = $auction->getComments();
 
         $favourite = false;
@@ -280,7 +280,7 @@ class AuctionController extends Controller
 
             $highest_bidder = $auction->getCurrentMaxBidder();
 
-            $highest_bidder_profile_img = Image::find($highest_bidder->profileimage);
+            $highest_bidder_profile_img = Image::findOrFail($highest_bidder->profileimage);
 
             
         }
@@ -326,7 +326,7 @@ class AuctionController extends Controller
     }
 
     public function getHighestBid(Request $request, int $auction_id) : JsonResponse {
-        $auction = Auction::find($auction_id);
+        $auction = Auction::findOrFail($auction_id);
         $highestBid = $auction->getCurrentMaxBid();
         $highestBidder = $auction->getCurrentMaxBidder();
         if($highestBidder !== null) $highestBid['username'] = $highestBidder->username;
@@ -349,8 +349,8 @@ class AuctionController extends Controller
         $start = new Carbon($request->startingdate . ' ' . $request->startingtime, 'Europe/London');
         $end = new Carbon($request->endingdate . ' ' . $request->endingtime, 'Europe/London');
         
-        $auction = Auction::find($auction_id);
-        $vehicle = Vehicle::find($auction->vehicle_id);
+        $auction = Auction::findOrFail($auction_id);
+        $vehicle = Vehicle::findOrFail($auction->vehicle_id);
         
         // update vehicle information
         try {

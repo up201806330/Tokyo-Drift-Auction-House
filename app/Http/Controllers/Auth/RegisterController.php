@@ -63,22 +63,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-        // // dd($data);
-
-        // $user = new User;
-
-        // $user->id = User::all()->max('id') + 1;
-        // // dd($user->id);
-        // $user->profileimage = $data['password2'];
-        // // dd(Image::find($user->profileimage)->path);
-        // $user->firstname = $data['firstname'];
-        // // dd($user->firstname);
-        // $user->lastname = $data['lastname'];
-        // // dd($user->lastname);
-        // $user->email = $data['email'];
-        // // dd($user->email);
-
         return User::create([
             'profileimage' => 8,
             'firstname' => $data['firstname'],
