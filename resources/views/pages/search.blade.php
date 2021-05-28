@@ -7,113 +7,126 @@
 
 @section('content')
 
-<div class="container-fluid" id="search-background" style="flex: auto">
-<div class="row h-100">
+<div class="container-fluid" id="search-background">
+<div class="row h-100" style="display: flex">
 
 
 <a class="btn toggleSidebar text-white border-top-1 rounded-0" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
     Filter Results
 </a>
 
+<!-- Sidebar -->
 <nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary collapse show text-white">
-<div class="position-sticky pt-3">
-    <ul class="nav flex-column">
-        <li class="nav-item pt-3">
-            <div class="display-6">
-            Filter results
-            </div class="display-6">
-        </li>
-        
-        <li class="nav-item pt-5">
-            <div class="dropdown mx-auto d-grid gap-2">
-                <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="selectConditionFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                Condition
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectConditionFilter">
-                <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Mint</b></a></li>
-                <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Clean</b> or better</a></li>
-                <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Average</b> or better</a></li>
-                <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Rough</b> or better</a></li>
-                </ul>
-            </div>
-        </li>
-        
-        <li class="nav-item pt-5">
-            <div class="d-grid gap-2 col-12 ">
-            <div class="btn-group dropdown">
-            <button type="button" class="btn-lg btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Categories
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkboxSports" checked>
-                    <label class="form-check-label" for="checkboxSports">
-                    Sports
-                    </label>
-                </div>
-                </a></li>
-                <li><a class="dropdown-item" href="#">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkboxAntiques" checked>
-                    <label class="form-check-label" for="checkboxAntiques">
-                    Antiques
-                    </label>
-                </div>
-                </a></li>
-                <li><a class="dropdown-item" href="#">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkboxFamily" checked>
-                    <label class="form-check-label" for="checkboxFamily">
-                    Family
-                    </label>
-                </div>
-                </a></li>
+    <div class="position-sticky pt-3">
+        <form id="search-general" method="post" action="{{ route('search') }}">
+            @csrf
+            <ul class="nav flex-column">
+                <li class="nav-item pt-3">
+                    <div class="display-6">
+                    Filter results
+                    </div class="display-6">
+                </li>
+
+                <li class="nav-item pt-5">
+                    <select required class="col mx-auto text-center form-select fs-5" style="cursor: pointer;" aria-label="condition" id="selectCondition" name="condition">
+                        <option value="Mint"  style="cursor: pointer;">Mint</option>
+                        <option value="Clean" style="cursor: pointer;">Clean</option>
+                        <option value="Average" style="cursor: pointer;">Average</option>
+                        <option value="Rough" style="cursor: pointer;">Rough</option>
+                        <option value="Oof" style="cursor: pointer;">0 results test</option>
+                        <option selected value="All" style="cursor: pointer;">All</option>
+                    </select>
+                </li>
+                {{-- <li class="nav-item pt-5">
+                    <div class="dropdown mx-auto d-grid gap-2">
+                        <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="selectConditionFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                        Condition
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectConditionFilter">
+                        <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Mint</b></a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Clean</b> or better</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Average</b> or better</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Rough</b> or better</a></li>
+                        </ul>
+                    </div>
+                </li> --}}
+                
+                <li class="nav-item pt-5">
+                    <div class="d-grid gap-2 col-12 ">
+                    <div class="btn-group dropdown">
+                    <button type="button" class="btn-lg btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkboxSports" checked>
+                            <label class="form-check-label" for="checkboxSports">
+                            Sports
+                            </label>
+                        </div>
+                        </a></li>
+                        <li><a class="dropdown-item" href="#">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkboxAntiques" checked>
+                            <label class="form-check-label" for="checkboxAntiques">
+                            Antiques
+                            </label>
+                        </div>
+                        </a></li>
+                        <li><a class="dropdown-item" href="#">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkboxFamily" checked>
+                            <label class="form-check-label" for="checkboxFamily">
+                            Family
+                            </label>
+                        </div>
+                        </a></li>
+                    </ul>
+                    </div>
+                    </div>
+                </li>
+
+                <li class="nav-item pt-5">
+                    <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
+                    <?php draw_multi_range_slider("multiRangeHorsepower", 0, 100); ?>
+                </li>
+                
+                <li class="nav-item pt-4">
+                    <label class="form-slider-label" for="multiRangeYear">Year of manufacture</label>
+                    <?php draw_multi_range_slider("multiRangeYear", 0, 100); ?>
+                </li>
+
+                <li class="nav-item pt-5">
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
+                    <label class="form-check-label ps-2" for="switchShowUsedCars">Show Used Cars</label>
+                    </div>
+                </li>
+                
+                <li class="nav-item pt-4">
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
+                    <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
+                    </div>
+                </li>
+
+                <li class="d-flex align-self-center">
+                    <button class="btn float-end clearfix rounded-pill" type="submit" id="submit_button"><b>SEARCH</b></button>
+                </li>
+
             </ul>
-            </div>
-            </div>
-        </li>
-
-        <li class="nav-item pt-5">
-            <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
-            <?php draw_multi_range_slider("multiRangeHorsepower", 0, 100); ?>
-        </li>
+        </form>
         
-        <li class="nav-item pt-4">
-            <label class="form-slider-label" for="multiRangeYear">Year of manufacture</label>
-            <?php draw_multi_range_slider("multiRangeYear", 0, 100); ?>
-        </li>
-
-        <li class="nav-item pt-5">
-            <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
-            <label class="form-check-label ps-2" for="switchShowUsedCars">Show Used Cars</label>
-            </div>
-        </li>
-        
-        <li class="nav-item pt-4">
-            <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
-            <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
-            </div>
-        </li>
-
-        <li class="d-flex align-self-center">
-            <button class="btn float-end clearfix rounded-pill" type="submit" id="submit_button"><b>SEARCH</b></button>
-        </li>
-
-    </ul>
-    
-</div>
+    </div>
 </nav>
 
-<main class="col ms-sm-auto pt-4 px-md-4">
-    <p class="fs-3 pt-3">{{$all_auctions->count()}} Results Found</p>
-    <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-center justify-content-sm-start">
-    
+<!-- Search Results -->
+<main class="col ms-sm-auto pt-4 px-md-4" style="flex: 1">
+    <p class="fs-3 pt-3">{{count($auctions_to_display)}} Results Found</p>
+    <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-between">
 
-    @foreach ($all_auctions as $auction)
-                          
+    @foreach ($auctions_to_display as $auction)
         @include('partials.auction_card', array(
             'id'            => $auction->id,
             'brand'         => $auction->vehicle->brand,
@@ -122,8 +135,8 @@
             'vehicle_imgs'  => $auction->getVehicleFromAuction(),
             'time_diff'     => $auction->getAdequateTimeDifference()
         ))
-
     @endforeach
+    
     </div>
 </main>
 

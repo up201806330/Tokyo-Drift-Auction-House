@@ -59,10 +59,24 @@ class AuctionController extends Controller
         $all_auctions = Auction::all();
 
         return view('pages.search', [
-            'all_auctions' => $all_auctions
+            'auctions_to_display' => $all_auctions
         ]);
     }
 
+
+    public function showFiltered(Request $request) {
+
+        try {
+            if ($request->condition == 'All') $auctions_to_display = Auction::all();
+            else $auctions_to_display = Auction::whereIn('vehicle_id', Vehicle::where('condition', $request->condition)->get()->map->only(['id']))->get();
+        } catch (Exception $e) {
+            return view('pages.search', ['auctions_to_display' => []]);
+        }
+
+        return view('pages.search', [
+            'auctions_to_display' => $auctions_to_display
+        ]);
+    }
 
     /**
      * Display the specified resource.
