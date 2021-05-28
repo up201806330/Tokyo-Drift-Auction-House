@@ -30,6 +30,7 @@ Route::get   ('/auctions/{id}/comments'             , 'CommentController@getAuct
 Route::post  ('/auctions/{id}/comments'             , 'CommentController@create'                    );
 Route::get   ('/auctions/{id}'                      , 'AuctionController@show'                      );
 Route::post  ('/auctions/{id}'                      , 'AuctionController@editAuction'               );
+Route::delete('/auctions/{id}'                      , 'AuctionController@deleteAuction'             )->name('delete_auction'    );
 Route::post  ('/auctions/{id}/favourites'           , 'AuctionController@addFavourite'              )->name('add_favourite'     );
 Route::delete('/auctions/{id}/favourites'           , 'AuctionController@removeFavourite'           )->name('remove_favourite'  );
 Route::get   ('/users/{id}/photo'                   , 'UserController@showPhoto'                    )->name('show_profile_photo');

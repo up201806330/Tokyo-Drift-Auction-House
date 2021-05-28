@@ -79,7 +79,7 @@ CREATE TABLE vehicle (
 CREATE TABLE auction (
     id              SERIAL          PRIMARY KEY,
     auction_name    TEXT            NOT NULL,
-    vehicle_id      INTEGER         NOT NULL REFERENCES "vehicle"(id),
+    vehicle_id      INTEGER         NOT NULL REFERENCES "vehicle"(id) ON DELETE CASCADE,
     startingBid     EURO_T          CHECK (startingBid >= 0),
     creationTime    PASTTIMESTAMP   ,
     startingTime    TIMESTAMP       NOT NULL CHECK (startingTime >= creationTime),
@@ -90,7 +90,7 @@ CREATE TABLE auction (
 
 CREATE TABLE "auction_mod" (
 	user_id     INTEGER     REFERENCES "user"(id) ON DELETE CASCADE,
-    auction_id  INTEGER     REFERENCES "auction"(id),
+    auction_id  INTEGER     REFERENCES "auction"(id) ON DELETE CASCADE,
 	PRIMARY KEY(user_id, auction_id)
 );
 
@@ -104,7 +104,7 @@ CREATE TABLE "invoice" (
 );
 
 CREATE TABLE vehicle_image (
-    vehicle_id      INTEGER     NOT NULL REFERENCES "vehicle"(id),
+    vehicle_id      INTEGER     NOT NULL REFERENCES "vehicle"(id) ON DELETE CASCADE,
     image_id        INTEGER     NOT NULL REFERENCES "image"(id) ON DELETE CASCADE,
     sequence_number INTEGER     NOT NULL CHECK(sequence_number >= 0),
 	PRIMARY KEY(vehicle_id, image_id),
@@ -113,21 +113,21 @@ CREATE TABLE vehicle_image (
 
 CREATE TABLE "auction_user" (
     user_id     INTEGER     REFERENCES "user"(id),
-    auction_id  INTEGER     REFERENCES "auction"(id),
+    auction_id  INTEGER     REFERENCES "auction"(id) ON DELETE CASCADE,
 	PRIMARY KEY(user_id, auction_id)
 );
 
 CREATE TABLE "favourite_auction" (
     id          SERIAL      PRIMARY KEY,
-    user_id     INTEGER     REFERENCES "user"(id),
-    auction_id  INTEGER     REFERENCES "auction"(id),
+    user_id     INTEGER     REFERENCES "user"(id) ON DELETE CASCADE,
+    auction_id  INTEGER     REFERENCES "auction"(id) ON DELETE CASCADE,
 	UNIQUE(user_id, auction_id)
 );
 
 CREATE TABLE comment (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         NOT NULL REFERENCES "user"(id),
-    auction_id  INTEGER         NOT NULL REFERENCES "auction"(id),
+    auction_id  INTEGER         NOT NULL REFERENCES "auction"(id) ON DELETE CASCADE,
     createdOn   PASTTIMESTAMP   ,
     content     TEXT            NOT NULL
 );
@@ -141,14 +141,14 @@ CREATE TABLE "ban" (
     endTime     FUTURETIMESTAMP CHECK(endTime > startTime),
     reason      TEXT            NOT NULL,
     banType     BANTYPE_T       NOT NULL,
-    auction_id  INTEGER         REFERENCES "auction"(id)
+    auction_id  INTEGER         REFERENCES "auction"(id) ON DELETE CASCADE,
     CONSTRAINT auction_id CHECK ((banType != 'AuctionBan') OR (banType = 'AuctionBan' AND auction_id IS NOT NULL))
 );
 
 CREATE TABLE bid (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         REFERENCES "user"(id) NOT NULL,
-    auction_id  INTEGER         REFERENCES "auction"(id) NOT NULL,
+    auction_id  INTEGER         REFERENCES "auction"(id) ON DELETE CASCADE NOT NULL,
     amount      EURO_T          CHECK (amount > 0),
     createdOn   PASTTIMESTAMP
 );
@@ -643,7 +643,7 @@ INSERT INTO "bid" (id,user_id,auction_id,amount,createdOn) VALUES
 (5,6,2,10000,'2021-04-01 17:06:32'),
 (6,8,2,10500,'2021-04-01 17:20:32'),
 (7,6,2,11000,'2021-04-01 17:45:32'),
-(8,8,3,15000,'2021-04-01 17:56:32'),
+(8,8,2,15000,'2021-04-01 17:56:32'),
 (9,5,4,20000,'2021-04-01 17:06:32'),
 (10,7,4,21000,'2021-04-01 17:20:32'),
 (11,12,5,10000,'2021-04-01 17:45:32'),

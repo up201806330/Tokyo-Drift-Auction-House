@@ -40,7 +40,7 @@ class CommentController extends Controller
 
     
     public function delete(Request $request, int $id, int $comment_id) {
-        $comment = Comment::find($comment_id);
+        $comment = Comment::findOrFail($comment_id);
 
         if (! Gate::allows('commentOwner', $comment)) {
             return redirect()->back();
@@ -52,7 +52,7 @@ class CommentController extends Controller
 
     public function getAuctionComments(Request $request, int $auction_id) : JsonResponse {
         if ($request->wantsJson()) {
-            $comments = Auction::find($auction_id)->getComments();
+            $comments = Auction::findOrFail($auction_id)->getComments();
             return response()->json($comments, 200);
         }
         else {

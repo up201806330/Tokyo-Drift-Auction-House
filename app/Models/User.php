@@ -63,12 +63,12 @@ class User extends Authenticatable
     ];
 
     public function getImage(){
-        return Image::find($this->profileimage);
+        return Image::findOrFail($this->profileimage);
     }
 
 
     public static function findUserImage($id) {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return $user->getImage();
     }
 
