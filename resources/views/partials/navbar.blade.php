@@ -1,4 +1,9 @@
 <header>
+  @if(session()->has('message'))
+  <script type="text/javascript">
+    alert("{{ session()->get('message') }}");
+  </script>
+  @endif
   @include('auth.login')
   <nav class="navbar navbar-expand-xxl navbar-dark bg-navbar">
   <div class="container-fluid">

@@ -105,4 +105,11 @@ class Auction extends Model
   public function user_favourite(){
     return $this->belongsToMany(Favourite::class);
   }
+
+  /**
+  * Get the bids associated with the Auction
+  */
+  public function bids(){
+    return $this->hasMany('App\Models\Bid');
+  }
 }

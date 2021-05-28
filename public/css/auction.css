@@ -286,3 +286,10 @@
         margin:1.5em;
     }
 }
+
+.trash-button{
+    background-color: transparent;
+    border: 0em;
+    font-size: 1.8em;
+    margin-left: 0.3em;
+}

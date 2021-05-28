@@ -190,6 +190,40 @@ class AuctionController extends Controller
     }
 
     /**
+     * Creates a new auction.
+     *
+     * @param  Request request containing the description
+     * @return Response
+     */
+    public function deleteAuction(Request $request)
+    {
+        $auction_id = $request->route('id');
+
+        //if user not authenticated, redirect him to homepage
+        if (Auth::guest()) {
+            return redirect('/auctions/' . $auction_id);
+        }
+
+        $user_id = Auth::id();
+        $auction = Auction::find($auction_id);
+        $vehicle = $auction->vehicle;
+
+        if ($user_id != $vehicle->owner) {
+            return redirect('/auctions/' . $auction_id + 1);
+        }
+
+        $bids = $auction->bids;
+
+        if (!($bids->isEmpty())){
+            return redirect('/auctions/' . $auction_id + 2);
+        }
+
+        $vehicle->delete();
+
+        return redirect('/')->with('message', 'Auction deleted successfully!');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
