@@ -1,4 +1,9 @@
 <header>
+  @if(session()->has('message'))
+  <script type="text/javascript">
+    alert("{{ session()->get('message') }}");
+  </script>
+  @endif
   @include('auth.login')
   <nav class="navbar navbar-expand-xxl navbar-dark bg-navbar">
   <div class="container-fluid">
@@ -35,7 +40,11 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/auctions/new') }}">Create new auction</a>
+            @if (Auth::guest())
+              <a type="button" class="nav-link text-white navbar-content-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Create new auction</a>
+            @else
+              <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/auctions/new') }}">Create new auction</a>
+            @endif
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -51,7 +60,7 @@
           @else
             <li>
               <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/users/' . Auth::id()) }}"><i class="fas fa-user-alt me-3"></i>
-                {{App\Models\User::find(Auth::id())->username}}
+                {{App\Models\User::findOrFail(Auth::id())->username}}
               </a>
             </li>
             <span class="left-vert-bar"></span>

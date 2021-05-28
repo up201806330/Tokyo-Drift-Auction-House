@@ -21,7 +21,7 @@ class Auction extends Model
    */
   protected $fillable = [
     // not including the creationTime
-    'auction_name', 'vehicle_id', 'startingBid', 'startingTime', 'endingTime', 'auctionType'
+    'auction_name', 'vehicle_id', 'startingbid', 'startingtime', 'endingtime', 'auctiontype'
   ];
 
 
@@ -48,7 +48,7 @@ class Auction extends Model
   public function getCurrentMaxBidder() {
     $maxBid = $this->getCurrentMaxBid();
     if($maxBid == null) return null;
-    return User::find($maxBid->user_id);
+    return User::findOrFail($maxBid->user_id);
   }
 
   public function getAdequateTimeDifference() {
@@ -90,5 +90,26 @@ class Auction extends Model
       ->select('auction_id', 'comment.id', 'comment.user_id', 'username', 'profileimage', 'createdon', 'content')
       ->orderBy('createdon', 'desc')
       ->get();
+  }
+
+  /**
+  * Get the guests associated with the Auction
+  */
+  public function guests(){
+    return $this->belongsToMany(User::class);
+  }
+
+  /**
+  * Get the users that favourited the Auction
+  */
+  public function user_favourite(){
+    return $this->belongsToMany(Favourite::class);
+  }
+
+  /**
+  * Get the bids associated with the Auction
+  */
+  public function bids(){
+    return $this->hasMany('App\Models\Bid');
   }
 }

@@ -123,9 +123,20 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                <a href=# class="heart">
-                    <i class="fa fa-heart"></i>
-                </a>
+                @if (!Auth::guest() && Auth::user()->id != $owner->id)
+                        @if ($favourite)
+                            <form method="post" action="{{ route('remove_favourite', ['id' => $auction->id]) }}">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="heart heart_favourite">
+                        @else
+                            <form method="post" action="{{ route('add_favourite', ['id' => $auction->id]) }}">
+                            <button type="submit" class="heart">
+                        @endif
+                                <i class="fa fa-heart"></i>
+                            </button>
+                    <form>
+                @endif
             </div>
 
             <!-- Vehicle Information 1 -->
@@ -135,7 +146,7 @@
                 <div class="row rounded-3 bg-dark text-white text-center my-2 text-wrap">
 
                     @if (!Auth::guest())
-                        @if (Auth::user()->id == $owner->id)
+                        @if (Auth::user()->id == $owner->id && (\Carbon\Carbon::now()->lte($auction->startingtime)))
                             <div class="col-10">
                                 <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
                             </div>
@@ -144,12 +155,18 @@
                                 <a class="" data-bs-toggle="collapse" href="#editAuctionCollapse" role="button" aria-expanded="false" aria-controls="editAuctionCollapse">
                                     <i class="fa fa-cog edit-cog" aria-hidden="true" style="color:white;"></i>
                                 </a>
-
+                                <form method="post" action="{{ route('delete_auction', ['id' => $auction->id]) }}">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="trash-button">
+                                        <i class="fa fa-trash edit-cog" style="color:white;"></i>
+                                    </button>
+                                </form>
                             </div>
                             {{-- </div> --}}
+                        @else
+                            <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
                         @endif
-                    @else
-                        <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
                     @endif
                 </div>
 
@@ -477,7 +494,7 @@
                                 <div class="d-flex justify-content-start align-items-center">
                                     <img src="{{ asset('assets/' . App\Models\User::findUserImage(Auth::id())->path) }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
                                     <div>
-                                        <h6 class="m-0">{{App\Models\User::find(Auth::id())->username}}</h6>
+                                        <h6 class="m-0">{{App\Models\User::findOrFail(Auth::id())->username}}</h6>
                                     </div>
                                 </div>
                             @endif
@@ -496,9 +513,9 @@
         </div>
         
         <!-- Chat Button -->
-        <a href="#" class="chat_button">
+        <!--<a href="#" class="chat_button">
             <i class="fa fa-comments chat_icon"></i>
-        </a>
+        </a>-->
     
     <!-- End of White Box -->
     </div>

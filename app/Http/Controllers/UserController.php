@@ -16,8 +16,8 @@ class UserController extends Controller
 
     public function showProfile(int $id) : View
     {
-        $profileOwner = User::find($id);
-        $profileImage = Image::find($profileOwner->profileimage);
+        $profileOwner = User::findOrFail($id);
+        $profileImage = Image::findOrFail($profileOwner->profileimage);
         
         return view('pages.profile', [
             'profileOwner' => $profileOwner,
@@ -49,7 +49,7 @@ class UserController extends Controller
             $fileNameExtension = ".jpg";
 
             // Upload file
-            $file->move(base_path('public\assets\profile_photos'), User::find($user_id)->profileimage . $newFileName);
+            $file->move(base_path('public\assets\profile_photos'), User::findOrFail($user_id)->profileimage . $newFileName);
         }
 
         // editing profile information
@@ -69,7 +69,7 @@ class UserController extends Controller
 
     public function showPhoto(Request $request, int $user_id) : RedirectResponse
     {
-        $user = User::find($user_id);
+        $user = User::findOrFail($user_id);
         return redirect('assets/'.$user->getImage()->path);
     }
 }

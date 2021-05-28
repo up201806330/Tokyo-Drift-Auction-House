@@ -22,6 +22,7 @@ Route::get   ('/logout'                             , 'Auth\LoginController@logo
 Route::get   ('/register'                           , 'Auth\RegisterController@showRegistrationForm')->name('register'          );
 Route::post  ('/register'                           , 'Auth\RegisterController@register'            );
 Route::get   ('/auctions/new'                       , 'AuctionController@showCreateForm'            )->name('create_auction'    );
+Route::post  ('/auctions/new'                       , 'AuctionController@create'                    )->name('create_auction'    );
 Route::get   ('/auctions/{id}/bids/highest'         , 'AuctionController@getHighestBid'             )->name('highest_bid'       );
 Route::post  ('/auctions/{id}/bids'                 , 'AuctionController@bid'                       )->name('bid'               );
 Route::delete('/auctions/{id}/comments/{comment_id}', 'CommentController@delete'                    );
@@ -29,6 +30,9 @@ Route::get   ('/auctions/{id}/comments'             , 'CommentController@getAuct
 Route::post  ('/auctions/{id}/comments'             , 'CommentController@create'                    );
 Route::get   ('/auctions/{id}'                      , 'AuctionController@show'                      );
 Route::post  ('/auctions/{id}'                      , 'AuctionController@editAuction'               );
+Route::delete('/auctions/{id}'                      , 'AuctionController@deleteAuction'             )->name('delete_auction'    );
+Route::post  ('/auctions/{id}/favourites'           , 'AuctionController@addFavourite'              )->name('add_favourite'     );
+Route::delete('/auctions/{id}/favourites'           , 'AuctionController@removeFavourite'           )->name('remove_favourite'  );
 Route::get   ('/auctions'                           , 'AuctionController@showAll'                   )->name('search'            );
 Route::post  ('/auctions'                           , 'AuctionController@showFiltered'              )->name('search'            );
 Route::get   ('/users/{id}/photo'                   , 'UserController@showPhoto'                    )->name('show_profile_photo');

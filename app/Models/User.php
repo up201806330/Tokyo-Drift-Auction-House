@@ -63,12 +63,12 @@ class User extends Authenticatable
     ];
 
     public function getImage(){
-        return Image::find($this->profileimage);
+        return Image::findOrFail($this->profileimage);
     }
 
 
     public static function findUserImage($id) {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return $user->getImage();
     }
 
@@ -92,5 +92,19 @@ class User extends Authenticatable
     public function vehicles(): HasMany
     {
         return $this->hasMany('App\Models\Vehicle');
+    }
+
+    /**
+     * Get all of the auctions that User is invited to
+     */
+    public function auctionGuest(){
+        return $this->belongsToMany(Auction::class);
+    }
+
+    /**
+     * Get all of the auctions that User has favourited
+     */
+    public function auctionFavourite(){
+        return $this->belongsToMany(Favourite::class);
     }
 }
