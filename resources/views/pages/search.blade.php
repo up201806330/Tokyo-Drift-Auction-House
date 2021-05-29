@@ -171,7 +171,7 @@
 @endsection
 
 
-<!-- From https://codepen.io/glitchworker/pen/XVdKqj -->
+<!-- Adapted from https://codepen.io/glitchworker/pen/XVdKqj -->
 <?php function draw_multi_range_slider($id, $min, $max) { ?>
 
     <div slider id="<?=$id?>">
@@ -188,7 +188,7 @@
           <span id="value">{{round(($max - $min) * 0.6 + $min)}}</span>
         </div>
       </div>
-      <input type="range" name="<?=$id?>Min" tabindex="0" value="{{round(($max - $min) * 0.3 + $min)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
+      <input type="range" style="z-index:99;" name="<?=$id?>Min" tabindex="0" value="{{round(($max - $min) * 0.3 + $min)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
       this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
       var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
       var children = this.parentNode.childNodes[1].childNodes;
@@ -197,7 +197,7 @@
       children[7].style.left=value+'%';children[11].style.left=value+'%';
       children[11].childNodes[1].innerHTML=this.value;" />
     
-      <input type="range" name="<?=$id?>Max" tabindex="0" value="{{round(($max - $min) * 0.6 + $min)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
+      <input type="range" style="z-index:99;" name="<?=$id?>Max" tabindex="0" value="{{round(($max - $min) * 0.6 + $min)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
       this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
       var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
       var children = this.parentNode.childNodes[1].childNodes;
