@@ -234,82 +234,82 @@ class AuctionController extends Controller
         //
     }
 
-    /**
-     * Display all Auctions.
-     *
-     * @return \Illuminate\Http\View
-     */
-    public function showAll() : View {
+    // /**
+    //  * Display all Auctions.
+    //  *
+    //  * @return \Illuminate\Http\View
+    //  */
+    // public function showAll() : View {
 
-        $all_auctions = Auction::all();
+    //     $all_auctions = Auction::all();
 
-        $rangeLimits = AuctionController::horsepowerYearLimits();
+    //     $rangeLimits = AuctionController::horsepowerYearLimits();
 
-        return view('pages.search', [
-            'auctions_to_display' => $all_auctions,
-            'range_limits' => $rangeLimits
-        ]);
-    }
+    //     return view('pages.search', [
+    //         'auctions_to_display' => $all_auctions,
+    //         'range_limits' => $rangeLimits
+    //     ]);
+    // }
 
-    public static function horsepowerYearLimits() {
-        $lowerHP = Vehicle::min('horsepower');
-        $upperHP = Vehicle::max('horsepower');
+    // public static function horsepowerYearLimits() {
+    //     $lowerHP = Vehicle::min('horsepower');
+    //     $upperHP = Vehicle::max('horsepower');
 
-        $lowerY = Vehicle::min('year');
-        $upperY = Vehicle::max('year');
+    //     $lowerY = Vehicle::min('year');
+    //     $upperY = Vehicle::max('year');
 
-        return [$lowerHP, $upperHP, $lowerY, $upperY];
-    }
-
-
-    public function showFiltered(Request $request) {
-        // dd($request->sportsCategory);
-        if (is_null($request->condition)) $request->condition = 'All';
-
-        // TODO "Full Text Search"
-
-        // TODO categories not being stored in db :/
-        $categories_array = array();
-        if ($request->sportsCategory    == 'on') array_push($categories_array, 'sport');
-        if ($request->antiquesCategory  == 'on') array_push($categories_array, 'antique');
-        if ($request->familyCategory    == 'on') array_push($categories_array, 'family');
-        // dd($categories_array);
+    //     return [$lowerHP, $upperHP, $lowerY, $upperY];
+    // }
 
 
-        $rangeLimits = AuctionController::horsepowerYearLimits();
+    // public function showFiltered(Request $request) {
+    //     // dd($request->sportsCategory);
+    //     if (is_null($request->condition)) $request->condition = 'All';
 
-        try {
-            if ($request->condition == 'All') {
+    //     // TODO "Full Text Search"
 
-                $auctions_to_display = Auction::whereIn('vehicle_id',
-                                             Vehicle::where('horsepower', '<=', $request->multiRangeHorsepowerMax)
-                                                    ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
-                                                    ->where('year', '<=', $request->multiRangeYearMax)
-                                                    ->where('year', '>=', $request->multiRangeYearMin)
-                                            ->get()->map->only(['id'])
-                                        )
-                                        ->get();
-            }
-            else {
-                $auctions_to_display =  Auction::whereIn('vehicle_id', 
-                                             Vehicle::where('condition', $request->condition)
-                                                    ->where('horsepower', '<=', $request->multiRangeHorsepowerMax)
-                                                    ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
-                                                    ->where('year', '<=', $request->multiRangeYearMax)
-                                                    ->where('year', '>=', $request->multiRangeYearMin)
-                                                    ->get()->map->only(['id'])
-                                        )
-                                        ->get();
-            }
-        } catch (Exception $e) {
-            return view('pages.search', ['auctions_to_display' => [], 'range_limits' => $rangeLimits]);
-        }
+    //     // TODO categories not being stored in db :/
+    //     $categories_array = array();
+    //     if ($request->sportsCategory    == 'on') array_push($categories_array, 'sport');
+    //     if ($request->antiquesCategory  == 'on') array_push($categories_array, 'antique');
+    //     if ($request->familyCategory    == 'on') array_push($categories_array, 'family');
+    //     // dd($categories_array);
 
-        return view('pages.search', [
-            'auctions_to_display' => $auctions_to_display,
-            'range_limits' => $rangeLimits
-        ]);
-    }
+
+    //     $rangeLimits = AuctionController::horsepowerYearLimits();
+
+    //     try {
+    //         if ($request->condition == 'All') {
+
+    //             $auctions_to_display = Auction::whereIn('vehicle_id',
+    //                                          Vehicle::where('horsepower', '<=', $request->multiRangeHorsepowerMax)
+    //                                                 ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
+    //                                                 ->where('year', '<=', $request->multiRangeYearMax)
+    //                                                 ->where('year', '>=', $request->multiRangeYearMin)
+    //                                         ->get()->map->only(['id'])
+    //                                     )
+    //                                     ->get();
+    //         }
+    //         else {
+    //             $auctions_to_display =  Auction::whereIn('vehicle_id', 
+    //                                          Vehicle::where('condition', $request->condition)
+    //                                                 ->where('horsepower', '<=', $request->multiRangeHorsepowerMax)
+    //                                                 ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
+    //                                                 ->where('year', '<=', $request->multiRangeYearMax)
+    //                                                 ->where('year', '>=', $request->multiRangeYearMin)
+    //                                                 ->get()->map->only(['id'])
+    //                                     )
+    //                                     ->get();
+    //         }
+    //     } catch (Exception $e) {
+    //         return view('pages.search', ['auctions_to_display' => [], 'range_limits' => $rangeLimits]);
+    //     }
+
+    //     return view('pages.search', [
+    //         'auctions_to_display' => $auctions_to_display,
+    //         'range_limits' => $rangeLimits
+    //     ]);
+    // }
 
     /**
      * Display the specified resource.
