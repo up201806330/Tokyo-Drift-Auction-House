@@ -17,7 +17,7 @@
 
 <!-- Sidebar -->
 <nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary collapse show text-white">
-    <div class="position-sticky pt-3">
+    <div class="position-sticky py-3">
         <form id="search-general" method="post" action="{{ route('search') }}">
             @csrf
             <ul class="nav flex-column">
@@ -138,7 +138,7 @@
                     </div>
                 </li>
 
-                <li class="d-flex align-self-center">
+                <li class="d-flex align-self-center mt-3 mb-2">
                     <button class="btn float-end clearfix rounded-pill" type="submit" id="submit_button"><b>SEARCH</b></button>
                 </li>
 
