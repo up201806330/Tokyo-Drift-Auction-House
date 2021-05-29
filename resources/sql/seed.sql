@@ -502,7 +502,7 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (12,3,'Rolls Royce','Ghost','Clean',2014,320),
 (13,3,'Rolls Royce','Dawn','Mint',2018,400),
 (14,3,'Rolls Royce','Phantom','Average',2010,380),
-(15,4,'Ferrari','Spider','Average',2016,6800),
+(15,4,'Ferrari','Spider','Average',2016,661),
 (16,4,'Ford','Mustang','Rough',2008,550),
 (17,4,'Jaguar','XE','Clean',2019,450),
 (18,4,'Lamborguini','Aventador S','Clean',2020,740),
