@@ -116,12 +116,12 @@
 
                 <li class="nav-item pt-5">
                     <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
-                    <?php draw_multi_range_slider("multiRangeHorsepower", 0, 1000); ?>
+                    <?php draw_multi_range_slider("multiRangeHorsepower", $range_limits[0], $range_limits[1]); ?>
                 </li>
                 
                 <li class="nav-item pt-4">
                     <label class="form-slider-label" for="multiRangeYear">Year of manufacture</label>
-                    <?php draw_multi_range_slider("multiRangeYear", 0, 1000); ?>
+                    <?php draw_multi_range_slider("multiRangeYear", $range_limits[2], $range_limits[3]); ?>
                 </li>
 
                 <li class="nav-item pt-5">
@@ -182,13 +182,13 @@
         <span thumb style="left:30%;"></span>
         <span thumb style="left:60%;"></span>
         <div sign style="left:30%;">
-          <span id="value">300</span>
+          <span id="value">{{round(($max - $min) * 0.3)}}</span>
         </div>
         <div sign style="left:60%;">
-          <span id="value">600</span>
+          <span id="value">{{round(($max - $min) * 0.6)}}</span>
         </div>
       </div>
-      <input type="range" name="<?=$id?>Min" tabindex="0" value="300" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
+      <input type="range" name="<?=$id?>Min" tabindex="0" value="{{round(($max - $min) * 0.3)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
       this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
       var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
       var children = this.parentNode.childNodes[1].childNodes;
@@ -197,7 +197,7 @@
       children[7].style.left=value+'%';children[11].style.left=value+'%';
       children[11].childNodes[1].innerHTML=this.value;" />
     
-      <input type="range" name="<?=$id?>Max" tabindex="0" value="600" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
+      <input type="range" name="<?=$id?>Max" tabindex="0" value="{{round(($max - $min) * 0.6)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
       this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
       var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
       var children = this.parentNode.childNodes[1].childNodes;

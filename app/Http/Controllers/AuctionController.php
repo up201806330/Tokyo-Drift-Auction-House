@@ -243,9 +243,22 @@ class AuctionController extends Controller
 
         $all_auctions = Auction::all();
 
+        $rangeLimits = AuctionController::horsepowerYearLimits();
+
         return view('pages.search', [
-            'auctions_to_display' => $all_auctions
+            'auctions_to_display' => $all_auctions,
+            'range_limits' => $rangeLimits
         ]);
+    }
+
+    public static function horsepowerYearLimits() {
+        $lowerHP = Vehicle::min('horsepower');
+        $upperHP = Vehicle::max('horsepower');
+
+        $lowerY = Vehicle::min('year');
+        $upperY = Vehicle::max('year');
+
+        return [$lowerHP, $upperHP, $lowerY, $upperY];
     }
 
 
@@ -261,6 +274,9 @@ class AuctionController extends Controller
         if ($request->antiquesCategory  == 'on') array_push($categories_array, 'antique');
         if ($request->familyCategory    == 'on') array_push($categories_array, 'family');
         // dd($categories_array);
+
+
+        $rangeLimits = AuctionController::horsepowerYearLimits();
 
         try {
             if ($request->condition == 'All') {
@@ -286,11 +302,12 @@ class AuctionController extends Controller
                                         ->get();
             }
         } catch (Exception $e) {
-            return view('pages.search', ['auctions_to_display' => []]);
+            return view('pages.search', ['auctions_to_display' => [], 'range_limits' => $rangeLimits]);
         }
 
         return view('pages.search', [
-            'auctions_to_display' => $auctions_to_display
+            'auctions_to_display' => $auctions_to_display,
+            'range_limits' => $rangeLimits
         ]);
     }
 
