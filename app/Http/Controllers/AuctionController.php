@@ -250,14 +250,38 @@ class AuctionController extends Controller
 
 
     public function showFiltered(Request $request) {
-        dd($request);
+        // dd($request->sportsCategory);
+        if (is_null($request->condition)) $request->condition = 'All';
+
+        // TODO "Full Text Search"
+
+        // TODO categories not being stored in db :/
+        $categories_array = array();
+        if ($request->sportsCategory    == 'on') array_push($categories_array, 'sport');
+        if ($request->antiquesCategory  == 'on') array_push($categories_array, 'antique');
+        if ($request->familyCategory    == 'on') array_push($categories_array, 'family');
+        // dd($categories_array);
 
         try {
-            if ($request->condition == 'All') $auctions_to_display = Auction::all();
+            if ($request->condition == 'All') {
+
+                $auctions_to_display = Auction::whereIn('vehicle_id',
+                                             Vehicle::where('horsepower', '<=', $request->multiRangeHorsepowerMax)
+                                                    ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
+                                                    ->where('year', '<=', $request->multiRangeYearMax)
+                                                    ->where('year', '>=', $request->multiRangeYearMin)
+                                            ->get()->map->only(['id'])
+                                        )
+                                        ->get();
+            }
             else {
                 $auctions_to_display =  Auction::whereIn('vehicle_id', 
-                                            Vehicle::where('condition', $request->condition)->get()
-                                            ->map->only(['id'])
+                                             Vehicle::where('condition', $request->condition)
+                                                    ->where('horsepower', '<=', $request->multiRangeHorsepowerMax)
+                                                    ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
+                                                    ->where('year', '<=', $request->multiRangeYearMax)
+                                                    ->where('year', '>=', $request->multiRangeYearMin)
+                                                    ->get()->map->only(['id'])
                                         )
                                         ->get();
             }
