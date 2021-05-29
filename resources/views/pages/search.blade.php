@@ -29,12 +29,13 @@
 
                 <li class="nav-item pt-5">
                     <select required class="col mx-auto text-center form-select fs-5" style="cursor: pointer;" aria-label="condition" id="selectCondition" name="condition">
-                        <option value="Mint"  style="cursor: pointer;">Mint</option>
-                        <option value="Clean" style="cursor: pointer;">Clean</option>
-                        <option value="Average" style="cursor: pointer;">Average</option>
-                        <option value="Rough" style="cursor: pointer;">Rough</option>
-                        <option value="Oof" style="cursor: pointer;">0 results test</option>
-                        <option selected value="All" style="cursor: pointer;">All</option>
+                        <option selected disabled>Condition</option>
+                        <option value="Mint">Mint</option>
+                        <option value="Clean">Clean</option>
+                        <option value="Average">Average</option>
+                        <option value="Rough">Rough</option>
+                        <option value="0 results">0 results</option>
+                        <option value="All">All</option>
                     </select>
                 </li>
                 {{-- <li class="nav-item pt-5">
@@ -50,8 +51,36 @@
                         </ul>
                     </div>
                 </li> --}}
-                
                 <li class="nav-item pt-5">
+                    <div class="text-center form-select" style="padding: 0;">
+                        <a class="btn fs-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;">Categories</a>
+                        <ul class="dropdown-menu w-100">
+                            <li>
+                                <!-- TODO change ms-5 to something better -->
+                                <div class="form-check ms-5 py-1"> 
+                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="sportsCategory">
+                                    <label class="col form-check-label" for="flexCheckDefault">Sports</label>
+                                </div>
+                            </li>
+                            <li>
+                                <!-- TODO change ms-5 to something better -->
+                                <div class="form-check ms-5 py-1"> 
+                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="antiquesCategory">
+                                    <label class="col form-check-label" for="flexCheckDefault">Antiques</label>
+                                </div>
+                            </li>
+                            <li>
+                                <!-- TODO change ms-5 to something better -->
+                                <div class="form-check ms-5 py-1"> 
+                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="familyCategory">
+                                    <label class="col form-check-label" for="flexCheckDefault">Family</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                {{-- <li class="nav-item pt-5">
                     <div class="d-grid gap-2 col-12 ">
                     <div class="btn-group dropdown">
                     <button type="button" class="btn-lg btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,9 +90,7 @@
                         <li><a class="dropdown-item" href="#">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="checkboxSports" checked>
-                            <label class="form-check-label" for="checkboxSports">
-                            Sports
-                            </label>
+                            <label class="form-check-label" for="checkboxSports">Sports</label>
                         </div>
                         </a></li>
                         <li><a class="dropdown-item" href="#">
@@ -85,7 +112,7 @@
                     </ul>
                     </div>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="nav-item pt-5">
                     <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
@@ -161,7 +188,7 @@
           <span id="value">60</span>
         </div>
       </div>
-      <input type="range" tabindex="0" value="30" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
+      <input type="range" name="<?=$id?>Min" tabindex="0" value="30" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
       this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
       var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
       var children = this.parentNode.childNodes[1].childNodes;
@@ -170,7 +197,7 @@
       children[7].style.left=value+'%';children[11].style.left=value+'%';
       children[11].childNodes[1].innerHTML=this.value;" />
     
-      <input type="range" tabindex="0" value="60" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
+      <input type="range" name="<?=$id?>Max" tabindex="0" value="60" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
       this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
       var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
       var children = this.parentNode.childNodes[1].childNodes;

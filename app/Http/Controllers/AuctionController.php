@@ -250,10 +250,17 @@ class AuctionController extends Controller
 
 
     public function showFiltered(Request $request) {
+        dd($request);
 
         try {
             if ($request->condition == 'All') $auctions_to_display = Auction::all();
-            else $auctions_to_display = Auction::whereIn('vehicle_id', Vehicle::where('condition', $request->condition)->get()->map->only(['id']))->get();
+            else {
+                $auctions_to_display =  Auction::whereIn('vehicle_id', 
+                                            Vehicle::where('condition', $request->condition)->get()
+                                            ->map->only(['id'])
+                                        )
+                                        ->get();
+            }
         } catch (Exception $e) {
             return view('pages.search', ['auctions_to_display' => []]);
         }
