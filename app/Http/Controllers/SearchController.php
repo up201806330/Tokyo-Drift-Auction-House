@@ -62,10 +62,6 @@ class SearchController extends Controller
 
 
     public function showFiltered(Request $request) {
-        // dd($request);
-        // dd($request->sportsCategory);
-        if (is_null($request->condition)) $request->condition = 'All';
-
         // TODO "Full Text Search" ?
         // if (is_null($request->brand)) $request->brand = '/w*';
         // if (is_null($request->model)) $request->model = '/w*';
@@ -76,6 +72,7 @@ class SearchController extends Controller
         $condition = $request->condition;
         $brand = $request->brand;
         $model = $request->model;
+        $not_finalized = $request->switchFinalizedAuctions ? null : true;
 
         // TODO categories not being stored in db :/
         $categories_array = array();
@@ -88,21 +85,25 @@ class SearchController extends Controller
 
         try {
             $auctions_to_display = Auction::whereIn('vehicle_id',
-                                            Vehicle::when($condition, function($query) use ($condition) {
-                                                    return $query->where('condition', $condition);
-                                                })
-                                                ->where('horsepower', '<=', $request->multiRangeHorsepowerMax)
-                                                ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
-                                                ->where('year', '<=', $request->multiRangeYearMax)
-                                                ->where('year', '>=', $request->multiRangeYearMin)
-                                                ->when($brand, function($query) use ($brand) {
-                                                    return $query->where('brand', $brand);
-                                                })
-                                                ->when($model, function($query) use ($model) {
-                                                    return $query->where('model', $model);
-                                                })
+                                        Vehicle::
+                                            when($condition, function($query) use ($condition) {
+                                                return $query->where('condition', $condition);
+                                            })
+                                            ->where('horsepower', '<=', $request->multiRangeHorsepowerMax)
+                                            ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
+                                            ->where('year', '<=', $request->multiRangeYearMax)
+                                            ->where('year', '>=', $request->multiRangeYearMin)
+                                            ->when($brand, function($query) use ($brand) {
+                                                return $query->where('brand', $brand);
+                                            })
+                                            ->when($model, function($query) use ($model) {
+                                                return $query->where('model', $model);
+                                            })
                                         ->get()->map->only(['id'])
                                     )
+                                    ->when($not_finalized, function($query) {
+                                        return $query->where('auction.endingtime', '>', \Carbon\Carbon::now()->toDateString());
+                                    })
                                     ->get();
         } catch (Exception $e) {
             return view('pages.search', ['auctions_to_display' => [], 'range_limits' => $rangeLimits]);

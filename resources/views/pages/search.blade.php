@@ -146,8 +146,8 @@
                 
                 <li class="nav-item pt-4">
                     <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions">
-                    <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
+                        <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions" name="switchFinalizedAuctions" value="on">
+                        <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
                     </div>
                 </li>
 
