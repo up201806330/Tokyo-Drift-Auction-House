@@ -70,35 +70,7 @@ class SearchController extends Controller
 
         $rangeLimits = SearchController::horsepowerYearLimits();
 
-        // $auctions_to_display = Auction::join('vehicle', 'vehicle.id', '=', 'auction.vehicle_id')->whereRaw("plainto_tsquery(?) @@ to_tsvector(auction_name || ' ' || brand || ' ' || model)", [$textBoxSearch])->get();
-        // dd($stuff->get());
-
-        // ->orderBy("rank","desc")
-        // dd($textBoxSearch);
-
         try {
-            // // full text search query
-            // $auctions_to_display_fts = Auction::join('vehicle', 'vehicle.id', '=', 'auction.vehicle_id')->whereRaw("plainto_tsquery(?) @@ to_tsvector(auction_name || ' ' || brand || ' ' || model)", [$textBoxSearch])->get();
-
-            // // condition dropdown, horsepower and year of manufacture sliders and finalized auctions switch query
-            // $auctions_to_display = Auction::whereIn('vehicle_id',
-            //                             Vehicle::when($condition, function($query) use ($condition) {
-            //                                     return $query->where('condition', $condition);
-            //                                 })
-            //                                 ->where('horsepower', '<=', $request->multiRangeHorsepowerMax)
-            //                                 ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
-            //                                 ->where('year', '<=', $request->multiRangeYearMax)
-            //                                 ->where('year', '>=', $request->multiRangeYearMin)
-            //                             ->get()->map->only(['id'])
-            //                         )
-            //                         ->when($not_finalized, function($query) {
-            //                             return $query->where('auction.endingtime', '>', \Carbon\Carbon::now()->toDateString());
-            //                         })->get();
-
-            // if (!is_null($textBoxSearch)) {
-            //     $auctions_to_display = ($auctions_to_display)->intersect($auctions_to_display_fts);
-            // }
-
             // Alternative query (only 1 instead of 2 queries)
             $auctions_to_display = Auction::whereIn('vehicle_id',
                                         Vehicle::when($condition, function($query) use ($condition) {
