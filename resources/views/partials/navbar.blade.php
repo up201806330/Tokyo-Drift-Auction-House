@@ -17,6 +17,24 @@
       </button>
       <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
+          
+          <!-- Example split danger button -->
+          <li class="btn-group">
+            <button type="button" class="btn nav-link text-white navbar-content-bold mx-0" style="border-top-left-radius: 10px">Search</button>
+            <button type="button" class="btn nav-link text-white dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="border-top-right-radius: 10px">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark px-3 pb-3 w-auto">
+              <li><span class="dropdown-header fs-4 ps-3">Trending Categories</span></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item fs-4" href="#">Sports</a></li>
+              <li><a class="dropdown-item fs-4" href="#">Antique</a></li>
+              <li><a class="dropdown-item fs-4" href="#">Family</a></li>
+              
+              {{-- <li><a class="dropdown-item" href="#">Separated link</a></li> --}}
+            </ul>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link text-white navbar-content-bold rounded-pill dropdown-toggle" aria-current="page" href="#" data-bs-toggle="dropdown">Explore By Category</a>
             <ul class="dropdown-menu dropdown-menu-dark ps-3 pb-4 pe-3 pt-2" data-hover="dropdown">
@@ -39,6 +57,7 @@
               </div>
             </ul>
           </li>
+
           <li class="nav-item">
             @if (Auth::guest())
               <a type="button" class="nav-link text-white navbar-content-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Create new auction</a>
