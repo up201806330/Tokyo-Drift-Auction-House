@@ -83,22 +83,34 @@ class SearchController extends Controller
 
         $rangeLimits = SearchController::horsepowerYearLimits();
 
+
+        $auctions_to_display = Auction::join('vehicle', 'vehicle.id', '=', 'auction.vehicle_id')->whereRaw("plainto_tsquery(?) @@ to_tsvector(auction_name || ' ' || brand || ' ' || model)", [$brand])->get();
+        // dd($stuff->get());
+
+        // $stuff = Vehicle::selectRaw(' "vehicle", to_tsquery($brand) AS query, to_tsvector(', [$brand])
+
+        // $results = DB::table("'auction', to_tsquery where_subquery_group_1_ as query, to_tsvector where_subquery_group_2_ as textsearch")
+        // ->where("query", "@@", textsearch\\)
+        // ->orderBy("rank","desc")
+        // ->get();
+
         try {
-            $auctions_to_display = Auction::whereIn('vehicle_id',
-                                        Vehicle::
-                                            when($condition, function($query) use ($condition) {
-                                                return $query->where('condition', $condition);
-                                            })
-                                            ->where('horsepower', '<=', $request->multiRangeHorsepowerMax)
-                                            ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
-                                            ->where('year', '<=', $request->multiRangeYearMax)
-                                            ->where('year', '>=', $request->multiRangeYearMin)
-                                            ->when($brand, function($query) use ($brand) {
-                                                return $query->where('brand', $brand);
-                                            })
-                                            ->when($model, function($query) use ($model) {
-                                                return $query->where('model', $model);
-                                            })
+            $auctions_to_display_ = Auction::whereIn('vehicle_id',
+                                        Vehicle::selectRaw('brand @@ to_tsquery(\'english\', ?)', [$brand])
+
+                                            // when($condition, function($query) use ($condition) {
+                                            //     return $query->where('condition', $condition);
+                                            // })
+                                            // ->where('horsepower', '<=', $request->multiRangeHorsepowerMax)
+                                            // ->where('horsepower', '>=', $request->multiRangeHorsepowerMin)
+                                            // ->where('year', '<=', $request->multiRangeYearMax)
+                                            // ->where('year', '>=', $request->multiRangeYearMin)
+                                            // ->when($brand, function($query) use ($brand) {
+                                            //     return $query->where('brand', $brand);
+                                            // })
+                                            // ->when($model, function($query) use ($model) {
+                                            //     return $query->where('model', $model);
+                                            // })
                                         ->get()->map->only(['id'])
                                     )
                                     ->when($not_finalized, function($query) {

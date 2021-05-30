@@ -51,20 +51,8 @@
                         <option value="All">All</option>
                     </select>
                 </li>
+
                 {{-- <li class="nav-item pt-5">
-                    <div class="dropdown mx-auto d-grid gap-2">
-                        <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="selectConditionFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                        Condition
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectConditionFilter">
-                        <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Mint</b></a></li>
-                        <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Clean</b> or better</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Average</b> or better</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="updateDropdownConditions(this)"><b>Rough</b> or better</a></li>
-                        </ul>
-                    </div>
-                </li> --}}
-                <li class="nav-item pt-5">
                     <div class="text-center form-select" style="padding: 0;">
                         <a class="btn fs-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;">Categories</a>
                         <ul class="dropdown-menu w-100">
@@ -91,42 +79,8 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-                
-                {{-- <li class="nav-item pt-5">
-                    <div class="d-grid gap-2 col-12 ">
-                    <div class="btn-group dropdown">
-                    <button type="button" class="btn-lg btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categories
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxSports" checked>
-                            <label class="form-check-label" for="checkboxSports">Sports</label>
-                        </div>
-                        </a></li>
-                        <li><a class="dropdown-item" href="#">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxAntiques" checked>
-                            <label class="form-check-label" for="checkboxAntiques">
-                            Antiques
-                            </label>
-                        </div>
-                        </a></li>
-                        <li><a class="dropdown-item" href="#">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxFamily" checked>
-                            <label class="form-check-label" for="checkboxFamily">
-                            Family
-                            </label>
-                        </div>
-                        </a></li>
-                    </ul>
-                    </div>
-                    </div>
                 </li> --}}
-
+                
                 <li class="nav-item pt-5">
                     <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
                     <?php draw_multi_range_slider("multiRangeHorsepower", $range_limits[0], $range_limits[1]); ?>
@@ -135,13 +89,6 @@
                 <li class="nav-item pt-4">
                     <label class="form-slider-label" for="multiRangeYear">Year of manufacture</label>
                     <?php draw_multi_range_slider("multiRangeYear", $range_limits[2], $range_limits[3]); ?>
-                </li>
-
-                <li class="nav-item pt-5">
-                    <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="switchShowUsedCars" checked>
-                    <label class="form-check-label ps-2" for="switchShowUsedCars">Show Used Cars</label>
-                    </div>
                 </li>
                 
                 <li class="nav-item pt-4">
