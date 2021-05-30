@@ -89,9 +89,10 @@ CREATE TABLE auction (
 );
 
 CREATE TABLE "auction_mod" (
+    id          SERIAL      PRIMARY KEY,
 	user_id     INTEGER     REFERENCES "user"(id) ON DELETE CASCADE,
     auction_id  INTEGER     REFERENCES "auction"(id) ON DELETE CASCADE,
-	PRIMARY KEY(user_id, auction_id)
+	UNIQUE(user_id, auction_id)
 );
 
 CREATE TABLE "invoice" (

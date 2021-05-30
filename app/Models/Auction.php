@@ -107,6 +107,13 @@ class Auction extends Model
   }
 
   /**
+  * Get the users that are auction_mods to the auction
+  */
+  public function moderators(){
+    return $this->belongsToMany(AuctionModerator::class);
+  }
+
+  /**
   * Get the bids associated with the Auction
   */
   public function bids(){

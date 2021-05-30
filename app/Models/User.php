@@ -83,7 +83,6 @@ class User extends Authenticatable
         return $this->belongsTo(Image::class, 'profileImage');
     }
 
-
     /**
      * Get all of the vehicle for the User
      *
@@ -106,5 +105,48 @@ class User extends Authenticatable
      */
     public function auctionFavourite(){
         return $this->belongsToMany(Favourite::class);
+    }
+
+    /**
+     * Get all of the auctions that User moderates
+     */
+    public function auctionMod(){
+        return $this->belongsToMany(AuctionModerator::class);
+    }
+
+    /**
+     * Get if user is global moderator
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function globalMod(){
+        return $this->belongsTo(GlobalMod::class);
+    }
+
+    /**
+     * Get if user is admin
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function admin(){
+        return $this->belongsTo(Admin::class);
+    }
+
+    /**
+     * Get if user is seller
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function seller(){
+        return $this->belongsTo(Seller::class);
+    }
+
+    /**
+     * Get if user is moderator (of any kind)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function moderator(){
+        return ($this->globalMod()->exists() || $this->admin()->exists() || $this->auctionMod()->first()!=null);
     }
 }

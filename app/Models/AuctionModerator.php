@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Favourite extends Model
+class AuctionModerator extends Model
 {
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
 
-  protected $table = 'favourite_auction';
+  protected $table = 'auction_mod';
 
     /**
    * The attributes that are mass assignable.
@@ -21,7 +21,7 @@ class Favourite extends Model
   ];
 
   /**
-   * Get the User that favourites the auction
+   * Get the User that is mod to the auction
    *
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
    */
@@ -31,7 +31,7 @@ class Favourite extends Model
   }
 
   /**
-   * Get the Auction that is favourited by the user
+   * Get the Auction that is moderated by the user
    *
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
    */

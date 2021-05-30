@@ -41,8 +41,7 @@ class AuctionController extends Controller
     public function showCreateForm() : View
     {
         if (Auth::guest()) {
-            // TODO -> em vez de redirecionar, aparecer overlay
-            return redirect('/login');
+            return redirect('/');
         }
 
         $all_users = User::all();
