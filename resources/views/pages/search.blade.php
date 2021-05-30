@@ -28,6 +28,19 @@
                 </li>
 
                 <li class="nav-item pt-5">
+                    <label class="form-slider-label" for="brand_search">Brand</label>
+                    <div class="input-group form-container">
+                        <input type="text" name="brand" class="form-control search-input" placeholder="Brand" autocomplete="off" id="brand_search">
+                    </div>
+                </li>
+                <li class="nav-item pt-3">
+                    <label class="form-slider-label" for="brand_search">Model</label>
+                    <div class="input-group form-container">
+                        <input type="text" name="model" class="form-control search-input" placeholder="Model" autocomplete="off" id="model_search">
+                    </div>
+                </li>
+
+                <li class="nav-item pt-5">
                     <select required class="col mx-auto text-center form-select fs-5" style="cursor: pointer;" aria-label="condition" id="selectCondition" name="condition">
                         <option selected disabled>Condition</option>
                         <option value="Mint">Mint</option>
