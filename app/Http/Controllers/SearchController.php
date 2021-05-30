@@ -60,17 +60,43 @@ class SearchController extends Controller
         return [$lowerHP, $upperHP, $lowerY, $upperY];
     }
 
+    public function fromHomepageShowFiltered(Request $request, Array $rangeLimits) {
+        
+        $homepageSearch = $request->homepageSearch;
+
+        $auctions_to_display =  Auction::when(true, function($query) {
+                                    return $query->where('auction.endingtime', '>', \Carbon\Carbon::now()->toDateString());
+                                })
+                                ->whereIn('id',
+                                    Auction::when($homepageSearch, function($query) use ($homepageSearch) {
+                                        return $query->join('vehicle', 'vehicle.id', '=', 'auction.vehicle_id')->whereRaw("plainto_tsquery(?) @@ to_tsvector(auction_name || ' ' || brand || ' ' || model)", [$homepageSearch]);
+                                    })
+                                    ->get()->map->only(['id'])
+                                )
+                                ->get();
+
+        return view('pages.search', [
+            'auctions_to_display' => $auctions_to_display,
+            'range_limits' => $rangeLimits
+        ]);
+    }
+
 
     public function showFiltered(Request $request) {
-
-        $condition = $request->condition;
-        $textBoxSearch = $request->textBoxSearch;
-        $model = $request->model;
-        $not_finalized = $request->switchFinalizedAuctions ? null : true;
-
         $rangeLimits = SearchController::horsepowerYearLimits();
 
+            if (!is_null($request->homepageIdentifier)) {
+                return SearchController::fromHomepageShowFiltered($request, $rangeLimits);
+            }
+        
         try {
+            
+
+            $condition = $request->condition;
+            $textBoxSearch = $request->textBoxSearch;
+            $model = $request->model;
+            $not_finalized = $request->switchFinalizedAuctions ? null : true;
+
             // Alternative query (only 1 instead of 2 queries)
             $auctions_to_display = Auction::whereIn('vehicle_id',
                                         Vehicle::when($condition, function($query) use ($condition) {
