@@ -27,16 +27,10 @@
                     </div class="display-6">
                 </li>
 
-                <li class="nav-item pt-5">
-                    <label class="form-slider-label" for="brand_search">Brand</label>
-                    <div class="input-group form-container">
-                        <input type="text" name="brand" class="form-control search-input" placeholder="Brand" autocomplete="off" id="brand_search">
-                    </div>
-                </li>
                 <li class="nav-item pt-3">
-                    <label class="form-slider-label" for="brand_search">Model</label>
+                    {{-- <label class="form-slider-label" for="brand_search">Find Auction</label> --}}
                     <div class="input-group form-container">
-                        <input type="text" name="model" class="form-control search-input" placeholder="Model" autocomplete="off" id="model_search">
+                        <input type="text" name="textBoxSearch" class="form-control search-input fs-5" placeholder="Brand, Model, Auction Name..." autocomplete="off" id="brand_search">
                     </div>
                 </li>
 
@@ -51,35 +45,6 @@
                         <option value="All">All</option>
                     </select>
                 </li>
-
-                {{-- <li class="nav-item pt-5">
-                    <div class="text-center form-select" style="padding: 0;">
-                        <a class="btn fs-5" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;">Categories</a>
-                        <ul class="dropdown-menu w-100">
-                            <li>
-                                <!-- TODO change ms-5 to something better -->
-                                <div class="form-check ms-5 py-1"> 
-                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="sportsCategory">
-                                    <label class="col form-check-label" for="flexCheckDefault">Sports</label>
-                                </div>
-                            </li>
-                            <li>
-                                <!-- TODO change ms-5 to something better -->
-                                <div class="form-check ms-5 py-1"> 
-                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="antiquesCategory">
-                                    <label class="col form-check-label" for="flexCheckDefault">Antiques</label>
-                                </div>
-                            </li>
-                            <li>
-                                <!-- TODO change ms-5 to something better -->
-                                <div class="form-check ms-5 py-1"> 
-                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="familyCategory">
-                                    <label class="col form-check-label" for="flexCheckDefault">Family</label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
                 
                 <li class="nav-item pt-5">
                     <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
@@ -91,8 +56,8 @@
                     <?php draw_multi_range_slider("multiRangeYear", $range_limits[2], $range_limits[3]); ?>
                 </li>
                 
-                <li class="nav-item pt-4">
-                    <div class="form-check form-switch">
+                <li class="nav-item pt-4 ms-2">
+                    <div class="form-check form-switch pt-2">
                         <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions" name="switchFinalizedAuctions" value="on">
                         <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
                     </div>
@@ -138,17 +103,17 @@
       <div>
         <div inverse-left style="width:70%;"></div>
         <div inverse-right style="width:70%;"></div>
-        <div range style="left:30%;right:40%;"></div>
-        <span thumb style="left:30%;"></span>
-        <span thumb style="left:60%;"></span>
-        <div sign style="left:30%;">
-          <span id="value">{{round(($max - $min) * 0.3 + $min)}}</span>
+        <div range style="left:0%;right:0%;"></div>
+        <span thumb style="left:0%;"></span>
+        <span thumb style="left:100%;"></span>
+        <div sign style="left:0%;">
+          <span id="value">{{round(($max - $min) * 0 + $min)}}</span>
         </div>
-        <div sign style="left:60%;">
-          <span id="value">{{round(($max - $min) * 0.6 + $min)}}</span>
+        <div sign style="left:100%;">
+          <span id="value">{{round(($max - $min) * 1.0 + $min)}}</span>
         </div>
       </div>
-      <input type="range" style="z-index:99;" name="<?=$id?>Min" tabindex="0" value="{{round(($max - $min) * 0.3 + $min)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
+      <input type="range" style="z-index:99;" name="<?=$id?>Min" tabindex="0" value="{{round(($max - $min) * 0.0 + $min)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
       this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
       var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
       var children = this.parentNode.childNodes[1].childNodes;
@@ -157,7 +122,7 @@
       children[7].style.left=value+'%';children[11].style.left=value+'%';
       children[11].childNodes[1].innerHTML=this.value;" />
     
-      <input type="range" style="z-index:99;" name="<?=$id?>Max" tabindex="0" value="{{round(($max - $min) * 0.6 + $min)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
+      <input type="range" style="z-index:99;" name="<?=$id?>Max" tabindex="0" value="{{round(($max - $min) * 1.0 + $min)}}" max="<?=$max?>" min="<?=$min?>" step="1" oninput="
       this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
       var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
       var children = this.parentNode.childNodes[1].childNodes;
