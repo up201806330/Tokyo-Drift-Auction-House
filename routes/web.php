@@ -36,5 +36,7 @@ Route::delete('/auctions/{id}/favourites'           , 'AuctionController@removeF
 Route::get   ('/users/{id}/photo'                   , 'UserController@showPhoto'                    )->name('show_profile_photo');
 Route::get   ('/users/{id}'                         , 'UserController@showProfile'                  )->name('show_profile'      );
 Route::post  ('/users/{id}'                         , 'UserController@editProfile'                  )->name('edit_profile'      );
+Route::delete('/users/{id}'                         , 'UserController@delete'                       );
 Route::get   ('/moderator'                          , 'ModerationController@showModeration'         )->name('moderator'         );
-
+Route::post  ('/moderator//users/{id}'              , 'User@changePermissions'                      )->name('change_permissions');
+Route::post  ('/users/{id}/banned'                  , 'User@ban'                                    )->name('ban_user'          );

@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GlobalMod extends Model
+class Ban extends Model
 {
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
 
-  protected $table = 'global_mod';
+  protected $table = 'ban';
 
     /**
    * The attributes that are mass assignable.
@@ -17,16 +17,26 @@ class GlobalMod extends Model
    * @var array
    */
   protected $fillable = [
-    'user_id'
+    'user_id', 'createdBy', 'banType', 'auction_id'
   ];
 
   /**
-   * Get the User that is mod to the auction
+   * Get the User that is banned
    *
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */
   public function user(): HasMany
   {
       return $this->hasMany(User::class, 'user_id');
+  }
+
+  /**
+   * Get the Auctions that the user is banned from
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function auctions(): HasMany
+  {
+      return $this->hasMany(Auction::class, 'auction_id');
   }
 }

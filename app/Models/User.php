@@ -149,4 +149,13 @@ class User extends Authenticatable
     public function moderator(){
         return ($this->globalMod()->exists() || $this->admin()->exists());
     }
+
+     /**
+     * Get if user is banned
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function banned(){
+        return $this->belongsTo(Ban::class, 'id');
+    }
 }

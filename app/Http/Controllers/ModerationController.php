@@ -36,7 +36,7 @@ class ModerationController extends Controller
             return view('pages.tos');
         }
 
-        if ($user->globalMod()->exists() || $user->admin()->exists()){
+        if ($user->moderator()){
             $auctions = Auction::all();
         }
         else{
@@ -62,6 +62,7 @@ class ModerationController extends Controller
                 'image_path' => Image::findOrFail($user->profileimage)->path,
                 'seller' => $user->seller()->exists(),
                 'admin' => $user->admin()->exists(),
+                'global' => $user->globalMod()->exists(),
             ];
             array_push($users, $new_user);
         }

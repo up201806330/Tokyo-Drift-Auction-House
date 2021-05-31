@@ -32,7 +32,7 @@ CREATE DOMAIN   EMAIL_T         AS TEXT         CHECK(VALUE LIKE '_%@_%.__%');
 CREATE DOMAIN   VATNUMBER_T     AS CHAR(16);
 CREATE TYPE     CONDITION_T     AS ENUM ('Mint', 'Clean', 'Average', 'Rough');
 CREATE TYPE     AUCTIONTYPE_T   AS ENUM ('Public', 'Private');
-CREATE TYPE     BANTYPE_T       AS ENUM ('BuyerBan', 'SellerBan', 'AllBan', 'AuctionBan');
+CREATE TYPE     BANTYPE_T       AS ENUM ('AllBan', 'AuctionBan');
 
 CREATE TABLE image (
     id      SERIAL  PRIMARY KEY,
@@ -95,15 +95,6 @@ CREATE TABLE "auction_mod" (
 	UNIQUE(user_id, auction_id)
 );
 
-CREATE TABLE "invoice" (
-    id          SERIAL          PRIMARY KEY,
-    user_id     INTEGER         NOT NULL REFERENCES "user"(id),
-    createdOn   PASTTIMESTAMP   ,
-    vatNumber   VATNUMBER_T     ,
-    value       EURO_T          CHECK(value >= 0),
-    description TEXT            NOT NULL
-);
-
 CREATE TABLE vehicle_image (
     vehicle_id      INTEGER     NOT NULL REFERENCES "vehicle"(id) ON DELETE CASCADE,
     image_id        INTEGER     NOT NULL REFERENCES "image"(id) ON DELETE CASCADE,
@@ -138,9 +129,6 @@ CREATE TABLE "ban" (
     user_id     INTEGER         NOT NULL REFERENCES "user"(id),
     createdBy   INTEGER         NOT NULL REFERENCES "user"(id),
     createdOn   PASTTIMESTAMP   ,
-    startTime   FUTURETIMESTAMP CHECK(startTime >= createdOn),
-    endTime     FUTURETIMESTAMP CHECK(endTime > startTime),
-    reason      TEXT            NOT NULL,
     banType     BANTYPE_T       NOT NULL,
     auction_id  INTEGER         REFERENCES "auction"(id) ON DELETE CASCADE,
     CONSTRAINT auction_id CHECK ((banType != 'AuctionBan') OR (banType = 'AuctionBan' AND auction_id IS NOT NULL))
@@ -626,12 +614,12 @@ INSERT INTO "comment" (id,user_id,auction_id,createdOn,content) VALUES
 SELECT pg_catalog.setval(pg_get_serial_sequence('comment', 'id'), (SELECT MAX(id) FROM "comment")+1);
 
 -- Banned Users --
-INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType) VALUES
-(1, 20, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'Is a bot.','AllBan'),
-(2, 19, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him.','BuyerBan'),
-(3, 18, 1, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont want him selling his cars in my website','SellerBan');
+INSERT INTO "ban" (id,user_id,createdBy,createdOn,banType) VALUES
+(1, 20, 1, '2021-03-31 15:27:38','AllBan'),
+(2, 19, 1, '2021-03-31 15:27:38','BuyerBan'),
+(3, 18, 1, '2021-03-31 15:27:38','SellerBan');
 INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType,auction_id) VALUES
-(4, 8, 3, '2021-03-31 15:27:38', '2021-03-31 15:27:38','2050-03-31 15:27:38', 'I dont trust him for this auction','AuctionBan',14);
+(4, 8, 3, '2021-03-31 15:27:38','AuctionBan',14);
 
 SELECT pg_catalog.setval(pg_get_serial_sequence('ban', 'id'), (SELECT MAX(id) FROM "ban")+1);
 
@@ -654,14 +642,3 @@ INSERT INTO "bid" (id,user_id,auction_id,amount,createdOn) VALUES
 (15,13,9,25000,'2021-04-01 17:56:32');
 
 SELECT pg_catalog.setval(pg_get_serial_sequence('bid', 'id'), (SELECT MAX(id) FROM "bid")+1);
-
--- Invoices --
-INSERT INTO "invoice" (id,user_id,createdOn,vatNumber,value,description) VALUES
-(1,2,'2021-02-01 00:00:10','205538451', 500, 'Seller monthly fee'),
-(2,2,'2021-03-01 00:00:10','205538451', 500, 'Seller monthly fee'),
-(3,2,'2021-04-01 00:00:10','205538451', 500, 'Seller monthly fee'),
-(4,3,'2021-04-01 00:00:07','794830202', 500, 'Seller monthly fee'),
-(5,4,'2021-04-01 00:00:08','993546321', 500, 'Seller monthly fee'),
-(6,7,'2021-04-01 00:00:09','120520673', 500, 'Seller monthly fee');
-
-SELECT pg_catalog.setval(pg_get_serial_sequence('invoice', 'id'), (SELECT MAX(id) FROM "invoice")+1);
