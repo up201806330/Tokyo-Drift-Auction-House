@@ -34,13 +34,13 @@ class Auction extends Model
     ->get();
   }
 
-  public function getMaxBidAmount($auction_id) {
-    return Bid::where('auction_id', '=', $auction_id)->max('amount');
+  public function getMaxBidAmount() {
+    return Bid::where('auction_id', '=', $this->id)->max('amount');
   }
 
   public function getCurrentMaxBid() {
     return Bid::where([
-      ['amount',      '=', $this->getMaxBidAmount($this->id)],
+      ['amount',      '=', $this->getMaxBidAmount()],
       ['auction_id',  '=', $this->id],
     ])->first();
   }
