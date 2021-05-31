@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favourite;
+use App\Models\Auction;
+use App\Models\Vehicle;
 use App\Models\Image;
 use App\Models\User;
+use App\Models\Bid;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,10 +22,28 @@ class UserController extends Controller
     {
         $profileOwner = User::findOrFail($id);
         $profileImage = Image::findOrFail($profileOwner->profileimage);
+
+        $biddingAuctions = Auction::whereIn('id', Bid::distinct('auction_id')
+            ->where('user_id', $id)
+            ->get()->map->only(['auction_id'])
+        )->get();
+
+        $ownedAuctions = Auction::whereIn('vehicle_id',
+            Vehicle::where('owner', $id)
+            ->get()->map->only(['id'])
+        )->get();
+
+        $favouriteAuctions = Auction::whereIn('id',
+            Favourite::where('user_id', $id)
+            ->get()->map->only(['auction_id'])
+        )->get();
         
         return view('pages.profile', [
             'profileOwner' => $profileOwner,
-            'profileImage' => $profileImage
+            'profileImage' => $profileImage,
+            'biddingAuctions' => $biddingAuctions,
+            'ownedAuctions' => $ownedAuctions,
+            'favouriteAuctions' => $favouriteAuctions,
         ]);
     }
 

@@ -464,7 +464,7 @@ INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,l
 (5,5,'Aimee','Cortez','nibh@dictum.co.uk','aimee_cortez','XXX07JUG7BH','Sargodha','Life without cars is like Rome without the Pope.','2021-03-30 12:38:24'),
 (6,6,'Barclay','Sargent','aliquet.Proin@Praesent.com','barclay','KDI43MJE4FP','Maunath Bhanjan','Just chilling and buying cars.','2021-03-30 12:38:24'),
 (7,7,'Fuller','Beck','mi.felis@pedeacurna.com','fuller_beck','NAQ18MSW3TI','Pekanbaru','Just trying to have some fun :)','2021-03-30 12:38:24'),
-(8,8,'Ulysses','Bennett','dictum@Donectempor.com','ulysses_bennte','CQW48UUT5TJ','Aylmer','Impulsive car buyer.','2021-03-30 12:38:24'),
+(8,8,'Ulysses','Bennett','dictum@Donectempor.com','ulysses_bennte','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','Aylmer','Impulsive car buyer.','2021-03-30 12:38:24'),
 (9,9,'Ian','Walsh','nulla@Curabitursed.ca','ian_walsh','LQG38WSJ6NO','Borgomasino','Im a Bad Ass.','2021-03-30 12:38:24'),
 (10,10,'Valentine','Boyer','elit.pharetra.ut@aliquetsem.com','valentine_boyer','RIX27PKB7IJ','Sakhalin','Hello! Just loving cars.','2021-03-30 12:38:24'),
 (11,11,'Ulysses','Hayes','mauris@metusInnec.co.uk','ulysses_hayes','PPY94UIU8YF','Scala Coeli','Fast and Furious lover. JUst trying to bring things from the screen to real life.','2021-03-30 12:38:24'),
