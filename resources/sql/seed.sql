@@ -507,7 +507,7 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (17,4,'Jaguar','XE','Clean',2019,450),
 (18,4,'Lamborguini','Aventador S','Clean',2020,740),
 (19,4,'Porsche','Panamera 4 Executive','Mint',2020,450),
-(20,4,'Tesla','S','Mint',2021,700);
+(20,4,'Tesla','Model S','Mint',2021,700);
 
 -- reset the sequence, regardless whether table has rows or not:
 SELECT setval(pg_get_serial_sequence('vehicle', 'id'), coalesce(max(id),0) + 1, false) FROM vehicle;
