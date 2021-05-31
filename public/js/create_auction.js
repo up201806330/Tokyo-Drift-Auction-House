@@ -1,24 +1,4 @@
 window.onload = function() {
-  // Fill starting and ending times and define minimum values accordingly to present
-  /*date_start = document.getElementById("startingDate");
-  time_start = document.getElementById("startingTime");
-  date_end = document.getElementById("endingDate");
-  time_end = document.getElementById("endingTime");
-
-  let iso_start = new Date()
-  iso_start.setMinutes(iso_start.getMinutes() + 10);
-  let iso_end = new Date(iso_start);
-  iso_end.setHours(iso_start.getHours() + 24);
-
-  date_start.value = iso_start.toDateString();
-  date_start.min = iso_start.toDateString();
-  time_start.value = iso_start.toTimeString();
-  time_start.min = iso_start.toTimeString();
-  date_end.value = iso_end.toDateString();
-  date_end.min = iso_end.toDateString();
-  time_end.value = iso_end.toTimeString();
-  time_end.min = iso_end.toTimeString();*/
-
   // add listener for image input
   document.getElementById('pro-image').addEventListener('change', readImage, false);
 }

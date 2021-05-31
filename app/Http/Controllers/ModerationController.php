@@ -6,6 +6,8 @@ use Exception;
 use App\Models\Auction;
 use App\Models\Vehicle;
 use App\Models\User;
+use App\Models\Image;
+use App\Models\AuctionModerator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -23,23 +25,26 @@ class ModerationController extends Controller
     public function showModeration() : View
     {
         if (Auth::guest()) {
-            return redirect('/');
+            return view('layouts.error');
         }
 
         $user = User::find(Auth::id());
 
-        if (!$user->moderator()){
-            return redirect('/');
+        $auctions_mod = AuctionModerator::where('user_id', '=', $user->id);
+
+        if (!$user->moderator() && empty($auctions_mod)){
+            return view('pages.tos');
         }
 
         if ($user->globalMod()->exists() || $user->admin()->exists()){
             $auctions = Auction::all();
         }
         else{
-            $auctions_mod = $user->auctionMod;
             $auctions=[];
-            foreach($auctions_mod as $auction){
-                array_push($auctions, $auction->auction);
+            foreach($auctions_mod->get() as $auction_mod){
+                echo "<script>console.log('" . json_encode($auction_mod) . "');</script>";
+                $auction = Auction::find($auction_mod->auction_id);
+                array_push($auctions, $auction);
             }
         }
 

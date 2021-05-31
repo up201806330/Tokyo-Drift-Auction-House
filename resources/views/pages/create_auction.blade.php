@@ -116,7 +116,7 @@
                 <input class="form-check-input" type="checkbox" id="private" name="private" onclick="privateChange()">
                 <label class="form-check-label private_label" for="private">Private Auction</label>
             </div>
-            <div id="private_content" class="overflow-auto">
+            <div id="private_content" class="user_search overflow-auto">
                 <h5 class="text-center">Invited Bidders</h5>
                 <div class="input-group form-container">
                     <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">

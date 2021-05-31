@@ -111,7 +111,7 @@ class User extends Authenticatable
      * Get all of the auctions that User moderates
      */
     public function auctionMod(){
-        return $this->belongsToMany(AuctionModerator::class);
+        return $this->belongsTo(AuctionModerator::class, 'id');
     }
 
     /**
@@ -120,7 +120,7 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function globalMod(){
-        return $this->belongsTo(GlobalMod::class);
+        return $this->belongsTo(GlobalMod::class, 'id');
     }
 
     /**
@@ -129,7 +129,7 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function admin(){
-        return $this->belongsTo(Admin::class);
+        return $this->belongsTo(Admin::class, 'id');
     }
 
     /**
@@ -138,7 +138,7 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function seller(){
-        return $this->belongsTo(Seller::class);
+        return $this->belongsTo(Seller::class, 'id');
     }
 
     /**
@@ -147,6 +147,6 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function moderator(){
-        return ($this->globalMod()->exists() || $this->admin()->exists() || $this->auctionMod()->first()!=null);
+        return ($this->globalMod()->exists() || $this->admin()->exists());
     }
 }
