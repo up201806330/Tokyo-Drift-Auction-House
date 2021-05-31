@@ -41,18 +41,17 @@
                         <option value="Clean">Clean</option>
                         <option value="Average">Average</option>
                         <option value="Rough">Rough</option>
-                        <option value="0 results">0 results</option>
-                        <option value="All">All</option>
+                        <option value="All">Any</option>
                     </select>
                 </li>
                 
                 <li class="nav-item pt-5">
-                    <label class="form-slider-label" for="multiRangeHorsepower">Horsepower (HP)</label>
+                    <label class="form-slider-label fs-4" for="multiRangeHorsepower">Horsepower (HP)</label>
                     <?php draw_multi_range_slider("multiRangeHorsepower", $range_limits[0], $range_limits[1]); ?>
                 </li>
                 
                 <li class="nav-item pt-4">
-                    <label class="form-slider-label" for="multiRangeYear">Year of manufacture</label>
+                    <label class="form-slider-label fs-4" for="multiRangeYear">Year of manufacture</label>
                     <?php draw_multi_range_slider("multiRangeYear", $range_limits[2], $range_limits[3]); ?>
                 </li>
                 
@@ -76,7 +75,7 @@
 <!-- Search Results -->
 <main class="col ms-sm-auto pt-4 px-md-4" style="flex: 1">
     <p class="fs-3 pt-3">{{count($auctions_to_display)}} Results Found</p>
-    <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-between">
+    <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-start">
 
     @foreach ($auctions_to_display as $auction)
         @include('partials.auction_card', array(

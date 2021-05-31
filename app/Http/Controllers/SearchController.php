@@ -90,9 +90,7 @@ class SearchController extends Controller
             }
         
         try {
-            
-
-            $condition = $request->condition;
+            $condition = ($request->condition == "All") ? null : $request->condition;
             $textBoxSearch = $request->textBoxSearch;
             $model = $request->model;
             $not_finalized = $request->switchFinalizedAuctions ? null : true;
