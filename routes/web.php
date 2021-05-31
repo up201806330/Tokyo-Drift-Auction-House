@@ -33,6 +33,8 @@ Route::post  ('/auctions/{id}'                      , 'AuctionController@editAuc
 Route::delete('/auctions/{id}'                      , 'AuctionController@deleteAuction'             )->name('delete_auction'    );
 Route::post  ('/auctions/{id}/favourites'           , 'AuctionController@addFavourite'              )->name('add_favourite'     );
 Route::delete('/auctions/{id}/favourites'           , 'AuctionController@removeFavourite'           )->name('remove_favourite'  );
+Route::get   ('/auctions'                           , 'SearchController@showAll'                    )->name('search'            );
+Route::post  ('/auctions'                           , 'SearchController@showFiltered'               )->name('search'            );
 Route::get   ('/users/{id}/photo'                   , 'UserController@showPhoto'                    )->name('show_profile_photo');
 Route::get   ('/users/{id}'                         , 'UserController@showProfile'                  )->name('show_profile'      );
 Route::post  ('/users/{id}'                         , 'UserController@editProfile'                  )->name('edit_profile'      );

@@ -2,7 +2,7 @@
 <div class="col mb-3 card-container">
     <div class="card">
         
-        <img src="{{ asset('assets/' . $vehicle_imgs[0]->path) }}" alt="..." class="img-cover car-img-thumbnail">
+        <img src="{{ asset('assets/' . $vehicle_imgs[0]->path) }}" alt="Vehicle" class="img-cover car-img-thumbnail">
 
         <!-- Card Body -->
         <div class="card-body">

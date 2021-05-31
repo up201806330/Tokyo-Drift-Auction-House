@@ -494,7 +494,7 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (4,2,'BMW','7 Series','Mint',2012,250),
 (5,2,'Mercedes','Class A','Clean',2015,180),
 (6,2,'Mercedes','Class C','Average',2015,240),
-(7,3,'Rolls Royce','Ghost','Mint',2016,320),
+(7,3,'Rolls Royce','Ghost21','Mint',2016,320),
 (8,3,'Rolls Royce','Ghost','Clean',2012,320),
 (9,3,'Rolls Royce','Dawn','Average',2016,300),
 (10,3,'Rolls Royce','Phantom','Rough',2003,380),
@@ -502,12 +502,12 @@ INSERT INTO "vehicle" (id,owner,brand,model,condition,year,horsepower) VALUES
 (12,3,'Rolls Royce','Ghost','Clean',2014,320),
 (13,3,'Rolls Royce','Dawn','Mint',2018,400),
 (14,3,'Rolls Royce','Phantom','Average',2010,380),
-(15,4,'Ferrari','Spider','Average',2016,6800),
+(15,4,'Ferrari','Spider','Average',2016,661),
 (16,4,'Ford','Mustang','Rough',2008,550),
 (17,4,'Jaguar','XE','Clean',2019,450),
 (18,4,'Lamborguini','Aventador S','Clean',2020,740),
 (19,4,'Porsche','Panamera 4 Executive','Mint',2020,450),
-(20,4,'Tesla','S','Mint',2021,700);
+(20,4,'Tesla','Model S','Mint',2021,700);
 
 -- reset the sequence, regardless whether table has rows or not:
 SELECT setval(pg_get_serial_sequence('vehicle', 'id'), coalesce(max(id),0) + 1, false) FROM vehicle;
@@ -520,7 +520,7 @@ INSERT INTO "auction" (id,auction_name,vehicle_id,startingBid,creationTime,start
 (4,'BMW 7 Series Great for Sports People',4,20000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (5,'Mercedes A Clean',5,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Private'),
 (6,'Mercedes C Average',6,10000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Private'),
-(7,'Awesome Rolls Royce Ghost 16',7,30000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
+(7,'Awesome Ghost 16',7,30000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (8,'Clean RR Ghost 12',8,25000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (9,'RR Dawn 16 Perfect for Families',9,25000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
 (10,'Old but never out of Style RR Phantom 03',10,20000,'2021-03-30 12:59:24','2021-04-03 12:00:00','2021-04-05 12:00:00','Public'),
