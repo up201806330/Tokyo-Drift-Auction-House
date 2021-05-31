@@ -473,6 +473,89 @@
     <!-- End of White Box -->
     </div>
 
+    <!-- Moderator Section -->
+    <div class="display-1 text-center" style="margin-bottom: 0.5em;">Moderator Section</div>
+    @if (Auth::id() == $owner->id || App\Models\User::findOrFail(Auth::id())->moderator())
+    <div class="d-md-flex" style="margin-bottom: 1em;">
+        <form method="post" enctype="multipart/form-data" action="{{ route('create_auction') }}">
+            @csrf
+            <div class="user_search overflow-auto">
+                <h5 class="text-center">Invited Bidders</h5>
+                <div class="input-group form-container">
+                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
+                    <span class="input-group-btn">
+                        <button class="btn btn-search" type="button" onclick="updateUsers()">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- Show the users for selection, filter through js-->
+                <div id="user_rows">
+                    @foreach($users as $user)
+                        <div class="user_row d-flex justify-content-between align-items-center">
+                            <span class="user_id d-none">{{$user['id']}}</span>
+                            <a href="../pages/profile.php" class="profile_text">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                        <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+                                </div>
+                            </a>
+                            <div class="moderator area text-center">
+                                <div class="form-group form-check form-switch">
+                                    <input class="form-check-input private_user"name="invited" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div id="hidden_user_rows"></div>
+            </div>
+            <div class="text-center">
+                <button class="btn clearfix rounded-pill" type="submit" id="submit_button"><b>Submit Changes</b></button>
+            </div>
+        </form>
+
+        <form method="post" enctype="multipart/form-data" action="{{ route('create_auction') }}">
+            @csrf
+            <div class="user_search overflow-auto">
+                <h5 class="text-center">Moderators</h5>
+                <div class="input-group form-container">
+                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
+                    <span class="input-group-btn">
+                        <button class="btn btn-search" type="button" onclick="updateUsers()">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- Show the users for selection, filter through js-->
+                <div id="user_rows">
+                    @foreach($users as $user)
+                        @if(!$user['moderator'])
+                            <div class="user_row d-flex justify-content-between align-items-center">
+                                <span class="user_id d-none">{{$user['id']}}</span>
+                                <a href="../pages/profile.php" class="profile_text">
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                            <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+                                    </div>
+                                </a>
+                                <div class="moderator area text-center">
+                                    <div class="form-group form-check form-switch">
+                                        <input class="form-check-input private_user" name="moderator" type="checkbox">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+                <div id="hidden_user_rows"></div>
+            </div>
+            <div class="text-center">
+                <button class="btn clearfix rounded-pill" type="submit" id="submit_button"><b>Submit Changes</b></button>
+            </div>
+        </form>
+    </div>
+    @endif
     
     <!-- Comment Section -->
     <div class="display-1 text-center" style="margin-bottom: 0.5em;">Comment Section</div>

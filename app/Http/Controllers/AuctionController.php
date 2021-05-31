@@ -272,6 +272,21 @@ class AuctionController extends Controller
                 $favourite = true;
         }
 
+        //check if moderator to fill moderator area
+        if (!Auth::guest() && User::find(Auth::id())->moderator()) {
+            $all_users = User::all();
+            $users=[];
+            foreach($all_users as $user){
+                $new_user = [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'image_path' => Image::findOrFail($user->profileimage)->path,
+                    'moderator' => $user->moderator(),
+                ];
+                array_push($users, $new_user);
+            }
+        } 
+
         try {
             $current_max_bid_amount = Bid::where('auction_id', '=', $id)->max('amount');
 
@@ -295,6 +310,7 @@ class AuctionController extends Controller
                 'bidder_img'    => null,
                 'comments'      => $auction_comments,
                 'favourite'     => $favourite,
+                'users'         => $users,
             ]);
         }
         
@@ -309,6 +325,7 @@ class AuctionController extends Controller
             'bidder_img'    => $highest_bidder_profile_img,
             'comments'      => $auction_comments,
             'favourite'     => $favourite,
+            'users'         => $users,
         ]);
     }
 

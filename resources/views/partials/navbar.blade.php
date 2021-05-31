@@ -40,10 +40,15 @@
             </ul>
           </li>
           <li class="nav-item">
-            @if (Auth::guest())
+            @if (App\Models\User::findOrFail(Auth::id())->seller)
               <a type="button" class="nav-link text-white navbar-content-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Create new auction</a>
             @else
               <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/auctions/new') }}">Create new auction</a>
+            @endif
+          </li>
+          <li class="nav-item">
+            @if (App\Models\User::findOrFail(Auth::id())->moderator())
+              <a type="button" class="nav-link text-white navbar-content-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Moderate</a>
             @endif
           </li>
         </ul>
