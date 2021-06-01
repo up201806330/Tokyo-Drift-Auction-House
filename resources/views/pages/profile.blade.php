@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+    <link rel="stylesheet" href="{{ asset('css/tpl_mod.css')}}">
+@endsection
+
 @section('title', 'Profile | ' . $profileOwner->username )
 
 @section('content')
@@ -158,7 +162,7 @@
 
             </div>
 
-            <div class="profile-auction-gallery">
+            {{-- <div class="profile-auction-gallery">
                 <div class="display-3 ps-2 ms-5 pb-3">History</div>
                 <div class="dropdown pb-3" id="dropdown-auctions-profile">
                     <button class="btn bg-dark text-white border-dark dropdown-toggle fs-4 profile-auction-gallery-title rounded-pill" type="button" id="selectAuctionsProfile" data-bs-toggle="dropdown" aria-expanded="false">
@@ -171,7 +175,143 @@
                         <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Successfully Sold</a></li>
                     </ul>
                 </div>
+                
+                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery overflow-y-scroll p-sm-4 p-0  mx-0 mx-md-5 rounded-3 border border-5 border-secondary" style="overflow-y: scroll;">
 
+                    @foreach ($favouriteAuctions as $auction)
+                        @include('partials.auction_card', array(
+                            'id'            => $auction->id,
+                            'brand'         => $auction->vehicle->brand,
+                            'model'         => $auction->vehicle->model,
+                            'max_bid'       => $auction->getCurrentMaxBid(),
+                            'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                            'time_diff'     => $auction->getAdequateTimeDifference()
+                        ))
+                    @endforeach
+
+                </div> --}}
+
+
+
+                {{-- <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Collapsible Group Item #1
+                                </button>
+                            </h5>
+                        </div>
+                  
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Collapsible Group Item #2
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Collapsible Group Item #3
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">oh
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+
+                
+                @if (!Auth::guest())
+                    @if (Auth::user()->id == $profileOwner->id)
+                        <main class="accordion-container border border-2 rounded-3">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Favourite Auctions
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body fw-light row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery p-sm-4 p-0 mx-0 rounded-3" style="overflow-y: scroll;">
+                                            @foreach ($favouriteAuctions as $auction)
+                                                @include('partials.auction_card', array(
+                                                    'id'            => $auction->id,
+                                                    'brand'         => $auction->vehicle->brand,
+                                                    'model'         => $auction->vehicle->model,
+                                                    'max_bid'       => $auction->getCurrentMaxBid(),
+                                                    'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                                    'time_diff'     => $auction->getAdequateTimeDifference()
+                                                ))
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item mt-0">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                        Bidding on
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body fw-light row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery p-sm-4 p-0 mx-0 rounded-3" style="overflow-y: scroll;">
+                                            @foreach ($biddingAuctions as $auction)
+                                                @include('partials.auction_card', array(
+                                                    'id'            => $auction->id,
+                                                    'brand'         => $auction->vehicle->brand,
+                                                    'model'         => $auction->vehicle->model,
+                                                    'max_bid'       => $auction->getCurrentMaxBid(),
+                                                    'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                                    'time_diff'     => $auction->getAdequateTimeDifference()
+                                                ))
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item mt-0">
+                                    <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                        Selling
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body fw-light row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery p-sm-4 p-0 mx-0 rounded-3" style="overflow-y: scroll;">
+                                            @foreach ($ownedAuctions as $auction)
+                                                @include('partials.auction_card', array(
+                                                    'id'            => $auction->id,
+                                                    'brand'         => $auction->vehicle->brand,
+                                                    'model'         => $auction->vehicle->model,
+                                                    'max_bid'       => $auction->getCurrentMaxBid(),
+                                                    'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                                    'time_diff'     => $auction->getAdequateTimeDifference()
+                                                ))
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    @endif
+                @endif
 
             </div>
         </div>
