@@ -76,7 +76,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fs-5 ps-2 pt-1 pb-2">
                 <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('search') }}">Search</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('search') }}">Advanced Search</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$auction->auction_name}}</li>
             </ol>
         </nav>

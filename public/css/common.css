@@ -12,6 +12,10 @@
     --background-color-lighter: rgb(56, 56, 56);
 }
 
+html, body {
+    height: 100%;
+}
+
 .border-2 {
     border-width: 2px !important;
 }

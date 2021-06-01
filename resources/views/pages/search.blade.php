@@ -7,8 +7,8 @@
 
 @section('content')
 
-<div class="container-fluid" id="search-background">
-<div class="row h-100" style="display: flex">
+<div class="container-fluid" id="search-background" style="min-height: 72%;">
+<div class="row">
 
 
 <a class="btn toggleSidebar text-white border-top-1 rounded-0" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
@@ -16,12 +16,12 @@
 </a>
 
 <!-- Sidebar -->
-<nav id="sidebarMenu" class="col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary collapse show text-white">
+<nav id="sidebarMenu" class="col col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary  collapse show text-white" style="border-bottom-right-radius: .5em !important;border-bottom-left-radius: .5em !important; max-height: 648.8px;">
     <div class="position-sticky py-3">
         <form id="search-general" method="post" action="{{ route('search') }}">
             @csrf
             <ul class="nav flex-column">
-                <li class="nav-item pt-3">
+                <li class="nav-item pt-1">
                     <div class="display-6">
                     Filter results
                     </div class="display-6">
@@ -55,14 +55,14 @@
                     <?php draw_multi_range_slider("multiRangeYear", $range_limits[2], $range_limits[3]); ?>
                 </li>
                 
-                <li class="nav-item pt-4 ms-2">
+                <li class="nav-item pt-4 ms-2 mt-2">
                     <div class="form-check form-switch pt-2">
                         <input class="form-check-input" type="checkbox" id="switchFinalizedAuctions" name="switchFinalizedAuctions" value="on">
                         <label class="form-check-label ps-2" for="switchFinalizedAuctions">Show Finalized Auctions</label>
                     </div>
                 </li>
 
-                <li class="d-flex align-self-center mt-3 mb-2">
+                <li class="d-flex align-self-center mt-3 mb-3">
                     <button class="btn float-end clearfix rounded-pill" type="submit" id="submit_button"><b>SEARCH</b></button>
                 </li>
 
@@ -74,8 +74,14 @@
 
 <!-- Search Results -->
 <main class="col ms-sm-auto pt-4 px-md-4" style="flex: 1">
-    <p class="fs-3 pt-3">{{count($auctions_to_display)}} Results Found</p>
-    <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-start">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb fs-5 ps-3 pt-1">
+            <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Advanced Search</li>
+        </ol>
+    </nav>
+    <p class="fs-3 pt-3 ps-3">{{count($auctions_to_display)}} Results Found</p>
+    <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-around">
 
     @foreach ($auctions_to_display as $auction)
         @include('partials.auction_card', array(
