@@ -426,44 +426,117 @@
                 </div>
             </div>
             
-            <!-- Countdown -->
-            <div class="container mt-5" id="auction_content_area">
-                <div class="row d-flex flex-row justify-content-around align-items-center text-center">
-                    <div class="col-12 col-md-6">
-                        <div class="row">
-                            <div class="col-6 countdown_box">
-                                <h1 class="display-1 m-0" id="days"></h1>
-                                <h4>Days</h4>
-                            </div>
-                            <div class="col-6 countdown_box">
-                                <h1  class="display-1 m-0" id="hours"></h1>
-                                <h4>Hours</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="row">
-                            <div class="col-6 countdown_box">
-                                <h1  class="display-1 m-0" id="minutes"></h1>
-                                <h4>Minutes</h4>
-                            </div>
-                            <div class="col-6 countdown_box">
-                                <h1  class="display-1 m-0" id="seconds"></h1>
-                                <h4>Seconds</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <h4 class="center-block mt-3 pb-5 auction-status text-center">
-                    @if (\Carbon\Carbon::now() > $auction->endingtime)
-                        AUCTION HAS ENDED
-                        @else UNTIL AUCTION 
-                            @if ($auction->startingtime > \Carbon\Carbon::now()) BEGINS
-                            @else ENDS
+            @if (\Carbon\Carbon::now() < $auction->endingtime)
+                <!-- Countdown -->
+                <div class="container mt-5" id="auction_content_area">
+                    <div class="row d-flex flex-row justify-content-around align-items-center text-center">
+                        <div class="col-12 col-md-6">
+                            <div class="row">
+                                <div class="col-6 countdown_box">
+                                    <h1 class="display-1 m-0" id="days"></h1>
+                                    <h4>Days</h4>
+                                </div>
+                                <div class="col-6 countdown_box">
+                                    <h1  class="display-1 m-0" id="hours"></h1>
+                                    <h4>Hours</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="row">
+                                <div class="col-6 countdown_box">
+                                    <h1  class="display-1 m-0" id="minutes"></h1>
+                                    <h4>Minutes</h4>
+                                </div>
+                                <div class="col-6 countdown_box">
+                                    <h1  class="display-1 m-0" id="seconds"></h1>
+                                    <h4>Seconds</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="center-block mt-3 pb-5 auction-status text-center">
+                        @if (\Carbon\Carbon::now() > $auction->endingtime)
+                            AUCTION HAS ENDED
+                            @else UNTIL AUCTION 
+                                @if ($auction->startingtime > \Carbon\Carbon::now()) BEGINS
+                                @else ENDS
+                            @endif
                         @endif
-                    @endif
-                </h4>
+                    </h4>
+                @else
+                    <h4 class="center-block mt-3 pb-2 pt-3 auction-status text-center">AUCTION HAS ENDED</h4>
+                    
+                    <div class="text-center mb-4 pb-3">
+                        <button class="btn rounded-pill text-center fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="show-results">SEE RESULTS</button>
+                    </div>
+                    <div class="collapse" id="collapseExample">
+                        @if (!is_null($highest_bidder))
+                            @if (!Auth::guest())
+                                @if($highest_bidder->id == Auth::id())
+                                    <h4 class="fire-text center-block fs-2 mt-2 pb-1 text-center">
+                                        YOU ARE THE WINNER !
+                                    </h4>
+                                    <h4 class="center-block fs-2 mt-2 pb-0 text-center">
+                                        Reach out to the owner:
+                                    </h4>
+                                    <h4 class="center-block fs-2 mt-2 pb-5 text-center">
+                                        <a href="mailto:{{$owner->email}}" target="_blank" style="text-decoration:none; color: inherit;">{{$owner->email}}</a>
+                                    </h4>
+                                @endif
+                            @else
+                                <h4 class="fire-text center-block fs-2 mt-2 pb-5 text-center">{{$highest_bidder->username}} is the winner!</h4>
+                            @endif
+                        @endif
+                        
+                        <div>
+                            <h4 class="center-block fs-2 mt-2 pb-1 px-auto text-center">Bidding History</h4>
+                            <div class="container bg-light rounded py-3 mb-5">
+                                @if (is_null($bid_history))
+                                    <div class="d-flex justify-content-center flex-row">
+                                        <div class="col-3 border border-1 text-center"> - </div>
+                                        <div class="col-3 border border-1 text-center"> - </div>
+                                        <div class="col-3 border border-1 text-center"> - </div>
+                                    </div>
+                                @else
+                                    @if (count($bid_history) < 7)
+                                        @foreach ($bid_history as $bid)
+                                            <div class="d-flex justify-content-center flex-row">
+                                                <div class="col-3 border border-1 text-center">{{$bid->username}}</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid->amount}}€</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid->createdon}}</div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        @for($i = 0; $i < 3; $i++)
+                                            <div class="d-flex justify-content-center flex-row">
+                                                <div class="col-3 border border-1 text-center">{{$bid_history[$i]->username}}</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid_history[$i]->amount}}€</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid_history[$i]->createdon}}</div>
+                                            </div>
+                                        @endfor
+                                        <div class="d-flex justify-content-center flex-row">
+                                            <div class="col-3 border border-1 text-center">...</div>
+                                            <div class="col-3 border border-1 text-center">...</div>
+                                            <div class="col-3 border border-1 text-center">...</div>
+                                        </div>
+                                        @for($i = count($bid_history) - 3; $i < count($bid_history); $i++)
+                                            <div class="d-flex justify-content-center flex-row">
+                                                <div class="col-3 border border-1 text-center">{{$bid_history[$i]->username}}</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid_history[$i]->amount}}€</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid_history[$i]->createdon}}</div>
+                                            </div>
+                                        @endfor
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                @endif
                 
             </div>
 

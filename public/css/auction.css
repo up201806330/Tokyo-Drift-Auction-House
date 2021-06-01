@@ -183,14 +183,14 @@
     background-color: rgb(223, 223, 223);
 }
 
-#comment_button, #save_about, #save-general {
+#comment_button, #save_about, #save-general, #show-results {
     padding: 5px, 15px;
     border-radius: 1px;
     border-color: rgb(49, 49, 49);
     transition: 0.3s;
 }
 
-#comment_button:hover, #save_about:hover, #save-general:hover {
+#comment_button:hover, #save_about:hover, #save-general:hover, #show-results:hover {
     color: rgb(255, 157, 100);
     background: rgb(49, 49, 49);
     transition: 0.3s;
