@@ -8,7 +8,7 @@
     <div class="container bg-light p-4 tos-whole">
         <div class="display-2 ">Terms of Service</div>
         <nav aria-label="breadcrumb">
-        <ol class="breadcrumb fs-5 ps-3 pt-1 pb-5">
+        <ol class="breadcrumb fs-5 ps-1 pt-1 pb-5">
             <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Terms of Service</li>
         </ol>
