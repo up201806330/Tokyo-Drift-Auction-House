@@ -16,7 +16,7 @@
 </a>
 
 <!-- Sidebar -->
-<nav id="sidebarMenu" class="col col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary  collapse show text-white" style="border-bottom-right-radius: .5em !important;border-bottom-left-radius: .5em !important; max-height: 648.8px;">
+<nav id="sidebarMenu" class="col col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary  collapse show text-white" style="max-height: 648.8px;">
     <div class="position-sticky py-3">
         <form id="search-general" method="post" action="{{ route('search') }}">
             @csrf
