@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-12 col-lg-8 m-0">
                     <fieldset class="form-group text-center">
-                        <button class="btn btn-search" type="button" onclick="button_click()">Upload Image</button>
+                        <button class="btn btn-search w-100" type="button" onclick="button_click()">Upload Image</button>
                         <input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>
                     </fieldset>
                     <div id="preview-images-zone"></div>
