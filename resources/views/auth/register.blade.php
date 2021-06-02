@@ -24,11 +24,11 @@
                                     <input required type="text" name="firstname" class="form-control" id="floatingInput" placeholder="Jeff">
                                     <label for="floatingInput">First Name</label>
 
-                                    @if ($errors->has('name'))
+                                    {{-- @if ($errors->has('name'))
                                     <span class="error">
                                         {{ $errors->first('name') }}
                                     </span>
-                                    @endif
+                                    @endif --}}
                                 </div>
 
                                 <div class="col form-floating mb-3 ">
@@ -41,22 +41,22 @@
                                 <input required type="text" name="username" class="form-control" id="floatingInput" placeholder="jeffBezzie">
                                 <label for="floatingInput">Username</label>
 
-                                @if ($errors->has('username'))
+                                {{-- @if ($errors->has('username'))
                                 <span class="error">
                                     {{ $errors->first('username') }}
                                 </span>
-                                @endif
+                                @endif --}}
                             </div>
 
                             <div class="form-floating mb-3">
                                 <input required type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                                 <label for="floatingInput">Email Address</label>
                                 
-                                @if ($errors->has('email'))
+                                {{-- @if ($errors->has('email'))
                                 <span class="error">
                                     {{ $errors->first('email') }}
                                 </span>
-                                @endif
+                                @endif --}}
 
                             </div>
 
@@ -70,11 +70,11 @@
                                 </div>  
 
                                 <div class="col form-floating mb-3">
-                                    <input type="password" name="password2" class="form-control" id="floatingPassword2" placeholder="Password">
+                                    <input type="password" name="password_confirmation" class="form-control" id="floatingPasswordConfirmation" placeholder="Password">
                                     <span>
                                         <i class="fa fa-eye" id="font2" onclick="togglePw2()" aria-hidden="true"></i>
                                     </span>
-                                    <label for="floatingPassword2">Confirm Password</label> 
+                                    <label for="floatingPasswordConfirmation">Confirm Password</label> 
                                 </div>  
                             </div>
                             <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
@@ -123,5 +123,31 @@
     </div>
 
 </div>
+
+@if($errors->any())
+    <div class="notification red-notif">
+        <div class="row align-items-center">
+            <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="col justify-content-center">
+                {{$errors->first()}}
+            </div>
+        </div>        
+    </div>
+@else
+    @if(session('success'))
+        <div class="notification green-notif">
+            <div class="row align-items-center">
+                <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="col justify-content-center">
+                    {{session('success')}}
+                </div>
+            </div>        
+        </div>
+    @endif
+@endif
 
 @endsection
