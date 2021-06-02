@@ -42,3 +42,7 @@ Route::delete('/users/{id}'                         , 'UserController@delete'   
 Route::get   ('/moderator'                          , 'ModerationController@showModeration'         )->name('moderator'         );
 Route::post  ('/moderator/users/{id}'               , 'UserController@changePermissions'            );
 Route::post  ('/users/{id}/banned'                  , 'UserController@ban'                          );
+Route::post  ('/auctions/{id}/banned/{user_id}'     , 'UserController@banAuction'                   );
+Route::delete('/auctions/{id}/banned/{user_id}'     , 'UserController@unbanAuction'                 );
+
+

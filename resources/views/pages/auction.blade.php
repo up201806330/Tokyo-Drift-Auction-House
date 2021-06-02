@@ -476,23 +476,21 @@
     <!-- Moderator Section -->
     @if (Auth::id() == $owner->id || App\Models\User::findOrFail(Auth::id())->moderator())
     <div class="display-1 text-center" style="margin-bottom: 0.5em;">Moderator Section</div>
-    <div class="d-md-flex" style="margin-bottom: 1em;">
-        @if ($auction->auctiontype == 'Private')
-        <form method="post" enctype="multipart/form-data" action="{{ route('create_auction') }}">
-            @csrf
-            <div class="user_search overflow-auto">
-                <h5 class="text-center">Invited Bidders</h5>
-                <div class="input-group form-container">
-                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
-                    <span class="input-group-btn">
-                        <button class="btn btn-search" type="button" onclick="updateUsers()">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-                <!-- Show the users for selection, filter through js-->
-                <div id="user_rows">
-                    @foreach($users as $user)
+    <div class="d-block" style="margin-bottom: 1em;">
+        <div class="user_search overflow-auto">
+            <h5 class="text-center">Banned Users</h5>
+            <div class="input-group form-container">
+                <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
+                <span class="input-group-btn">
+                    <button class="btn btn-search" type="button" onclick="updateUsers()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <!-- Show the users for selection, filter through js-->
+            <div id="user_rows">
+                @foreach($users as $user)
+                    @if(!$user['moderator'])
                         <div class="user_row d-flex justify-content-between align-items-center">
                             <span class="user_id d-none">{{$user['id']}}</span>
                             <a href="../pages/profile.php" class="profile_text">
@@ -502,100 +500,28 @@
                                 </div>
                             </a>
                             <div class="moderator area text-center">
-                                <div class="form-group form-check form-switch">
-                                    <input class="form-check-input private_user"name="invited" type="checkbox">
-                                </div>
+                                @if ($user['banned'])
+                                    <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
+                                        @method('delete')
+                                        @csrf
+                                        <div class="row p-2 rounded mb-1">
+                                            <button type="submit" class="btn btn-outline-danger">Unban User</button>
+                                        </div>
+                                    </form>
+                                @else
+                                    <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
+                                        @csrf
+                                        <div class="row p-2 rounded mb-1">
+                                            <button type="submit" class="btn btn-outline-danger">Ban User</button>
+                                        </div>
+                                    </form>
+                                @endif
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                <div id="hidden_user_rows"></div>
+                    @endif
+                @endforeach
             </div>
-            <div class="text-center">
-                <button class="btn clearfix rounded-pill" type="submit" id="submit_button"><b>Submit Changes</b></button>
-            </div>
-        </form>
-        @else
-        <form method="post" enctype="multipart/form-data" action="{{ route('create_auction') }}">
-            @csrf
-            <div class="user_search overflow-auto">
-                <h5 class="text-center">Banned Users</h5>
-                <div class="input-group form-container">
-                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
-                    <span class="input-group-btn">
-                        <button class="btn btn-search" type="button" onclick="updateUsers()">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-                <!-- Show the users for selection, filter through js-->
-                <div id="user_rows">
-                    @foreach($users as $user)
-                        @if(!$user['moderator'])
-                            <div class="user_row d-flex justify-content-between align-items-center">
-                                <span class="user_id d-none">{{$user['id']}}</span>
-                                <a href="../pages/profile.php" class="profile_text">
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
-                                            <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
-                                    </div>
-                                </a>
-                                <div class="moderator area text-center">
-                                    <div class="form-group form-check form-switch">
-                                        <input class="form-check-input private_user" name="moderator" type="checkbox">
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-                <div id="hidden_user_rows"></div>
-            </div>
-            <div class="text-center">
-                <button class="btn clearfix rounded-pill" type="submit" id="submit_button"><b>Submit Changes</b></button>
-            </div>
-        </form>
-        @endif
-
-        <form method="post" enctype="multipart/form-data" action="{{ url('moderator/users/' . $user['id']) }}">
-            @csrf
-            <div class="user_search overflow-auto">
-                <h5 class="text-center">Moderators</h5>
-                <div class="input-group form-container">
-                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
-                    <span class="input-group-btn">
-                        <button class="btn btn-search" type="button" onclick="updateUsers()">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-                <!-- Show the users for selection, filter through js-->
-                <div id="user_rows">
-                    @foreach($users as $user)
-                        @if(!$user['moderator'])
-                            <div class="user_row d-flex justify-content-between align-items-center">
-                                <span class="user_id d-none">{{$user['id']}}</span>
-                                <a href="../pages/profile.php" class="profile_text">
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
-                                            <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
-                                    </div>
-                                </a>
-                                <div class="moderator area text-center">
-                                    <div class="form-group form-check form-switch">
-                                        <input class="form-check-input private_user" name="moderator" type="checkbox">
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-                <div id="hidden_user_rows"></div>
-            </div>
-            <div class="text-center">
-                <button class="btn clearfix rounded-pill" type="submit" id="submit_button"><b>Submit Changes</b></button>
-            </div>
-        </form>
+        </div>
     </div>
     @endif
     

@@ -276,6 +276,7 @@ class AuctionController extends Controller
                     'image_path' => Image::findOrFail($user->profileimage)->path,
                     'moderator' => $user->moderator(),
                     'invited' => $user->guestAuction($id),
+                    'banned' => $user->bannedAuction($auction->id),
                 ];
                 array_push($users, $new_user);
             }

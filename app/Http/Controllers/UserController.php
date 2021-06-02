@@ -121,6 +121,24 @@ class UserController extends Controller
         return redirect()->back()->withSuccess('User banned successfully');
     }
 
+    public function unbanAuction(Request $request, int $auction_id, int $user_id) : RedirectResponse
+    {
+        if (Auth::guest()) {
+            return redirect()->back();        
+        }
+
+        $auth_user = User::find(Auth::id());
+        $user = User::find($user_id);
+        if (!$auth_user->moderator()){
+            return redirect()->back();        
+        }
+
+        $ban = Ban::where('user_id', '=', $user_id)->where('auction_id', '=', $auction_id)->first();
+        $ban-delete();
+
+        return redirect()->back()->withSuccess('User unbanned successfully');
+    }
+
     public function changePermissions(Request $request, int $user_id) : RedirectResponse
     {
         if (Auth::guest()) {
