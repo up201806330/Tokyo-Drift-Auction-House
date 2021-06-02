@@ -106,18 +106,21 @@ class UserController extends Controller
 
         $auth_user = User::find(Auth::id());
         $user = User::find($user_id);
-        if (!$auth_user->moderator()){
+        if (!$auth_user->moderator() && !$auth_user->modAuction($request->get('auction'))){
             return redirect()->back();        
         }
+
+        $banType = "AllBan";
+        if ($request->get('banType'))
+            $banType = $request->get('banType');
 
         $ban = new Ban([
             'user_id' => $user_id,
             'created_by' => Auth::id(), 
-            'ban_type' => "AllBan", 
+            'ban_type' => $banType, 
             'auction_id' => $request->get('auction'),
         ]);
         $ban->save();
-
         return redirect()->back()->withSuccess('User banned successfully');
     }
 
@@ -137,6 +140,15 @@ class UserController extends Controller
         $ban-delete();
 
         return redirect()->back()->withSuccess('User unbanned successfully');
+    }
+    
+    public function banAuction(Request $request, int $auction_id, int $user_id) : RedirectResponse
+    {
+        $request->merge([
+            'auction' => $auction_id,
+            'banType' => "AuctionBan",
+        ]);
+        return $this->ban($request, $user_id);
     }
 
     public function changePermissions(Request $request, int $user_id) : RedirectResponse
