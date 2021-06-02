@@ -474,7 +474,7 @@
     </div>
 
     <!-- Moderator Section -->
-    @if (Auth::id() == $owner->id || App\Models\User::findOrFail(Auth::id())->moderator())
+    @if (!Auth::guest() && (Auth::id() == $owner->id || App\Models\User::findOrFail(Auth::id())->moderator()))
     <div class="display-1 text-center" style="margin-bottom: 0.5em;">Moderator Section</div>
     <div class="d-md-flex" style="margin-bottom: 1em;">
         @if ($auction->auctiontype == 'Private')
