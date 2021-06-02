@@ -11,6 +11,7 @@ use App\Models\Image;
 use App\Models\VehicleImage;
 use App\Models\User;
 use App\Models\AuctionGuest;
+use App\Models\AuctionModerator;
 use App\Models\Favourite;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -51,6 +52,7 @@ class AuctionController extends Controller
                 'id' => $user->id,
                 'username' => $user->username,
                 'image_path' => Image::findOrFail($user->profileimage)->path,
+                'moderator' => $user->moderator(),
             ];
             array_push($users, $new_user);
         }
@@ -107,6 +109,21 @@ class AuctionController extends Controller
             }
         }
         $auction->save();
+
+        //moderators handling
+        $moderators = $request->get('moderator');
+        foreach($moderators as $user){
+            $auction_moderator = new AuctionModerator([
+                'user_id' => $user,
+                'auction_id' => $auction->id,                
+            ]);
+            $auction_moderator->save();
+        }
+        $auction_moderator = new AuctionModerator([
+            'user_id' => Auth::id(),
+            'auction_id' => $auction->id,                
+        ]);
+        $auction_moderator->save();
 
         //pictures
         $directory = base_path('public/assets/car_photos/' . $vehicle->id);
@@ -248,7 +265,6 @@ class AuctionController extends Controller
 
         $user = User::find(Auth::id());
         if($auction->auctiontype == 'Private' && !($user->moderator() || $user->guestAuction($id))){
-            echo "<script>console.log('" . json_encode($user->guestAuction($id)) . "');</script>";
             return view('layouts.error');
         }
 
