@@ -117,12 +117,14 @@ class AuctionController extends Controller
 
         //moderators handling
         $moderators = $request->get('moderator');
-        foreach($moderators as $user){
-            $auction_moderator = new AuctionModerator([
-                'user_id' => $user,
-                'auction_id' => $auction->id,                
-            ]);
-            $auction_moderator->save();
+        if ($moderators){
+            foreach($moderators as $user){
+                $auction_moderator = new AuctionModerator([
+                    'user_id' => $user,
+                    'auction_id' => $auction->id,                
+                ]);
+                $auction_moderator->save();
+            }
         }
         $auction_moderator = new AuctionModerator([
             'user_id' => Auth::id(),
