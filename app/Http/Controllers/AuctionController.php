@@ -282,6 +282,12 @@ class AuctionController extends Controller
 
             $highest_bidder_profile_img = Image::findOrFail($highest_bidder->profileimage);
 
+            $bid_history = Bid::where('auction_id', '=', $id)
+                ->join('user',  'user.id',      '=', 'bid.user_id')
+                // ->join('image', 'user.profileimage',  '=', 'image.id')
+                ->select('user.username', 'amount', 'createdon')
+                ->orderBy('createdon', 'DESC')
+                ->get();     
             
         }
         catch (Exception $e) {
@@ -296,6 +302,7 @@ class AuctionController extends Controller
                 'bidder_img'    => null,
                 'comments'      => $auction_comments,
                 'favourite'     => $favourite,
+                'bid_history'   => null
             ]);
         }
         
@@ -310,6 +317,7 @@ class AuctionController extends Controller
             'bidder_img'    => $highest_bidder_profile_img,
             'comments'      => $auction_comments,
             'favourite'     => $favourite,
+            'bid_history'   => $bid_history
         ]);
     }
 
