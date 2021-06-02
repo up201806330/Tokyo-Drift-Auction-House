@@ -76,8 +76,8 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fs-5 ps-2 pt-1 pb-2">
                 <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="../pages/search.php">Search</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</li>
+                <li class="breadcrumb-item"><a href="{{ route('search') }}">Advanced Search</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$auction->auction_name}}</li>
             </ol>
         </nav>
 
@@ -148,9 +148,8 @@
                     @if (!Auth::guest())
                         @if (Auth::user()->id == $owner->id && (\Carbon\Carbon::now()->lte($auction->startingtime)))
                             <div class="col-10">
-                                <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
+                                <h1>{{$auction->auction_name}}</h1>
                             </div>
-                            {{-- <div class="col d-flex justify-content-start align-items-center"> --}}
                             <div class="col-2 d-flex justify-content-start align-items-center">
                                 <a class="" data-bs-toggle="collapse" href="#editAuctionCollapse" role="button" aria-expanded="false" aria-controls="editAuctionCollapse">
                                     <i class="fa fa-cog edit-cog" aria-hidden="true" style="color:white;"></i>
@@ -163,10 +162,11 @@
                                     </button>
                                 </form>
                             </div>
-                            {{-- </div> --}}
                         @else
-                            <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
+                            <h1>{{$auction->auction_name}}</h1>
                         @endif
+                    @else
+                        <h1>{{$auction->auction_name}}</h1>
                     @endif
                 </div>
 

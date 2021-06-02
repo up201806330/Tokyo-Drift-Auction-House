@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
+@section('head')
+    <link rel="stylesheet" href="{{ asset('css/tpl_mod.css')}}">
+@endsection
+
 @section('title', 'Profile | ' . $profileOwner->username )
 
 @section('content')
 
-<section class="sign-in-container">
+<section class="sign-in-container" style="min-height: calc(100% - (106px + 176px));">
     <div class="container bg-light rounded pb-1">
-        <div class="display-1 pt-5 ps-2 text-start">Profile page</div>
+        <div class="display-1 pt-5 ps-3 text-start">Profile page</div>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fs-5 ps-4 pt-1">
                 <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
@@ -157,21 +161,78 @@
                 </form>
 
             </div>
-
-            <div class="profile-auction-gallery">
-                <div class="display-3 ps-2 ms-5 pb-3">History</div>
-                <div class="dropdown pb-3" id="dropdown-auctions-profile">
-                    <button class="btn bg-dark text-white border-dark dropdown-toggle fs-4 profile-auction-gallery-title rounded-pill" type="button" id="selectAuctionsProfile" data-bs-toggle="dropdown" aria-expanded="false">
-                    Select Auctions
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="selectAuctionsProfile">
-                        <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Currently Bidding</a></li>
-                        <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Currently Selling</a></li>
-                        <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Successfully Bought</a></li>
-                        <li><a class="dropdown-item" href="#selectAuctionsProfile" onclick="updateDropdownAuctionsProfile(this)">Successfully Sold</a></li>
-                    </ul>
-                </div>
-
+            <div>
+            @if (!Auth::guest())
+                @if (Auth::user()->id == $profileOwner->id)
+                    <main class="accordion-container border border-2 rounded-3">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Favourite Auctions
+                                </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body fw-light row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery p-sm-4 p-0 mx-0 rounded-3" style="overflow-y: scroll;">
+                                        @foreach ($favouriteAuctions as $auction)
+                                            @include('partials.auction_card', array(
+                                                'id'            => $auction->id,
+                                                'brand'         => $auction->vehicle->brand,
+                                                'model'         => $auction->vehicle->model,
+                                                'max_bid'       => $auction->getCurrentMaxBid(),
+                                                'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                                'time_diff'     => $auction->getAdequateTimeDifference()
+                                            ))
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item mt-0">
+                                <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                    Bidding on
+                                </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body fw-light row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery p-sm-4 p-0 mx-0 rounded-3" style="overflow-y: scroll;">
+                                        @foreach ($biddingAuctions as $auction)
+                                            @include('partials.auction_card', array(
+                                                'id'            => $auction->id,
+                                                'brand'         => $auction->vehicle->brand,
+                                                'model'         => $auction->vehicle->model,
+                                                'max_bid'       => $auction->getCurrentMaxBid(),
+                                                'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                                'time_diff'     => $auction->getAdequateTimeDifference()
+                                            ))
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item mt-0">
+                                <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    Selling
+                                </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body fw-light row row-cols-1 row-cols-lg-2 row-cols-xl-3 justify-content-start mod-gallery p-sm-4 p-0 mx-0 rounded-3" style="overflow-y: scroll;">
+                                        @foreach ($ownedAuctions as $auction)
+                                            @include('partials.auction_card', array(
+                                                'id'            => $auction->id,
+                                                'brand'         => $auction->vehicle->brand,
+                                                'model'         => $auction->vehicle->model,
+                                                'max_bid'       => $auction->getCurrentMaxBid(),
+                                                'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                                'time_diff'     => $auction->getAdequateTimeDifference()
+                                            ))
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                @endif
+            @endif
 
             </div>
         </div>
