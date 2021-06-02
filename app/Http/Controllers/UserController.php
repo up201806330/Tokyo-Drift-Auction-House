@@ -114,6 +114,10 @@ class UserController extends Controller
         if ($request->get('banType'))
             $banType = $request->get('banType');
 
+        // verify if this ban already
+        $ban = Ban::where('user_id', '=', $user_id)->where('auction_id', '=', $request->get('auction'))->where('ban_type', '=', $banType)->first();
+
+        if (!$ban){ 
         $ban = new Ban([
             'user_id' => $user_id,
             'created_by' => Auth::id(), 
@@ -121,7 +125,18 @@ class UserController extends Controller
             'auction_id' => $request->get('auction'),
         ]);
         $ban->save();
+        }
+
         return redirect()->back()->withSuccess('User banned successfully');
+    }
+
+    public function banAuction(Request $request, int $auction_id, int $user_id) : RedirectResponse
+    {
+        $request->merge([
+            'auction' => $auction_id,
+            'banType' => "AuctionBan",
+        ]);
+        return $this->ban($request, $user_id);
     }
 
     public function unbanAuction(Request $request, int $auction_id, int $user_id) : RedirectResponse
@@ -137,18 +152,9 @@ class UserController extends Controller
         }
 
         $ban = Ban::where('user_id', '=', $user_id)->where('auction_id', '=', $auction_id)->first();
-        $ban-delete();
+        $ban->delete();
 
         return redirect()->back()->withSuccess('User unbanned successfully');
-    }
-    
-    public function banAuction(Request $request, int $auction_id, int $user_id) : RedirectResponse
-    {
-        $request->merge([
-            'auction' => $auction_id,
-            'banType' => "AuctionBan",
-        ]);
-        return $this->ban($request, $user_id);
     }
 
     public function changePermissions(Request $request, int $user_id) : RedirectResponse
