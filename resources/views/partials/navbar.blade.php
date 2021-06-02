@@ -23,9 +23,9 @@
           </li>
 
           <li class="nav-item">
-            @if (!Auth::guest() && App\Models\User::find(Auth::id())->seller)
+            @if (Auth::guest())
               <a type="button" class="nav-link text-white navbar-content-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">Create new auction</a>
-            @else
+            @elseif (App\Models\User::find(Auth::id())->seller()->exists())
               <a class="nav-link text-white navbar-content-bold rounded-pill" href="{{ url('/auctions/new') }}">Create new auction</a>
             @endif
           </li>

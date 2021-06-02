@@ -42,7 +42,12 @@ class AuctionController extends Controller
     public function showCreateForm() : View
     {
         if (Auth::guest()) {
-            return redirect('/');
+            return view('layouts.error');
+        }
+
+        $user = User::find(Auth::id());
+        if (!$user->seller()->exists()){
+            return view('layouts.error');
         }
 
         $all_users = User::all();
