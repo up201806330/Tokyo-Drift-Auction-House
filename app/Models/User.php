@@ -172,4 +172,12 @@ class User extends Authenticatable
     public function banned(){
         return $this->belongsTo(Ban::class, 'id', 'user_id');
     }
+
+    public function bannedAuction($auction_id){
+        return $this->banned()->where('auction_id', '=', $auction_id)->first();
+    }
+
+    public function bannedAll(){
+        return $this->banned()->where('ban_type', '=', "AllBan")->first();
+    }
 }

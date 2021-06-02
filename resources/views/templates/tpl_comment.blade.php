@@ -17,8 +17,12 @@
             
             @if (App\Models\User::findOrFail(Auth::id())->moderator() || App\Models\User::findOrFail(Auth::id())->modAuction($auction->id))
                 <div class="moderator area m-3 text-center">
-                        <button type="button" class="btn rounded-pill m-1 moderator_button_ban" id="moderator_button" onclick="Comment.banUser(this, auctionId)">BAN FROM AUCTION</button>
-                        <form class="delete_form" style="display: inline-block;" onsubmit="Comment.delete(this, auctionId); Comment.updateSection(auctionId); return false;">
+                        @if (App\Models\User::findOrFail(Auth::id())->bannedAll())
+                        <p class="m-1" style="display: inline-block;">BANNED USER</p>
+                        @else
+                        <button type="button" style="display: inline-block;" class="btn rounded-pill m-1 moderator_button_ban" id="moderator_button" onclick="Comment.banUser(id, auctionId)">BAN FROM AUCTION</button>
+                        @endif
+                        <form class="delete_form" style="display: inline-block;" onsubmit="Comment.delete(, auctionId); Comment.updateSection(auctionId); return false;">
                             <input type="hidden" name="id">
                             <button type="submit" class="btn rounded-pill m-1" id="moderator_button">
                                 <i class="fa fa-trash"></i>
