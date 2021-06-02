@@ -355,7 +355,6 @@ class AuctionController extends Controller
      */
     public function editAuction(Request $request, int $auction_id) : RedirectResponse
     {
-        //dd($request->endingtime);
         $validated = $request->validate([
             'brand'         => 'required|max:50',
             'model'         => 'required|max:50',

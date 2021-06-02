@@ -98,6 +98,33 @@
 </main>
 
 </div></div>
+
+@if($errors->any())
+    <div class="notification red-notif">
+        <div class="row align-items-center">
+            <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="col justify-content-center">
+                {{$errors->first()}}
+            </div>
+        </div>        
+    </div>
+@else
+    @if(session('success'))
+        <div class="notification green-notif">
+            <div class="row align-items-center">
+                <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="col justify-content-center">
+                    {{session('success')}}
+                </div>
+            </div>        
+        </div>
+    @endif
+@endif
+
 @endsection
 
 
