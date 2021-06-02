@@ -57,7 +57,7 @@
     display:none;
 }
 
-.user_search{
+.user_search, .moderator_search{
     border: thin solid var(--dark-grey);
     padding: 2em;
     margin-bottom: 2em;
