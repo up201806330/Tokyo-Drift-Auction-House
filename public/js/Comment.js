@@ -22,11 +22,9 @@ class Comment {
             (this.createdOn.getMonth()+1).toString().padStart(2, '0') + "-" +
             this.createdOn.getDate     ().toString().padStart(2, '0');
         ret.querySelector('.content' ).innerHTML = this.content;
-        let form = ret.querySelector('form');
-        form.querySelector('input[name="id"]').value = this.id;
-        if(!(userId != null && userId == this.userId)){
-            form.style.display = 'none';
-        }
+        let form = ret.querySelector('.delete_form');
+        if (form!=null)
+            form.querySelector('input[name="id"]').value = this.id;
         return ret;
     }
 
@@ -40,6 +38,10 @@ class Comment {
         return new Comment(id, auctionId, null, null, null);
     }
 
+    static fromBanForm(auctionId, form){
+        return new Comment(null, auctionId, userId, null, null, null);
+    }
+
     submit() {
         return api.post(`auctions/${this.auctionId}/comments`, {
             content: this.content
@@ -48,6 +50,15 @@ class Comment {
 
     delete(){
         return api.delete(`auctions/${this.auctionId}/comments/${this.id}`);
+    }
+
+    banUser(){
+        return api.post(`auctions/${this.auctionId}/banned/${this.userId}`);
+    }
+
+    static async banUser(form, auctionId){
+        let comment = Comment.fromBanForm(auctionId, form);
+        await comment.banUser();
     }
 
     static async submit(form, auctionId) {

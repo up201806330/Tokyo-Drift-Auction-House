@@ -104,8 +104,6 @@ class User extends Authenticatable
      * Get all of the auctions that User is invited to
      */
     public function guestAuction($auction_id){
-        echo "<script>console.log('" . json_encode($this->auctionGuest()) . "');</script>";
-
         return $this->auctionGuest()->where('auction_id', '=', $auction_id)->first();
     }
 
@@ -120,7 +118,14 @@ class User extends Authenticatable
      * Get all of the auctions that User moderates
      */
     public function auctionMod(){
-        return $this->belongsTo(AuctionModerator::class, 'id');
+        return $this->belongsTo(AuctionModerator::class, 'id', 'user_id');
+    }
+
+    /**
+     * Get all of the auctions that User is invited to
+     */
+    public function modAuction($auction_id){
+        return $this->auctionMod()->where('auction_id', '=', $auction_id)->first();
     }
 
     /**
