@@ -74,12 +74,46 @@ function validateForm() {
       }
     }
   }
+
+  //Moderators
+  let users = document.getElementById("moderator_rows").children;
+
+  //place the hidden inputs for moderators
+  let hidden_users = document.getElementById("hidden_moderator_rows");
+  for (let item of users) {
+    let private_user = item.querySelector(".moderator_user").checked;
+    if (private_user){
+      let user_id = item.querySelector(".user_id").innerHTML;
+      let input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "moderator[]";
+      input.value = user_id;
+      hidden_users.appendChild(input);
+    }
+  }
+
 } 
 
 // Update shown users in private auction area according to search
 function updateUsers(){
   let users = document.getElementById("user_rows").children;
   let search_string = document.getElementById("user_search").value;
+  
+  for (let item of users) {
+    let username = item.querySelector(".username").innerHTML;
+    if (username.match(search_string.toLowerCase(), "i") == null){
+      item.setAttribute('style', 'display:none !important');
+    }
+    else{
+      item.setAttribute('style', 'display:flex !important');
+    }
+  }
+}
+
+// Update shown users in private auction area according to search
+function updateModerators(){
+  let users = document.getElementById("moderator_rows").children;
+  let search_string = document.getElementById("moderator_search").value;
   
   for (let item of users) {
     let username = item.querySelector(".username").innerHTML;

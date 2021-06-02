@@ -471,7 +471,7 @@ INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,l
 SELECT pg_catalog.setval(pg_get_serial_sequence('user', 'id'), (SELECT MAX(id) FROM "user")+1);
 
 -- Seller Permissions --
-INSERT INTO "seller" (id) VALUES (2),(3),(4),(7);
+INSERT INTO "seller" (id) VALUES (2),(3),(4),(7),(21);
 
 SELECT pg_catalog.setval(pg_get_serial_sequence('seller', 'id'), (SELECT MAX(id) FROM "seller")+1);
 
