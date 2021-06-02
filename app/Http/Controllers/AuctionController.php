@@ -75,6 +75,36 @@ class AuctionController extends Controller
             return redirect('/');
         }
 
+        $validator = Validator::make($request->all(),
+            [
+                'auctionName'   => 'required|max:50',
+                'brand'         => 'required|max:50',
+                'model'         => 'required|max:50',
+                'year'          => 'required|numeric',
+                'condition'     => 'required|in:Mint,Clean,Average,Rough',
+                'horsepower'    => 'required|numeric',
+            ]);
+        if( $validator->fails() ) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        // date / time validator
+        $validator = Validator::make($request->all(), [
+            'startingdate' => 'required|date',
+            'endingdate'   => 'required|date|after:startingdate',
+        ]);
+        if( $validator->fails() ) { // Dates are the same or wrong; checking time
+            $validator = Validator::make($request->all(), [
+               'startingdate'    => 'required|date',
+               'endingdate'      => 'required|date|date_equals:startingdate',
+               'startingtime'    => 'required|date_format:H:i:s',
+               'endingtime'    => 'required|date_format:H:i:s|after_or_equal:startingtime',
+            ]);
+            if( $validator->fails() ) {
+               return redirect()->back()->withErrors(['End Date must be later than Start Date']);
+            }
+        }
+
         //create vehicle
         $vehicle = new Vehicle([
             'owner' => Auth::id(),
