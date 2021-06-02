@@ -17,7 +17,7 @@ class Seller extends Model
    * @var array
    */
   protected $fillable = [
-    'user_id'
+    'id'
   ];
 
   /**
@@ -27,6 +27,6 @@ class Seller extends Model
    */
   public function user(): HasMany
   {
-      return $this->hasMany(User::class, 'user_id');
+      return $this->hasMany(User::class, 'id');
   }
 }

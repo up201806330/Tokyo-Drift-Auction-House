@@ -17,7 +17,7 @@ class GlobalMod extends Model
    * @var array
    */
   protected $fillable = [
-    'user_id'
+    'id'
   ];
 
   /**
@@ -27,6 +27,6 @@ class GlobalMod extends Model
    */
   public function user(): HasMany
   {
-      return $this->hasMany(User::class, 'user_id');
+      return $this->hasMany(User::class, 'id');
   }
 }

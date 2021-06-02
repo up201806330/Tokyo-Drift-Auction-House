@@ -30,10 +30,11 @@ class ModerationController extends Controller
 
         $user = User::find(Auth::id());
 
-        $auctions_mod = AuctionModerator::where('user_id', '=', $user->id);
+        $auctions_mod = AuctionModerator::where('user_id', '=', $user->id)->get();
 
-        if (!$user->moderator() && empty($auctions_mod)){
-            return view('pages.tos');
+
+        if (!$user->moderator() && $auctions_mod->isEmpty()){
+            return view('layouts.error');
         }
 
         if ($user->moderator()){
@@ -41,8 +42,7 @@ class ModerationController extends Controller
         }
         else{
             $auctions=[];
-            foreach($auctions_mod->get() as $auction_mod){
-                echo "<script>console.log('" . json_encode($auction_mod) . "');</script>";
+            foreach($auctions_mod as $auction_mod){
                 $auction = Auction::find($auction_mod->auction_id);
                 array_push($auctions, $auction);
             }
@@ -56,15 +56,17 @@ class ModerationController extends Controller
         $all_users = User::all();
         $users=[];
         foreach($all_users as $user){
-            $new_user = [
-                'id' => $user->id,
-                'username' => $user->username,
-                'image_path' => Image::findOrFail($user->profileimage)->path,
-                'seller' => $user->seller()->exists(),
-                'admin' => $user->admin()->exists(),
-                'global' => $user->globalMod()->exists(),
-            ];
-            array_push($users, $new_user);
+            if (!$user->admin()->exists() && !$user->banned()->exists()){
+                $new_user = [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'image_path' => Image::findOrFail($user->profileimage)->path,
+                    'seller' => $user->seller()->exists(),
+                    'admin' => $user->admin()->exists(),
+                    'global' => $user->globalMod()->exists(),
+                ];
+                array_push($users, $new_user);
+            }
         }
         
         return view('pages.moderator', [

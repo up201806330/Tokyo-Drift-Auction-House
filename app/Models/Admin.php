@@ -17,7 +17,7 @@ class Admin extends Model
    * @var array
    */
   protected $fillable = [
-    'user_id'
+    'id'
   ];
 
   /**
@@ -27,6 +27,6 @@ class Admin extends Model
    */
   public function user(): HasMany
   {
-      return $this->belongsTo(User::class, 'user_id');
+      return $this->belongsTo(User::class, 'id');
   }
 }

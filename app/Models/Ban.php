@@ -17,7 +17,7 @@ class Ban extends Model
    * @var array
    */
   protected $fillable = [
-    'user_id', 'createdBy', 'banType', 'auction_id'
+    'user_id', 'created_by', 'ban_type', 'auction_id'
   ];
 
   /**
@@ -27,7 +27,7 @@ class Ban extends Model
    */
   public function user(): HasMany
   {
-      return $this->hasMany(User::class, 'user_id');
+      return $this->hasMany(User::class, 'user_id', 'id');
   }
 
   /**

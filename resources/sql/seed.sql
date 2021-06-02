@@ -127,11 +127,11 @@ CREATE TABLE comment (
 CREATE TABLE "ban" (
     id          SERIAL          PRIMARY KEY,
     user_id     INTEGER         NOT NULL REFERENCES "user"(id),
-    createdBy   INTEGER         NOT NULL REFERENCES "user"(id),
+    created_by   INTEGER         NOT NULL REFERENCES "user"(id),
     createdOn   PASTTIMESTAMP   ,
-    banType     BANTYPE_T       NOT NULL,
+    ban_type     BANTYPE_T       NOT NULL,
     auction_id  INTEGER         REFERENCES "auction"(id) ON DELETE CASCADE,
-    CONSTRAINT auction_id CHECK ((banType != 'AuctionBan') OR (banType = 'AuctionBan' AND auction_id IS NOT NULL))
+    CONSTRAINT auction_id CHECK ((ban_type != 'AuctionBan') OR (ban_type = 'AuctionBan' AND auction_id IS NOT NULL))
 );
 
 CREATE TABLE bid (
@@ -206,18 +206,18 @@ DROP FUNCTION IF EXISTS update_fts             ;
 CREATE FUNCTION ban_user() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NEW.banType = 'AuctionBan' THEN
+    IF NEW.ban_type = 'AuctionBan' THEN
         IF NOT EXISTS (
-            SELECT * FROM "admin" WHERE "admin".id = NEW.createdBy 
+            SELECT * FROM "admin" WHERE "admin".id = NEW.created_by 
             UNION
-            SELECT * FROM "global_mod" WHERE "global_mod".id = NEW.createdBy
+            SELECT * FROM "global_mod" WHERE "global_mod".id = NEW.created_by
             UNION
-            SELECT user_id FROM "auction_mod" WHERE NEW.auction_id = "auction_mod".auction_id AND "auction_mod".user_id = NEW.createdBy
+            SELECT user_id FROM "auction_mod" WHERE NEW.auction_id = "auction_mod".auction_id AND "auction_mod".user_id = NEW.created_by
         ) THEN
             RAISE EXCEPTION 'User must be banned by Authorised Mod or Admin';
         END IF;
     ELSE
-        IF NOT EXISTS (SELECT * FROM "admin" WHERE "admin".id = NEW.createdBy) THEN
+        IF NOT EXISTS (SELECT * FROM "admin" WHERE "admin".id = NEW.created_by) THEN
             RAISE EXCEPTION 'User must be banned by Admin';
         END IF;
     END IF;
@@ -328,7 +328,7 @@ CREATE TRIGGER only_guests_can_bid
 CREATE FUNCTION banned_bids() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NEW.banType = 'BuyerBan' OR NEW.banType = 'AllBan' THEN
+    IF NEW.ban_type = 'AllBan' THEN
         DELETE FROM "bid" b
         WHERE b.user_id = NEW.user_id;
     END IF;
@@ -347,8 +347,8 @@ $BODY$
 BEGIN
     DELETE FROM "bid" b
     WHERE 
-        b.user = OLD.user AND
-        b.auction = OLD.auction;
+        b.user_id = OLD.user_id AND
+        b.auction_id = OLD.auction_id;
     RETURN NEW;
 END
 $BODY$
@@ -614,11 +614,11 @@ INSERT INTO "comment" (id,user_id,auction_id,createdOn,content) VALUES
 SELECT pg_catalog.setval(pg_get_serial_sequence('comment', 'id'), (SELECT MAX(id) FROM "comment")+1);
 
 -- Banned Users --
-INSERT INTO "ban" (id,user_id,createdBy,createdOn,banType) VALUES
+INSERT INTO "ban" (id,user_id,created_by,createdOn,ban_type) VALUES
 (1, 20, 1, '2021-03-31 15:27:38','AllBan'),
-(2, 19, 1, '2021-03-31 15:27:38','BuyerBan'),
-(3, 18, 1, '2021-03-31 15:27:38','SellerBan');
-INSERT INTO "ban" (id,user_id,createdBy,createdOn,startTime,endTime,reason,banType,auction_id) VALUES
+(2, 19, 1, '2021-03-31 15:27:38','AllBan'),
+(3, 18, 1, '2021-03-31 15:27:38','AllBan');
+INSERT INTO "ban" (id,user_id,created_by,createdOn,ban_type,auction_id) VALUES
 (4, 8, 3, '2021-03-31 15:27:38','AuctionBan',14);
 
 SELECT pg_catalog.setval(pg_get_serial_sequence('ban', 'id'), (SELECT MAX(id) FROM "ban")+1);

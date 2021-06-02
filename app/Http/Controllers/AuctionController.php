@@ -246,18 +246,11 @@ class AuctionController extends Controller
 
         $images_paths = $auction->getVehicleFromAuction();
 
-        // $images_paths = DB::table('image')
-        // ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
-        // ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
-        // ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
-        // ->where('vehicle.id', '=', $vehicle->id)
-        // ->get();
-
-        // $current_max_bid_amount = DB::table('bid')
-        //                 ->join('auction', 'auction.id', '=', 'bid.auction_id')
-        //                 ->select('auction.id', 'bid.user_id', 'bid.amount')
-        //                 ->where('auction.id', '=', $auction->id)
-        //                 ->max('bid.amount');
+        $user = User::find(Auth::id());
+        if($auction->auctiontype == 'Private' && !($user->moderator() || $user->guestAuction($id))){
+            echo "<script>console.log('" . json_encode($user->guestAuction($id)) . "');</script>";
+            return view('layouts.error');
+        }
 
         $owner = User::findOrFail($vehicle->owner);
         $owner_profile_img = Image::findOrFail($owner->profileimage);
@@ -272,16 +265,17 @@ class AuctionController extends Controller
                 $favourite = true;
         }
 
+        $users=[];
         //check if moderator to fill moderator area
-        if (!Auth::guest() && User::find(Auth::id())->moderator()) {
+        if (!Auth::guest() && $user->moderator()) {
             $all_users = User::all();
-            $users=[];
             foreach($all_users as $user){
                 $new_user = [
                     'id' => $user->id,
                     'username' => $user->username,
                     'image_path' => Image::findOrFail($user->profileimage)->path,
                     'moderator' => $user->moderator(),
+                    'invited' => $user->guestAuction($id),
                 ];
                 array_push($users, $new_user);
             }

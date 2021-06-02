@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\User;
+use App\Models\Seller;
+use App\Models\GlobalMod;
+use App\Models\Ban;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -73,19 +76,22 @@ class UserController extends Controller
         return redirect('assets/'.$user->getImage()->path);
     }
 
-    private function ban(Request $request, int $user_id) : RedirectResponse
+    public function ban(Request $request, int $user_id) : RedirectResponse
     {
         if (Auth::guest()) {
-            return view('layouts.error');
+            return redirect()->back();        
         }
-        if (!$user->moderator()){
-            return view('layouts.error');
+
+        $auth_user = User::find(Auth::id());
+        $user = User::find($user_id);
+        if (!$auth_user->moderator()){
+            return redirect()->back();        
         }
 
         $ban = new Ban([
             'user_id' => $user_id,
-            'createdBy' => Auth::id(), 
-            'banType' => "AllBan", 
+            'created_by' => Auth::id(), 
+            'ban_type' => "AllBan", 
             'auction_id' => $request->get('auction'),
         ]);
         $ban->save();
@@ -96,22 +102,39 @@ class UserController extends Controller
     public function changePermissions(Request $request, int $user_id) : RedirectResponse
     {
         if (Auth::guest()) {
-            return view('layouts.error');
+            return redirect()->back();        
         }
-        if (!$user->admin()->exists()){
-            return view('layouts.error');
+
+        $auth_user = User::find(Auth::id());
+        $user = User::find($user_id);
+        if (!$auth_user->moderator()){
+            return redirect()->back();        
         }
 
         $user = User::find($user_id);
 
         $seller = ($request->get('seller') == 'on');
         if ($user->seller()->exists() != $seller){
-            $user->seller = $seller;
+            if (!$seller)
+                $user->seller->delete();
+            else{
+                $seller_user = new Seller([
+                    'id' => $user_id,
+                ]);
+                $seller_user->save();
+            }
         }
 
         $global = ($request->get('global') == 'on');
         if ($user->globalMod()->exists() != $global){
-            $user->globalMod = $global;
+            if (!$global)
+                $user->globalMod()->delete();
+            else{
+                $global_user = new GlobalMod([
+                    'id' => $user_id,
+                ]);
+                $global_user->save();
+            }
         }
 
         $user->save();
@@ -122,15 +145,17 @@ class UserController extends Controller
     public function delete(Request $request, int $user_id) : RedirectResponse
     {
         if (Auth::guest()) {
-            return view('layouts.error');
+            return redirect()->back();        
         }
-        if (!$user->admin()->exists()){
-            return view('layouts.error');
+
+        $auth_user = User::find(Auth::id());
+        if (!$auth_user->moderator()){
+            return redirect()->back();        
         }
 
         $user = User::find($user_id);
 
         $user->delete();
 
-        return redirect('/')->with('message', 'User deleted successfully!');    }
+        return redirect()->back()->with('message', 'User deleted successfully!');    }
 }

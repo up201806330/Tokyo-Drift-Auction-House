@@ -101,6 +101,15 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all of the auctions that User is invited to
+     */
+    public function guestAuction($auction_id){
+        echo "<script>console.log('" . json_encode($this->auctionGuest()) . "');</script>";
+
+        return $this->auctionGuest()->where('auction_id', '=', $auction_id)->first();
+    }
+
+    /**
      * Get all of the auctions that User has favourited
      */
     public function auctionFavourite(){
@@ -153,9 +162,9 @@ class User extends Authenticatable
      /**
      * Get if user is banned
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
     public function banned(){
-        return $this->belongsTo(Ban::class, 'id');
+        return $this->belongsTo(Ban::class, 'id', 'user_id');
     }
 }

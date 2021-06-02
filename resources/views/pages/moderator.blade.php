@@ -86,7 +86,7 @@
                                                 <button type="submit" class="btn btn-outline-danger">Ban User</button>
                                             </div>
                                         </form>
-                                        <form method="post" action="{{ url('/users/' . $user['id'] . '/banned') }}">
+                                        <form method="post" action="{{ url('/users/' . $user['id']) }}">
                                             @csrf
                                             @method('delete')
                                             <div class="row p-2 rounded mb-1">
