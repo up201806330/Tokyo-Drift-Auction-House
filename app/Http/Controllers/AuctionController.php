@@ -41,7 +41,12 @@ class AuctionController extends Controller
     public function showCreateForm() : View
     {
         if (Auth::guest()) {
-            return redirect('/');
+            return view('layouts.error');
+        }
+
+        $user = User::find(Auth::id());
+        if (!$user->seller()->exists()){
+            return view('layouts.error');
         }
 
         $all_users = User::all();
@@ -248,7 +253,6 @@ class AuctionController extends Controller
 
         $user = User::find(Auth::id());
         if($auction->auctiontype == 'Private' && !($user->moderator() || $user->guestAuction($id))){
-            echo "<script>console.log('" . json_encode($user->guestAuction($id)) . "');</script>";
             return view('layouts.error');
         }
 
