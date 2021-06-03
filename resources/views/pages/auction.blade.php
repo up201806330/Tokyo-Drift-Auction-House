@@ -367,7 +367,7 @@
                     </div>
                 </div>
 
-                <div class="col fs-3">
+                <div class="d-flex align-items-center justify-content-center col fs-3">
                     <div id="bid-container" class="p-1">
                         <div class="text-center">Current Bid</div>
                         @if (isset($max_bid))
@@ -376,7 +376,7 @@
                             <div class="text-center fs-1">No bids</div>  
                         @endif
 
-                        <div id="bid-last-updated" class="text-center fs-6 text-secondary pb-1">Last updated 0 seconds ago</div>
+                        <div id="bid-last-updated" class="text-center fs-6 text-secondary pb-3">Last updated 0 seconds ago</div>
                     </div>
                     
                     <!-- Place Bid -->
@@ -467,31 +467,33 @@
                         @endif
                     </h4>
                 @else
-                    <h4 class="center-block mt-3 pb-2 pt-3 auction-status text-center">AUCTION HAS ENDED</h4>
+                    <h4 class="center-block my-3 py-3 auction-status text-center">AUCTION HAS ENDED</h4>
                     
-                    <div class="text-center mb-4 pb-3">
+                    {{-- <div class="text-center mb-4 pb-3">
                         <button class="btn rounded-pill text-center fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="show-results">SEE RESULTS</button>
                     </div>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapseExample"> --}}
                         @if (!is_null($highest_bidder))
                             @if (!Auth::guest())
                                 @if($highest_bidder->id == Auth::id())
-                                    <h4 class="fire-text center-block fs-2 mt-2 pb-1 text-center">
-                                        YOU ARE THE WINNER !
-                                    </h4>
-                                    <h4 class="center-block fs-2 mt-2 pb-0 text-center">
-                                        Reach out to the owner:
-                                    </h4>
-                                    <h4 class="center-block fs-2 mt-2 pb-5 text-center">
-                                        <a href="mailto:{{$owner->email}}" target="_blank" style="text-decoration:none; color: inherit;">{{$owner->email}}</a>
-                                    </h4>
+                                    <div class="center-block text-center mt-4 mb-5 pb-3">
+                                        <h4 class="fire-text fs-2 mt-2 pb-1">
+                                            YOU ARE THE WINNER!
+                                        </h4>
+                                        <h4 class="fs-2 mt-2">
+                                            Reach out to the owner:
+                                        </h4>
+                                        <h4 class="fs-2 mt-2">
+                                            <a href="mailto:{{$owner->email}}" target="_blank" style="text-decoration:none; color: inherit;" class="fw-bold">{{$owner->email}}</a>
+                                        </h4>
+                                    </div>
                                 @endif
                             @else
                                 <h4 class="fire-text center-block fs-2 mt-2 pb-5 text-center">{{$highest_bidder->username}} is the winner!</h4>
                             @endif
                         @endif
                         
-                        <div>
+                        {{-- <div>
                             <h4 class="center-block fs-2 mt-2 pb-1 px-auto text-center">Bidding History</h4>
                             <div class="container bg-light rounded py-3 mb-5">
                                 @if (is_null($bid_history))
@@ -532,10 +534,10 @@
                                     @endif
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
                         
                         
-                    </div>
+                    {{-- </div> --}}
                 @endif
                 
             </div>
@@ -555,7 +557,7 @@
         
             @if (!Auth::guest())
                 <!-- Place Comment -->
-                <div class="comment pb-2 clearfix rounded-3 border border-2">
+                <div class="comment pb-2 clearfix rounded-3 border border-1 border-secondary">
                     <form onsubmit="Comment.submit(this, auctionId).then(() => Comment.updateSection(auctionId)); return false;">
                         <!-- User and date -->
                         <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
