@@ -68,7 +68,7 @@
 
 @section('content')
 
-<section class="sign-in-container">
+<section class="sign-in-container" style="flex: 1;">
 
     <div class="container bg-light rounded py-3 mb-5">
 

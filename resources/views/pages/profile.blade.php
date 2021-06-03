@@ -8,8 +8,8 @@
 
 @section('content')
 
-<section class="sign-in-container" style="min-height: calc(100% - (106px + 176px));">
-    <div class="container bg-light rounded pb-1">
+<section class="sign-in-container" style="flex: 1;">
+    <div class="container bg-light rounded" style="height: 100%;">
         <div class="display-1 pt-5 ps-3 text-start">Profile page</div>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fs-5 ps-4 pt-1">
