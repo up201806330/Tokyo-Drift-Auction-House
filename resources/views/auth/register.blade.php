@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="sign-in-container">
+<div class="container-fluid sign-in-container fill-height px-0" style="flex: 1;">
 
-    <div class="modal modal-dialog modal-dialog-centered" id="sign-up-content">
+    <div class="modal modal-dialog modal-dialog-centered" id="sign-in-content">
         <div class="modal-content">
 
             <div class="modal-header sign-in-header">
@@ -82,27 +82,6 @@
                                     Sign up
                                 </button>
                             </div>
-
-                            <div class="row">
-                                <div class="col-5"><hr class="bg-dark border-5 border-top border-dark"></div>
-                                <div class="col-2 text-center">or</div>
-                                <div class="col-5"><hr class="bg-dark border-5 border-top border-dark"></div>
-                            </div>
-                            
-
-                            <!-- google button -->
-                            <a class="modal-footer justify-content-center login-button pt-3 text-decoration-none" href="../pages/profile.php"> 
-                                <div class='g-sign-in-button'>
-                                    <div class=content-wrapper>
-                                        <div class='logo-wrapper'>
-                                            <img src='https://developers.google.com/identity/images/g-logo.png'>
-                                        </div>
-                                        <span class='text-container'>
-                                            <span>Sign in with Google</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
 
                             <hr class="bg-dark border-5 border-top border-dark">
 
