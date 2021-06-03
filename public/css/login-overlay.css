@@ -40,10 +40,6 @@ background-color: rgb(49, 49, 49) !important;
     transition: 0.3s;
 }
 
-#exampleModal > div > div > hr:nth-child(5) {
-    margin-top: 0 !important;
-}
-
 .modal-open .container-fluid, .modal-open  .container {
     -webkit-filter: blur(1px) grayscale(5%);
 }

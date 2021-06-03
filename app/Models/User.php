@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Models\Image;
+use App\Notifications\MailResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -106,5 +107,15 @@ class User extends Authenticatable
      */
     public function auctionFavourite(){
         return $this->belongsToMany(Favourite::class);
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token){
+        $this->notify(new MailResetPasswordNotification($token));
     }
 }

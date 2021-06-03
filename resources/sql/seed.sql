@@ -10,6 +10,7 @@ DROP TYPE   IF EXISTS AUCTIONTYPE_T     CASCADE;
 DROP TYPE   IF EXISTS BANTYPE_T         CASCADE;
 
 DROP TABLE IF EXISTS "user"                 CASCADE;
+DROP TABLE IF EXISTS "password_reset_token" CASCADE;
 DROP TABLE IF EXISTS "global_mod"           CASCADE;
 DROP TABLE IF EXISTS "admin"                CASCADE;
 DROP TABLE IF EXISTS "seller"               CASCADE;
@@ -50,6 +51,12 @@ CREATE TABLE "user" (
     about           TEXT            ,
     registeredOn    PASTTIMESTAMP   ,
     profileImage    INTEGER         REFERENCES "image"(id)
+);
+
+CREATE TABLE "password_reset_token" (
+    email           EMAIL_T         NOT NULL,
+    token           TEXT            NOT NULL,
+    created_at      TIMESTAMP       NOT NULL
 );
 
 CREATE TABLE "global_mod" (
@@ -477,7 +484,8 @@ INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,l
 (18,18,'Yvonne','Odonnell','condimentum@velvulputate.edu','odonnel_y','WYQ13QQL6SR','Saint-Médard-en-Jalles','Renaults are the best cars in the world.','2021-03-30 12:38:24'),
 (19,19,'Palmer','Maldonado','Aliquam.tincidunt@orci.com','paler_mal','HTJ05GKL1QF','East Linton','Hey hey hey hey hey hey!','2021-03-30 12:38:24'),
 (20,20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24'),
-(21,17, 'John', 'Doe','user@example.com', 'johndoe', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'johnlocation', 'i really like cars :)', '2020-05-30 12:38:24');
+(21,17, 'John', 'Doe','user@example.com', 'johndoe', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'johnlocation', 'i really like cars :)', '2020-05-30 12:38:24'),
+(22,NULL, 'Diogo', 'Rodrigues','dmfrodrigues2000@gmail.com', 'dmfr', '$2y$10$QLI641qpYsP9ciIoDsuxoOXzB3F1k2roJhzXx/FPhMeMXZFaaAAye', 'Maia, Portugal', 'Student @FEUP', '2020-05-30 12:38:24');
 
 SELECT pg_catalog.setval(pg_get_serial_sequence('user', 'id'), (SELECT MAX(id) FROM "user")+1);
 

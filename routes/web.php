@@ -21,6 +21,10 @@ Route::post  ('/login'                              , 'Auth\LoginController@logi
 Route::get   ('/logout'                             , 'Auth\LoginController@logout'                 )->name('logout'            );
 Route::get   ('/register'                           , 'Auth\RegisterController@showRegistrationForm')->name('register'          );
 Route::post  ('/register'                           , 'Auth\RegisterController@register'            );
+Route::get   ('/password/reset/email'               , 'Auth\SendPasswordResetController@showLinkRequestForm')->name('password.reset.email');
+Route::post  ('/password/reset/email'               , 'Auth\SendPasswordResetController@sendResetLinkEmail' )->name('password.reset.email');
+Route::get   ('/password/reset'                     , 'Auth\PasswordResetController@showResetForm'  )->name('password.reset'    );
+Route::post  ('/password/reset'                     , 'Auth\PasswordResetController@postReset'      )->name('password.reset'    );
 Route::get   ('/auctions/new'                       , 'AuctionController@showCreateForm'            )->name('create_auction'    );
 Route::post  ('/auctions/new'                       , 'AuctionController@create'                    )->name('create_auction'    );
 Route::get   ('/auctions/{id}/bids/highest'         , 'AuctionController@getHighestBid'             )->name('highest_bid'       );
@@ -38,3 +42,9 @@ Route::post  ('/auctions'                           , 'SearchController@showFilt
 Route::get   ('/users/{id}/photo'                   , 'UserController@showPhoto'                    )->name('show_profile_photo');
 Route::get   ('/users/{id}'                         , 'UserController@showProfile'                  )->name('show_profile'      );
 Route::post  ('/users/{id}'                         , 'UserController@editProfile'                  )->name('edit_profile'      );
+
+use App\Notifications\MailResetPasswordNotification;
+
+Route::get   ('/mail', function () {
+    return (new MailResetPasswordNotification("123"))->toMail(null);
+});

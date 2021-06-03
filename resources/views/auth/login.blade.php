@@ -49,6 +49,12 @@
                         </button>
                     </div>
                 </form>
+
+                <div class="text-center"> 
+                    <a href="{{ route('password.reset.email') }}" class="blue-text ml-1">
+                        Forgot your password?
+                    </a>
+                </div>
             </div>
   
             <hr class="bg-dark border-4 border-top border-dark">
