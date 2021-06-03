@@ -34,16 +34,18 @@
                 <!-- Container For All Displayed Auctions -->
                 <main class="col ms-sm-auto pt-4 px-md-4">
                     <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-center">
+
                         @foreach ($fire_deals as $auction)
-                            
-                            @include('partials.auction_card', array(
-                                'id'            => $auction->id,
-                                'brand'         => $auction->vehicle->brand,
-                                'model'         => $auction->vehicle->model,
-                                'max_bid'       => $auction->getCurrentMaxBid(),
-                                'vehicle_imgs'  => $auction->getVehicleFromAuction(),
-                                'time_diff'     => $auction->getAdequateTimeDifference()
-                            ))
+                            @if ($auction->auctiontype == "Public" || (!Auth::guest() && (Auth::user()->guestAuction($auction->id) != null)))
+                                @include('partials.auction_card', array(
+                                    'id'            => $auction->id,
+                                    'brand'         => $auction->vehicle->brand,
+                                    'model'         => $auction->vehicle->model,
+                                    'max_bid'       => $auction->getCurrentMaxBid(),
+                                    'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                    'time_diff'     => $auction->getAdequateTimeDifference()
+                                ))
+                            @endif
                         @endforeach
                     
                     </div>
@@ -64,16 +66,18 @@
                 <!-- Container For All Featured Auctions -->
                 <main class="col ms-sm-auto pt-4 px-md-4">
                     <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-center">
+                        
                         @foreach ($featured_condition as $auction)
-                            
-                            @include('partials.auction_card', array(
-                                'id'            => $auction->id,
-                                'brand'         => $auction->vehicle->brand,
-                                'model'         => $auction->vehicle->model,
-                                'max_bid'       => $auction->getCurrentMaxBid(),
-                                'vehicle_imgs'  => $auction->getVehicleFromAuction(),
-                                'time_diff'     => $auction->getAdequateTimeDifference()
-                            ))
+                            @if ($auction->auctiontype == "Public" || (!Auth::guest() && (Auth::user()->guestAuction($auction->id) != null)))
+                                @include('partials.auction_card', array(
+                                    'id'            => $auction->id,
+                                    'brand'         => $auction->vehicle->brand,
+                                    'model'         => $auction->vehicle->model,
+                                    'max_bid'       => $auction->getCurrentMaxBid(),
+                                    'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                    'time_diff'     => $auction->getAdequateTimeDifference()
+                                ))
+                            @endif
                         @endforeach
                     
                     </div>
@@ -92,16 +96,18 @@
                 <!-- Container For All Featured Auctions -->
                 <main class="col ms-sm-auto pt-4 px-md-4">
                     <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-center">
+                        
                         @foreach ($past_auctions as $auction)
-                            
-                            @include('partials.auction_card', array(
-                                'id'            => $auction->id,
-                                'brand'         => $auction->vehicle->brand,
-                                'model'         => $auction->vehicle->model,
-                                'max_bid'       => $auction->getCurrentMaxBid(),
-                                'vehicle_imgs'  => $auction->getVehicleFromAuction(),
-                                'time_diff'     => $auction->getAdequateTimeDifference()
-                            ))
+                            @if ($auction->auctiontype == "Public" || (!Auth::guest() && (Auth::user()->guestAuction($auction->id) != null)))
+                                @include('partials.auction_card', array(
+                                    'id'            => $auction->id,
+                                    'brand'         => $auction->vehicle->brand,
+                                    'model'         => $auction->vehicle->model,
+                                    'max_bid'       => $auction->getCurrentMaxBid(),
+                                    'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                                    'time_diff'     => $auction->getAdequateTimeDifference()
+                                ))
+                            @endif
                         @endforeach
                     
                     </div>

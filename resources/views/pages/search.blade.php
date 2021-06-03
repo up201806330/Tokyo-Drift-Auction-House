@@ -80,18 +80,29 @@
             <li class="breadcrumb-item active" aria-current="page">Advanced Search</li>
         </ol>
     </nav>
-    <p class="fs-3 pt-3 ps-3">{{count($auctions_to_display)}} Results Found</p>
+
+    <p class="fs-3 pt-3 ps-3">
+        <?php 
+            $counter = 0;
+            foreach ($auctions_to_display as $auction)
+                if ($auction->auctiontype == "Public" || (!Auth::guest() && (Auth::user()->guestAuction($auction->id) != null))) $counter++;
+            echo $counter;
+        ?>
+         Results Found
+    </p>
     <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-around">
 
     @foreach ($auctions_to_display as $auction)
-        @include('partials.auction_card', array(
-            'id'            => $auction->id,
-            'brand'         => $auction->vehicle->brand,
-            'model'         => $auction->vehicle->model,
-            'max_bid'       => $auction->getCurrentMaxBid(),
-            'vehicle_imgs'  => $auction->getVehicleFromAuction(),
-            'time_diff'     => $auction->getAdequateTimeDifference()
-        ))
+        @if ($auction->auctiontype == "Public" || (!Auth::guest() && (Auth::user()->guestAuction($auction->id) != null)))
+            @include('partials.auction_card', array(
+                'id'            => $auction->id,
+                'brand'         => $auction->vehicle->brand,
+                'model'         => $auction->vehicle->model,
+                'max_bid'       => $auction->getCurrentMaxBid(),
+                'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                'time_diff'     => $auction->getAdequateTimeDifference()
+            ))
+        @endif
     @endforeach
     
     </div>
