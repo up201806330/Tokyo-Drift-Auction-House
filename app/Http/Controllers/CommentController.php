@@ -43,7 +43,7 @@ class CommentController extends Controller
     public function delete(Request $request, int $id, int $comment_id) {
         $comment = Comment::findOrFail($comment_id);
 
-        if (! Gate::allows('commentOwner', $comment)) {
+        if ((!Gate::allows('commentOwner', $comment)) && (!User::find($comment->user_id)->moderator())) {
             return redirect()->back();
         }
 
