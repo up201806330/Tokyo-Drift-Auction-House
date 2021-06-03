@@ -17,8 +17,8 @@
             
             @if (!Auth::guest() && (App\Models\User::findOrFail(Auth::id())->moderator() || App\Models\User::findOrFail(Auth::id())->modAuction($auction->id)))
                 <div class="moderator area m-3 text-center">
-                        <button type="button" style="display: inline-block;" class="btn rounded-pill m-1" id="ban_button"></button>
-                        <form class="delete_form" style="display: inline-block;" onsubmit="Comment.delete($this, auctionId); Comment.updateSection(auctionId); return false;">
+                        <form class="delete_form" style="display: inline-block;" onsubmit="Comment.delete(this, auctionId); Comment.updateSection(auctionId); return false;">
+                            @csrf
                             <input type="hidden" name="id">
                             <button type="submit" class="btn rounded-pill m-1" id="moderator_button">
                                 <i class="fa fa-trash"></i>

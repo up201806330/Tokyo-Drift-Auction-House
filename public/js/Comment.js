@@ -1,12 +1,11 @@
 class Comment {
-    constructor(id, auctionId, userId, username, createdOn, content, bannedUser){
+    constructor(id, auctionId, userId, username, createdOn, content){
         this.id        = id;
         this.auctionId = auctionId;
         this.userId    = userId;
         this.username  = username;
         this.createdOn = createdOn;
         this.content   = content;
-        this.bannedUser = bannedUser;
     }
 
     asElement(){
@@ -24,21 +23,6 @@ class Comment {
             this.createdOn.getDate     ().toString().padStart(2, '0');
         ret.querySelector('.content' ).innerHTML = this.content;
 
-        let self = this;
-        if(!this.bannedUser){
-            ret.querySelector('#ban_button').innerHTML = 'BAN FROM AUCTION';
-            ret.querySelector('#ban_button').onclick = function() {
-                self.banUser()
-                Comment.updateSection(auctionId);
-            };
-        }
-        else{
-            ret.querySelector('#ban_button').innerHTML = 'UNBAN FROM AUCTION';
-            ret.querySelector('#ban_button').onclick = function()  {
-                self.unbanUser()
-                Comment.updateSection(auctionId);
-            };
-        }
         let form = ret.querySelector('.delete_form');
         if (form!=null)
             form.querySelector('input[name="id"]').value = this.id;
@@ -47,12 +31,12 @@ class Comment {
 
     static fromSubmitForm(auctionId, form){
         let content = form.querySelector('#comment_input').value;
-        return new Comment(null, auctionId, userId, null, null, content, null);
+        return new Comment(null, auctionId, userId, null, null, content);
     }
 
     static fromDeleteForm(auctionId, form){
         let id = form.querySelector('input[name="id"]').value;
-        return new Comment(id, auctionId, null, null, null, null);
+        return new Comment(id, auctionId, null, null, null);
     }
 
     submit() {
@@ -64,15 +48,6 @@ class Comment {
     delete(){
         return api.delete(`auctions/${this.auctionId}/comments/${this.id}`);
     }
-
-    banUser(){
-        return api.post(`auctions/${this.auctionId}/banned/${this.userId}`);
-    }
-
-    unbanUser(){
-        return api.delete(`auctions/${this.auctionId}/banned/${this.userId}`);
-    }
-
 
     static async submit(form, auctionId) {
         let comment = Comment.fromSubmitForm(auctionId, form);
@@ -99,7 +74,6 @@ class Comment {
                 commentPrimitive['username'],
                 Utils.DateFromUTC(commentPrimitive['createdon']),
                 commentPrimitive['content'],
-                commentPrimitive['banned']
             )
         );
 

@@ -507,14 +507,14 @@
                                         @method('delete')
                                         @csrf
                                         <div class="row p-2 rounded mb-1">
-                                            <button type="submit" class="btn rounded-pill m-1" id="ban_button">Unban User</button>
+                                            <button type="submit" class="btn btn-outline-danger">Unban User</button>
                                         </div>
                                     </form>
                                 @else
                                     <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
                                         @csrf
                                         <div class="row p-2 rounded mb-1">
-                                            <button type="submit" class="btn rounded-pill m-1" id="ban_button">Ban User</button>
+                                            <button type="submit" class="btn btn-outline-danger">Ban User</button>
                                         </div>
                                     </form>
                                 @endif
