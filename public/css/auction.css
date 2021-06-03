@@ -162,7 +162,7 @@
     padding-bottom: var(--bs-gutter-x,.75rem);
 }
 
-#comment_section{
+#comment_section, #moderator_section{
     background-color: var(--dark-grey);
     overflow: auto;
     text-align: justify;
@@ -196,13 +196,13 @@
     transition: 0.3s;
 }
 
-#moderator_button{
+#moderator_button, #ban_button{
     background: var(--yellow);
     padding: 5px, 15px;
     color: var(--background-color);
 }
 
-#moderator_button:hover {
+#moderator_button:hover, #ban_button:hover {
     color: rgb(255, 157, 100);
     background: rgb(49, 49, 49);
 }
@@ -264,7 +264,7 @@
         margin: 0%;
     }
 
-    #comment_section{
+    #comment_section, #moderator_section{
         width: 100%;
         margin-top: 0;
         margin-bottom: 0;

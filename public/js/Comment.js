@@ -1,11 +1,12 @@
 class Comment {
-    constructor(id, auctionId, userId, username, createdOn, content){
+    constructor(id, auctionId, userId, username, createdOn, content, bannedUser){
         this.id        = id;
         this.auctionId = auctionId;
         this.userId    = userId;
         this.username  = username;
         this.createdOn = createdOn;
         this.content   = content;
+        this.bannedUser = bannedUser;
     }
 
     asElement(){
@@ -22,6 +23,22 @@ class Comment {
             (this.createdOn.getMonth()+1).toString().padStart(2, '0') + "-" +
             this.createdOn.getDate     ().toString().padStart(2, '0');
         ret.querySelector('.content' ).innerHTML = this.content;
+
+        let self = this;
+        if(!this.bannedUser){
+            ret.querySelector('#ban_button').innerHTML = 'BAN FROM AUCTION';
+            ret.querySelector('#ban_button').onclick = function() {
+                self.banUser()
+                Comment.updateSection(auctionId);
+            };
+        }
+        else{
+            ret.querySelector('#ban_button').innerHTML = 'UNBAN FROM AUCTION';
+            ret.querySelector('#ban_button').onclick = function()  {
+                self.unbanUser()
+                Comment.updateSection(auctionId);
+            };
+        }
         let form = ret.querySelector('.delete_form');
         if (form!=null)
             form.querySelector('input[name="id"]').value = this.id;
@@ -30,16 +47,12 @@ class Comment {
 
     static fromSubmitForm(auctionId, form){
         let content = form.querySelector('#comment_input').value;
-        return new Comment(null, auctionId, userId, null, null, content);
+        return new Comment(null, auctionId, userId, null, null, content, null);
     }
 
     static fromDeleteForm(auctionId, form){
         let id = form.querySelector('input[name="id"]').value;
-        return new Comment(id, auctionId, null, null, null);
-    }
-
-    static fromBanForm(auctionId, userId){
-        return new Comment(null, auctionId, userId, null, null, null);
+        return new Comment(id, auctionId, null, null, null, null);
     }
 
     submit() {
@@ -56,10 +69,10 @@ class Comment {
         return api.post(`auctions/${this.auctionId}/banned/${this.userId}`);
     }
 
-    static async banUser(form, auctionId){
-        let comment = Comment.fromBanForm(auctionId, form);
-        await comment.banUser();
+    unbanUser(){
+        return api.delete(`auctions/${this.auctionId}/banned/${this.userId}`);
     }
+
 
     static async submit(form, auctionId) {
         let comment = Comment.fromSubmitForm(auctionId, form);
@@ -85,7 +98,8 @@ class Comment {
                 commentPrimitive['user_id'],
                 commentPrimitive['username'],
                 Utils.DateFromUTC(commentPrimitive['createdon']),
-                commentPrimitive['content']
+                commentPrimitive['content'],
+                commentPrimitive['banned']
             )
         );
 

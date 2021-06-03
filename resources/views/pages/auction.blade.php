@@ -476,8 +476,9 @@
 
     <!-- Moderator Section -->
     @if (!Auth::guest() && (Auth::id() == $owner->id || App\Models\User::findOrFail(Auth::id())->moderator()))
-    <div class="display-1 text-center" style="margin-bottom: 0.5em;">Moderator Section</div>
-    <div class="d-block" style="margin-bottom: 1em;">
+    <div class="display-1 text-center">Moderator Section</div>
+    <div class="d-block around-container container bg-light rounded mb-5">
+        <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="moderator_section">
         <div class="user_search overflow-auto">
             <h5 class="text-center">Banned Users</h5>
             <div class="input-group form-container">
@@ -500,20 +501,20 @@
                                         <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
                                 </div>
                             </a>
-                            <div class="moderator area text-center">
+                            <div class="moderator_area text-center">
                                 @if ($user['banned'])
                                     <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
                                         @method('delete')
                                         @csrf
                                         <div class="row p-2 rounded mb-1">
-                                            <button type="submit" class="btn btn-outline-danger">Unban User</button>
+                                            <button type="submit" class="btn rounded-pill m-1" id="ban_button">Unban User</button>
                                         </div>
                                     </form>
                                 @else
                                     <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
                                         @csrf
                                         <div class="row p-2 rounded mb-1">
-                                            <button type="submit" class="btn btn-outline-danger">Ban User</button>
+                                            <button type="submit" class="btn rounded-pill m-1" id="ban_button">Ban User</button>
                                         </div>
                                     </form>
                                 @endif
@@ -522,6 +523,7 @@
                     @endif
                 @endforeach
             </div>
+        </div>
         </div>
     </div>
     @endif
