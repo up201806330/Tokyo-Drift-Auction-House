@@ -38,8 +38,6 @@ function validateForm() {
   date_end = document.getElementById("endingDate").value;
   time_end = document.getElementById("endingTime").value;
 
-  console.log(date_start);
-  console.log(time_start);
   date_time_start = new Date(date_start + "T" +  time_start);
   date_time_end = new Date(date_end + "T" +  time_end);
   today = new Date();
@@ -69,19 +67,14 @@ function validateForm() {
   var input = document.getElementById("private");
    if (input.checked) {
     let users = document.getElementById("user_rows").children;
-    console.log(users);
-    //check if there is at least one invited guest
-    if (users.length == 0){
-      console.log(":D");
-      animationErrorFormSubmit("If your auction is private, you must select at least one invited user.");
-      return false;
-    }
-    console.log("oh:(");
+    
+    let at_least_one_user = false;
     //place the hidden inputs for guests
     let hidden_users = document.getElementById("hidden_user_rows");
     for (let item of users) {
       let private_user = item.querySelector(".private_user").checked;
       if (private_user){
+        at_least_one_user = true;
         let user_id = item.querySelector(".user_id").innerHTML;
         let input = document.createElement("input");
         input.type = "hidden";
@@ -89,6 +82,12 @@ function validateForm() {
         input.value = user_id;
         hidden_users.appendChild(input);
       }
+    }
+
+    //check if there is at least one invited guest
+    if (!at_least_one_user){
+      animationErrorFormSubmit("If your auction is private, you must select at least one invited user.");
+      return false;
     }
   }
 

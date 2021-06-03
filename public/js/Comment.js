@@ -39,7 +39,6 @@ class Comment {
     }
 
     static fromBanForm(auctionId, userId){
-        console.log(userId);
         return new Comment(null, auctionId, userId, null, null, null);
     }
 

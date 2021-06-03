@@ -109,8 +109,10 @@ class AuctionController extends Controller
             $auction->save();
 
             $invited_users = $request->get('invited');
-            foreach($invited_users as $user){
-                $auction->guests()->attach($user);
+            if ($invited_users){
+                foreach($invited_users as $user){
+                    $auction->guests()->attach($user);
+                }
             }
         }
         $auction->save();
