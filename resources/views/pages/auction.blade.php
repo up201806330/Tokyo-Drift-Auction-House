@@ -7,6 +7,7 @@
     <script src="{{ asset('js/Comment.js')}}"></script>
     <script src="{{ asset('js/Bid.js')}}"></script>
     <script src="{{ asset('js/CountdownClock.js')}}"></script>
+    <script src="{{ asset('js/auction.js')}}"></script>
 
     <script>
         const auctionId = '{{$auction->id}}';
@@ -128,14 +129,14 @@
                             <form method="post" action="{{ route('remove_favourite', ['id' => $auction->id]) }}">
                             @method('delete')
                             @csrf
-                            <button type="submit" class="heart heart_favourite">
+                                <button type="submit" class="heart heart_favourite">
                         @else
                             <form method="post" action="{{ route('add_favourite', ['id' => $auction->id]) }}">
-                            <button type="submit" class="heart">
+                                <button type="submit" class="heart">
                         @endif
-                                <i class="fa fa-heart"></i>
-                            </button>
-                    <form>
+                                    <i class="fa fa-heart"></i>
+                                </button>
+                            </form>
                 @endif
             </div>
 
