@@ -367,7 +367,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex align-items-center justify-content-center col fs-3">
+                <div class="col fs-3">
                     <div id="bid-container" class="p-1">
                         <div class="text-center">Current Bid</div>
                         @if (isset($max_bid))
