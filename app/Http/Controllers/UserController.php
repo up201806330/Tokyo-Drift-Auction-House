@@ -7,6 +7,9 @@ use App\Models\Auction;
 use App\Models\Vehicle;
 use App\Models\Image;
 use App\Models\User;
+use App\Models\Seller;
+use App\Models\GlobalMod;
+use App\Models\Ban;
 use App\Models\Bid;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -94,4 +97,123 @@ class UserController extends Controller
         $user = User::findOrFail($user_id);
         return redirect('assets/'.$user->getImage()->path);
     }
+
+    public function ban(Request $request, int $user_id) : RedirectResponse
+    {
+        if (Auth::guest()) {
+            return redirect()->back();        
+        }
+
+        $auth_user = User::find(Auth::id());
+        $user = User::find($user_id);
+        if (!$auth_user->moderator() && !$auth_user->modAuction($request->get('auction'))){
+            return redirect()->back();        
+        }
+
+        $banType = "AllBan";
+        if ($request->get('banType'))
+            $banType = $request->get('banType');
+
+        // verify if this ban already
+        $ban = Ban::where('user_id', '=', $user_id)->where('auction_id', '=', $request->get('auction'))->where('ban_type', '=', $banType)->first();
+
+        if (!$ban){ 
+        $ban = new Ban([
+            'user_id' => $user_id,
+            'created_by' => Auth::id(), 
+            'ban_type' => $banType, 
+            'auction_id' => $request->get('auction'),
+        ]);
+        $ban->save();
+        }
+
+        return redirect()->back()->withSuccess('User banned successfully');
+    }
+
+    public function banAuction(Request $request, int $auction_id, int $user_id) : RedirectResponse
+    {
+        $request->merge([
+            'auction' => $auction_id,
+            'banType' => "AuctionBan",
+        ]);
+        return $this->ban($request, $user_id);
+    }
+
+    public function unbanAuction(Request $request, int $auction_id, int $user_id) : RedirectResponse
+    {
+        if (Auth::guest()) {
+            return redirect()->back();        
+        }
+
+        $auth_user = User::find(Auth::id());
+        $user = User::find($user_id);
+        if (!$auth_user->moderator()){
+            return redirect()->back();        
+        }
+
+        $ban = Ban::where('user_id', '=', $user_id)->where('auction_id', '=', $auction_id)->first();
+        $ban->delete();
+
+        return redirect()->back()->withSuccess('User unbanned successfully');
+    }
+
+    public function changePermissions(Request $request, int $user_id) : RedirectResponse
+    {
+        if (Auth::guest()) {
+            return redirect()->back();        
+        }
+
+        $auth_user = User::find(Auth::id());
+        $user = User::find($user_id);
+        if (!$auth_user->moderator()){
+            return redirect()->back();        
+        }
+
+        $user = User::find($user_id);
+
+        $seller = ($request->get('seller') == 'on');
+        if ($user->seller()->exists() != $seller){
+            if (!$seller)
+                $user->seller->delete();
+            else{
+                $seller_user = new Seller([
+                    'id' => $user_id,
+                ]);
+                $seller_user->save();
+            }
+        }
+
+        $global = ($request->get('global') == 'on');
+        if ($user->globalMod()->exists() != $global){
+            if (!$global)
+                $user->globalMod()->delete();
+            else{
+                $global_user = new GlobalMod([
+                    'id' => $user_id,
+                ]);
+                $global_user->save();
+            }
+        }
+
+        $user->save();
+
+        return redirect()->back()->withSuccess('Permissions updated successfully');
+    }
+
+    public function delete(Request $request, int $user_id) : RedirectResponse
+    {
+        if (Auth::guest()) {
+            return redirect()->back();        
+        }
+
+        $auth_user = User::find(Auth::id());
+        if (!$auth_user->moderator()){
+            return redirect()->back();        
+        }
+
+        $user = User::find($user_id);
+
+        $user->delete();
+
+        return redirect()->back()->with('message', 'User deleted successfully!');    }
 }

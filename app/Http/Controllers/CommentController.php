@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Auction;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,7 @@ class CommentController extends Controller
     public function delete(Request $request, int $id, int $comment_id) {
         $comment = Comment::findOrFail($comment_id);
 
-        if (! Gate::allows('commentOwner', $comment)) {
+        if ((!Gate::allows('commentOwner', $comment)) && (!User::find($comment->user_id)->moderator())) {
             return redirect()->back();
         }
 
@@ -57,6 +58,9 @@ class CommentController extends Controller
     public function getAuctionComments(Request $request, int $auction_id) : JsonResponse {
         if ($request->wantsJson()) {
             $comments = Auction::findOrFail($auction_id)->getComments();
+            foreach($comments as $comment){
+                $comment->banned = User::findOrFail($comment->user_id)->bannedAuction($auction_id);
+            }
             return response()->json($comments, 200);
         }
         else {
