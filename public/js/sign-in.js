@@ -13,14 +13,14 @@ function togglePw() {
   }
 
   function togglePw2() {
-    var password2 = document.querySelector('[name=password2]');
+    var password_confirmation = document.querySelector('[name=password_confirmation]');
 
-    if (password2.getAttribute('type')==='password') {
-      password2.setAttribute('type', 'text');
+    if (password_confirmation.getAttribute('type')==='password') {
+      password_confirmation.setAttribute('type', 'text');
       document.getElementById("font2").style.color='orange';
     }
     else {
-        password2.setAttribute('type','password');
+      password_confirmation.setAttribute('type','password');
         document.getElementById("font2").style.color='black';
     }
   }
