@@ -38,13 +38,15 @@
                 endingTime
             ),
             function (t) {
-                t = Math.max(-t, 0);
-                document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
-                document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
-                document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
-                document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
+                if (document.querySelector('#days') != null){
+                    t = Math.max(-t, 0);
+                    document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
+                    document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
+                    document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
+                    document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
 
-                auctionCountdown.begin = (new Date() < startingTime ? startingTime : endingTime);
+                    auctionCountdown.begin = (new Date() < startingTime ? startingTime : endingTime);
+                }
             }
         );
         auctionCountdown.start();
@@ -132,6 +134,7 @@
                                 <button type="submit" class="heart heart_favourite">
                         @else
                             <form method="post" action="{{ route('add_favourite', ['id' => $auction->id]) }}">
+                            @csrf
                                 <button type="submit" class="heart">
                         @endif
                                     <i class="fa fa-heart"></i>
