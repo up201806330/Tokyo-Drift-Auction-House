@@ -18,6 +18,19 @@ function privateChange() {
     }
 } 
 
+function animationErrorFormSubmit(error_text) {
+  let notif = document.getElementById("upload_error");
+  notif.classList.remove('notification')
+  notif.classList.add('notification');
+  notif.style.display = "block";
+
+  var elm = notif;
+  var newone = elm.cloneNode(true);
+  elm.parentNode.replaceChild(newone, elm);
+  let notif_text = document.getElementById("notification_text");
+  notif_text.innerHTML = error_text;
+}
+
 function validateForm() {
   //verify times
   date_start = document.getElementById("startingDate").value;
@@ -35,18 +48,20 @@ function validateForm() {
   date_time_start.setHours(date_time_start.getHours() + 1);
 
   if (date_time_start.getTime() <= today.getTime()) {
-    alert("Auction must start no sooner than a minute from now.");
+    animationErrorFormSubmit("Auction must start no sooner than a minute from now.");
     return false;
   }
   if (date_time_start.getTime() >= date_time_end.getTime()) {
-    alert("Ending Date must be at least one hour after Starting date.");
+    animationErrorFormSubmit("Ending Date must be at least one hour after Starting date.");
     return false;
   }
 
   //check if there is at least one photo
   let hidden_pictures = document.getElementById("hidden-input-pictures").children;
   if (hidden_pictures.length == 0){
-    alert("You must upload at least one photo.");
+
+    animationErrorFormSubmit("You must upload at least one photo!!");
+
     return false;
   }
 
@@ -54,12 +69,14 @@ function validateForm() {
   var input = document.getElementById("private");
    if (input.checked) {
     let users = document.getElementById("user_rows").children;
-
+    console.log(users);
     //check if there is at least one invited guest
     if (users.length == 0){
-      alert("If your auction is private, you must select at least one invited user.");
+      console.log(":D");
+      animationErrorFormSubmit("If your auction is private, you must select at least one invited user.");
       return false;
     }
+    console.log("oh:(");
     //place the hidden inputs for guests
     let hidden_users = document.getElementById("hidden_user_rows");
     for (let item of users) {

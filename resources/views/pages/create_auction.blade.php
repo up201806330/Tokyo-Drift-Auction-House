@@ -192,4 +192,14 @@
     </div>
 </div>
 
+<div class="red-notif" id="upload_error" style="display:none;z-index: 0;">
+    <div class="row align-items-center">
+        <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+            <i class="fa fa-times"></i>
+        </div>
+        <div class="col justify-content-center" id="notification_text">
+        </div>
+    </div>        
+</div>
+
 @endsection
