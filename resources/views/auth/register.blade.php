@@ -78,7 +78,7 @@
                                 </div>  
                             </div>
                             <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                                <button class="btn w-75 fw-bold" href="../pages/profile.php">
+                                <button class="btn rounded-pill w-75 fw-bold" href="../pages/profile.php">
                                     Sign up
                                 </button>
                             </div>
