@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 use \Carbon\Carbon;
 
@@ -72,6 +73,36 @@ class AuctionController extends Controller
         //if user not authenticated, redirect him to homepage
         if (Auth::guest()) {
             return redirect('/');
+        }
+
+        $validator = Validator::make($request->all(),
+            [
+                'auctionName'   => 'required|max:50',
+                'brand'         => 'required|max:50',
+                'model'         => 'required|max:50',
+                'year'          => 'required|numeric',
+                'condition'     => 'required|in:Mint,Clean,Average,Rough',
+                'horsepower'    => 'required|numeric',
+            ]);
+        if( $validator->fails() ) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        // date / time validator
+        $validator = Validator::make($request->all(), [
+            'startingdate' => 'required|date',
+            'endingdate'   => 'required|date|after:startingdate',
+        ]);
+        if( $validator->fails() ) { // Dates are the same or wrong; checking time
+            $validator = Validator::make($request->all(), [
+               'startingdate'    => 'required|date',
+               'endingdate'      => 'required|date|date_equals:startingdate',
+               'startingtime'    => 'required|date_format:H:i:s',
+               'endingtime'    => 'required|date_format:H:i:s|after_or_equal:startingtime',
+            ]);
+            if( $validator->fails() ) {
+               return redirect()->back()->withErrors(['End Date must be later than Start Date']);
+            }
         }
 
         //create vehicle
@@ -322,13 +353,22 @@ class AuctionController extends Controller
     }
 
     public function bid(Request $request, int $auction_id) : RedirectResponse {
+
+        $validated = $request->validate([
+            'amount' => 'required|numeric',
+        ]);
+
         $bid = new Bid;
 
         $bid->user_id = Auth::id();
         $bid->auction_id = $auction_id;
         $bid->amount = $request->get('amount');
 
-        $bid->save();
+        try {
+            $bid->save();
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors(['Invalid Amount']);
+        }
 
         return redirect()->back();
     }
@@ -353,6 +393,30 @@ class AuctionController extends Controller
      */
     public function editAuction(Request $request, int $auction_id) : RedirectResponse
     {
+        $validated = $request->validate([
+            'brand'         => 'required|max:50',
+            'model'         => 'required|max:50',
+            'year'          => 'required|numeric',
+            'condition'     => 'required|in:Mint,Clean,Average,Rough',
+            'horsepower'    => 'required|numeric',
+        ]);
+
+        // date / time validator
+        $validator = Validator::make($request->all(), [
+            'startingdate' => 'required|date',
+            'endingdate'   => 'required|date|after:startingdate',
+        ]);
+        if( $validator->fails() ) { // Dates are the same or wrong; checking time
+            $validator = Validator::make($request->all(), [
+               'startingdate'    => 'required|date',
+               'endingdate'      => 'required|date|date_equals:startingdate',
+               'startingtime'    => 'required|date_format:H:i:s',
+               'endingtime'    => 'required|date_format:H:i:s|after_or_equal:startingtime',
+            ]);
+            if( $validator->fails() ) {
+               return redirect()->back()->withErrors(['End Date must be later than Start Date']);
+            }
+        }
 
         $start = new Carbon($request->startingdate . ' ' . $request->startingtime, 'Europe/London');
         $end = new Carbon($request->endingdate . ' ' . $request->endingtime, 'Europe/London');
@@ -374,12 +438,16 @@ class AuctionController extends Controller
             return redirect()->back()->withErrors(['Invalid Vehicle Information']);
         }
 
-        // update auction information
-        Auction::where('id', $auction_id)->update(
-            [
-                'startingtime'  => Carbon::parse($start->setTimezone('UTC'))->format('Y-m-d H:i:s'),
-                'endingtime'    => Carbon::parse($end->setTimezone('UTC'))->format('Y-m-d H:i:s'),
-        ]);
+        try {
+            // update auction information
+            Auction::where('id', $auction_id)->update(
+                [
+                    'startingtime'  => Carbon::parse($start->setTimezone('UTC'))->format('Y-m-d H:i:s'),
+                    'endingtime'    => Carbon::parse($end->setTimezone('UTC'))->format('Y-m-d H:i:s'),
+            ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors(['Ending must be at least 1 hour after the Start']);
+        }
 
         return redirect()->back()->withSuccess('Updated successfully');
     }

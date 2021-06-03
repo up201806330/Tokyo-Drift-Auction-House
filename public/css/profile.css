@@ -54,7 +54,7 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   30% { opacity: 1; }
-  to { opacity: 0; }
+  to { opacity: 0; z-index: 0; }
 }
 
 .green-notif {

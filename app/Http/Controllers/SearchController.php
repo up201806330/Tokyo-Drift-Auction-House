@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 use \Carbon\Carbon;
 
@@ -61,6 +62,13 @@ class SearchController extends Controller
     }
 
     public function fromHomepageShowFiltered(Request $request, Array $rangeLimits) {
+
+        $validator = Validator::make($request->all(), [
+            'homepageSearch' => 'nullable|max:50',
+        ]);
+        if( $validator->fails() ) {
+            return redirect()->back()->withErrors($validator);
+         }
         
         $homepageSearch = $request->homepageSearch;
 
@@ -90,6 +98,20 @@ class SearchController extends Controller
             }
         
         try {
+            $validator = Validator::make($request->all(),
+            [
+                'textBoxSearch' => 'nullable|max:50',
+                'condition'     => 'nullable|in:Mint,Clean,Average,Rough,All',
+                'multiRangeHorsepowerMax'=> 'required|numeric',
+                'multiRangeHorsepowerMin'=> 'required|numeric',
+                'multiRangeYearMax'      => 'required|numeric',
+                'multiRangeYearMin'      => 'required|numeric',
+                'switchFinalizedAuctions'=> 'nullable|in:on',
+            ]);
+            if( $validator->fails() ) {
+                return redirect()->back()->withErrors($validator);
+            }
+
             $condition = ($request->condition == "All") ? null : $request->condition;
             $textBoxSearch = $request->textBoxSearch;
             $model = $request->model;
