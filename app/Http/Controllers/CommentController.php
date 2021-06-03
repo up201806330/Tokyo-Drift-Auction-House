@@ -21,6 +21,10 @@ class CommentController extends Controller
      */
     public function create(Request $request, int $auction_id) : int
     {
+        $validated = $request->validate([
+            'content'   => 'required|max:511|unique:comment',
+        ]);
+
         $comment = new Comment;
 
         // now probably never enters this if

@@ -48,10 +48,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd($data);
         return Validator::make($data, [
-            // 'name' => 'required|string|max:255',
-            // 'email' => 'required|string|email|max:255|unique:users',
-            // 'password' => 'required|string|min:6|confirmed',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:user',
+            'email' => 'required|regex:/(.+)@(.+)\.(.+)/i|unique:user',
+            'password' => 'required|string|confirmed',
         ]);
     }
 
@@ -70,8 +73,8 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'location' => 'idk',
-            'about' => 'about thing',
+            'location' => 'unknown',
+            'about' => '...',
             // 'registeredon' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
     }

@@ -58,7 +58,7 @@
                     <div class="form-group m-1 m-md-2">
                         <label for="horsePower">Horse Power</label>
                         <div class="input-group horsepower-input">
-                            <input type="number" min="0" max="2000" class="form-control input_box text-right" id="horsePower" name="horsepower" placeholder="Horse Power">
+                            <input required type="number" min="0" max="2000" class="form-control input_box text-right" id="horsePower" name="horsepower" placeholder="Horse Power">
                             <div class="input-group-append">
                                 <span class="input-group-text append_box">hp</span>
                             </div>

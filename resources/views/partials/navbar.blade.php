@@ -4,6 +4,13 @@
     alert("{{ session()->get('message') }}");
   </script>
   @endif
+  @if(request()->login)
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(){
+      document.getElementById("login-button").click();
+    });
+  </script>
+  @endif
   @include('auth.login')
   <nav class="navbar navbar-expand-xxl navbar-dark bg-navbar">
   <div class="container-fluid">
@@ -39,7 +46,7 @@
 
           @if (Auth::guest())
             <li>
-              <a type="button" class="nav-link btn text-white navbar-content-bold rounded-pill text-start" data-bs-toggle="modal" data-bs-target="#exampleModal">Log in</a>
+              <a id="login-button" type="button" class="nav-link btn text-white navbar-content-bold rounded-pill text-start" data-bs-toggle="modal" data-bs-target="#exampleModal">Log in</a>
             </li>
             <span class="left-vert-bar"></span>
             <li>
