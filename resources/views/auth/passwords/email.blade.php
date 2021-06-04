@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Get password reset link')
+
 @section('head')
     <script src="{{ asset('js/ResetPassword.js') }}"></script>
 @endsection
@@ -12,7 +14,7 @@
         <div class="modal-content">
 
             <div class="modal-header sign-in-header">
-                <h2 class="modal-title mx-auto fw-bold" id="exampleModalLabel">Reset password</h2>
+                <h2 class="modal-title mx-auto fw-bold" id="exampleModalLabel">Get password reset link</h2>
             </div>
 
             <hr class="bg-dark border-5 border-top border-dark">

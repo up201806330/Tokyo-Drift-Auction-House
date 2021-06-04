@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Register')
+
 @section('content')
 
 <div class="container-fluid sign-in-container fill-height px-0" style="flex: 1;">

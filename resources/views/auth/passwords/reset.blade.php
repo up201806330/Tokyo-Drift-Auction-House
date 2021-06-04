@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Reset password')
+
 @section('head')
     <script src="{{ asset('js/PasswordInput.js')}}"></script>
 @endsection
