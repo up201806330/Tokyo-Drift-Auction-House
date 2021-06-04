@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="{{ config("app.url") }}">
+    <base href="{{ config('app.url') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,8 +18,6 @@
     <script src="https://kit.fontawesome.com/2fb51e88be.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
-    {{-- <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     <script src="{{ asset('js/Utils.js')}}"></script>
     <script src="{{ asset('js/PasswordInput.js')}}"></script>
@@ -31,14 +29,13 @@
     <link rel="stylesheet" href="{{ asset('css/tpl_search.css')}}">
     <link rel="stylesheet" href="{{ asset('css/tpl_auction_card.css')}}">
     <link rel="stylesheet" href="{{ asset('css/auction.css')}}">
-    {{-- <link rel="stylesheet" href="../css/tpl_mod.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/login-overlay.css')}}">
     <link rel="stylesheet" href="{{ asset('css/sign-up.css')}}">
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
     <link rel="stylesheet" href="{{ asset('css/create_auction.css')}}">
     <link rel="stylesheet" href="{{ asset('css/tpl_tos.css')}}">
 
-    {{-- REST API --}}
+    <!-- REST API -->
     <script src="{{ asset('js/RestApi.js')}}"></script>
     <script>
       const apiUrl = '{{ config("app.url") }}';
