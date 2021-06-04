@@ -23,7 +23,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="container d-flex justify-content-center position-relative">
                         <div class="d-flex justify-content-center circular--portrait img-fluid">
-                            <img src="{{ url('users/'.$profileOwner->id.'/photo') }}" alt="" class="position-absolute">
+                            <img src="{{ url('users/'.$profileOwner->id.'/photo') }}" alt="" class="">
                         </div>
                         
                         <div class="position-absolute" style="margin-bottom:220px; margin-left:220px">
@@ -75,13 +75,9 @@
 
                             @if (!Auth::guest())
                                 @if (Auth::user()->id == $profileOwner->id)
-                                    {{-- <div class="col d-flex justify-content-start align-items-center"> --}}
-    
                                         <a class="" data-bs-toggle="collapse" href="#generalCollapse" role="button" aria-expanded="false" aria-controls="generalCollapse">
-                                            <i style="font-size:3em !important;" class="fa fa-cog edit-cog" aria-hidden="true"></i>
+                                            <i style="font-size:3.3em !important; margin-top: -0.05em; margin-left: 0.3em;" class="fa fa-cog edit-cog" aria-hidden="true"></i>
                                         </a>
-    
-                                    {{-- </div> --}}
                                 @endif
                             @endif
     
