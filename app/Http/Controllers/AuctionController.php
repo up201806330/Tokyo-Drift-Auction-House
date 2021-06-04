@@ -309,6 +309,10 @@ class AuctionController extends Controller
             return view('layouts.error');
         }
 
+        if($user->bannedAuction($id)->exists()){
+            return view('pages.banned_auction');
+        }
+
         $owner = User::findOrFail($vehicle->owner);
         $auction_comments = $auction->getComments();
 
