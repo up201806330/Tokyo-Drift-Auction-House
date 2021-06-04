@@ -21,7 +21,7 @@ class UserController extends Controller
     public function showProfile(int $id) : View
     {
         $profileOwner = User::findOrFail($id);
-        $profileImage = Image::findOrFail($profileOwner->profileimage);
+        // $profileImage = Image::findOrFail($profileOwner->profileimage);
 
         $biddingAuctions = Auction::whereIn('id', Bid::distinct('auction_id')
             ->where('user_id', $id)
@@ -40,7 +40,7 @@ class UserController extends Controller
         
         return view('pages.profile', [
             'profileOwner' => $profileOwner,
-            'profileImage' => $profileImage,
+            // 'profileImage' => $profileImage,
             'biddingAuctions' => $biddingAuctions,
             'ownedAuctions' => $ownedAuctions,
             'favouriteAuctions' => $favouriteAuctions,
@@ -71,7 +71,21 @@ class UserController extends Controller
             $fileNameExtension = ".jpg";
 
             // Upload file
-            $file->move(base_path('public\assets\profile_photos'), User::findOrFail($user_id)->profileimage . $newFileName);
+            if (is_null(User::findOrFail($user_id)->profileimage)) {
+
+                $image = new Image([
+                    'path' => 'profile_photos/' . $user_id . '.jpg',
+                ]);
+                $image->save();
+                
+                User::where('id', $user_id)->update(['profileimage' => $image->id]);
+
+                $file->move(base_path('public\assets\profile_photos'), $user_id . $fileNameExtension);
+
+                return redirect()->back()->withSuccess('Updated successfully');
+            }           
+
+            $file->move(base_path('public\assets\profile_photos'), $user_id . $fileNameExtension);
         }
 
         // editing profile information
@@ -92,6 +106,6 @@ class UserController extends Controller
     public function showPhoto(Request $request, int $user_id) : RedirectResponse
     {
         $user = User::findOrFail($user_id);
-        return redirect('assets/'.$user->getImage()->path);
+        return redirect($user->getImagePath());
     }
 }
