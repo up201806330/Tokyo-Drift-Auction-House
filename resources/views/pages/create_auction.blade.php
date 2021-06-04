@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-12 col-lg-8 m-0">
                     <fieldset class="form-group text-center">
-                        <button class="btn btn-search" type="button" onclick="button_click()">Upload Image</button>
+                        <button class="btn btn-search w-100" type="button" onclick="button_click()">Upload Image</button>
                         <input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>
                     </fieldset>
                     <div id="preview-images-zone"></div>
@@ -116,36 +116,73 @@
                 <input class="form-check-input" type="checkbox" id="private" name="private" onclick="privateChange()">
                 <label class="form-check-label private_label" for="private">Private Auction</label>
             </div>
-            <div id="private_content" class="overflow-auto">
-                <h5 class="text-center">Invited Bidders</h5>
-                <div class="input-group form-container">
-                    <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
-                    <span class="input-group-btn">
-                        <button class="btn btn-search" type="button" onclick="updateUsers()">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-                <!-- Show the users for selection, filter through js-->
-                <div id="user_rows">
-                    @foreach($users as $user)
-                        <div class="user_row d-flex justify-content-between align-items-center">
-                            <span class="user_id d-none">{{$user['id']}}</span>
-                            <a href="../pages/profile.php" class="profile_text">
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
-                                        <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+
+            <div class="d-flex">
+                <div id="moderators_content" class="moderator_search overflow-auto">
+                    <h5 class="text-center">Auction Moderators</h5>
+                    <div class="input-group form-container">
+                        <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-search" type="button" onclick="updateModerators()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- Show the users for selection, filter through js-->
+                    <div id="moderator_rows">
+                        @foreach($users as $user)
+                            @if (!$user['moderator'] && !($user['id']==Auth::id()))
+                                <div class="user_row d-flex justify-content-between align-items-center">
+                                    <span class="user_id d-none">{{$user['id']}}</span>
+                                    <a href="../pages/profile.php" class="profile_text">
+                                        <div class="d-flex justify-content-start align-items-center">
+                                            <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                                <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+                                        </div>
+                                    </a>
+                                    <div class="moderator area text-center">
+                                        <div class="form-group form-check form-switch">
+                                            <input class="form-check-input moderator_user" type="checkbox">
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
-                            <div class="moderator area text-center">
-                                <div class="form-group form-check form-switch">
-                                    <input class="form-check-input private_user" type="checkbox">
+                            @endif
+                        @endforeach
+                    </div>
+                    <div id="hidden_moderator_rows"></div>
+                </div>
+
+                <div id="private_content" class="user_search overflow-auto">
+                    <h5 class="text-center">Invited Bidders</h5>
+                    <div class="input-group form-container">
+                        <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-search" type="button" onclick="updateUsers()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <!-- Show the users for selection, filter through js-->
+                    <div id="user_rows">
+                        @foreach($users as $user)
+                            <div class="user_row d-flex justify-content-between align-items-center">
+                                <span class="user_id d-none">{{$user['id']}}</span>
+                                <a href="../pages/profile.php" class="profile_text">
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                            <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+                                    </div>
+                                </a>
+                                <div class="moderator area text-center">
+                                    <div class="form-group form-check form-switch">
+                                        <input class="form-check-input private_user" type="checkbox">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+                    <div id="hidden_user_rows"></div>
                 </div>
-                <div id="hidden_user_rows"></div>
             </div>
 
             <div class="text-center">
@@ -155,30 +192,14 @@
     </div>
 </div>
 
-@if($errors->any())
-    <div class="notification red-notif">
-        <div class="row align-items-center">
-            <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
-                <i class="fa fa-times"></i>
-            </div>
-            <div class="col justify-content-center">
-                {{$errors->first()}}
-            </div>
-        </div>        
-    </div>
-@else
-    @if(session('success'))
-        <div class="notification green-notif">
-            <div class="row align-items-center">
-                <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
-                    <i class="fa fa-check"></i>
-                </div>
-                <div class="col justify-content-center">
-                    {{session('success')}}
-                </div>
-            </div>        
+<div class="red-notif" id="upload_error" style="display:none;z-index: 0;">
+    <div class="row align-items-center">
+        <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+            <i class="fa fa-times"></i>
         </div>
-    @endif
-@endif
+        <div class="col justify-content-center" id="notification_text">
+        </div>
+    </div>        
+</div>
 
 @endsection

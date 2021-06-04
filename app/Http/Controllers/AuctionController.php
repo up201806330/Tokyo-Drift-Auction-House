@@ -11,6 +11,7 @@ use App\Models\Image;
 use App\Models\VehicleImage;
 use App\Models\User;
 use App\Models\AuctionGuest;
+use App\Models\AuctionModerator;
 use App\Models\Favourite;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -42,8 +43,12 @@ class AuctionController extends Controller
     public function showCreateForm() : View
     {
         if (Auth::guest()) {
-            // TODO -> em vez de redirecionar, aparecer overlay
-            return redirect('/login');
+            return view('layouts.error');
+        }
+
+        $user = User::find(Auth::id());
+        if (!$user->seller()->exists()){
+            return view('layouts.error');
         }
 
         $all_users = User::all();
@@ -53,6 +58,7 @@ class AuctionController extends Controller
                 'id' => $user->id,
                 'username' => $user->username,
                 'image_path' => Image::findOrFail($user->profileimage)->path,
+                'moderator' => $user->moderator(),
             ];
             array_push($users, $new_user);
         }
@@ -134,11 +140,30 @@ class AuctionController extends Controller
             $auction->save();
 
             $invited_users = $request->get('invited');
-            foreach($invited_users as $user){
-                $auction->guests()->attach($user);
+            if ($invited_users){
+                foreach($invited_users as $user){
+                    $auction->guests()->attach($user);
+                }
             }
         }
         $auction->save();
+
+        //moderators handling
+        $moderators = $request->get('moderator');
+        if ($moderators){
+            foreach($moderators as $user){
+                $auction_moderator = new AuctionModerator([
+                    'user_id' => $user,
+                    'auction_id' => $auction->id,                
+                ]);
+                $auction_moderator->save();
+            }
+        }
+        $auction_moderator = new AuctionModerator([
+            'user_id' => Auth::id(),
+            'auction_id' => $auction->id,                
+        ]);
+        $auction_moderator->save();
 
         //pictures
         $directory = base_path('public/assets/car_photos/' . $vehicle->id);
@@ -278,18 +303,10 @@ class AuctionController extends Controller
 
         $images_paths = $auction->getVehicleFromAuction();
 
-        // $images_paths = DB::table('image')
-        // ->join('vehicle_image', 'vehicle_image.image_id', '=', 'image.id')
-        // ->join('vehicle', 'vehicle.id', '=', 'vehicle_image.vehicle_id')
-        // ->select('vehicle.id', 'vehicle_image.sequence_number', 'image.path')
-        // ->where('vehicle.id', '=', $vehicle->id)
-        // ->get();
-
-        // $current_max_bid_amount = DB::table('bid')
-        //                 ->join('auction', 'auction.id', '=', 'bid.auction_id')
-        //                 ->select('auction.id', 'bid.user_id', 'bid.amount')
-        //                 ->where('auction.id', '=', $auction->id)
-        //                 ->max('bid.amount');
+        $user = User::find(Auth::id());
+        if($auction->auctiontype == 'Private' && !($user->moderator() || $user->guestAuction($id))){
+            return view('layouts.error');
+        }
 
         $owner = User::findOrFail($vehicle->owner);
         $owner_profile_img = Image::findOrFail($owner->profileimage);
@@ -303,6 +320,23 @@ class AuctionController extends Controller
             if (!($favourite_db->isEmpty()))
                 $favourite = true;
         }
+
+        $users=[];
+        //check if moderator to fill moderator area
+        if (!Auth::guest() && $user->moderator()) {
+            $all_users = User::all();
+            foreach($all_users as $user){
+                $new_user = [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'image_path' => Image::findOrFail($user->profileimage)->path,
+                    'moderator' => $user->moderator(),
+                    'invited' => $user->guestAuction($id),
+                    'banned' => $user->bannedAuction($auction->id),
+                ];
+                array_push($users, $new_user);
+            }
+        } 
 
         try {
             $current_max_bid_amount = Bid::where('auction_id', '=', $id)->max('amount');
@@ -333,6 +367,7 @@ class AuctionController extends Controller
                 'bidder_img'    => null,
                 'comments'      => $auction_comments,
                 'favourite'     => $favourite,
+                'users'         => $users,
                 'bid_history'   => null
             ]);
         }
@@ -348,6 +383,7 @@ class AuctionController extends Controller
             'bidder_img'    => $highest_bidder_profile_img,
             'comments'      => $auction_comments,
             'favourite'     => $favourite,
+            'users'         => $users,
             'bid_history'   => $bid_history
         ]);
     }
