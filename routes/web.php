@@ -49,6 +49,8 @@ Route::post  ('/users/{id}/banned'                  , 'UserController@ban'      
 Route::post  ('/auctions/{id}/banned/{user_id}'     , 'UserController@banAuction'                   )->name('ban_auction'       );
 Route::delete('/auctions/{id}/banned/{user_id}'     , 'UserController@unbanAuction'                 );
 
+Route::get   ('/banned'                             , function () { return view('pages.banned'); }  )->name('banned'            );
+
 use App\Notifications\MailResetPasswordNotification;
 
 Route::get   ('/mail', function () {

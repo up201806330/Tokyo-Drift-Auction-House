@@ -182,6 +182,15 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user is seller
+     *
+     * @return bool
+     */
+    public function isSeller() : bool {
+        return $this->seller()->exists();
+    }
+
+    /**
      * Get if user is moderator (of any kind)
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

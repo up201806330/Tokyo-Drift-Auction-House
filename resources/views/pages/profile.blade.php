@@ -61,15 +61,21 @@
                     </p>
                     
                     <div class="container iconHolder d-flex justify-content-center">
-                        <a class="permission-icon" href="../pages/mod.php" data-mdb-toggle="tooltip" title="Moderator">
+                        @if($profileOwner->moderator())
+                        <a class="permission-icon" href="{{route('moderator')}}" data-mdb-toggle="tooltip" title="Moderator">
                             <i class="fas fa-user-cog gold fa-3x pe-3"></i> 
                         </a>
-                        <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Buyer">
+                        @endif
+
+                        <a class="permission-icon" data-mdb-toggle="tooltip" title="Buyer">
                             <i class="fas fa-wallet red fa-3x"></i>
                         </a>
-                        <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Seller">
+
+                        @if ($profileOwner->isSeller())
+                        <a class="permission-icon" data-mdb-toggle="tooltip" title="Seller">
                             <i class="fas fa-store green fa-3x ps-3"></i>
                         </a>
+                        @endif
 
                         {{-- <div class="position-absolute" style="margin-bottom:220px; margin-left:260px"> --}}
 
