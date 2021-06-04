@@ -624,9 +624,9 @@ SELECT pg_catalog.setval(pg_get_serial_sequence('comment', 'id'), (SELECT MAX(id
 
 -- Banned Users --
 INSERT INTO "ban" (id,user_id,created_by,createdOn,ban_type) VALUES
-(1, 20, 1, '2021-03-31 15:27:38','AllBan'),
-(2, 19, 1, '2021-03-31 15:27:38','AllBan'),
-(3, 18, 1, '2021-03-31 15:27:38','AllBan');
+(1, 20, 2, '2021-03-31 15:27:38','AllBan'),
+(2, 19, 2, '2021-03-31 15:27:38','AllBan'),
+(3, 18, 2, '2021-03-31 15:27:38','AllBan');
 INSERT INTO "ban" (id,user_id,created_by,createdOn,ban_type,auction_id) VALUES
 (4, 8, 3, '2021-03-31 15:27:38','AuctionBan',14);
 
