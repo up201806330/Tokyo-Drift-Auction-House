@@ -7,9 +7,7 @@ class PasswordInput {
      * @param {DOMElement} el Clickable element signalling if password visibility is toggled
      * @param {String} name Name of the input field to be toggled
      */
-    static toggle(el, name) {
-        var password = document.querySelector(`[name="${name}"]`);
-
+    static toggle(el, password) {
         if (password.getAttribute('type') === 'password') {
             password.setAttribute('type', 'text');
             el.style.color = 'orange';

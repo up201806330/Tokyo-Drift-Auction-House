@@ -53,16 +53,17 @@ class AuctionController extends Controller
 
         $all_users = User::all();
         $users=[];
+
         foreach($all_users as $user){
             $new_user = [
                 'id' => $user->id,
                 'username' => $user->username,
-                'image_path' => Image::findOrFail($user->profileimage)->path,
+                'image_path' => $user->getImagePath(),
                 'moderator' => $user->moderator(),
             ];
             array_push($users, $new_user);
         }
-        
+
         return view('pages.create_auction', [
             'users' => $users,
         ]);

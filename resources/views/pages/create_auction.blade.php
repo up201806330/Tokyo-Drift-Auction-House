@@ -136,7 +136,7 @@
                                     <span class="user_id d-none">{{$user['id']}}</span>
                                     <a href="../pages/profile.php" class="profile_text">
                                         <div class="d-flex justify-content-start align-items-center">
-                                            <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                            <img src="{{ $user['image_path'] }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
                                                 <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
                                         </div>
                                     </a>
@@ -169,7 +169,7 @@
                                 <span class="user_id d-none">{{$user['id']}}</span>
                                 <a href="../pages/profile.php" class="profile_text">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                        <img src="{{ $user['image_path'] }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
                                             <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
                                     </div>
                                 </a>
