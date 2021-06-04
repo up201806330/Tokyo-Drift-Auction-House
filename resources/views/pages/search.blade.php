@@ -7,8 +7,8 @@
 
 @section('content')
 
-<div class="container-fluid" id="search-background" style="min-height: 72%;">
-<div class="row">
+<div class="container-fluid" id="search-background" style="flex: 1;">
+<div class="row h-100">
 
 
 <a class="btn toggleSidebar text-white border-top-1 rounded-0" data-bs-toggle="collapse" href="#sidebarMenu" role="button" aria-expanded="true" aria-controls="collapseExample">
@@ -16,7 +16,7 @@
 </a>
 
 <!-- Sidebar -->
-<nav id="sidebarMenu" class="col col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary  collapse show text-white" style="max-height: 648.8px;">
+<nav id="sidebarMenu" class="col col-12 col-sm-12 col-md-12 col-lg-3 border-end border-secondary  collapse show text-white">
     <div class="position-sticky py-3">
         <form id="search-general" method="post" action="{{ route('search') }}">
             @csrf
@@ -80,18 +80,29 @@
             <li class="breadcrumb-item active" aria-current="page">Advanced Search</li>
         </ol>
     </nav>
-    <p class="fs-3 pt-3 ps-3">{{count($auctions_to_display)}} Results Found</p>
+
+    <p class="fs-3 pt-3 ps-3">
+        <?php 
+            $counter = 0;
+            foreach ($auctions_to_display as $auction)
+                if ($auction->auctiontype == "Public" || (!Auth::guest() && (Auth::user()->guestAuction($auction->id) != null))) $counter++;
+            echo $counter;
+        ?>
+         Results Found
+    </p>
     <div class="row row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 d-flex justify-content-around">
 
     @foreach ($auctions_to_display as $auction)
-        @include('partials.auction_card', array(
-            'id'            => $auction->id,
-            'brand'         => $auction->vehicle->brand,
-            'model'         => $auction->vehicle->model,
-            'max_bid'       => $auction->getCurrentMaxBid(),
-            'vehicle_imgs'  => $auction->getVehicleFromAuction(),
-            'time_diff'     => $auction->getAdequateTimeDifference()
-        ))
+        @if ($auction->auctiontype == "Public" || (!Auth::guest() && (Auth::user()->guestAuction($auction->id) != null)))
+            @include('partials.auction_card', array(
+                'id'            => $auction->id,
+                'brand'         => $auction->vehicle->brand,
+                'model'         => $auction->vehicle->model,
+                'max_bid'       => $auction->getCurrentMaxBid(),
+                'vehicle_imgs'  => $auction->getVehicleFromAuction(),
+                'time_diff'     => $auction->getAdequateTimeDifference()
+            ))
+        @endif
     @endforeach
     
     </div>

@@ -7,6 +7,7 @@
     <script src="{{ asset('js/Comment.js')}}"></script>
     <script src="{{ asset('js/Bid.js')}}"></script>
     <script src="{{ asset('js/CountdownClock.js')}}"></script>
+    <script src="{{ asset('js/auction.js')}}"></script>
 
     <script>
         const auctionId = '{{$auction->id}}';
@@ -37,13 +38,15 @@
                 endingTime
             ),
             function (t) {
-                t = Math.max(-t, 0);
-                document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
-                document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
-                document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
-                document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
+                if (document.querySelector('#days') != null){
+                    t = Math.max(-t, 0);
+                    document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
+                    document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
+                    document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
+                    document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
 
-                auctionCountdown.begin = (new Date() < startingTime ? startingTime : endingTime);
+                    auctionCountdown.begin = (new Date() < startingTime ? startingTime : endingTime);
+                }
             }
         );
         auctionCountdown.start();
@@ -68,7 +71,7 @@
 
 @section('content')
 
-<section class="sign-in-container">
+<section class="sign-in-container" style="flex: 1;">
 
     <div class="container bg-light rounded py-3 mb-5">
 
@@ -128,14 +131,15 @@
                             <form method="post" action="{{ route('remove_favourite', ['id' => $auction->id]) }}">
                             @method('delete')
                             @csrf
-                            <button type="submit" class="heart heart_favourite">
+                                <button type="submit" class="heart heart_favourite">
                         @else
                             <form method="post" action="{{ route('add_favourite', ['id' => $auction->id]) }}">
-                            <button type="submit" class="heart">
+                            @csrf
+                                <button type="submit" class="heart">
                         @endif
-                                <i class="fa fa-heart"></i>
-                            </button>
-                    <form>
+                                    <i class="fa fa-heart"></i>
+                                </button>
+                            </form>
                 @endif
             </div>
 
@@ -214,142 +218,143 @@
             </div>
         </div>
 
-
-        <!-- Edit Auction Collapsable -->
-        <div class="collapse" id="editAuctionCollapse">
-            <form id="profile-general" method="post" action="{{'/auctions/' . $auction->id}}">
-                @csrf
-                <div class="row" style="--bs-gutter-x:0;">
-                    <div class="col form-floating mb-3 align-self-start">
-                        <input required type="text" name="brand" class="form-control" id="floatingInput" value="{{ old('brand', $vehicle->brand) }}">
-                        <label for="floatingInput">Brand</label>
-                    </div>
-
-                    <div class="col form-floating mb-3 ">
-                        <input required type="text" name="model" class="form-control" id="floatingInput" value="{{ old('model', $vehicle->model) }}">
-                        <label for="floatingInput">Model</label>
-                    </div>
-
-                    <div class="col form-floating mb-3 year-input">
-                        <input required type="number" name="year" class="form-control" id="floatingInput" value="{{ old('year', $vehicle->year) }}">
-                        <label for="floatingInput">Year</label>
-                    </div>
-                </div>
-
-                <div class="row" style="--bs-gutter-x:0;">
-                    @if (\Carbon\Carbon::now()->lte($auction->startingtime))
+        @if (!Auth::guest() && (Auth::user()->id == $owner->id))
+            <!-- Edit Auction Collapsable -->
+            <div class="collapse" id="editAuctionCollapse">
+                <form id="profile-general" method="post" action="{{'/auctions/' . $auction->id}}">
+                    @csrf
+                    <div class="row" style="--bs-gutter-x:0;">
                         <div class="col form-floating mb-3 align-self-start">
-                            <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
-                                <option selected="false" value="Mint">Mint</option>
-                                <option selected="false" value="Clean">Clean</option>
-                                <option selected="false" value="Average">Average</option>
-                                <option selected="false" value="Rough">Rough</option>
-                            </select>
-                            <label for="floatingInput">Condition</label>
+                            <input required type="text" name="brand" class="form-control" id="floatingInput" value="{{ old('brand', $vehicle->brand) }}">
+                            <label for="floatingInput">Brand</label>
                         </div>
 
-                        <script>
-                            // change the default selected option to the current one
-                            let options = document.querySelectorAll('#selectCondition option');
-                            let optionsArray = Array.prototype.slice.call(options);
-                            
-                            optionsArray.forEach(option => {
-                                if (option.getAttribute('value') == '{{$vehicle->condition}}') {
-                                    option.selected = true;
-                                } else { option.selected = false; }
-                            });
-                        </script>
-                    @else
+                        <div class="col form-floating mb-3 ">
+                            <input required type="text" name="model" class="form-control" id="floatingInput" value="{{ old('model', $vehicle->model) }}">
+                            <label for="floatingInput">Model</label>
+                        </div>
+
                         <div class="col form-floating mb-3 year-input">
-                            <input required type="text" name="condition" class="form-control" id="floatingInput" value="{{$vehicle->condition}}" readonly>
-                            <label for="floatingInput">Condition</label>
+                            <input required type="number" name="year" class="form-control" id="floatingInput" value="{{ old('year', $vehicle->year) }}">
+                            <label for="floatingInput">Year</label>
+                        </div>
+                    </div>
+
+                    <div class="row" style="--bs-gutter-x:0;">
+                        @if (\Carbon\Carbon::now()->lte($auction->startingtime))
+                            <div class="col form-floating mb-3 align-self-start">
+                                <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
+                                    <option selected="false" value="Mint">Mint</option>
+                                    <option selected="false" value="Clean">Clean</option>
+                                    <option selected="false" value="Average">Average</option>
+                                    <option selected="false" value="Rough">Rough</option>
+                                </select>
+                                <label for="floatingInput">Condition</label>
+                            </div>
+
+                            <script>
+                                // change the default selected option to the current one
+                                let options = document.querySelectorAll('#selectCondition option');
+                                let optionsArray = Array.prototype.slice.call(options);
+                                
+                                optionsArray.forEach(option => {
+                                    if (option.getAttribute('value') == '{{$vehicle->condition}}') {
+                                        option.selected = true;
+                                    } else { option.selected = false; }
+                                });
+                            </script>
+                        @else
+                            <div class="col form-floating mb-3 year-input">
+                                <input required type="text" name="condition" class="form-control" id="floatingInput" value="{{$vehicle->condition}}" readonly>
+                                <label for="floatingInput">Condition</label>
+                            </div>
+                        @endif
+
+                        <div class="col form-floating mb-3 horsepower-input">
+                            <input required type="number" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
+                            <label for="floatingInput">Horsepower</label>
+                        </div>
+                    </div>
+                    <div class="row" style="--bs-gutter-x:0;">
+                        <div class="col form-floating mb-3">
+                            <input required type="date" name="startingdate" class="form-control input_box" id="floatingInput" value="{{ old('startingdate', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
+                            <label for="floatingInput">Starting Date</label>
+                        </div>
+                        <div class="col form-floating mb-3">
+                            <input required type="time" name="startingtime" class="form-control input_box" id="floatingInput" value="{{ old('startingtime', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('H:i:s')) }}">
+                            <label for="floatingInput">Starting Time</label>
+                        </div>
+
+                        <div class="col form-floating mb-3">
+                            <input required type="date" name="endingdate" class="form-control" id="floatingInput" value="{{ old('endingdate', \Carbon\Carbon::parse($auction->endingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
+                            <label for="floatingInput">Closing Date</label>
+                        </div>
+                        <div class="col form-floating mb-3">
+                            <input required type="time" name="endingtime" class="form-control input_box" id="floatingInput" value="{{ old('endingtime', \Carbon\Carbon::parse($auction->endingtime)->setTimezone('Europe/London')->format('H:i:s')) }}">
+                            <label for="floatingInput">Closing Time</label>
+                        </div>
+                    </div>
+
+                    <script>
+                        // car related elements
+                        let brandElement = document.querySelector('input[name="brand"]');
+                        let modelElement = document.querySelector('input[name="model"]');
+                        let yearElement = document.querySelector('input[name="year"]');
+                        let horsepowerElement = document.querySelector('input[name="horsepower"]');
+                        
+                        // date related elements
+                        let startingDateElement = document.querySelector('input[name="startingdate"]');
+                        let startingTimeElement = document.querySelector('input[name="startingtime"]');
+                        let endingDateElement = document.querySelector('input[name="endingdate"]');
+                        let endingTimeElement = document.querySelector('input[name="endingtime"]');
+
+                        // auction already started
+                        if (new Date() > startingTime) {
+                            
+                            brandElement.readOnly = true;
+                            modelElement.readOnly = true;
+                            yearElement.readOnly = true;
+                            horsepowerElement.readOnly = true;
+
+                            startingDateElement.readOnly = true;
+                            startingTimeElement.readOnly = true;
+                            endingDateElement.readOnly = true;
+                            endingTimeElement.readOnly = true;
+
+                        } else {
+                            brandElement.readOnly = false;
+                            modelElement.readOnly = false;
+                            yearElement.readOnly = false;
+                            horsepowerElement.readOnly = false;
+
+                            startingDateElement.readOnly = false;
+                            startingTimeElement.readOnly = false;
+                            endingDateElement.readOnly = false;
+                            endingTimeElement.readOnly = false;
+                        }
+                    </script>
+
+                    @if (\Carbon\Carbon::now() < $auction->startingtime)
+                        <div class="row" style="--bs-gutter-x:0;">
+                            
+                            <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
+                                <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
+                                    {{ __('Save Changes') }}
+                                </button>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row" style="--bs-gutter-x:0;">
+                                
+                            <div class="col modal-footer justify-content-center login-button px-5 pt-0 pb-4 rounded-pill fw-bold"> 
+                                    {{ __('No Changes Allowed') }}
+                            </div>
                         </div>
                     @endif
+                </form>
 
-                    <div class="col form-floating mb-3 horsepower-input">
-                        <input required type="number" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
-                        <label for="floatingInput">Horsepower</label>
-                    </div>
-                </div>
-                <div class="row" style="--bs-gutter-x:0;">
-                    <div class="col form-floating mb-3">
-                        <input required type="date" name="startingdate" class="form-control input_box" id="floatingInput" value="{{ old('startingdate', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
-                        <label for="floatingInput">Starting Date</label>
-                    </div>
-                    <div class="col form-floating mb-3">
-                        <input required type="time" name="startingtime" class="form-control input_box" id="floatingInput" value="{{ old('startingtime', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('H:i:s')) }}">
-                        <label for="floatingInput">Starting Time</label>
-                    </div>
-
-                    <div class="col form-floating mb-3">
-                        <input required type="date" name="endingdate" class="form-control" id="floatingInput" value="{{ old('endingdate', \Carbon\Carbon::parse($auction->endingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
-                        <label for="floatingInput">Closing Date</label>
-                    </div>
-                    <div class="col form-floating mb-3">
-                        <input required type="time" name="endingtime" class="form-control input_box" id="floatingInput" value="{{ old('endingtime', \Carbon\Carbon::parse($auction->endingtime)->setTimezone('Europe/London')->format('H:i:s')) }}">
-                        <label for="floatingInput">Closing Time</label>
-                    </div>
-                </div>
-
-                <script>
-                    // car related elements
-                    let brandElement = document.querySelector('input[name="brand"]');
-                    let modelElement = document.querySelector('input[name="model"]');
-                    let yearElement = document.querySelector('input[name="year"]');
-                    let horsepowerElement = document.querySelector('input[name="horsepower"]');
-                    
-                    // date related elements
-                    let startingDateElement = document.querySelector('input[name="startingdate"]');
-                    let startingTimeElement = document.querySelector('input[name="startingtime"]');
-                    let endingDateElement = document.querySelector('input[name="endingdate"]');
-                    let endingTimeElement = document.querySelector('input[name="endingtime"]');
-
-                    // auction already started
-                    if (new Date() > startingTime) {
-                        
-                        brandElement.readOnly = true;
-                        modelElement.readOnly = true;
-                        yearElement.readOnly = true;
-                        horsepowerElement.readOnly = true;
-
-                        startingDateElement.readOnly = true;
-                        startingTimeElement.readOnly = true;
-                        endingDateElement.readOnly = true;
-                        endingTimeElement.readOnly = true;
-
-                    } else {
-                        brandElement.readOnly = false;
-                        modelElement.readOnly = false;
-                        yearElement.readOnly = false;
-                        horsepowerElement.readOnly = false;
-
-                        startingDateElement.readOnly = false;
-                        startingTimeElement.readOnly = false;
-                        endingDateElement.readOnly = false;
-                        endingTimeElement.readOnly = false;
-                    }
-                </script>
-
-                @if (\Carbon\Carbon::now() < $auction->startingtime)
-                    <div class="row" style="--bs-gutter-x:0;">
-                        
-                        <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
-                            <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
-                                {{ __('Save Changes') }}
-                            </button>
-                        </div>
-                    </div>
-                @else
-                    <div class="row" style="--bs-gutter-x:0;">
-                            
-                        <div class="col modal-footer justify-content-center login-button px-5 pt-0 pb-4 rounded-pill fw-bold"> 
-                                {{ __('No Changes Allowed') }}
-                        </div>
-                    </div>
-                @endif
-            </form>
-
-        </div>
+            </div>
+        @endif
 
         <!-- Start of bordered box -->
         <div class="rounded-3 border border-2 border-dark">
@@ -367,7 +372,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex align-items-center justify-content-center col fs-3">
+                <div class="col fs-3">
                     <div id="bid-container" class="p-1">
                         <div class="text-center">Current Bid</div>
                         @if (isset($max_bid))
@@ -548,6 +553,59 @@
     <!-- End of White Box -->
     </div>
 
+    <!-- Moderator Section -->
+    @if (!Auth::guest() && (Auth::id() == $owner->id || App\Models\User::findOrFail(Auth::id())->moderator()))
+    <div class="display-1 text-center">Moderator Section</div>
+    <div class="d-block around-container container bg-light rounded mb-5">
+        <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="moderator_section">
+        <div class="user_search overflow-auto">
+            <h5 class="text-center">Banned Users</h5>
+            <div class="input-group form-container">
+                <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
+                <span class="input-group-btn">
+                    <button class="btn btn-search" type="button" onclick="updateUsers()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <!-- Show the users for selection, filter through js-->
+            <div id="user_rows">
+                @foreach($users as $user)
+                    @if(!$user['moderator'])
+                        <div class="user_row d-flex justify-content-between align-items-center">
+                            <span class="user_id d-none">{{$user['id']}}</span>
+                            <a href="../pages/profile.php" class="profile_text">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                        <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+                                </div>
+                            </a>
+                            <div class="moderator_area text-center">
+                                @if ($user['banned'])
+                                    <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
+                                        @method('delete')
+                                        @csrf
+                                        <div class="row p-2 rounded mb-1">
+                                            <button type="submit" class="btn btn-outline-danger">Unban User</button>
+                                        </div>
+                                    </form>
+                                @else
+                                    <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
+                                        @csrf
+                                        <div class="row p-2 rounded mb-1">
+                                            <button type="submit" class="btn btn-outline-danger">Ban User</button>
+                                        </div>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        </div>
+    </div>
+    @endif
     
     <!-- Comment Section -->
     <div class="display-1 text-center" style="margin-bottom: 0.5em;">Comment Section</div>

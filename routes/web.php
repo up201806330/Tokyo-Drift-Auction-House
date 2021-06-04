@@ -42,6 +42,12 @@ Route::post  ('/auctions'                           , 'SearchController@showFilt
 Route::get   ('/users/{id}/photo'                   , 'UserController@showPhoto'                    )->name('show_profile_photo');
 Route::get   ('/users/{id}'                         , 'UserController@showProfile'                  )->name('show_profile'      );
 Route::post  ('/users/{id}'                         , 'UserController@editProfile'                  )->name('edit_profile'      );
+Route::delete('/users/{id}'                         , 'UserController@delete'                       );
+Route::get   ('/moderator'                          , 'ModerationController@showModeration'         )->name('moderator'         );
+Route::post  ('/moderator/users/{id}'               , 'UserController@changePermissions'            );
+Route::post  ('/users/{id}/banned'                  , 'UserController@ban'                          );
+Route::post  ('/auctions/{id}/banned/{user_id}'     , 'UserController@banAuction'                   )->name('ban_auction'       );
+Route::delete('/auctions/{id}/banned/{user_id}'     , 'UserController@unbanAuction'                 );
 
 use App\Notifications\MailResetPasswordNotification;
 

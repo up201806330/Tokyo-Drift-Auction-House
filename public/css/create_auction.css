@@ -55,6 +55,9 @@
 
 #private_content{
     display:none;
+}
+
+.user_search, .moderator_search{
     border: thin solid var(--dark-grey);
     padding: 2em;
     margin-bottom: 2em;
@@ -81,7 +84,7 @@
 }
 
 @media (max-width: 600px) {
-    #private_content{
+    #user_search{
         padding: 0;
         padding-top: 2em;
     }
