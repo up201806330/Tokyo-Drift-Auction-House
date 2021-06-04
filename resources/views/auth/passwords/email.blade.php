@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+    <script src="{{ asset('js/ResetPassword.js') }}"></script>
+@endsection
+
 @section('content')
 
 <div class="sign-in-container">
@@ -17,8 +21,7 @@
                 <div class="col">
                     <div id="ui">
 
-                        <form class="form-group" method="post" action="{{ route('password.reset.email') }}">
-                            @csrf
+                        <form class="form-group" onsubmit="let r = ResetPassword.fromForm(this); r.submit().then((response) => { r.processResponse(response); }); return false;">
                             <div class="form-floating mb-3">
                                 <input required type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                                 <label for="floatingInput">Email Address</label>
@@ -32,6 +35,14 @@
 
                         </form>
 
+                        <div id="password-reset-confirmation" class="text-success" style="display: none">
+                            A password recovery email was sent to that address!
+                        </div>
+                        <div id="password-reset-throttled" class="text-danger" style="display: none">
+                            Easy, boy! You have already requested a password reset a while ago, so we throttled this request.
+                        </div>
+                        <div id="password-reset-generic-error" class="text-danger" style="display: none">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,31 +51,5 @@
     </div>
 
 </div>
-
-@if($errors->any())
-    <div class="notification red-notif">
-        <div class="row align-items-center">
-            <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
-                <i class="fa fa-times"></i>
-            </div>
-            <div class="col justify-content-center">
-                {{$errors->first()}}
-            </div>
-        </div>        
-    </div>
-@else
-    @if(session('success'))
-        <div class="notification green-notif">
-            <div class="row align-items-center">
-                <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
-                    <i class="fa fa-check"></i>
-                </div>
-                <div class="col justify-content-center">
-                    {{session('success')}}
-                </div>
-            </div>        
-        </div>
-    @endif
-@endif
 
 @endsection
