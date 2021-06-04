@@ -66,6 +66,12 @@ class User extends Authenticatable
         return Image::findOrFail($this->profileimage);
     }
 
+    public function getImagePath() {
+        if (is_null($this->profileimage)) {
+            return asset('assets/generic_profile.png');
+        }
+        return asset('assets/'.Image::findOrFail($this->profileimage)->path);
+    }
 
     public static function findUserImage($id) {
         $user = User::findOrFail($id);

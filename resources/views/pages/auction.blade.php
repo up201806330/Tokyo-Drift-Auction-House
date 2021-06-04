@@ -71,7 +71,7 @@
 
 @section('content')
 
-<section class="sign-in-container">
+<section class="sign-in-container" style="flex: 1;">
 
     <div class="container bg-light rounded py-3 mb-5">
 
@@ -372,7 +372,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex align-items-center justify-content-center col fs-3">
+                <div class="col fs-3">
                     <div id="bid-container" class="p-1">
                         <div class="text-center">Current Bid</div>
                         @if (isset($max_bid))
