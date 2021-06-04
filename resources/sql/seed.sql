@@ -541,7 +541,7 @@ INSERT INTO "global_mod" (id) VALUES (2),(5);
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (3,7),(3,8),(3,9),(3,10),(3,11),(3,12),(3,13),(3,14);
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (4,15),(4,16),(4,17),(4,18),(4,19),(4,20);
 INSERT INTO "auction_mod" (user_id,auction_id) VALUES (6,15),(6,16),(6,17);
-INSERT INTO "admin" (id) VALUES (1);
+INSERT INTO "admin" (id) VALUES (2);
 
 -- Car Photos --
 INSERT INTO "image" (id,path) VALUES
