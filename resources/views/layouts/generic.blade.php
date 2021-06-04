@@ -22,9 +22,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     <script src="{{ asset('js/Utils.js')}}"></script>
-    {{-- <script src="../js/tpl_search.js"></script> --}}
-    <script src="{{ asset('js/sign-in.js')}}"></script>
-    {{-- <script src="../js/login.js"></script> --}}
+    <script src="{{ asset('js/PasswordInput.js')}}"></script>
   
     <link rel="stylesheet" href="{{ asset('css/common.css')}}">
     <link rel="stylesheet" href="{{ asset('css/homepage.css')}}">

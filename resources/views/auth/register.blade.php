@@ -64,7 +64,7 @@
                                 <div class="col form-floating mb-3">
                                     <input required type="password" name="password" class="form-control" id="floatingPassword3" placeholder="Password">
                                     <span>
-                                        <i class="fa fa-eye" id="font3" onclick="togglePw3()" aria-hidden="true"></i>
+                                        <i class="fa fa-eye" id="font3" onclick="PasswordInput.toggle(this, this.parentNode.parentNode.querySelector(`[name='password']`));" aria-hidden="true"></i>
                                     </span>
                                     <label for="floatingPassword3">Password</label> 
                                 </div>  
@@ -72,7 +72,7 @@
                                 <div class="col form-floating mb-3">
                                     <input type="password" name="password_confirmation" class="form-control" id="floatingPasswordConfirmation" placeholder="Password">
                                     <span>
-                                        <i class="fa fa-eye" id="font2" onclick="togglePw2()" aria-hidden="true"></i>
+                                        <i class="fa fa-eye" id="font2" onclick="PasswordInput.toggle(this, this.parentNode.parentNode.querySelector(`[name='password_confirmation']`));" aria-hidden="true"></i>
                                     </span>
                                     <label for="floatingPasswordConfirmation">Confirm Password</label> 
                                 </div>  

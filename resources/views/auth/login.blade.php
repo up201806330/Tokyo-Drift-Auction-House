@@ -25,7 +25,7 @@
                         <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
     
                         <span>
-                            <i class="fa fa-eye" id="font" onclick="togglePw()" aria-hidden="true"></i>
+                            <i class="fa fa-eye" id="font" onclick="PasswordInput.toggle(this, this.parentNode.parentNode.querySelector(`[name='password']`));" aria-hidden="true"></i>
                         </span>
                     
                         <label for="floatingPassword">Password</label> 
