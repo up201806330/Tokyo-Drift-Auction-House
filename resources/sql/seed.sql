@@ -50,7 +50,8 @@ CREATE TABLE "user" (
     location        TEXT            ,
     about           TEXT            ,
     registeredOn    PASTTIMESTAMP   ,
-    profileImage    INTEGER         REFERENCES "image"(id)
+    profileImage    INTEGER         REFERENCES "image"(id),
+    remember_token  TEXT
 );
 
 CREATE TABLE "password_reset_token" (

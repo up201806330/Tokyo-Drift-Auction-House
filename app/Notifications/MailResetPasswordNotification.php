@@ -17,8 +17,9 @@ class MailResetPasswordNotification extends Notification
      *
      * @return void
      */
-    public function __construct(string $token)
+    public function __construct(string $email, string $token)
     {
+        $this->email = $email;
         $this->token = $token;
     }
 
@@ -41,7 +42,7 @@ class MailResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $link = url( "/password/reset/?token=" . $this->token );
+        $link = url( "/password/reset/?email=" . $this->email . "&token=" . $this->token );
 
         return (new MailMessage)
             ->subject(Lang::get('Reset password'))

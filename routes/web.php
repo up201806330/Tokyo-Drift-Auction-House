@@ -24,7 +24,7 @@ Route::post  ('/register'                           , 'Auth\RegisterController@r
 Route::get   ('/password/reset/email'               , 'Auth\SendPasswordResetController@showLinkRequestForm')->name('password.reset.email');
 Route::post  ('/password/reset/email'               , 'Auth\SendPasswordResetController@sendResetLinkEmail' )->name('password.reset.email');
 Route::get   ('/password/reset'                     , 'Auth\PasswordResetController@showResetForm'  )->name('password.reset'    );
-Route::post  ('/password/reset'                     , 'Auth\PasswordResetController@postReset'      )->name('password.reset'    );
+Route::post  ('/password/reset'                     , 'Auth\PasswordResetController@reset'          )->name('password.reset'    );
 Route::get   ('/auctions/new'                       , 'AuctionController@showCreateForm'            )->name('create_auction'    );
 Route::post  ('/auctions/new'                       , 'AuctionController@create'                    )->name('create_auction'    );
 Route::get   ('/auctions/{id}/bids/highest'         , 'AuctionController@getHighestBid'             )->name('highest_bid'       );

@@ -128,7 +128,7 @@ class User extends Authenticatable
      * @return void
      */
     public function sendPasswordResetNotification($token){
-        $this->notify(new MailResetPasswordNotification($token));
+        $this->notify(new MailResetPasswordNotification($this->email, $token));
     }
 
     /**
