@@ -571,18 +571,18 @@
             <!-- Show the users for selection, filter through js-->
             <div id="user_rows">
                 @foreach($users as $user)
-                    @if(!$user['moderator'])
+                    @if(!$user->moderator())
                         <div class="user_row d-flex justify-content-between align-items-center">
-                            <span class="user_id d-none">{{$user['id']}}</span>
+                            <span class="user_id d-none">{{$user->id}}</span>
                             <a href="../pages/profile.php" class="profile_text">
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <img src="{{ $owner->getImagePath() }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
-                                        <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+                                    <img src="{{ $user->getImagePath() }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user->username}}"> 
+                                        <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user->username}}</span></h5>
                                 </div>
                             </a>
                             <div class="moderator_area text-center">
-                                @if ($user['banned'])
-                                    <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
+                                @if ($user->bannedAuction($auction->id))
+                                    <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user->id) }}">
                                         @method('delete')
                                         @csrf
                                         <div class="row p-2 rounded mb-1">

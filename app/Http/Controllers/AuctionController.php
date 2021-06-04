@@ -323,17 +323,7 @@ class AuctionController extends Controller
         $users=[];
         //check if moderator to fill moderator area
         if (!Auth::guest() && $user->moderator()) {
-            $all_users = User::all();
-            foreach($all_users as $user){
-                $new_user = [
-                    'id' => $user->id,
-                    'username' => $user->username,
-                    'moderator' => $user->moderator(),
-                    'invited' => $user->guestAuction($id),
-                    'banned' => $user->bannedAuction($auction->id),
-                ];
-                array_push($users, $new_user);
-            }
+            $users = User::all();
         } 
 
         try {
