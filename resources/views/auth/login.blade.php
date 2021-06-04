@@ -18,23 +18,11 @@
                         <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="{{ old('email') }}" required autofocus>
                         <label for="floatingInput">Email</label>
                         
-                        @if ($errors->has('email'))
-                        <span class="error">
-                          {{ $errors->first('email') }}
-                        </span>
-                        @endif
                     </div>
         
                     <div class="form-floating">
     
                         <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-
-                        @if ($errors->has('password'))
-                            <span class="error">
-                                {{ $errors->first('password') }}
-                            </span>
-                        @endif
-
     
                         <span>
                             <i class="fa fa-eye" id="font" onclick="togglePw()" aria-hidden="true"></i>
