@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use File;
 
 class RegisterController extends Controller
 {
@@ -48,10 +49,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd($data);
         return Validator::make($data, [
-            // 'name' => 'required|string|max:255',
-            // 'email' => 'required|string|email|max:255|unique:users',
-            // 'password' => 'required|string|min:6|confirmed',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:user',
+            'email' => 'required|regex:/(.+)@(.+)\.(.+)/i|unique:user',
+            'password' => 'required|string|confirmed|min:8',
         ]);
     }
 
@@ -64,15 +68,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'id' => User::all()->max('id') + 1,
-            'profileimage' => 8,
+            'profileimage' => null,
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'location' => 'idk',
-            'about' => 'about thing',
+            'location' => 'unknown',
+            'about' => '...',
             // 'registeredon' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
     }

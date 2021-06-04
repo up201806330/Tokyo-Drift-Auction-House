@@ -60,19 +60,22 @@
     border: none;
     display: inline-block;
     text-align: center;
-    /* width: 180px; */
     width: auto;
     float: right;
     padding: 0 0.5em;
 }
 
 .sign-in-container {
-    display: block;
-    overflow: auto;
+    height: auto !important;
+    width: 100%;
     background-color: rgb(223, 223, 223);
 }
 
 
 #sign-up-content {
     z-index: 0;
+}
+
+#sign-in-content {
+    height: auto !important;
 }

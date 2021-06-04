@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\Request;
-use App\Models\VehicleImage;
 use App\Models\Auction;
 use App\Models\Comment;
-use App\Models\Image;
 use App\Models\User;
-use App\Models\Bid;
-use DB;
-
-use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -24,11 +19,13 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $auction_id)
+    public function create(Request $request, int $auction_id) : int
     {
-        $comment = new Comment;
+        $validated = $request->validate([
+            'content'   => 'required|max:511|unique:comment',
+        ]);
 
-        $comment->id = Comment::all()->max('id') + 1;
+        $comment = new Comment;
 
         // now probably never enters this if
         if (Auth::guest()) {
@@ -47,10 +44,10 @@ class CommentController extends Controller
     }
 
     
-    public function delete(Request $request, $id, $comment_id) {
-        $comment = Comment::find($comment_id);
+    public function delete(Request $request, int $id, int $comment_id) {
+        $comment = Comment::findOrFail($comment_id);
 
-        if (! Gate::allows('commentOwner', $comment)) {
+        if ((!Gate::allows('commentOwner', $comment)) && (!User::find($comment->user_id)->moderator())) {
             return redirect()->back();
         }
 
@@ -58,9 +55,12 @@ class CommentController extends Controller
     }
 
 
-    public function getAuctionComments(Request $request, $auction_id) {
+    public function getAuctionComments(Request $request, int $auction_id) : JsonResponse {
         if ($request->wantsJson()) {
-            $comments = Auction::find($auction_id)->getComments();
+            $comments = Auction::findOrFail($auction_id)->getComments();
+            foreach($comments as $comment){
+                $comment->banned = User::findOrFail($comment->user_id)->bannedAuction($auction_id);
+            }
             return response()->json($comments, 200);
         }
         else {

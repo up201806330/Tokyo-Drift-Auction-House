@@ -2,7 +2,7 @@
 <div class="col mb-3 card-container">
     <div class="card">
         
-        <img src="{{ asset('assets/' . $vehicle_imgs[0]->path) }}" alt="..." class="cover car-img-thumbnail">
+        <img src="{{ asset('assets/' . $vehicle_imgs[0]->path) }}" alt="Vehicle" class="img-cover car-img-thumbnail">
 
         <!-- Card Body -->
         <div class="card-body">
@@ -14,7 +14,11 @@
                     </p>
                     <p class="card-text current-value">
                     <i class="fa fa-money money"></i>
-                        <span class="card-price">Currently at {{$max_bid->amount}}€</span>
+                        @if (isset($max_bid))
+                            <span class="card-price">Currently at {{$max_bid->amount}}€</span>
+                        @else
+                            <span class="card-price">No bids</span>
+                        @endif
                     </p>
                     <a href="{{ url('/auctions/' . $id) }}" class="stretched-link"></a> <!-- Card as a link -->
             </div>

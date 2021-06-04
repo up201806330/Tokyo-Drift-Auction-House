@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
+@section('title', 'Register')
+
+@section('head')
+    <script src="../js/PasswordInput.js"></script>
+@endsection
+
 @section('content')
 
-<div class="sign-in-container">
+<div class="container-fluid sign-in-container fill-height px-0" style="flex: 1;">
 
-    <div class="modal modal-dialog modal-dialog-centered" id="sign-up-content">
+    <div class="modal modal-dialog modal-dialog-centered" id="sign-in-content">
         <div class="modal-content">
 
             <div class="modal-header sign-in-header">
@@ -17,18 +23,12 @@
                 <div class="col">
                     <div id="ui">
 
-                        <form class="form-group" method="post" action="{{ route('register') }}">
+                        <form class="form-group" method="post" onsubmit="return PasswordInput.compare(this.querySelector(`[name='password']`), this.querySelector(`[name='password_confirmation']`));" action="{{ route('register') }}">
                             @csrf
                             <div class="row" style="--bs-gutter-x:0;">
                                 <div class="col form-floating mb-3 align-self-start">
                                     <input required type="text" name="firstname" class="form-control" id="floatingInput" placeholder="Jeff">
                                     <label for="floatingInput">First Name</label>
-
-                                    @if ($errors->has('name'))
-                                    <span class="error">
-                                        {{ $errors->first('name') }}
-                                    </span>
-                                    @endif
                                 </div>
 
                                 <div class="col form-floating mb-3 ">
@@ -41,22 +41,22 @@
                                 <input required type="text" name="username" class="form-control" id="floatingInput" placeholder="jeffBezzie">
                                 <label for="floatingInput">Username</label>
 
-                                @if ($errors->has('username'))
+                                {{-- @if ($errors->has('username'))
                                 <span class="error">
                                     {{ $errors->first('username') }}
                                 </span>
-                                @endif
+                                @endif --}}
                             </div>
 
                             <div class="form-floating mb-3">
                                 <input required type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                                 <label for="floatingInput">Email Address</label>
                                 
-                                @if ($errors->has('email'))
+                                {{-- @if ($errors->has('email'))
                                 <span class="error">
                                     {{ $errors->first('email') }}
                                 </span>
-                                @endif
+                                @endif --}}
 
                             </div>
 
@@ -64,45 +64,30 @@
                                 <div class="col form-floating mb-3">
                                     <input required type="password" name="password" class="form-control" id="floatingPassword3" placeholder="Password">
                                     <span>
-                                        <i class="fa fa-eye" id="font3" onclick="togglePw3()" aria-hidden="true"></i>
+                                        <i class="fa fa-eye" id="font3" onclick="PasswordInput.toggle(this, this.parentNode.parentNode.querySelector(`[name='password']`));" aria-hidden="true"></i>
                                     </span>
                                     <label for="floatingPassword3">Password</label> 
                                 </div>  
 
                                 <div class="col form-floating mb-3">
-                                    <input type="password" name="password2" class="form-control" id="floatingPassword2" placeholder="Password">
+                                    <input type="password" name="password_confirmation" class="form-control" id="floatingPasswordConfirmation" placeholder="Password">
                                     <span>
-                                        <i class="fa fa-eye" id="font2" onclick="togglePw2()" aria-hidden="true"></i>
+                                        <i class="fa fa-eye" id="font2" onclick="PasswordInput.toggle(this, this.parentNode.parentNode.querySelector(`[name='password_confirmation']`));" aria-hidden="true"></i>
                                     </span>
-                                    <label for="floatingPassword2">Confirm Password</label> 
+                                    <label for="floatingPasswordConfirmation">Confirm Password</label> 
                                 </div>  
                             </div>
+                            <div id="passwords-not-big" class="text-danger" style="display: none">
+                                Passwords must be 8 characters minimum!
+                            </div>
+                            <div id="passwords-not-match" class="text-danger" style="display: none">
+                                Passwords do not match!
+                            </div>
                             <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                                <button class="btn w-75 fw-bold" href="../pages/profile.php">
+                                <button class="btn rounded-pill w-75 fw-bold">
                                     Sign up
                                 </button>
                             </div>
-
-                            <div class="row">
-                                <div class="col-5"><hr class="bg-dark border-5 border-top border-dark"></div>
-                                <div class="col-2 text-center">or</div>
-                                <div class="col-5"><hr class="bg-dark border-5 border-top border-dark"></div>
-                            </div>
-                            
-
-                            <!-- google button -->
-                            <a class="modal-footer justify-content-center login-button pt-3 text-decoration-none" href="../pages/profile.php"> 
-                                <div class='g-sign-in-button'>
-                                    <div class=content-wrapper>
-                                        <div class='logo-wrapper'>
-                                            <img src='https://developers.google.com/identity/images/g-logo.png'>
-                                        </div>
-                                        <span class='text-container'>
-                                            <span>Sign in with Google</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
 
                             <hr class="bg-dark border-5 border-top border-dark">
 
@@ -123,5 +108,31 @@
     </div>
 
 </div>
+
+@if($errors->any())
+    <div class="notification red-notif">
+        <div class="row align-items-center">
+            <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="col justify-content-center">
+                {{$errors->first()}}
+            </div>
+        </div>        
+    </div>
+@else
+    @if(session('success'))
+        <div class="notification green-notif">
+            <div class="row align-items-center">
+                <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="col justify-content-center">
+                    {{session('success')}}
+                </div>
+            </div>        
+        </div>
+    @endif
+@endif
 
 @endsection

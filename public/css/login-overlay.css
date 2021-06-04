@@ -28,17 +28,16 @@ background-color: rgb(49, 49, 49) !important;
 }
 
 .login-button > button {
-    color: white;
-    background-color: rgb(27, 27, 27);
+    padding: 5px, 15px;
+    border-radius: 1px;
+    border-color: rgb(49, 49, 49);
+    transition: 0.3s;
 }
 
 .login-button > button:hover {
-color: rgb(255, 157, 100) !important;
-background-color: rgb(49, 49, 49) !important;
-}
-
-#exampleModal > div > div > hr:nth-child(5) {
-    margin-top: 0 !important;
+    color: rgb(255, 157, 100);
+    background: rgb(49, 49, 49);
+    transition: 0.3s;
 }
 
 .modal-open .container-fluid, .modal-open  .container {

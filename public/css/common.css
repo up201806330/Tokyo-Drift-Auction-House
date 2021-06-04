@@ -12,6 +12,16 @@
     --background-color-lighter: rgb(56, 56, 56);
 }
 
+html, body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .border-2 {
     border-width: 2px !important;
+}
+
+.img-cover {
+    object-fit: cover;
 }

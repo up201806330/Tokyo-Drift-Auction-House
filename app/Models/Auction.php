@@ -21,7 +21,7 @@ class Auction extends Model
    */
   protected $fillable = [
     // not including the creationTime
-    'auction_name', 'vehicle_id', 'startingBid', 'startingTime', 'endingTime', 'auctionType'
+    'auction_name', 'vehicle_id', 'startingbid', 'startingtime', 'endingtime', 'auctiontype'
   ];
 
 
@@ -34,19 +34,31 @@ class Auction extends Model
     ->get();
   }
 
-  public function getMaxBidAmount($auction_id) {
-    return Bid::where('auction_id', '=', $auction_id)->max('amount');
+  public function getMaxBidAmount() {
+    return Bid::where('auction_id', '=', $this->id)->max('amount');
   }
 
   public function getCurrentMaxBid() {
     return Bid::where([
-      ['amount',      '=', $this->getMaxBidAmount($this->id)],
+      ['amount',      '=', $this->getMaxBidAmount()],
       ['auction_id',  '=', $this->id],
     ])->first();
   }
 
   public function getCurrentMaxBidder() {
-    return User::find($this->getCurrentMaxBid($this->id)->user_id);
+    $maxBid = $this->getCurrentMaxBid();
+    if($maxBid == null) return null;
+    return User::findOrFail($maxBid->user_id);
+  }
+
+  public function getAdequateTimeDifference() {
+    if (\Carbon\Carbon::now() > $this->endingtime)
+      return "Ended "       . \Carbon\Carbon::parse($this->endingtime)->diffForHumans();
+
+    else if ($this->startingtime > \Carbon\Carbon::now())
+      return "Starts in "   . \Carbon\Carbon::parse($this->startingtime)->diffForHumans();
+    
+    else return "Ends in "  . \Carbon\Carbon::parse($this->endingtime)->diffForHumans();
   }
 
 
@@ -71,12 +83,39 @@ class Auction extends Model
   }
 
   public function getComments(){
-    // $auction_comments = Comment::where('auction_id', '=', $this->id)->get();
     return DB::table('comment')
       ->join('user', 'user.id', '=', 'comment.user_id')
       ->where('comment.auction_id', '=', $this->id)
       ->select('auction_id', 'comment.id', 'comment.user_id', 'username', 'profileimage', 'createdon', 'content')
       ->orderBy('createdon', 'desc')
       ->get();
+  }
+
+  /**
+  * Get the guests associated with the Auction
+  */
+  public function guests(){
+    return $this->belongsToMany(User::class);
+  }
+
+  /**
+  * Get the users that favourited the Auction
+  */
+  public function user_favourite(){
+    return $this->belongsToMany(Favourite::class);
+  }
+
+  /**
+  * Get the users that are auction_mods to the auction
+  */
+  public function moderators(){
+    return $this->belongsToMany(AuctionModerator::class);
+  }
+
+  /**
+  * Get the bids associated with the Auction
+  */
+  public function bids(){
+    return $this->hasMany('App\Models\Bid');
   }
 }

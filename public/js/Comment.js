@@ -22,11 +22,10 @@ class Comment {
             (this.createdOn.getMonth()+1).toString().padStart(2, '0') + "-" +
             this.createdOn.getDate     ().toString().padStart(2, '0');
         ret.querySelector('.content' ).innerHTML = this.content;
-        let form = ret.querySelector('form');
-        form.querySelector('input[name="id"]').value = this.id;
-        if(!(userId != null && userId == this.userId)){
-            form.style.display = 'none';
-        }
+
+        let form = ret.querySelector('.delete_form');
+        if (form!=null)
+            form.querySelector('input[name="id"]').value = this.id;
         return ret;
     }
 
@@ -73,10 +72,17 @@ class Comment {
                 commentPrimitive['auction_id'],
                 commentPrimitive['user_id'],
                 commentPrimitive['username'],
-                new Date(commentPrimitive['createdon']),
-                commentPrimitive['content']
+                Utils.DateFromUTC(commentPrimitive['createdon']),
+                commentPrimitive['content'],
             )
         );
+
+        if (comments.length == 0) {
+            let noCommentsDiv = document.createElement("div");
+            noCommentsDiv.setAttribute('class', 'py-2 fs-2 text-center');
+            noCommentsDiv.innerHTML = "Be the first one to comment!";
+            commentsEl.appendChild(noCommentsDiv);
+        }
 
         comments.sort((a, b) => b.createdOn.getTime() - a.createdOn.getTime());
         for(let comment of comments){

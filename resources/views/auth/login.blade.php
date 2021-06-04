@@ -18,40 +18,31 @@
                         <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="{{ old('email') }}" required autofocus>
                         <label for="floatingInput">Email</label>
                         
-                        @if ($errors->has('email'))
-                        <span class="error">
-                          {{ $errors->first('email') }}
-                        </span>
-                        @endif
                     </div>
         
                     <div class="form-floating">
     
                         <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-
-                        @if ($errors->has('password'))
-                            <span class="error">
-                                {{ $errors->first('password') }}
-                            </span>
-                        @endif
-
     
                         <span>
-                            <i class="fa fa-eye" id="font" onclick="togglePw()" aria-hidden="true"></i>
+                            <i class="fa fa-eye" id="font" onclick="PasswordInput.toggle(this, this.parentNode.parentNode.querySelector(`[name='password']`));" aria-hidden="true"></i>
                         </span>
                     
                         <label for="floatingPassword">Password</label> 
                     </div>     
             
                     <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                        <button type="submit" class="btn w-100 fw-bold">
+                        <button type="submit" class="btn rounded-pill w-100 fw-bold">
                             {{ __('Login') }}
                         </button>
-                        {{-- <a role="button" class="btn w-100 fw-bold">
-                        Login
-                        </a> --}}
                     </div>
                 </form>
+
+                <div class="text-center"> 
+                    <a href="{{ route('password.reset.email') }}" class="blue-text ml-1">
+                        Forgot your password?
+                    </a>
+                </div>
             </div>
   
             <hr class="bg-dark border-4 border-top border-dark">

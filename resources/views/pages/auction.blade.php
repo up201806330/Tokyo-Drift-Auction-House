@@ -1,12 +1,69 @@
 @extends('layouts.app')
 
+@section('title', $vehicle->year . "' " . $vehicle->brand . " " . $vehicle->model)
+
 @section('head')
+    <script src="{{ asset('js/DateFormatter.js')}}"></script>
     <script src="{{ asset('js/Comment.js')}}"></script>
+    <script src="{{ asset('js/Bid.js')}}"></script>
+    <script src="{{ asset('js/CountdownClock.js')}}"></script>
+    <script src="{{ asset('js/auction.js')}}"></script>
+
     <script>
         const auctionId = '{{$auction->id}}';
+    </script>
 
-        // Get comments
-        Comment.updateSection(auctionId);
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            // Get comments
+            Comment.updateSection(auctionId);
+
+            // Get bids
+            Bid.updateSection(auctionId);
+
+            // Update start and end times
+            document.querySelector('#start-date').innerHTML = DateFormatter.formatLocal(Utils.DateFromUTC("{{ $auction->startingtime }}"), "%Y-%m-%d @ %H:%M:%S");
+            document.querySelector('#end-date'  ).innerHTML = DateFormatter.formatLocal(Utils.DateFromUTC("{{ $auction->endingtime   }}"), "%Y-%m-%d @ %H:%M:%S");
+        });
+    </script>
+
+    <script>
+        // Auction countdown
+        let startingTime = Utils.DateFromUTC('{{$auction->startingtime}}');
+        let endingTime   = Utils.DateFromUTC('{{$auction->endingtime  }}');
+        let auctionCountdown = new CountdownClock(
+            (
+                new Date() < startingTime ?
+                startingTime :
+                endingTime
+            ),
+            function (t) {
+                if (document.querySelector('#days') != null){
+                    t = Math.max(-t, 0);
+                    document.querySelector('#days'   ).innerText = Utils.padLeft(Math.floor((t                        ) / (1000 * 60 * 60 * 24)).toString(), 2, '0');
+                    document.querySelector('#hours'  ).innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60     )).toString(), 2, '0');
+                    document.querySelector('#minutes').innerText = Utils.padLeft(Math.floor((t % (1000 * 60 * 60     )) / (1000 * 60          )).toString(), 2, '0');
+                    document.querySelector('#seconds').innerText = Utils.padLeft(Math.floor((t % (1000 * 60          )) / (1000               )).toString(), 2, '0');
+
+                    auctionCountdown.begin = (new Date() < startingTime ? startingTime : endingTime);
+                }
+            }
+        );
+        auctionCountdown.start();
+    </script>
+
+    <script>
+        // Bid last updated countdown
+        let bidCountdown = new CountdownClock(
+            new Date(),
+            function (t) {
+                let s = `Last updated ${Math.floor(t/1000)} seconds ago`;
+                document.querySelector('#bid-last-updated').innerHTML = s;
+            }
+        );
+        bidCountdown.start();
+
+        let periodicBidUpdateTimer = setInterval(() => Bid.updateSection(auctionId), 10000);
     </script>
 
     @include('templates.tpl_comment')
@@ -14,242 +71,615 @@
 
 @section('content')
 
-<div class="auction_background">
-    <!-- Top Bar with car details -->
-    <div class="container-fluid car-details">
-      
-    <div class="display-3 text-white text-start ps-1">
-        Auction {{ $auction->id }}
-    </div>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb fs-5 ps-2 pt-1 pb-2">
-            <li class="breadcrumb-item"><a href="../pages/homepage.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="../pages/search.php">Search</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Auction {{ $vehicle->id }}</li>
-        </ol>
-    </nav>
+<section class="sign-in-container" style="flex: 1;">
 
-    <div class="row align-items-center text-center">
+    <div class="container bg-light rounded py-3 mb-5">
 
-        <!-- Pictures Carrousel -->
-        <div class="col-12 col-lg-6 mb-5 ms-1 ms-md-4 d-flex justify-content-center justify-content-lg-start" id="under_heart">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb fs-5 ps-2 pt-1 pb-2">
+                <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('search') }}">Advanced Search</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$auction->auction_name}}</li>
+            </ol>
+        </nav>
 
-                    @foreach($images_paths as $images_path)
-                        @if($images_path->sequence_number == 1)
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="{{'Slide' . $images_path->sequence_number}}"></button>
+        <div class="row align-items-center mx-auto">
+
+            <!-- Pictures Carrousel -->
+            <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-start" id="under_heart">
+            
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+
+                        @foreach($images_paths as $images_path)
+                            @if($images_path->sequence_number == 1)
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="{{'Slide' . $images_path->sequence_number}}"></button>
+                            @else
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$images_path->sequence_number - 1}}" aria-current="true" aria-label="{{'Slide' . $images_path->sequence_number}}"></button>
+                            @endif
+                        @endforeach
+
+                    </div>
+                    <div class="carousel-inner">
+                        @foreach($images_paths as $images_path)
+                            @if($images_path->sequence_number == 1)
+                                <div class="carousel-item active">
+                                    {{-- TODO mini hack to resize imgs :/ --}}
+                                    <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100 img-cover" alt="bmw i8">
+                                </div>
+                            @else
+                                <div class="carousel-item">
+                                    {{-- TODO mini hack to resize imgs :/ --}}
+                                    <img src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100 img-cover" alt="bmw i8">
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                @if (!Auth::guest() && Auth::user()->id != $owner->id)
+                        @if ($favourite)
+                            <form method="post" action="{{ route('remove_favourite', ['id' => $auction->id]) }}">
+                            @method('delete')
+                            @csrf
+                                <button type="submit" class="heart heart_favourite">
                         @else
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$images_path->sequence_number - 1}}" aria-current="true" aria-label="{{'Slide' . $images_path->sequence_number}}"></button>
+                            <form method="post" action="{{ route('add_favourite', ['id' => $auction->id]) }}">
+                            @csrf
+                                <button type="submit" class="heart">
                         @endif
-                    @endforeach
+                                    <i class="fa fa-heart"></i>
+                                </button>
+                            </form>
+                @endif
+            </div>
 
-                </div>
-                <div class="carousel-inner">
-                    @foreach($images_paths as $images_path)
-                        @if($images_path->sequence_number == 1)
-                            <div class="carousel-item active">
-                                {{-- TODO mini hack to resize imgs :/ --}}
-                                <img style="width:640px;height:360px;" src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
+            <!-- Vehicle Information 1 -->
+            <div class="col-lg text-nowrap">
+                
+                <!-- General "name" -->
+                <div class="row rounded-3 bg-dark text-white text-center my-2 text-wrap">
+
+                    @if (!Auth::guest())
+                        @if (Auth::user()->id == $owner->id && (\Carbon\Carbon::now()->lte($auction->startingtime)))
+                            <div class="col-10">
+                                <h1>{{$auction->auction_name}}</h1>
+                            </div>
+                            <div class="col-2 d-flex justify-content-start align-items-center">
+                                <a class="" data-bs-toggle="collapse" href="#editAuctionCollapse" role="button" aria-expanded="false" aria-controls="editAuctionCollapse">
+                                    <i class="fa fa-cog edit-cog" aria-hidden="true" style="color:white;"></i>
+                                </a>
+                                <form method="post" action="{{ route('delete_auction', ['id' => $auction->id]) }}">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="trash-button">
+                                        <i class="fa fa-trash edit-cog" style="color:white;"></i>
+                                    </button>
+                                </form>
                             </div>
                         @else
-                            <div class="carousel-item">
-                                {{-- TODO mini hack to resize imgs :/ --}}
-                                <img style="width:640px;height:360px;" src="{{ asset('assets/' . $images_path->path) }}" class="d-block w-100" alt="bmw i8">
-                            </div>
+                            <h1>{{$auction->auction_name}}</h1>
                         @endif
-                    @endforeach
+                    @else
+                        <h1>{{$auction->auction_name}}</h1>
+                    @endif
                 </div>
-                  
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <a href=# class="heart">
-                <i class="fa fa-heart"></i>
-            </a>
-        </div>
 
-        <!-- Car Info -->
-        <div class="col-lg text-nowrap">
-            <h1>{{$vehicle->year}}' {{$vehicle->brand}} {{$vehicle->model}}</h1>
-                <div class="row align-items-center m-3">
-                    <div class="col">
-                        <h2>{{$vehicle->brand}}</h2>
-                        <h4>{{$vehicle->year}}</h4>
+                <!-- Specific Information -->
+                <div class="row rounded-3 bg-dark text-white text-center py-2">
+                    
+                    <div class="row py-2 fs-4">
+                        <div class="col">   Brand:              </div>
+                        <div class="col">   {{$vehicle->brand}} </div>
                     </div>
-                    <div class="col">
-                        <h2>{{$vehicle->model}}</h2>
-                        <h4>{{$vehicle->horsepower}} hp</h4>
+                    <div class="row py-2 fs-4">
+                        <div class="col">   Model:              </div>
+                        <div class="col">   {{$vehicle->model}} </div>
                     </div>
-                    <div class="col fire-text d-flex align-items-center justify-content-center" style="font-size: 4rem;">
-                        <i class="fa fa-fire m-3"></i>
-                        <h4 class="mb-0">{{Str::upper($vehicle->condition)}}</h4>
+                    <div class="row py-2 fs-4">
+                        <div class="col">   Year:               </div>
+                        <div class="col">   {{$vehicle->year}}  </div>
                     </div>
-                </div>
-            <div class="row align-items-center m-3 text-center">
-                <div class="col">
-                    <p>Started at:</p>
-                    <h6>{{\Carbon\Carbon::parse($auction->startingtime)->format('H:i:s')}}</h6>
-                    <h6>{{\Carbon\Carbon::parse($auction->startingtime)->format('Y-m-d')}}</h6>
-                </div>
-                <div class="col">
-                    <p>Ends at:</p>
-                    <h6>{{\Carbon\Carbon::parse($auction->endingTime)->format('H:i:s')}}</h6>
-                    <h6>{{\Carbon\Carbon::parse($auction->endingTime)->format('Y-m-d')}}</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-      
-</div>
-  
-<div class="auction_content rounded-3 border border-2 border-dark bg-white">
-    <!-- Current Bid info -->
-    <div class="container" id="auction_content_area">
-        <div class="row mx-auto align-items-center justify-content-around">
-            <div class="col-12 col-md-4 mt-3 mb-3">
-                <h2>Owner</h2>
-                <a href="{{ url('/users/' . $owner->id) }}" class="profile_text">
-                    <img src="{{ asset('assets/' . $owner_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hanna Green"> 
-                      
-                    <h4 class="m-0" style="color: rgb(204, 174, 2)">{{ $owner->username }}</h4>
-                </a>
-            </div>
-            <div class="col-12 col-md-4 mt-3 mb-1">
-                <h2>Current Bid</h2>
-                <h1 class="current_bid">{{$max_bid}}</h1>
-            </div>
-            <div class="col-12 col-md-4 mt-3 mb-3">
-                <h2 class="text-nowrap">Top Bidder</h2>
-                <a href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
-                    <img src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture mt-3" alt="Hank Geller"> 
-                    <h4 class="m-0">{{$highest_bidder->username}}</h4>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Place Bid -->
-    <div class="container mt-5" id="auction_content_area">
-        <form>
-            <div class="row align-items-center">
-                <div class="col-sm">
-                    <div class="input-group">
-                        <input type="number" min="0.00" step="1" value="205000" class="form-control" id="bid_input" placeholder="Your Bid">
-                            <div class="input-group-append">
-                                <span class="input-group-text append_box" id="bid_input_box">€</span>
-                            </div>
+                    <div class="row py-2 fs-4">
+                        <div class="col">   Horsepower:              </div>
+                        <div class="col">   {{$vehicle->horsepower}} </div>
                     </div>
-
-                </div>
-                <div class="col-sm p-0 mt-3 mb-3">
-                    <button type="submit" class="btn rounded-pill" id="bid_button"><h2 class="m-0 p-2">PLACE BID</h2></button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <!-- Countdown -->
-    <div class="container mt-5" id="auction_content_area">
-        <div class="row d-flex flex-row justify-content-around align-items-center">
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col-6 countdown_box">
-                        <h1 class="display-1 m-0">4</h1>
-                        <h4>Days</h4>
-                    </div>
-                    <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0">14</h1>
-                        <h4>Hours</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0">35</h1>
-                        <h4>Minutes</h4>
-                    </div>
-                    <div class="col-6 countdown_box">
-                        <h1  class="display-1 m-0">23</h1>
-                        <h4>Seconds</h4>
+                    <div class="row py-2 fs-4 align-items-center">
+                        <div class="col">   Condition:                          </div>
+                        <div class="col fire-text">   <i class="fas fa-fire m-3"></i> {{Str::upper($vehicle->condition)}} </div>
                     </div>
                 </div>
             </div>
         </div>
-        <h4 class="d-flex justify-content-between mt-3 pb-5">
-            <span> </span>
-            <span>T</span>
-            <span>I</span>
-            <span>L</span>
-            <span>L</span>
-            <span> </span>
-            <span> </span>
-            <span>A</span>
-            <span>U</span>
-            <span>C</span>
-            <span>T</span>
-            <span>I</span>
-            <span>O</span>
-            <span>N</span>
-            <span> </span>
-            <span> </span>
-            <span>B</span>
-            <span>E</span>
-            <span>G</span>
-            <span>I</span>
-            <span>N</span>
-            <span>S</span>
-            <span> </span>
-        </h4>
-    </div>
 
-</div>
+        <!-- Dates -->
+        <div class="row text-white text-center align-items-center my-3 mx-auto">
+            <div class="col-lg text-nowrap rounded-start bg-dark">
+                <div class="row py-2 fs-4">
+                    <div class="col">   Starting date:  </div>
+                    <div id="start-date" class="col">   {{\Carbon\Carbon::parse($auction->startingtime)->format('Y-m-d @ H:i:s')}} UTC </div>
+                </div>
+            </div>
 
-<!-- Comment Section -->
-<div class="display-1" style="margin-left: 15%;">Comment Section</div>
-    <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="comment_section">
-      
-    @if (!Auth::guest())
-        <!-- Place Comment -->
-        <div class="comment pb-2 clearfix rounded-3 border border-2">
-            <form onsubmit="Comment.submit(this, auctionId); Comment.updateSection(auctionId); return false;">
-                <!-- User and date -->
-                <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
-                @if (Auth::guest())
-                    <div class="d-flex justify-content-start align-items-center">
-                        <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture_comment m-3" alt="generic profile picture"> 
-                    </div>
-                @else
-                    <div class="d-flex justify-content-start align-items-center">
-                        <img src="{{ asset('assets/' . App\Models\User::findUserImage(Auth::id())->path) }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
-                        <div>
-                            <h6 class="m-0">{{App\Models\User::find(Auth::id())->username}}</h6>
+            <div class="col-lg text-nowrap rounded-end bg-dark">
+                <div class="row py-2 fs-4">
+                    <div class="col">   Closing date:   </div>
+                    <div id="end-date" class="col">   {{\Carbon\Carbon::parse($auction->endingtime)->format('Y-m-d @ H:i:s')}} UTC </div>
+                </div>
+            </div>
+        </div>
+
+        @if (!Auth::guest() && (Auth::user()->id == $owner->id))
+            <!-- Edit Auction Collapsable -->
+            <div class="collapse" id="editAuctionCollapse">
+                <form id="profile-general" method="post" action="{{'/auctions/' . $auction->id}}">
+                    @csrf
+                    <div class="row" style="--bs-gutter-x:0;">
+                        <div class="col form-floating mb-3 align-self-start">
+                            <input required type="text" name="brand" class="form-control" id="floatingInput" value="{{ old('brand', $vehicle->brand) }}">
+                            <label for="floatingInput">Brand</label>
+                        </div>
+
+                        <div class="col form-floating mb-3 ">
+                            <input required type="text" name="model" class="form-control" id="floatingInput" value="{{ old('model', $vehicle->model) }}">
+                            <label for="floatingInput">Model</label>
+                        </div>
+
+                        <div class="col form-floating mb-3 year-input">
+                            <input required type="number" name="year" class="form-control" id="floatingInput" value="{{ old('year', $vehicle->year) }}">
+                            <label for="floatingInput">Year</label>
                         </div>
                     </div>
-                @endif
-                </a>
-                <div class="m-3 mt-0">
-                    <textarea class="form-control text-justify" name="content" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
+
+                    <div class="row" style="--bs-gutter-x:0;">
+                        @if (\Carbon\Carbon::now()->lte($auction->startingtime))
+                            <div class="col form-floating mb-3 align-self-start">
+                                <select required class="form-select input_box" aria-label="condition" id="selectCondition" name="condition">
+                                    <option selected="false" value="Mint">Mint</option>
+                                    <option selected="false" value="Clean">Clean</option>
+                                    <option selected="false" value="Average">Average</option>
+                                    <option selected="false" value="Rough">Rough</option>
+                                </select>
+                                <label for="floatingInput">Condition</label>
+                            </div>
+
+                            <script>
+                                // change the default selected option to the current one
+                                let options = document.querySelectorAll('#selectCondition option');
+                                let optionsArray = Array.prototype.slice.call(options);
+                                
+                                optionsArray.forEach(option => {
+                                    if (option.getAttribute('value') == '{{$vehicle->condition}}') {
+                                        option.selected = true;
+                                    } else { option.selected = false; }
+                                });
+                            </script>
+                        @else
+                            <div class="col form-floating mb-3 year-input">
+                                <input required type="text" name="condition" class="form-control" id="floatingInput" value="{{$vehicle->condition}}" readonly>
+                                <label for="floatingInput">Condition</label>
+                            </div>
+                        @endif
+
+                        <div class="col form-floating mb-3 horsepower-input">
+                            <input required type="number" name="horsepower" class="form-control" id="floatingInput" value="{{ old('horsepower', $vehicle->horsepower) }}">
+                            <label for="floatingInput">Horsepower</label>
+                        </div>
+                    </div>
+                    <div class="row" style="--bs-gutter-x:0;">
+                        <div class="col form-floating mb-3">
+                            <input required type="date" name="startingdate" class="form-control input_box" id="floatingInput" value="{{ old('startingdate', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
+                            <label for="floatingInput">Starting Date</label>
+                        </div>
+                        <div class="col form-floating mb-3">
+                            <input required type="time" name="startingtime" class="form-control input_box" id="floatingInput" value="{{ old('startingtime', \Carbon\Carbon::parse($auction->startingtime)->setTimezone('Europe/London')->format('H:i:s')) }}">
+                            <label for="floatingInput">Starting Time</label>
+                        </div>
+
+                        <div class="col form-floating mb-3">
+                            <input required type="date" name="endingdate" class="form-control" id="floatingInput" value="{{ old('endingdate', \Carbon\Carbon::parse($auction->endingtime)->setTimezone('Europe/London')->format('Y-m-d')) }}">
+                            <label for="floatingInput">Closing Date</label>
+                        </div>
+                        <div class="col form-floating mb-3">
+                            <input required type="time" name="endingtime" class="form-control input_box" id="floatingInput" value="{{ old('endingtime', \Carbon\Carbon::parse($auction->endingtime)->setTimezone('Europe/London')->format('H:i:s')) }}">
+                            <label for="floatingInput">Closing Time</label>
+                        </div>
+                    </div>
+
+                    <script>
+                        // car related elements
+                        let brandElement = document.querySelector('input[name="brand"]');
+                        let modelElement = document.querySelector('input[name="model"]');
+                        let yearElement = document.querySelector('input[name="year"]');
+                        let horsepowerElement = document.querySelector('input[name="horsepower"]');
+                        
+                        // date related elements
+                        let startingDateElement = document.querySelector('input[name="startingdate"]');
+                        let startingTimeElement = document.querySelector('input[name="startingtime"]');
+                        let endingDateElement = document.querySelector('input[name="endingdate"]');
+                        let endingTimeElement = document.querySelector('input[name="endingtime"]');
+
+                        // auction already started
+                        if (new Date() > startingTime) {
+                            
+                            brandElement.readOnly = true;
+                            modelElement.readOnly = true;
+                            yearElement.readOnly = true;
+                            horsepowerElement.readOnly = true;
+
+                            startingDateElement.readOnly = true;
+                            startingTimeElement.readOnly = true;
+                            endingDateElement.readOnly = true;
+                            endingTimeElement.readOnly = true;
+
+                        } else {
+                            brandElement.readOnly = false;
+                            modelElement.readOnly = false;
+                            yearElement.readOnly = false;
+                            horsepowerElement.readOnly = false;
+
+                            startingDateElement.readOnly = false;
+                            startingTimeElement.readOnly = false;
+                            endingDateElement.readOnly = false;
+                            endingTimeElement.readOnly = false;
+                        }
+                    </script>
+
+                    @if (\Carbon\Carbon::now() < $auction->startingtime)
+                        <div class="row" style="--bs-gutter-x:0;">
+                            
+                            <div class="col modal-footer justify-content-center login-button px-5 pt-3 rounded-pill"> 
+                                <button type="submit" id="save-general" class="btn m-3 mt-0 float-end rounded-pill w-75 fw-bold">
+                                    {{ __('Save Changes') }}
+                                </button>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row" style="--bs-gutter-x:0;">
+                                
+                            <div class="col modal-footer justify-content-center login-button px-5 pt-0 pb-4 rounded-pill fw-bold"> 
+                                    {{ __('No Changes Allowed') }}
+                            </div>
+                        </div>
+                    @endif
+                </form>
+
+            </div>
+        @endif
+
+        <!-- Start of bordered box -->
+        <div class="rounded-3 border border-2 border-dark">
+
+            <!-- Current Bid info -->
+            <div class="row mt-5 mb-4 mx-auto">
+                <div class="col fs-3">
+                    <div class="text-center">Owner</div>
+                    <div class="text-center">
+                        <a href="{{ url('/users/' . $owner->id) }}" class="profile_text">
+                            <img src="{{ $owner->getImagePath() }}" class="rounded-circle profile_picture" alt="Hanna Green"> 
+                            
+                            <h4 class="" style="color: rgb(204, 174, 2)">{{ $owner->username }}</h4>
+                        </a>
+                    </div>
                 </div>
-                <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
-            </form>
+
+                <div class="col fs-3">
+                    <div id="bid-container" class="p-1">
+                        <div class="text-center">Current Bid</div>
+                        @if (isset($max_bid))
+                            <div id="max-bid" class="text-center fs-1 flash-bid">{{$max_bid}}€</div>  
+                        @else
+                            <div class="text-center fs-1">No bids</div>  
+                        @endif
+
+                        <div id="bid-last-updated" class="text-center fs-6 text-secondary pb-3">Last updated 0 seconds ago</div>
+                    </div>
+                    
+                    <!-- Place Bid -->
+                    @if (!Auth::guest() and (Auth::user()->id != $owner->id) and (\Carbon\Carbon::now() < $auction->endingtime) and (\Carbon\Carbon::now() >= $auction->startingtime))
+                        <div class="row text-center d-flex justify-content-center mt-2">
+                            <form class="row justify-content-center" onsubmit="Bid.submit(this, auctionId).then(() => Bid.updateSection(auctionId)); return false;">
+                                @csrf
+                                <div class="col bid-input input-group mb-2 p-0">
+ 
+                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepDown(5000);" style="cursor:pointer;">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    </span>
+                                    
+                                    @if (isset($max_bid))
+                                        <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$max_bid + 1}}" max="100000000" step="0.01" value="{{$max_bid + 1}}" name="amount">
+                                    @else
+                                        <input type="number" class="form-control text-center" id="bid_input" aria-label="Amount (to the nearest dollar)" min="{{$auction->startingbid}}" max="100000000" step="0.01" value="{{$auction->startingbid}}" name="amount">
+                                    @endif
+
+                                    <span class="input-group-text" onclick="this.parentNode.querySelector('[type=number]').stepUp(5000);"  style="cursor:pointer;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </span>
+                                    
+                                </div>
+
+                                <button type="submit" class="btn rounded-pill" id="bid_button"><h4 class="m-0 p-2">Place Bid</h4></button>
+                            
+                            </form>
+                        </div>
+                    @endif
+                </div>
+
+                <div class="col fs-3">
+                    <div class="text-center">Top Bidder</div>
+                    <div class="text-center">
+                        @if (isset($highest_bidder))
+                            <a id="max-bidder-anchor" href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
+                                <img id="max-bidder-img" src="{{ $highest_bidder->getImagePath() }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
+                                <h4 id="max-bidder-username" class="">{{$highest_bidder->username}}</h4>
+                            </a>
+                        @else
+                            <a href="" class="profile_text">
+                                <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            
+
+            @if (\Carbon\Carbon::now() < $auction->endingtime)
+                <!-- Countdown -->
+                <div class="container mt-5" id="auction_content_area">
+                    <div class="row d-flex flex-row justify-content-around align-items-center text-center">
+                        <div class="col-12 col-md-6">
+                            <div class="row">
+                                <div class="col-6 countdown_box">
+                                    <h1 class="display-1 m-0" id="days"></h1>
+                                    <h4>Days</h4>
+                                </div>
+                                <div class="col-6 countdown_box">
+                                    <h1  class="display-1 m-0" id="hours"></h1>
+                                    <h4>Hours</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="row">
+                                <div class="col-6 countdown_box">
+                                    <h1  class="display-1 m-0" id="minutes"></h1>
+                                    <h4>Minutes</h4>
+                                </div>
+                                <div class="col-6 countdown_box">
+                                    <h1  class="display-1 m-0" id="seconds"></h1>
+                                    <h4>Seconds</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="center-block mt-3 pb-5 auction-status text-center">
+                        @if (\Carbon\Carbon::now() > $auction->endingtime)
+                            AUCTION HAS ENDED
+                            @else UNTIL AUCTION 
+                                @if ($auction->startingtime > \Carbon\Carbon::now()) BEGINS
+                                @else ENDS
+                            @endif
+                        @endif
+                    </h4>
+                @else
+                    <h4 class="center-block my-3 py-3 auction-status text-center">AUCTION HAS ENDED</h4>
+                    
+                    {{-- <div class="text-center mb-4 pb-3">
+                        <button class="btn rounded-pill text-center fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="show-results">SEE RESULTS</button>
+                    </div>
+                    <div class="collapse" id="collapseExample"> --}}
+                        @if (!is_null($highest_bidder))
+                            @if (!Auth::guest())
+                                @if($highest_bidder->id == Auth::id())
+                                    <div class="center-block text-center mt-4 mb-5 pb-3">
+                                        <h4 class="fire-text fs-2 mt-2 pb-1">
+                                            YOU ARE THE WINNER!
+                                        </h4>
+                                        <h4 class="fs-2 mt-2">
+                                            Reach out to the owner:
+                                        </h4>
+                                        <h4 class="fs-2 mt-2">
+                                            <a href="mailto:{{$owner->email}}" target="_blank" style="text-decoration:none; color: inherit;" class="fw-bold">{{$owner->email}}</a>
+                                        </h4>
+                                    </div>
+                                @endif
+                            @else
+                                <h4 class="fire-text center-block fs-2 mt-2 pb-5 text-center">{{$highest_bidder->username}} is the winner!</h4>
+                            @endif
+                        @endif
+                        
+                        {{-- <div>
+                            <h4 class="center-block fs-2 mt-2 pb-1 px-auto text-center">Bidding History</h4>
+                            <div class="container bg-light rounded py-3 mb-5">
+                                @if (is_null($bid_history))
+                                    <div class="d-flex justify-content-center flex-row">
+                                        <div class="col-3 border border-1 text-center"> - </div>
+                                        <div class="col-3 border border-1 text-center"> - </div>
+                                        <div class="col-3 border border-1 text-center"> - </div>
+                                    </div>
+                                @else
+                                    @if (count($bid_history) < 7)
+                                        @foreach ($bid_history as $bid)
+                                            <div class="d-flex justify-content-center flex-row">
+                                                <div class="col-3 border border-1 text-center">{{$bid->username}}</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid->amount}}€</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid->createdon}}</div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        @for($i = 0; $i < 3; $i++)
+                                            <div class="d-flex justify-content-center flex-row">
+                                                <div class="col-3 border border-1 text-center">{{$bid_history[$i]->username}}</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid_history[$i]->amount}}€</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid_history[$i]->createdon}}</div>
+                                            </div>
+                                        @endfor
+                                        <div class="d-flex justify-content-center flex-row">
+                                            <div class="col-3 border border-1 text-center">...</div>
+                                            <div class="col-3 border border-1 text-center">...</div>
+                                            <div class="col-3 border border-1 text-center">...</div>
+                                        </div>
+                                        @for($i = count($bid_history) - 3; $i < count($bid_history); $i++)
+                                            <div class="d-flex justify-content-center flex-row">
+                                                <div class="col-3 border border-1 text-center">{{$bid_history[$i]->username}}</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid_history[$i]->amount}}€</div>
+                                                <div class="col-3 border border-1 text-center"> {{$bid_history[$i]->createdon}}</div>
+                                            </div>
+                                        @endfor
+                                    @endif
+                                @endif
+                            </div>
+                        </div> --}}
+                        
+                        
+                    {{-- </div> --}}
+                @endif
+                
+            </div>
+
+        <!-- End of bordered box -->
         </div>
-    @endif
-    
-    <div id="other-comments">
+
+    <!-- End of White Box -->
     </div>
 
-  <!-- Chat Button -->
-  <a href="#" class="chat_button">
-      <i class="fa fa-comments chat_icon"></i>
-  </a>
-</div>
+    <!-- Moderator Section -->
+    @if (!Auth::guest() && (Auth::id() == $owner->id || App\Models\User::findOrFail(Auth::id())->moderator()))
+    <div class="display-1 text-center">Moderator Section</div>
+    <div class="d-block around-container container bg-light rounded mb-5">
+        <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="moderator_section">
+        <div class="user_search overflow-auto">
+            <h5 class="text-center">Banned Users</h5>
+            <div class="input-group form-container">
+                <input type="text" name="search" class="form-control search-input" placeholder="Hanna Green" autocomplete="off" id="user_search">
+                <span class="input-group-btn">
+                    <button class="btn btn-search" type="button" onclick="updateUsers()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <!-- Show the users for selection, filter through js-->
+            <div id="user_rows">
+                @foreach($users as $user)
+                    @if(!$user->moderator())
+                        <div class="user_row d-flex justify-content-between align-items-center">
+                            <span class="user_id d-none">{{$user->id}}</span>
+                            <a href="../pages/profile.php" class="profile_text">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <img src="{{ $user->getImagePath() }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user->username}}"> 
+                                        <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user->username}}</span></h5>
+                                </div>
+                            </a>
+                            <div class="moderator_area text-center">
+                                @if ($user->bannedAuction($auction->id))
+                                    <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user->id) }}">
+                                        @method('delete')
+                                        @csrf
+                                        <div class="row p-2 rounded mb-1">
+                                            <button type="submit" class="btn btn-outline-danger">Unban User</button>
+                                        </div>
+                                    </form>
+                                @else
+                                    <form method="post" action="{{ url('/auctions/' . $auction->id . '/banned/' . $user['id']) }}">
+                                        @csrf
+                                        <div class="row p-2 rounded mb-1">
+                                            <button type="submit" class="btn btn-outline-danger">Ban User</button>
+                                        </div>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        </div>
+    </div>
+    @endif
+    
+    <!-- Comment Section -->
+    <div class="display-1 text-center" style="margin-bottom: 0.5em;">Comment Section</div>
+    <div class="around-container container bg-light rounded mb-5">
+
+        <div class="container-fluid p-0 rounded-3 border border-2 border-dark bg-light" id="comment_section">
+        
+            @if (!Auth::guest())
+                <!-- Place Comment -->
+                <div class="comment pb-2 clearfix rounded-3 border border-1 border-secondary">
+                    <form onsubmit="Comment.submit(this, auctionId).then(() => Comment.updateSection(auctionId)); return false;">
+                        <!-- User and date -->
+                        <a href="{{ route('show_profile', ['id' => Auth::id()]) }}" class="profile_text">
+                            @if (Auth::guest())
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <img src="{{ asset('assets/generic_profile.png') }}" class="rounded-circle profile_picture_comment m-3" alt="generic profile picture"> 
+                                </div>
+                            @else
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <img src="{{ App\Models\User::find(Auth::id())->getImagePath() }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
+                                    <div>
+                                        <h6 class="m-0">{{App\Models\User::findOrFail(Auth::id())->username}}</h6>
+                                    </div>
+                                </div>
+                            @endif
+                        </a>
+                        <div class="m-3 mt-0">
+                            <textarea class="form-control text-justify" name="content" id="comment_input" rows="3" placeholder="Insert your comment here."></textarea>
+                        </div>
+                        <button type="submit" class="btn m-3 mt-0 float-end rounded-pill" id="comment_button">COMMENT</button>
+                    </form>
+                </div>
+            @endif
+        
+            <div id="other-comments">
+            </div>
+
+        </div>
+        
+        <!-- Chat Button -->
+        <!--<a href="#" class="chat_button">
+            <i class="fa fa-comments chat_icon"></i>
+        </a>-->
+    
+    <!-- End of White Box -->
+    </div>
+
+
+
+</section>
+@if($errors->any())
+    <div class="notification red-notif">
+        <div class="row align-items-center">
+            <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="col justify-content-center">
+                {{$errors->first()}}
+            </div>
+        </div>        
+    </div>
+@else
+    @if(session('success'))
+        <div class="notification green-notif">
+            <div class="row align-items-center">
+                <div class="col-2 rounded-circle cross-container d-flex align-items-center justify-content-center">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="col justify-content-center">
+                    {{session('success')}}
+                </div>
+            </div>        
+        </div>
+    @endif
+@endif
 
 @endsection
