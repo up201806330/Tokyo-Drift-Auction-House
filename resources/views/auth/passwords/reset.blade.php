@@ -8,9 +8,9 @@
 
 @section('content')
 
-<div class="sign-in-container">
+<div class="container-fluid sign-in-container fill-height px-0" style="flex: 1;">
 
-    <div class="modal modal-dialog modal-dialog-centered" id="sign-up-content">
+    <div class="modal modal-dialog modal-dialog-centered" id="sign-in-content">
         <div class="modal-content">
 
             <div class="modal-header sign-in-header">
