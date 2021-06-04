@@ -2,6 +2,10 @@
 
 @section('title', 'Register')
 
+@section('head')
+    <script src="../js/PasswordInput.js"></script>
+@endsection
+
 @section('content')
 
 <div class="container-fluid sign-in-container fill-height px-0" style="flex: 1;">
@@ -19,18 +23,12 @@
                 <div class="col">
                     <div id="ui">
 
-                        <form class="form-group" method="post" action="{{ route('register') }}">
+                        <form class="form-group" method="post" onsubmit="return PasswordInput.compare(this.querySelector(`[name='password']`), this.querySelector(`[name='password_confirmation']`));" action="{{ route('register') }}">
                             @csrf
                             <div class="row" style="--bs-gutter-x:0;">
                                 <div class="col form-floating mb-3 align-self-start">
                                     <input required type="text" name="firstname" class="form-control" id="floatingInput" placeholder="Jeff">
                                     <label for="floatingInput">First Name</label>
-
-                                    {{-- @if ($errors->has('name'))
-                                    <span class="error">
-                                        {{ $errors->first('name') }}
-                                    </span>
-                                    @endif --}}
                                 </div>
 
                                 <div class="col form-floating mb-3 ">
@@ -79,8 +77,11 @@
                                     <label for="floatingPasswordConfirmation">Confirm Password</label> 
                                 </div>  
                             </div>
+                            <div id="passwords-not-match" class="text-danger" style="display: none">
+                                Passwords do not match!
+                            </div>
                             <div class="modal-footer justify-content-center login-button px-5 pt-3"> 
-                                <button class="btn rounded-pill w-75 fw-bold" href="../pages/profile.php">
+                                <button class="btn rounded-pill w-75 fw-bold">
                                     Sign up
                                 </button>
                             </div>

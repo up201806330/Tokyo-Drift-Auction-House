@@ -18,4 +18,16 @@ class PasswordInput {
             el.style.color = 'black';
         }
     }
+
+    static compare(el1, el2) {
+        var password1 = el1.value;
+        var password2 = el2.value;
+
+        if (password1 != password2) {
+            var hidden_div = document.querySelector('[id="passwords-not-match"');
+            hidden_div.style.display = 'block';
+            return false;
+        }
+        else { return true; }
+    }
 }
