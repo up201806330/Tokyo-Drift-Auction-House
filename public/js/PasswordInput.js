@@ -21,9 +21,15 @@ class PasswordInput {
         var password1 = el1.value;
         var password2 = el2.value;
 
+        if (password1.length < 8) {
+            var hidden_div_1 = document.querySelector('[id="passwords-not-big"');
+            hidden_div_1.style.display = 'block';
+            return false;
+        }
+
         if (password1 != password2) {
-            var hidden_div = document.querySelector('[id="passwords-not-match"');
-            hidden_div.style.display = 'block';
+            var hidden_div_2 = document.querySelector('[id="passwords-not-match"');
+            hidden_div_2.style.display = 'block';
             return false;
         }
         else { return true; }

@@ -77,6 +77,9 @@
                                     <label for="floatingPasswordConfirmation">Confirm Password</label> 
                                 </div>  
                             </div>
+                            <div id="passwords-not-big" class="text-danger" style="display: none">
+                                Passwords must be 8 characters minimum!
+                            </div>
                             <div id="passwords-not-match" class="text-danger" style="display: none">
                                 Passwords do not match!
                             </div>
