@@ -473,7 +473,7 @@ INSERT INTO "user" (id,profileImage,firstName,lastName,email,username,password,l
 (17,17,'Jared','Head','mauris.a.nunc@eu.ca','NBU44UNP0BB','head_jared','Provost','life is boring but cars are not','2021-03-30 12:38:24'),
 (18,18,'Yvonne','Odonnell','condimentum@velvulputate.edu','odonnel_y','WYQ13QQL6SR','Saint-Médard-en-Jalles','Renaults are the best cars in the world.','2021-03-30 12:38:24'),
 (19,19,'Palmer','Maldonado','Aliquam.tincidunt@orci.com','paler_mal','HTJ05GKL1QF','East Linton','Hey hey hey hey hey hey!','2021-03-30 12:38:24'),
-(20,20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','RTV38CTE4GF','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24'),
+(20,20,'Geraldine','Farrell','tempor.arcu.Vestibulum@Naminterdumenim.co.uk','geraldine','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','Surat','wanna see me playing with cars while wearing nothing? come to this link: geraldine.naked.com','2021-03-30 12:38:24'),
 (21,17, 'John', 'Doe','user@example.com', 'johndoe', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'johnlocation', 'i really like cars :)', '2020-05-30 12:38:24'),
 (22,NULL, 'Diogo', 'Rodrigues','dmfrodrigues2000@gmail.com', 'dmfr', '$2y$10$QLI641qpYsP9ciIoDsuxoOXzB3F1k2roJhzXx/FPhMeMXZFaaAAye', 'Maia, Portugal', 'Student @FEUP', '2020-05-30 12:38:24');
 
