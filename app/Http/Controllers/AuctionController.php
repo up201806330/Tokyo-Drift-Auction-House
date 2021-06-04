@@ -309,7 +309,7 @@ class AuctionController extends Controller
             return view('layouts.error');
         }
 
-        if($user->bannedAuction($id)->exists()){
+        if($user->bannedAuction($id)){
             return view('pages.banned_auction');
         }
 
