@@ -8,8 +8,8 @@
 
 @section('content')
 
-<section class="sign-in-container" style="min-height: calc(100% - (106px + 176px));">
-    <div class="container bg-light rounded pb-1">
+<section class="sign-in-container" style="flex: 1;">
+    <div class="container bg-light rounded" style="height: 100%;">
         <div class="display-1 pt-5 ps-3 text-start">Profile page</div>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb fs-5 ps-4 pt-1">
@@ -23,7 +23,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="container d-flex justify-content-center position-relative">
                         <div class="d-flex justify-content-center circular--portrait img-fluid">
-                            <img src="{{ asset('assets/' . $profileImage->path) }}" alt="" class="position-absolute">
+                            <img src="{{ url('users/'.$profileOwner->id.'/photo') }}" alt="" class="">
                         </div>
                         
                         <div class="position-absolute" style="margin-bottom:220px; margin-left:220px">
@@ -52,26 +52,13 @@
                             @endif
                         </div>
 
-                        <div class="position-absolute" style="margin-top:220px; margin-left:220px">
-
-                            @if (!Auth::guest())
-                                @if (Auth::user()->id == $profileOwner->id)
-                                    <div class="col d-flex justify-content-start align-items-center">
-
-                                        <a class="" data-bs-toggle="collapse" href="#generalCollapse" role="button" aria-expanded="false" aria-controls="generalCollapse">
-                                            <i class="fa fa-cog edit-cog" aria-hidden="true"></i>
-                                        </a>
-
-                                    </div>
-                                @endif
-                            @endif
-
-                        </div>
                     </div>
 
                     <p class="display-5 fw-bold name-text text-center" style="margin-top:250px; margin-bottom: -0.4rem !important;" id="adminTextStatic">{{$profileOwner->firstname}} {{$profileOwner->lastname}}</p>
                     <p class="fs-5 fw-bold name-text text-muted text-center" style="letter-spacing: 3px; ">{{'@'}}{{$profileOwner->username}}</p>
-                    <p class="fs-6 fw-bold name-text text-center" ><i class="fa fa-map-marker" style="margin-left:-0.5rem; margin-right:0.5rem;"></i>{{$profileOwner->location}}</p>
+                    <p class="fs-6 fw-bold name-text text-center" ><i class="fa fa-map-marker" style="margin-left:-0.5rem; margin-right:0.5rem;"></i>{{$profileOwner->location}}
+
+                    </p>
                     
                     <div class="container iconHolder d-flex justify-content-center">
                         <a class="permission-icon" href="../pages/mod.php" data-mdb-toggle="tooltip" title="Moderator">
@@ -83,6 +70,18 @@
                         <a class="permission-icon" href="#" data-mdb-toggle="tooltip" title="Seller">
                             <i class="fas fa-store green fa-3x ps-3"></i>
                         </a>
+
+                        {{-- <div class="position-absolute" style="margin-bottom:220px; margin-left:260px"> --}}
+
+                            @if (!Auth::guest())
+                                @if (Auth::user()->id == $profileOwner->id)
+                                        <a class="" data-bs-toggle="collapse" href="#generalCollapse" role="button" aria-expanded="false" aria-controls="generalCollapse">
+                                            <i style="font-size:3.3em !important; margin-top: -0.05em; margin-left: 0.3em;" class="fa fa-cog edit-cog" aria-hidden="true"></i>
+                                        </a>
+                                @endif
+                            @endif
+    
+                        {{-- </div> --}}
                     </div>
 
                     <br>

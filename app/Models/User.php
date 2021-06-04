@@ -67,6 +67,12 @@ class User extends Authenticatable
         return Image::findOrFail($this->profileimage);
     }
 
+    public function getImagePath() {
+        if (is_null($this->profileimage)) {
+            return asset('assets/generic_profile.png');
+        }
+        return asset('assets/'.Image::findOrFail($this->profileimage)->path);
+    }
 
     public static function findUserImage($id) {
         $user = User::findOrFail($id);
@@ -83,7 +89,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Image::class, 'profileImage');
     }
-
 
     /**
      * Get all of the vehicle for the User
@@ -103,6 +108,13 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all of the auctions that User is invited to
+     */
+    public function guestAuction($auction_id){
+        return $this->auctionGuest()->where('auction_id', '=', $auction_id)->first();
+    }
+
+    /**
      * Get all of the auctions that User has favourited
      */
     public function auctionFavourite(){
@@ -117,5 +129,72 @@ class User extends Authenticatable
      */
     public function sendPasswordResetNotification($token){
         $this->notify(new MailResetPasswordNotification($token));
+    }
+
+    /**
+     * Get all of the auctions that User moderates
+     */
+    public function auctionMod(){
+        return $this->belongsTo(AuctionModerator::class, 'id', 'user_id');
+    }
+
+    /**
+     * Get all of the auctions that User is invited to
+     */
+    public function modAuction($auction_id){
+        return $this->auctionMod()->where('auction_id', '=', $auction_id)->first();
+    }
+
+    /**
+     * Get if user is global moderator
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function globalMod(){
+        return $this->belongsTo(GlobalMod::class, 'id');
+    }
+
+    /**
+     * Get if user is admin
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function admin(){
+        return $this->belongsTo(Admin::class, 'id');
+    }
+
+    /**
+     * Get if user is seller
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function seller(){
+        return $this->belongsTo(Seller::class, 'id');
+    }
+
+    /**
+     * Get if user is moderator (of any kind)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function moderator(){
+        return ($this->globalMod()->exists() || $this->admin()->exists());
+    }
+
+     /**
+     * Get if user is banned
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function banned(){
+        return $this->belongsTo(Ban::class, 'id', 'user_id');
+    }
+
+    public function bannedAuction($auction_id){
+        return $this->banned()->where('auction_id', '=', $auction_id)->first();
+    }
+
+    public function bannedAll(){
+        return $this->banned()->where('ban_type', '=', "AllBan")->first();
     }
 }

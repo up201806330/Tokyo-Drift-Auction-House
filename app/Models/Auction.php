@@ -83,7 +83,6 @@ class Auction extends Model
   }
 
   public function getComments(){
-    // $auction_comments = Comment::where('auction_id', '=', $this->id)->get();
     return DB::table('comment')
       ->join('user', 'user.id', '=', 'comment.user_id')
       ->where('comment.auction_id', '=', $this->id)
@@ -104,6 +103,13 @@ class Auction extends Model
   */
   public function user_favourite(){
     return $this->belongsToMany(Favourite::class);
+  }
+
+  /**
+  * Get the users that are auction_mods to the auction
+  */
+  public function moderators(){
+    return $this->belongsToMany(AuctionModerator::class);
   }
 
   /**
