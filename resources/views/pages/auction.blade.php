@@ -365,7 +365,7 @@
                     <div class="text-center">Owner</div>
                     <div class="text-center">
                         <a href="{{ url('/users/' . $owner->id) }}" class="profile_text">
-                            <img src="{{ asset('assets/' . $owner_img->path) }}" class="rounded-circle profile_picture" alt="Hanna Green"> 
+                            <img src="{{ $owner->getImagePath() }}" class="rounded-circle profile_picture" alt="Hanna Green"> 
                             
                             <h4 class="" style="color: rgb(204, 174, 2)">{{ $owner->username }}</h4>
                         </a>
@@ -419,7 +419,7 @@
                     <div class="text-center">
                         @if (isset($highest_bidder))
                             <a id="max-bidder-anchor" href="{{ url('/users/' . $highest_bidder->id) }}" class="profile_text">
-                                <img id="max-bidder-img" src="{{ asset('assets/' . $bidder_img->path) }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
+                                <img id="max-bidder-img" src="{{ $highest_bidder->getImagePath() }}" class="rounded-circle profile_picture" alt="Hank Geller"> 
                                 <h4 id="max-bidder-username" class="">{{$highest_bidder->username}}</h4>
                             </a>
                         @else
@@ -576,7 +576,7 @@
                             <span class="user_id d-none">{{$user['id']}}</span>
                             <a href="../pages/profile.php" class="profile_text">
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
+                                    <img src="{{ $owner->getImagePath() }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
                                         <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
                                 </div>
                             </a>

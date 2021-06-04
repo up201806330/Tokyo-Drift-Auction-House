@@ -309,7 +309,6 @@ class AuctionController extends Controller
         }
 
         $owner = User::findOrFail($vehicle->owner);
-        $owner_profile_img = Image::findOrFail($owner->profileimage);
         $auction_comments = $auction->getComments();
 
         $favourite = false;
@@ -329,7 +328,6 @@ class AuctionController extends Controller
                 $new_user = [
                     'id' => $user->id,
                     'username' => $user->username,
-                    'image_path' => Image::findOrFail($user->profileimage)->path,
                     'moderator' => $user->moderator(),
                     'invited' => $user->guestAuction($id),
                     'banned' => $user->bannedAuction($auction->id),
@@ -344,8 +342,6 @@ class AuctionController extends Controller
             $current_max_bid = $auction->getCurrentMaxBid();
 
             $highest_bidder = $auction->getCurrentMaxBidder();
-
-            $highest_bidder_profile_img = Image::findOrFail($highest_bidder->profileimage);
 
             $bid_history = Bid::where('auction_id', '=', $id)
                 ->join('user',  'user.id',      '=', 'bid.user_id')
@@ -362,9 +358,7 @@ class AuctionController extends Controller
                 'images_paths'  => $images_paths,
                 'max_bid'       => null,
                 'owner'         => $owner,
-                'owner_img'     => $owner_profile_img,
                 'highest_bidder'=> null,
-                'bidder_img'    => null,
                 'comments'      => $auction_comments,
                 'favourite'     => $favourite,
                 'users'         => $users,
@@ -378,9 +372,7 @@ class AuctionController extends Controller
             'images_paths'  => $images_paths,
             'max_bid'       => $current_max_bid_amount,
             'owner'         => $owner,
-            'owner_img'     => $owner_profile_img,
             'highest_bidder'=> $highest_bidder,
-            'bidder_img'    => $highest_bidder_profile_img,
             'comments'      => $auction_comments,
             'favourite'     => $favourite,
             'users'         => $users,
