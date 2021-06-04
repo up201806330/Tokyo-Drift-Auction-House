@@ -9,5 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PasswordResetController extends Controller {
     use ResetsPasswords;
+
+    protected $redirectTo = '/';
     
 }
