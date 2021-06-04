@@ -625,7 +625,7 @@
                                 </div>
                             @else
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <img src="{{ asset('assets/' . App\Models\User::findUserImage(Auth::id())->path) }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
+                                    <img src="{{ App\Models\User::find(Auth::id())->getImagePath() }}" class="rounded-circle profile_picture_comment m-3" alt="user profile image"> 
                                     <div>
                                         <h6 class="m-0">{{App\Models\User::findOrFail(Auth::id())->username}}</h6>
                                     </div>
