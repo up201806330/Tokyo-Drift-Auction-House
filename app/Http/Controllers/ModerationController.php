@@ -48,31 +48,18 @@ class ModerationController extends Controller
             }
         }
 
-        $admin = false;
-        if ($user->admin()->exists()){
-            $admin = true;
-        }
-
         $all_users = User::all();
         $users=[];
-        foreach($all_users as $user){
-            if (!$user->admin()->exists() && !$user->banned()->exists()){
-                $new_user = [
-                    'id' => $user->id,
-                    'username' => $user->username,
-                    'image_path' => Image::findOrFail($user->profileimage)->path,
-                    'seller' => $user->seller()->exists(),
-                    'admin' => $user->admin()->exists(),
-                    'global' => $user->globalMod()->exists(),
-                ];
-                array_push($users, $new_user);
+        foreach($all_users as $u){
+            if (!$u->admin()->exists() && !$u->banned()->exists()){
+                array_push($users, $u);
             }
         }
         
         return view('pages.moderator', [
+            'user' => $user,
             'users' => $users,
             'auctions' => $auctions,
-            'admin' => $admin,
         ]);
     }
 }

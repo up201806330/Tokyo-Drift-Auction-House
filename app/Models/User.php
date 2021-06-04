@@ -164,6 +164,15 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user is admin
+     *
+     * @return Boolean
+     */
+    public function isAdmin() : bool {
+        return $this->admin()->exists();
+    }
+
+    /**
      * Get if user is seller
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

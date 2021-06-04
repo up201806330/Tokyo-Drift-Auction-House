@@ -21,7 +21,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Moderator page</li>
             </ol>
             </nav>
-            @if ($admin)
+            @if ($user->isAdmin())
                 <div class="display-4 ps-4 pb-1 pt-0 pt-md-5">
                     Manage user profiles
                 </div>
@@ -44,17 +44,17 @@
                         @foreach($users as $user)
                         <div class="accordion-item">
                             <div class="accordion-header" id="heading">
-                                <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$user['id']}}" aria-controls="collapse{{$user['id']}}">
+                                <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$user->id}}" aria-controls="collapse{{$user->id}}">
                                     <a class="profile_text">
                                         <div class="d-flex justify-content-start align-items-center">
-                                            <img src="{{ asset('assets/' . $user['image_path']) }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user['username']}}"> 
-                                            <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user['username']}}</span></h5>
+                                            <img src="{{ $user->getImagePath() }}" class="rounded-circle profile_picture_comment m-2" alt="{{$user->username}}"> 
+                                            <h5 class="my-3 ms-3" style="color: rgb(204, 174, 2)">@<span class="username">{{$user->username}}</span></h5>
                                         </div>
                                     </a>
                                 </button>
-                                <div id="collapse{{$user['id']}}" class="accordion-collapse collapse" aria-labelledby = "heading{{$user['id']}}" data-bs-parent="#userAccordion">
+                                <div id="collapse{{$user->id}}" class="accordion-collapse collapse" aria-labelledby = "heading{{$user->id}}" data-bs-parent="#userAccordion">
                                     <div class="accordion-body">
-                                        <form method="post" action="{{ url('moderator/users/' . $user['id']) }}">
+                                        <form method="post" action="{{ url('moderator/users/' . $user->id) }}">
                                             @csrf
                                             <div class="row p-2 rounded mb-1">
                                                 <a class="permission-icon col col-sm-1 align-self-start" href="#" data-mdb-toggle="tooltip" title="Seller">
@@ -80,13 +80,13 @@
                                                 <button type="submit" class="btn btn-outline-success">Submit Changes</button>
                                             </div>
                                         </form>
-                                        <form method="post" action="{{ url('/users/' . $user['id'] . '/banned') }}">
+                                        <form method="post" action="{{ url('/users/' . $user->id . '/banned') }}">
                                             @csrf
                                             <div class="row p-2 rounded mb-1">
                                                 <button type="submit" class="btn btn-outline-danger">Ban User</button>
                                             </div>
                                         </form>
-                                        <form method="post" action="{{ url('/users/' . $user['id']) }}">
+                                        <form method="post" action="{{ url('/users/' . $user->id) }}">
                                             @csrf
                                             @method('delete')
                                             <div class="row p-2 rounded mb-1">
