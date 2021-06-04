@@ -56,7 +56,7 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
 
-        if($request->user()->bannedAll()->exists()){
+        if($this->getUser()->bannedAll()->exists()){
             return new RedirectResponse(route('banned'));
         }
 
