@@ -138,10 +138,10 @@ This will start the database and the pgAdmin4 tool images as two independent doc
 
 [//]: # (The database's username is _postgres_ and the password is _pg!lol!2021_.)
 
-You can hit http://localhost:5050 to access __pgAdmin4__ and manage your database.
+You can hit http://localhost:4321 to access __pgAdmin4__ and manage your database.
 Use the following credentials to login:
 
-    Email: postgres
+    Email: postgres@lbaw.com
     Password: pg!lol!2021
 
 In the first usage of the development database, you will need to add a new Server using the following attributes<sup>1</sup>:
