@@ -1,8 +1,21 @@
-# LBAW's PIU
+# Tokyo Drift Auction House
+
+- **Project name:** Tokyo Drift Auction House
+- **Short description:** An online car auction house
+- **Environment:** Web
+- **Tools:** HTML/CSS, Bootstrap, Javascript, PHP, Laravel, PostgreSQL, pgAdmin, Docker
+- **Institution:** [FEUP](https://sigarra.up.pt/feup/en/web_page.Inicial)
+- **Course:** [LBAW](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=459490) (Database and Web Applications Laboratory)
+- **Project grade:** 19.2/20
+- **Group members:**
+    - [Diogo Miguel Ferreira Rodrigues](https://github.com/dmfrodrigues) ([up201806613@edu.fe.up.pt](mailto:up201806613@edu.fe.up.pt))
+    - [João António Cardoso Vieira e Basto de Sousa](https://github.com/JoaoASousa) ([up201806613@edu.fe.up.pt](mailto:up201806613@edu.fe.up.pt))
+    - [Leonor Martins de Sousa](https://github.com/leonormsousa) ([up201705377@edu.fe.up.pt](mailto:up201705377@edu.fe.up.pt))
+    - [Rafael Soares Ribeiro](https://github.com/up201806330) ([up201806330@edu.fe.up.pt](mailto:up201806330@edu.fe.up.pt))
 
 ## Installation
 
-Link to the Github release: [Final Version](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2174/-/releases/PA)
+Link to the Gitlab release: [Final Version](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2174/-/releases/PA)
 
 
 ### Docker Command
